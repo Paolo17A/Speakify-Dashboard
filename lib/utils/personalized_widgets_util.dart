@@ -8,7 +8,9 @@ Widget homeDashboardRowButton(
         height: height,
         width: width,
         child: ElevatedButton(
-          onPressed: () => onPress,
+          onPressed: () {
+            onPress();
+          },
           child: Text(
             label,
             textAlign: TextAlign.center,

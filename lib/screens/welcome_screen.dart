@@ -19,7 +19,7 @@ class Welcome extends StatelessWidget {
                   child: CircleAvatar(
                     radius: 150,
                     backgroundColor: Colors.transparent,
-                    child: Image.asset('assets/images/speakify_logo.png'),
+                    child: Image.asset('assets/images/speechlab_logo.png'),
                   ),
                 ),
                 const SizedBox(height: 100),
@@ -28,12 +28,12 @@ class Welcome extends StatelessWidget {
                         fixedSize: MaterialStateProperty.all<Size>(
                             const Size(250, 60)),
                         backgroundColor: MaterialStateProperty.all<Color>(
-                            const Color.fromARGB(255, 60, 118, 141))),
+                            const Color.fromARGB(255, 60, 19, 97))),
                     onPressed: () {
                       Navigator.pushNamed(context, '/register');
                     },
                     child: const Text('GET STARTED')),
-                const SizedBox(height: 10),
+                const SizedBox(height: 20),
                 TextButton(
                     onPressed: () {
                       Navigator.pushNamed(context, '/login');

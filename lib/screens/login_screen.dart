@@ -47,8 +47,12 @@ class _LoginScreenState extends State<LoginScreen> {
       if (currentUserData.data()!['userType'] == 'STUDENT') {
         displayError(context,
             'Students are not allowed to access the teacher\'s dashboard');
-        _emailController.clear();
-        _passwordController.clear();
+
+        setState(() {
+          _emailController.clear();
+          _passwordController.clear();
+          _isLoading = false;
+        });
       } else if (currentUserData.data()!['userType'] == 'TEACHER') {
         Navigator.of(context).pushNamed('/home');
       }
@@ -75,7 +79,7 @@ class _LoginScreenState extends State<LoginScreen> {
               child: Container(
                   width: MediaQuery.of(context).size.width * 0.85,
                   height: MediaQuery.of(context).size.height * 0.75,
-                  color: const Color.fromARGB(255, 60, 118, 141),
+                  color: const Color.fromARGB(255, 82, 48, 124),
                   child: Padding(
                     padding: const EdgeInsets.all(10),
                     child: Container(
@@ -91,13 +95,13 @@ class _LoginScreenState extends State<LoginScreen> {
                                       radius: 45,
                                       backgroundColor: Colors.transparent,
                                       child: Image.asset(
-                                          'assets/images/speakify_logo.png')),
+                                          'assets/images/speechlab_logo.png')),
                                 ),
                                 const SizedBox(height: 5),
                                 const Text('LOG-IN',
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
-                                        fontSize: 20)),
+                                        fontSize: 25)),
                                 const SizedBox(height: 10),
                                 SizedBox(
                                   width:
@@ -119,19 +123,25 @@ class _LoginScreenState extends State<LoginScreen> {
                                     ],
                                   ),
                                 ),
-                                const SizedBox(height: 10),
+                                const SizedBox(height: 50),
                                 SizedBox(
-                                  width: 100,
+                                  height: 50,
+                                  width: 150,
                                   child: ElevatedButton(
                                       onPressed: _loginUser,
-                                      child: const Text('LOG-IN')),
+                                      child: const Text('LOG-IN',
+                                          style: TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold))),
                                 ),
+                                const SizedBox(height: 30),
                                 Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       const Text(
                                         'Don\'t Have an Account?',
                                         style: TextStyle(
+                                            fontSize: 25,
                                             color: Colors.black,
                                             fontWeight: FontWeight.bold),
                                       ),
@@ -143,8 +153,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                           child: const Text(
                                             'Register Now',
                                             style: TextStyle(
+                                                fontSize: 25,
                                                 color: Color.fromARGB(
-                                                    255, 60, 118, 141),
+                                                    255, 102, 58, 130),
                                                 fontWeight: FontWeight.bold),
                                           ))
                                     ]),

@@ -6,5 +6,5 @@ void displayError(BuildContext context, String message) {
         message,
         style: const TextStyle(fontSize: 15),
       ),
-      backgroundColor: const Color.fromARGB(255, 86, 134, 133)));
+      backgroundColor: Colors.deepPurple));
 }
