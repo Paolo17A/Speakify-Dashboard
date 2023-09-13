@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "255305502265",
+    "project_id": "speechlab-31612",
+    "storage_bucket": "speechlab-31612.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:255305502265:android:ea3b0915ffae34f74847e8",
+        "android_client_info": {
+          "package_name": "com.example.speechlab"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "255305502265-kgqql1rarnp5cfnoo3ciq46h4opbhdrt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAK2pMnp7DJ8G5Dp27umU-U1KHMc_ZgsS8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "255305502265-kgqql1rarnp5cfnoo3ciq46h4opbhdrt.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "255305502265-7b6ueqg2nvehp5n791uj5sfvhgeju1ev.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.speechlab"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:255305502265:android:028ecbaea5c2ab804847e8",
+        "android_client_info": {
+          "package_name": "com.example.speechlab_dashboard"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "255305502265-kgqql1rarnp5cfnoo3ciq46h4opbhdrt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAK2pMnp7DJ8G5Dp27umU-U1KHMc_ZgsS8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "255305502265-kgqql1rarnp5cfnoo3ciq46h4opbhdrt.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "255305502265-7b6ueqg2nvehp5n791uj5sfvhgeju1ev.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.speechlab"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
