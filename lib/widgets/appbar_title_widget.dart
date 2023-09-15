@@ -8,8 +8,8 @@ PreferredSizeWidget appBarTitle() {
           Image.asset('assets/images/speechlab_logo.png', scale: 10),
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 30),
-            child: Text('SPEECHLAB APP',
-                style: TextStyle(fontWeight: FontWeight.bold)),
+            child:
+                Text('SPEAKIFY', style: TextStyle(fontWeight: FontWeight.bold)),
           ),
         ],
       ),

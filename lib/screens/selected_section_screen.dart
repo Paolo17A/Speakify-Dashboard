@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:speechlab_dashboard/utils/error_message.dart';
+import 'package:speechlab_dashboard/utils/student_achievements_util.dart';
 import 'package:speechlab_dashboard/widgets/appbar_title_widget.dart';
 import 'package:speechlab_dashboard/widgets/left_navigator_widget.dart';
 
@@ -154,89 +155,104 @@ class _SelectedSectionScreenState extends State<SelectedSectionScreen> {
                                               shrinkWrap: true,
                                               itemCount: _userDocs.length,
                                               itemBuilder: (build, index) {
-                                                return (Container(
-                                                  color: const Color.fromARGB(
-                                                      255, 103, 65, 150),
-                                                  child: Padding(
-                                                    padding:
-                                                        const EdgeInsets.all(6),
-                                                    child: Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceEvenly,
-                                                      children: [
-                                                        SizedBox(
-                                                          width: MediaQuery.of(
-                                                                      context)
-                                                                  .size
-                                                                  .width *
-                                                              0.20,
-                                                          child: Row(
-                                                            children: [
-                                                              const Padding(
-                                                                padding:
-                                                                    EdgeInsets
-                                                                        .all(4),
-                                                                child: Icon(
-                                                                    Icons
-                                                                        .person,
-                                                                    color: Colors
-                                                                        .white),
-                                                              ),
-                                                              Text(
-                                                                  '${(_userDocs[index].data() as Map<dynamic, dynamic>)['firstName']} ${(_userDocs[index].data() as Map<dynamic, dynamic>)['lastName']}',
-                                                                  style:
-                                                                      _studentEntryStyle()),
-                                                            ],
+                                                return Padding(
+                                                  padding: const EdgeInsets
+                                                      .symmetric(vertical: 3),
+                                                  child: (Container(
+                                                    color: const Color.fromARGB(
+                                                        255, 103, 65, 150),
+                                                    child: Padding(
+                                                      padding:
+                                                          const EdgeInsets.all(
+                                                              6),
+                                                      child: Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceEvenly,
+                                                        children: [
+                                                          SizedBox(
+                                                            width: MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .width *
+                                                                0.20,
+                                                            child: Row(
+                                                              children: [
+                                                                const Padding(
+                                                                  padding:
+                                                                      EdgeInsets
+                                                                          .all(
+                                                                              4),
+                                                                  child: Icon(
+                                                                      Icons
+                                                                          .person,
+                                                                      color: Colors
+                                                                          .white),
+                                                                ),
+                                                                Text(
+                                                                    '${(_userDocs[index].data() as Map<dynamic, dynamic>)['firstName']} ${(_userDocs[index].data() as Map<dynamic, dynamic>)['lastName']}',
+                                                                    style:
+                                                                        _studentEntryStyle()),
+                                                              ],
+                                                            ),
                                                           ),
-                                                        ),
-                                                        SizedBox(
-                                                          width: MediaQuery.of(
-                                                                      context)
-                                                                  .size
-                                                                  .width *
-                                                              0.20,
-                                                          child: Text(
-                                                              '${(_userDocs[index].data() as Map<dynamic, dynamic>)['currentLesson']}',
-                                                              textAlign:
-                                                                  TextAlign
-                                                                      .center,
-                                                              style:
-                                                                  _studentEntryStyle()),
-                                                        ),
-                                                        SizedBox(
-                                                          width: MediaQuery.of(
-                                                                      context)
-                                                                  .size
-                                                                  .width *
-                                                              0.20,
-                                                          child: Text(
-                                                              '${(_userDocs[index].data() as Map<dynamic, dynamic>)['speechLesson']}',
-                                                              textAlign:
-                                                                  TextAlign
-                                                                      .center,
-                                                              style:
-                                                                  _studentEntryStyle()),
-                                                        ),
-                                                        SizedBox(
-                                                          width: MediaQuery.of(
-                                                                      context)
-                                                                  .size
-                                                                  .width *
-                                                              0.15,
-                                                          child: ElevatedButton(
-                                                              onPressed: () {},
-                                                              child: const Text(
-                                                                'VIEW ACHEIVEMENTS',
-                                                                style: TextStyle(
-                                                                    letterSpacing:
-                                                                        2),
-                                                              )),
-                                                        ),
-                                                      ],
+                                                          SizedBox(
+                                                            width: MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .width *
+                                                                0.20,
+                                                            child: Text(
+                                                                '${(_userDocs[index].data() as Map<dynamic, dynamic>)['currentLesson']}',
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .center,
+                                                                style:
+                                                                    _studentEntryStyle()),
+                                                          ),
+                                                          SizedBox(
+                                                            width: MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .width *
+                                                                0.20,
+                                                            child: Text(
+                                                                '${(_userDocs[index].data() as Map<dynamic, dynamic>)['speechLesson']}',
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .center,
+                                                                style:
+                                                                    _studentEntryStyle()),
+                                                          ),
+                                                          SizedBox(
+                                                            width: MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .width *
+                                                                0.15,
+                                                            child:
+                                                                ElevatedButton(
+                                                                    onPressed: () => displayStudentAchievementsDialogue(
+                                                                        context,
+                                                                        '${(_userDocs[index].data() as Map<dynamic, dynamic>)['firstName']} ${(_userDocs[index].data() as Map<dynamic, dynamic>)['lastName']}',
+                                                                        List.from((_userDocs[index].data()
+                                                                                as Map<dynamic, dynamic>)[
+                                                                            'achievements']),
+                                                                        (_userDocs[index].data() as Map<
+                                                                            dynamic,
+                                                                            dynamic>)['profileImageURL']),
+                                                                    child: const Text(
+                                                                      'VIEW ACHIEVEMENTS',
+                                                                      style: TextStyle(
+                                                                          letterSpacing:
+                                                                              2),
+                                                                    )),
+                                                          ),
+                                                        ],
+                                                      ),
                                                     ),
-                                                  ),
-                                                ));
+                                                  )),
+                                                );
                                               },
                                             ),
                                           ],
