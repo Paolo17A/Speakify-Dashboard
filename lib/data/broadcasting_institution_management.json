@@ -1,0 +1,189 @@
+{
+    "easy": [
+      {
+        "question": "What is the primary role of a broadcasting institution?",
+        "options": {
+          "a": "Content production",
+          "b": "Advertising sales",
+          "c": "Audience research",
+          "d": "Transmission engineering"
+        },
+        "answer": "a"
+      },
+      {
+        "question": "Which department of a broadcasting institution is responsible for ensuring compliance with regulatory guidelines?",
+        "options": {
+          "a": "Programming",
+          "b": "Engineering",
+          "c": "Legal and Compliance",
+          "d": "Marketing and Sales"
+        },
+        "answer": "c"
+      },
+      {
+        "question": "What is the term used to describe the process of transmitting audio and video signals over the airwaves?",
+        "options": {
+          "a": "Broadcasting",
+          "b": "Streaming",
+          "c": "Podcasting",
+          "d": "Narrowcasting"
+        },
+        "answer": "a"
+      },
+      {
+        "question": "Which of the following is an example of a public broadcasting institution?",
+        "options": {
+          "a": "CNN",
+          "b": "BBC",
+          "c": "HBO",
+          "d": "Netflix"
+        },
+        "answer": "b"
+      },
+      {
+        "question": "What is the primary source of revenue for most broadcasting institutions?",
+        "options": {
+          "a": "Subscription fees",
+          "b": "Advertising revenue",
+          "c": "Government funding",
+          "d": "Donations"
+        },
+        "answer": "b"
+      },
+      {
+        "question": "Which department of a broadcasting institution is responsible for creating and acquiring content?",
+        "options": {
+          "a": "Finance",
+          "b": "Human Resources",
+          "c": "Programming",
+          "d": "Technical Operations"
+        },
+        "answer": "c"
+      },
+      {
+        "question": "What is the term used to describe the process of distributing content to multiple platforms and devices?",
+        "options": {
+          "a": "Multicasting",
+          "b": "Syndication",
+          "c": "Simulcasting",
+          "d": "Cross-platform distribution"
+        },
+        "answer": "d"
+      },
+      {
+        "question": "Which regulatory body oversees broadcasting institutions in the United States?",
+        "options": {
+          "a": "Federal Communications Commission (FCC)",
+          "b": "Federal Trade Commission (FTC)",
+          "c": "Securities and Exchange Commission (SEC)",
+          "d": "National Broadcasting Commission (NBC)"
+        },
+        "answer": "a"
+      },
+      {
+        "question": "Which of the following is an example of an independent broadcasting institution?",
+        "options": {
+          "a": "ABC",
+          "b": "ITV",
+          "c": "ESPN",
+          "d": "CBC"
+        },
+        "answer": "d"
+      },
+      {
+        "question": "What is the term used to describe the audience measurement system used by broadcasting institutions?",
+        "options": {
+          "a": "Nielsen ratings",
+          "b": "Arbitron",
+          "c": "ComScore",
+          "d": "Kantar Media"
+        },
+        "answer": "a"
+      }
+    ],
+    "average": [
+      {
+        "question": "Broadcasting institutions are primarily funded through government grants.",
+        "answer": false
+      },
+      {
+        "question": "The programming department of a broadcasting institution is responsible for managing the technical aspects of transmission.",
+        "answer": false
+      },
+      {
+        "question": "Advertising sales play a minor role in the revenue generation of broadcasting institutions.",
+        "answer": false
+      },
+      {
+        "question": "Broadcasting institutions are not subject to any regulatory guidelines or restrictions.",
+        "answer": false
+      },
+      {
+        "question": "Strategic planning is an important aspect of broadcasting institution management.",
+        "answer": true
+      },
+      {
+        "question": "The human resources department of a broadcasting institution is responsible for hiring and training employees.",
+        "answer": true
+      },
+      {
+        "question": "Broadcasting institutions are not involved in the production of original content.",
+        "answer": false
+      },
+      {
+        "question": "Subscription fees are the primary source of revenue for public broadcasting institutions.",
+        "answer": false
+      },
+      {
+        "question": "Broadcasting institutions are not required to maintain a diverse and inclusive workforce.",
+        "answer": false
+      },
+      {
+        "question": "Digital transformation has had little impact on the operations of broadcasting institutions.",
+        "answer": false
+      }
+    ],
+    "difficult": [
+      {
+        "question": "____________ is the process of licensing and allocating frequencies for broadcasting.",
+        "answer": ["spectrum management"]
+      },
+      {
+        "question": "The ____________ department of a broadcasting institution is responsible for managing financial resources and budgets.",
+        "answer": ["finance"]
+      },
+      {
+        "question": "____________ is the term used to describe the practice of broadcasting the same content simultaneously on multiple platforms.",
+        "answer": ["simulcasting"]
+      },
+      {
+        "question": "____________ is a legal concept that refers to the exclusive rights to use and profit from a creative work.",
+        "answer": ["copyright"]
+      },
+      {
+        "question": "____________ is the process of evaluating and analyzing audience feedback and engagement with programming.",
+        "answer": ["audience analytics"]
+      },
+      {
+        "question": "The ____________ Act is a U.S. legislation that regulates the ownership and control of broadcasting licenses.",
+        "answer": ["telecommunications"]
+      },
+      {
+        "question": "____________ is a financial metric used to measure the profitability of a broadcasting institution.",
+        "answer": ["profit margin"]
+      },
+      {
+        "question": "____________ is a marketing strategy used by broadcasting institutions to promote their programs and attract viewers.",
+        "answer": ["promotion"]
+      },
+      {
+        "question": "The ____________ model of broadcasting involves funding through a combination of advertising and subscription fees.",
+        "answer": ["hybrid"]
+      },
+      {
+        "question": "____________ is the process of identifying and acquiring content from external sources for broadcast.",
+        "answer": ["content acquisition"]
+      }
+    ]
+  }
+  

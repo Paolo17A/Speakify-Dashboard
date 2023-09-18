@@ -1,0 +1,192 @@
+{
+    "easy": [
+        {
+            "question": "Which of the following is an example of a media law?",
+            "options": {
+                "a": "Freedom of speech",
+                "b": "Right to privacy",
+                "c": "Libel and slander",
+                "d": "All of the above"
+            },
+            "answer": "d"
+        },
+        {
+            "question": "What is the purpose of defamation laws?",
+            "options": {
+                "a": "To protect individuals from false and damaging statements",
+                "b": "To regulate the content of media broadcasts",
+                "c": "To ensure fair competition in the media industry",
+                "d": "To protect national security"
+            },
+            "answer": "a"
+        },
+        {
+            "question": "What is the term used to describe the unauthorized use of someone's copyrighted work?",
+            "options": {
+                "a": "Plagiarism",
+                "b": "Fair use",
+                "c": "Public domain",
+                "d": "Infringement"
+            },
+            "answer": "d"
+        },
+        {
+            "question": "Which of the following is an example of a media law that protects consumers?",
+            "options": {
+                "a": "Consumer protection laws",
+                "b": "Advertising regulations",
+                "c": "Product liability laws",
+                "d": "All of the above"
+            },
+            "answer": "d"
+        },
+        {
+            "question": "What is the purpose of shield laws in media law?",
+            "options": {
+                "a": "To protect journalists from revealing their sources",
+                "b": "To regulate the use of encryption in media content",
+                "c": "To prevent the spread of fake news",
+                "d": "To protect national security"
+            },
+            "answer": "a"
+        },
+        {
+            "question": "What is the term used to describe the unauthorized use of someone's likeness for commercial purposes?",
+            "options": {
+                "a": "Invasion of privacy",
+                "b": "Right of publicity",
+                "c": "Copyright infringement",
+                "d": "Plagiarism"
+            },
+            "answer": "b"
+        },
+        {
+            "question": "Which of the following is an example of a media law that protects intellectual property?",
+            "options": {
+                "a": "Copyright law",
+                "b": "Antitrust law",
+                "c": "Securities law",
+                "d": "Employment law"
+            },
+            "answer": "a"
+        },
+        {
+            "question": "What is the purpose of obscenity laws in media regulation?",
+            "options": {
+                "a": "To protect children from explicit content",
+                "b": "To restrict political speech",
+                "c": "To promote artistic freedom",
+                "d": "To regulate the use of advertising slogans"
+            },
+            "answer": "a"
+        },
+        {
+            "question": "What is the term used to describe the legal protection of inventions and technological innovations?",
+            "options": {
+                "a": "Trademark",
+                "b": "Patent",
+                "c": "Trade secret",
+                "d": "Copyright"
+            },
+            "answer": "b"
+        },
+        {
+            "question": "Which of the following is an example of a media law that promotes diversity and competition in the media industry?",
+            "options": {
+                "a": "Antitrust laws",
+                "b": "Censorship laws",
+                "c": "National security laws",
+                "d": "Employment discrimination laws"
+            },
+            "answer": "a"
+        }
+    ],
+    "average": [
+        {
+            "question": "Intellectual property laws protect the rights of creators and innovators.",
+            "answer": true
+        },
+        {
+            "question": "Fair use is a legal doctrine that allows the use of copyrighted material without permission from the copyright owner.",
+            "answer": true
+        },
+        {
+            "question": "The First Amendment of the United States Constitution guarantees freedom of speech and press.",
+            "answer": true
+        },
+        {
+            "question": "Media organizations are not bound by any legal obligations to provide accurate and truthful information.",
+            "answer": false
+        },
+        {
+            "question": "Prior restraint is a legal concept that allows the government to prevent the publication or broadcast of certain information.",
+            "answer": true
+        },
+        {
+            "question": "Media ownership regulations aim to prevent media monopolies and promote diversity of voices in the industry.",
+            "answer": true
+        },
+        {
+            "question": "The Communications Decency Act protects online platforms from liability for the content posted by their users.",
+            "answer": true
+        },
+        {
+            "question": "Copyright protection extends to ideas and concepts rather than the specific expression of those ideas.",
+            "answer": false
+        },
+        {
+            "question": "Defamation laws only apply to written statements and not to spoken words.",
+            "answer": false
+        },
+        {
+            "question": "Hate speech is protected under the principle of freedom of speech in most countries.",
+            "answer": false
+        }
+    ],
+    "difficult": [
+        {
+            "question": "__________ is a legal doctrine that allows limited use of copyrighted material for purposes such as criticism, commentary, news reporting, and education.",
+            "answer": ["Fair use"]
+        },
+        {
+            "question": "__________ is the legal concept that grants individuals the right to control and profit from their name, likeness, and image.",
+            "answer": ["Right of publicity"]
+        },
+        {
+            "question": "The __________ is a U.S. law that regulates the collection, use, and disclosure of personal information by businesses.",
+            "answer": ["General Data Protection Regulation"]
+        },
+        {
+            "question": "__________ is a legal principle that allows individuals to seek redress for false and damaging statements made about them.",
+            "answer": ["Defamation"]
+        },
+        {
+            "question": "__________ refers to the practice of presenting information in a way that intentionally misleads or deceives the audience.",
+            "answer": ["Misinformation", "disinformation"]
+        },
+        {
+            "question": "The __________ is a principle in media ethics that requires media professionals to respect the privacy and confidentiality of sources and individuals.",
+            "answer": ["Principle of privacy"]
+        },
+        {
+            "question": "The __________ is a principle that emphasizes the importance of diverse and representative media content.",
+            "answer": ["Principle of diversity", "representation"]
+        },
+        {
+            "question": "__________ is the practice of attributing credit to the original creator or source of media content.",
+            "answer": ["Attribution"]
+        },
+        {
+            "question": "The __________ is a principle that advocates for media professionals to disclose any potential conflicts of interest that may compromise their objectivity.",
+            "answer": ["Principle of transparency"]
+        },
+        {
+            "question": "The __________ is an ethical principle that encourages media professionals to seek and present multiple perspectives on an issue or topic.",
+            "answer": ["Principle of balance", "objectivity"]
+        },
+        {
+            "question": "__________ is the process of verifying information and ensuring its accuracy before publishing or broadcasting.",
+            "answer": ["Fact-checking", "verification"]
+        }
+    ]
+}

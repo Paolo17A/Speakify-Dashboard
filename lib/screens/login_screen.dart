@@ -69,26 +69,26 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: () async {
-        Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
-        return false;
-      },
-      child: Scaffold(
-        body: Stack(children: [
+        onWillPop: () async {
+          Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
+          return false;
+        },
+        child: Scaffold(
+            body: Stack(children: [
           Center(
               child: Container(
                   width: MediaQuery.of(context).size.width * 0.85,
                   height: MediaQuery.of(context).size.height * 0.75,
                   color: const Color.fromARGB(255, 82, 48, 124),
                   child: Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: Container(
-                        color: const Color.fromARGB(255, 245, 245, 245),
-                        child: SingleChildScrollView(
-                          child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
+                      padding: const EdgeInsets.all(10),
+                      child: Container(
+                          color: const Color.fromARGB(255, 245, 245, 245),
+                          child: SingleChildScrollView(
+                              child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
                                 Padding(
                                   padding: const EdgeInsets.all(6.0),
                                   child: CircleAvatar(
@@ -120,6 +120,24 @@ class _LoginScreenState extends State<LoginScreen> {
                                           _passwordController,
                                           TextInputType.visiblePassword),
                                       const SizedBox(height: 5.0),
+                                    ],
+                                  ),
+                                ),
+                                SizedBox(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.65,
+                                  child: Row(
+                                    children: [
+                                      TextButton(
+                                          onPressed: () {
+                                            Navigator.pushNamed(
+                                                context, '/reset');
+                                          },
+                                          child: const Text('Forgot Password?',
+                                              style: TextStyle(
+                                                  color: Colors.purple,
+                                                  decoration: TextDecoration
+                                                      .underline)))
                                     ],
                                   ),
                                 ),
@@ -158,21 +176,16 @@ class _LoginScreenState extends State<LoginScreen> {
                                                     255, 102, 58, 130),
                                                 fontWeight: FontWeight.bold),
                                           ))
-                                    ]),
-                              ]),
-                        )),
-                  ))),
+                                    ])
+                              ])))))),
           if (_isLoading)
             Container(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height,
-              color: Colors.black.withOpacity(0.5),
-              child: const Center(
-                child: CircularProgressIndicator(),
-              ),
-            ),
-        ]),
-      ),
-    );
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height,
+                color: Colors.black.withOpacity(0.5),
+                child: const Center(
+                  child: CircularProgressIndicator(),
+                ))
+        ])));
   }
 }

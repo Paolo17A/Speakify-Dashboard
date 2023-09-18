@@ -1,0 +1,189 @@
+{
+    "easy": [
+      {
+        "question": "Which of the following is an essential element of writing dramatic materials for broadcasting?",
+        "options": {
+          "a": "Dialogue",
+          "b": "Sound effects",
+          "c": "Visual effects",
+          "d": "All of the above"
+        },
+        "answer": "d"
+      },
+      {
+        "question": "The term 'story arc' refers to:",
+        "options": {
+          "a": "The main character's journey",
+          "b": "The overall structure of a story",
+          "c": "The climax of a plot",
+          "d": "The resolution of conflicts"
+        },
+        "answer": "b"
+      },
+      {
+        "question": "What is the purpose of a logline in dramatic writing?",
+        "options": {
+          "a": "To describe the setting of the story",
+          "b": "To summarize the main plot points",
+          "c": "To list the names of the characters",
+          "d": "To provide a detailed description of the dialogue"
+        },
+        "answer": "b"
+      },
+      {
+        "question": "Which of the following is a common storytelling technique used in broadcasting and emerging media?",
+        "options": {
+          "a": "Flashbacks",
+          "b": "Monologues",
+          "c": "Voiceovers",
+          "d": "All of the above"
+        },
+        "answer": "d"
+      },
+      {
+        "question": "In dramatic writing, what is the function of conflict?",
+        "options": {
+          "a": "To create tension and drive the story forward",
+          "b": "To introduce new characters",
+          "c": "To establish the setting",
+          "d": "To provide comic relief"
+        },
+        "answer": "a"
+      },
+      {
+        "question": "Which of the following is an important element of dramatic storytelling?",
+        "options": {
+          "a": "Setting",
+          "b": "Camera angles",
+          "c": "Sound effects",
+          "d": "All of the above"
+        },
+        "answer": "d"
+      },
+      {
+        "question": "What is the purpose of creating compelling characters in dramatic materials?",
+        "options": {
+          "a": "To engage the audience",
+          "b": "To increase the budget",
+          "c": "To promote product placement",
+          "d": "None of the above"
+        },
+        "answer": "a"
+      },
+      {
+        "question": "What does the term 'plot' refer to in dramatic writing?",
+        "options": {
+          "a": "The main character's personality",
+          "b": "The sequence of events in the story",
+          "c": "The type of camera used in filming",
+          "d": "The soundtrack of the production"
+        },
+        "answer": "b"
+      },
+      {
+        "question": "What is the role of conflict in a dramatic narrative?",
+        "options": {
+          "a": "To create tension and interest",
+          "b": "To provide comic relief",
+          "c": "To showcase special effects",
+          "d": "To fulfill the required runtime"
+        },
+        "answer": "a"
+      },
+      {
+        "question": "Which of the following is NOT a typical genre for dramatic materials?",
+        "options": {
+          "a": "Romance",
+          "b": "Horror",
+          "c": "Documentary",
+          "d": "Science fiction"
+        },
+        "answer": "c"
+      }
+    ],
+    "average": [
+      {
+        "question": "Dramatic writing for broadcasting primarily focuses on visuals rather than dialogue.",
+        "answer": true
+      },
+      {
+        "question": "In emerging media, interactive storytelling allows the audience to actively participate in the narrative.",
+        "answer": true
+      },
+      {
+        "question": "Character development is not important in dramatic writing for broadcasting.",
+        "answer": false
+      },
+      {
+        "question": "Dramatic materials for interactive media often involve branching narratives.",
+        "answer": true
+      },
+      {
+        "question": "The use of suspense and dramatic tension is crucial in engaging the audience in broadcasting and emerging media.",
+        "answer": true
+      },
+      {
+        "question": "True or False: Dramatic materials should always have a clear and predictable ending.",
+        "answer": false
+      },
+      {
+        "question": "True or False: Interactive media allows the audience to actively participate in the story.",
+        "answer": true
+      },
+      {
+        "question": "True or False: Emotional engagement is an essential aspect of effective dramatic storytelling.",
+        "answer": true
+      },
+      {
+        "question": "True or False: Emerging media refers to traditional forms of entertainment such as TV and film.",
+        "answer": false
+      },
+      {
+        "question": "True or False: Dramatic writing for broadcasting focuses primarily on visual storytelling.",
+        "answer": true
+      }
+    ],
+    "difficult": [
+      {
+        "question": "In broadcasting, a ___________ is a brief outline of the main events of a story.",
+        "answer": ["synopsis"]
+      },
+      {
+        "question": "Interactive storytelling allows users to make __________ that affect the outcome of the narrative.",
+        "answer": ["choices"]
+      },
+      {
+        "question": "The __________ is the turning point in a story where the main character faces a crucial decision or conflict.",
+        "answer": ["turning point"]
+      },
+      {
+        "question": "In emerging media, ___________ is often used to immerse the audience in the story through virtual reality or augmented reality.",
+        "answer": ["virtual reality"]
+      },
+      {
+        "question": "The concept of __________ refers to the process of revealing important story information gradually, creating intrigue and suspense.",
+        "answer": ["foreshadowing"]
+      },
+      {
+        "question": "The __________ is a key plot point that drives the story forward and creates a turning point in the narrative.",
+        "answer": ["climax"]
+      },
+      {
+        "question": "In interactive media, the audience's choices and actions can lead to different __________ in the story.",
+        "answer": ["outcomes"]
+      },
+      {
+        "question": "When writing for emerging media, it is important to consider the __________ and limitations of the platform or technology being used.",
+        "answer": ["capabilities"]
+      },
+      {
+        "question": "__________ is a technique used in dramatic writing to reveal important information gradually and create suspense.",
+        "answer": ["foreshadowing"]
+      },
+      {
+        "question": "The __________ of a character refers to their internal motivations, desires, and conflicts.",
+        "answer": ["psychology"]
+      }
+    ]
+  }
+  

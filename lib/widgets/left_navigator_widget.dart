@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 Widget lefNavigator(BuildContext context, int index) {
   return Container(
       width: MediaQuery.of(context).size.width * 0.2,
-      color: const Color.fromARGB(255, 128, 75, 161),
+      color: const Color.fromARGB(255, 74, 0, 49),
       child: Column(children: [
         Flexible(
           flex: 1,
@@ -12,8 +12,7 @@ Widget lefNavigator(BuildContext context, int index) {
             padding: EdgeInsets.zero,
             children: [
               Container(
-                color:
-                    index == 0 ? const Color.fromARGB(255, 86, 49, 109) : null,
+                color: index == 0 ? const Color.fromARGB(255, 41, 0, 27) : null,
                 child: ListTile(
                   leading: const Icon(Icons.home),
                   title: Text('Dashboard', style: _textStyle()),
@@ -23,8 +22,7 @@ Widget lefNavigator(BuildContext context, int index) {
                 ),
               ),
               Container(
-                color:
-                    index == 1 ? const Color.fromARGB(255, 86, 49, 109) : null,
+                color: index == 1 ? const Color.fromARGB(255, 41, 0, 27) : null,
                 child: ListTile(
                   leading: const Icon(Icons.people),
                   title: Text(
@@ -37,8 +35,7 @@ Widget lefNavigator(BuildContext context, int index) {
                 ),
               ),
               Container(
-                color:
-                    index == 2 ? const Color.fromARGB(255, 86, 49, 109) : null,
+                color: index == 2 ? const Color.fromARGB(255, 41, 0, 27) : null,
                 child: ListTile(
                   leading: const Icon(Icons.person_2),
                   title: Text('Instructor', style: _textStyle()),
@@ -48,8 +45,7 @@ Widget lefNavigator(BuildContext context, int index) {
                 ),
               ),
               Container(
-                color:
-                    index == 3 ? const Color.fromARGB(255, 86, 49, 109) : null,
+                color: index == 3 ? const Color.fromARGB(255, 41, 0, 27) : null,
                 child: ListTile(
                   leading: const Icon(Icons.book_rounded),
                   title: Text('Lessons', style: _textStyle()),

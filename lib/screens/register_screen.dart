@@ -44,7 +44,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       displayError(context, "The passwords do not match");
       return;
     }
-
+    final scaffoldMessenger = ScaffoldMessenger.of(context);
     try {
       setState(() {
         _isLoading = true;
@@ -72,7 +72,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           .signOut()
           .then((value) => Navigator.pushNamed(context, '/login'));
     } on FirebaseAuthException catch (error) {
-      displayError(context, error.toString());
+      scaffoldMessenger.showSnackBar(SnackBar(content: Text(error.toString())));
       setState(() {
         _isLoading = false;
         _emailController.clear();

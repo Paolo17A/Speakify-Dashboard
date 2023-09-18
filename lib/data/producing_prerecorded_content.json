@@ -1,0 +1,188 @@
+{
+    "easy": [
+        {
+            "question": "Which of the following is NOT a pre-recorded content format commonly used in broadcasting?",
+            "options": {
+                "a": "Live streaming",
+                "b": "Podcasts",
+                "c": "Television shows",
+                "d": "Radio commercials"
+            },
+            "answer": "d"
+        },
+        {
+            "question": "Which type of media allows users to interact with the content in real-time?",
+            "options": {
+                "a": "Pre-recorded videos",
+                "b": "Virtual reality",
+                "c": "Audio recordings",
+                "d": "Print media"
+            },
+            "answer": "b"
+        },
+        {
+            "question": "Which of the following is an example of emerging media?",
+            "options": {
+                "a": "Traditional television",
+                "b": "Radio broadcasts",
+                "c": "Social media platforms",
+                "d": "Newspaper articles"
+            },
+            "answer": "c"
+        },
+        {
+            "question": "What is the benefit of producing pre-recorded content for broadcasting?",
+            "options": {
+                "a": "It allows for spontaneous and unscripted moments.",
+                "b": "It offers more control over the final product.",
+                "c": "It enables immediate feedback from the audience.",
+                "d": "It guarantees higher viewership ratings."
+            },
+            "answer": "b"
+        },
+        {
+            "question": "Which technology is commonly used to enhance interactivity in pre-recorded content?",
+            "options": {
+                "a": "Augmented reality",
+                "b": "Analog broadcasting",
+                "c": "Satellite communication",
+                "d": "AM radio frequencies"
+            },
+            "answer": "a"
+        },
+        {
+            "question": "Which of the following is NOT a consideration when producing pre-recorded content?",
+            "options": {
+                "a": "Lighting and audio quality",
+                "b": "Editing and post-production techniques",
+                "c": "Real-time audience engagement",
+                "d": "Scriptwriting and storytelling"
+            },
+            "answer": "c"
+        },
+        {
+            "question": "Which platform allows for the creation and distribution of interactive videos?",
+            "options": {
+                "a": "YouTube",
+                "b": "Cable television",
+                "c": "Traditional radio",
+                "d": "Printed newspapers"
+            },
+            "answer": "a"
+        },
+        {
+            "question": "Which aspect of emerging media is characterized by the ability to consume content on-demand?",
+            "options": {
+                "a": "Interactivity",
+                "b": "Accessibility",
+                "c": "Immediacy",
+                "d": "Personalization"
+            },
+            "answer": "b"
+        },
+        {
+            "question": "What is the purpose of pre-recording content for broadcasting?",
+            "options": {
+                "a": "To ensure spontaneity and authenticity",
+                "b": "To have a backup in case of technical issues",
+                "c": "To minimize production costs",
+                "d": "To increase engagement through live interactions"
+            },
+            "answer": "b"
+        },
+        {
+            "question": "Which type of media is primarily associated with pre-recorded content?",
+            "options": {
+                "a": "Live radio broadcasts",
+                "b": "Video games",
+                "c": "Television commercials",
+                "d": "Live sports events"
+            },
+            "answer": "c"
+        }
+    ],
+    "average": [
+        {
+            "question": "Pre-recorded content allows for editing and refining the final product.",
+            "answer": true
+        },
+        {
+            "question": "Interactive media enables users to actively participate and engage with the content.",
+            "answer": true
+        },
+        {
+            "question": "Traditional media platforms are becoming less relevant with the rise of emerging media.",
+            "answer": true
+        },
+        {
+            "question": "Pre-recorded content provides opportunities for content creators to reach a global audience.",
+            "answer": true
+        },
+        {
+            "question": "Pre-recording allows broadcasters to have more control over the timing and pacing of their content.",
+            "answer": true
+        },
+        {
+            "question": "Emerging media refers to the use of traditional communication channels.",
+            "answer": false
+        },
+        {
+            "question": "Interactive videos can only be consumed on computers and laptops.",
+            "answer": false
+        },
+        {
+            "question": "Pre-recorded content eliminates the need for careful planning and preparation.",
+            "answer": false
+        },
+        {
+            "question": "Emerging media offers personalized experiences tailored to individual preferences.",
+            "answer": true
+        },
+        {
+            "question": "Pre-recording content reduces the risk of technical glitches and errors during broadcasting.",
+            "answer": true
+        }
+    ],
+    "difficult": [
+        {
+            "question": "__________ is the process of modifying and enhancing pre-recorded content to improve its quality and impact.",
+            "answer": ["editing"]
+        },
+        {
+            "question": "Pre-recorded content can be ____________ to allow viewers to choose different narrative paths or outcomes.",
+            "answer": ["interactive"]
+        },
+        {
+            "question": "Interactive videos often utilize ____________ to provide users with an immersive and realistic experience.",
+            "answer": ["virtual reality"]
+        },
+        {
+            "question": "__________ media platforms enable users to engage with content creators and other audience members.",
+            "answer": ["social"]
+        },
+        {
+            "question": "Pre-recording content allows for the ____________ of sensitive or inappropriate material before broadcasting.",
+            "answer": ["censorship"]
+        },
+        {
+            "question": "When producing pre-recorded content, it is important to consider the target ____________ and their preferences.",
+            "answer": ["audience"]
+        },
+        {
+            "question": "Broadcasting pre-recorded content requires ____________ to ensure a seamless and uninterrupted playback.",
+            "answer": ["playback"]
+        },
+        {
+            "question": "The emergence of ____________ has transformed the way audiences consume and interact with media content.",
+            "answer": ["emerging"]
+        },
+        {
+            "question": "Pre-recorded content offers opportunities for ____________, such as adding graphics or visual effects.",
+            "answer": ["enhancement"]
+        },
+        {
+            "question": "The success of pre-recorded content depends on effective ____________ and capturing audience attention.",
+            "answer": ["storytelling"]
+        }
+    ]
+}

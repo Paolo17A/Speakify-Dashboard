@@ -1,0 +1,190 @@
+{
+    "easy": [
+      {
+        "question": "Which of the following is a primary function of a broadcast journalist?",
+        "options": {
+          "a": "Writing articles for newspapers",
+          "b": "Conducting interviews for magazines",
+          "c": "Reporting news on television or radio",
+          "d": "Creating social media content"
+        },
+        "answer": "c"
+      },
+      {
+        "question": "What is the term used to describe the process of delivering audio or video content over the internet in real-time?",
+        "options": {
+          "a": "Streaming",
+          "b": "Podcasting",
+          "c": "Broadcasting",
+          "d": "Telecasting"
+        },
+        "answer": "a"
+      },
+      {
+        "question": "Which of the following is an example of a broadcast media platform?",
+        "options": {
+          "a": "Facebook",
+          "b": "YouTube",
+          "c": "Twitter",
+          "d": "Television"
+        },
+        "answer": "d"
+      },
+      {
+        "question": "What does the acronym 'OB' stand for in the context of broadcasting?",
+        "options": {
+          "a": "On-demand Broadcasting",
+          "b": "Outside Broadcasting",
+          "c": "Online Broadcasting",
+          "d": "Over-the-air Broadcasting"
+        },
+        "answer": "b"
+      },
+      {
+        "question": "What is the term used to describe the practice of presenting news stories in a biased or misleading manner?",
+        "options": {
+          "a": "Investigative journalism",
+          "b": "Sensationalism",
+          "c": "Objectivity",
+          "d": "Feature reporting"
+        },
+        "answer": "b"
+      },
+      {
+        "question": "Which of the following is an essential tool for a broadcast journalist?",
+        "options": {
+          "a": "Microphone",
+          "b": "Typewriter",
+          "c": "Photography camera",
+          "d": "Notepad"
+        },
+        "answer": "a"
+      },
+      {
+        "question": "What is the purpose of a 'stand-up' in broadcast journalism?",
+        "options": {
+          "a": "To conduct interviews with subjects",
+          "b": "To report live from the scene of an event",
+          "c": "To edit video footage",
+          "d": "To write scripts for news segments"
+        },
+        "answer": "b"
+      },
+      {
+        "question": "Which of the following is a standard practice in broadcast journalism?",
+        "options": {
+          "a": "Editorializing news stories",
+          "b": "Omitting important facts",
+          "c": "Fact-checking information",
+          "d": "Promoting personal opinions"
+        },
+        "answer": "c"
+      },
+      {
+        "question": "What is the term used to describe the person who reads the news on a television or radio program?",
+        "options": {
+          "a": "Reporter",
+          "b": "Anchor",
+          "c": "Editor",
+          "d": "Correspondent"
+        },
+        "answer": "b"
+      },
+      {
+        "question": "What is the purpose of a 'teaser' in broadcast media?",
+        "options": {
+          "a": "To summarize the main points of a news story",
+          "b": "To introduce upcoming segments or stories",
+          "c": "To provide in-depth analysis of current events",
+          "d": "To interview experts on specific topics"
+        },
+        "answer": "b"
+      }
+    ],
+    "average": [
+      {
+        "question": "Broadcast journalism primarily focuses on delivering news and information through print media.",
+        "answer": false
+      },
+      {
+        "question": "The inverted pyramid is a common structure used in broadcast news writing.",
+        "answer": false
+      },
+      {
+        "question": "The term 'citizen journalism' refers to professional journalists reporting on citizen-related issues.",
+        "answer": false
+      },
+      {
+        "question": "A sound bite is a short segment of audio or video used in news reporting.",
+        "answer": true
+      },
+      {
+        "question": "Broadcast journalists are not required to adhere to ethical guidelines in their reporting.",
+        "answer": false
+      },
+      {
+        "question": "The Federal Communications Commission (FCC) regulates and licenses broadcast media in the United States.",
+        "answer": true
+      },
+      {
+        "question": "Anchors in broadcast journalism are responsible for writing and editing news stories.",
+        "answer": false
+      },
+      {
+        "question": "Broadcast journalists are not allowed to express personal opinions in their reporting.",
+        "answer": true
+      },
+      {
+        "question": "The term 'green room' refers to the area where technical equipment for broadcasting is stored.",
+        "answer": false
+      },
+      {
+        "question": "Broadcast journalism is a fast-paced field that requires quick decision-making and adaptability.",
+        "answer": true
+      }
+    ],
+    
+        "difficult": [
+          {
+            "question": "Interactive journalism refers to the practice of engaging with the audience through __________ platforms.",
+            "answer": ["Digital", "Online"]
+          },
+          {
+            "question": "The process of gathering information and verifying facts for a news story is known as __________.",
+            "answer": ["Reporting", "news gathering"]
+          },
+          {
+            "question": "The __________ is responsible for coordinating and managing the production of a broadcast news program.",
+            "answer": ["Producer"]
+          },
+          {
+            "question": "A __________ is a visual representation of information or data used in broadcast journalism to enhance storytelling.",
+            "answer": ["Infographic"]
+          },
+          {
+            "question": "__________ refers to the process of selecting and organizing news stories for a broadcast news program.",
+            "answer": ["News editorial", "news selection"]
+          },
+          {
+            "question": "The __________ is the introductory segment of a news program that provides an overview of the day's top stories.",
+            "answer": ["News rundown", "news headline"]
+          },
+          {
+            "question": "The use of mobile devices and smartphones for capturing and reporting news in real-time is known as __________ journalism.",
+            "answer": ["Mobile", "smartphone"]
+          },
+          {
+            "question": "__________ is the term used to describe the intentional distortion or manipulation of information in news reporting.",
+            "answer": ["Misinformation", "disinformation"]
+          },
+          {
+            "question": "A __________ is a scripted segment in a broadcast news program that provides in-depth analysis of a particular topic or issue.",
+            "answer": ["Feature", "special report"]
+          },
+          {
+            "question": "The __________ is responsible for operating the technical equipment, such as cameras and microphones, during a live broadcast.",
+            "answer": ["Technical director", "camera operator"]
+          }
+        ]
+  }
+  

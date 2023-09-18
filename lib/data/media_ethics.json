@@ -1,0 +1,188 @@
+{
+    "easy": [
+        {
+            "question": "What are media ethics?",
+            "options": {
+                "a": "Principles and standards that guide ethical behavior in media",
+                "b": "Rules and regulations enforced by the government",
+                "c": "Strategies for increasing media profits",
+                "d": "Guidelines for effective media marketing"
+            },
+            "answer": "a"
+        },
+        {
+            "question": "Which of the following is an example of an ethical dilemma in media?",
+            "options": {
+                "a": "Publishing misleading information for higher ratings",
+                "b": "Using catchy headlines to grab attention",
+                "c": "Conducting interviews without consent",
+                "d": "All of the above"
+            },
+            "answer": "d"
+        },
+        {
+            "question": "What is the principle of accuracy in media ethics?",
+            "options": {
+                "a": "Presenting information fairly and impartially",
+                "b": "Ensuring that information is factually correct",
+                "c": "Protecting the privacy of individuals",
+                "d": "Avoiding conflicts of interest"
+            },
+            "answer": "b"
+        },
+        {
+            "question": "What is the principle of fairness in media ethics?",
+            "options": {
+                "a": "Providing equal opportunities for all voices to be heard",
+                "b": "Balancing the interests of media organizations and advertisers",
+                "c": "Disclosing potential conflicts of interest",
+                "d": "Promoting sensationalism and controversy"
+            },
+            "answer": "a"
+        },
+        {
+            "question": "What is the principle of transparency in media ethics?",
+            "options": {
+                "a": "Maintaining clear and open communication with the audience",
+                "b": "Protecting the identity of confidential sources",
+                "c": "Avoiding plagiarism and copyright infringement",
+                "d": "Ensuring diversity and representation in media content"
+            },
+            "answer": "a"
+        },
+        {
+            "question": "Which of the following is an example of a media code of ethics?",
+            "options": {
+                "a": "Society of Professional Journalists (SPJ) Code of Ethics",
+                "b": "Federal Communications Commission (FCC) regulations",
+                "c": "Advertising industry guidelines",
+                "d": "None of the above"
+            },
+            "answer": "a"
+        },
+        {
+            "question": "What is the principle of independence in media ethics?",
+            "options": {
+                "a": "Avoiding conflicts of interest and external influences",
+                "b": "Collaborating with other media organizations for better coverage",
+                "c": "Promoting the interests of specific individuals or groups",
+                "d": "Maximizing profits and shareholder value"
+            },
+            "answer": "a"
+        },
+        {
+            "question": "What is the principle of accountability in media ethics?",
+            "options": {
+                "a": "Taking responsibility for the consequences of media content",
+                "b": "Protecting the privacy of sources and individuals",
+                "c": "Prioritizing the needs and interests of the audience",
+                "d": "Expanding the reach and influence of media organizations"
+            },
+            "answer": "a"
+        },
+        {
+            "question": "Which of the following is an example of ethical behavior in media?",
+            "options": {
+                "a": "Engaging in clickbait tactics for higher website traffic",
+                "b": "Manipulating images to enhance visual impact",
+                "c": "Seeking multiple perspectives for a balanced news report",
+                "d": "All of the above"
+            },
+            "answer": "c"
+        },
+        {
+            "question": "What is the principle of minimizing harm in media ethics?",
+            "options": {
+                "a": "Avoiding the use of explicit or graphic content",
+                "b": "Promoting sensationalism for higher audience engagement",
+                "c": "Prioritizing the interests of advertisers over the audience",
+                "d": "Ignoring potential emotional or psychological impacts on the audience"
+            },
+            "answer": "a"
+        }
+    ],
+    "average": [
+        {
+            "question": "Media ethics is a subjective concept with no universal standards.",
+            "answer": true
+        },
+        {
+            "question": "Media organizations should prioritize speed and immediacy over accuracy.",
+            "answer": false
+        },
+        {
+            "question": "The principle of privacy in media ethics requires obtaining consent before publishing private information about individuals.",
+            "answer": true
+        },
+        {
+            "question": "Plagiarism is an acceptable practice in the media industry as long as the source is not a well-known author or journalist.",
+            "answer": false
+        },
+        {
+            "question": "Media professionals are not responsible for the potential consequences of their content.",
+            "answer": false
+        },
+        {
+            "question": "Conflict of interest refers to situations where media professionals have personal or financial interests that may compromise their objectivity.",
+            "answer": true
+        },
+        {
+            "question": "Sensationalism and exaggeration are ethical practices to attract more audience attention.",
+            "answer": false
+        },
+        {
+            "question": "Media organizations should prioritize the interests of their advertisers over the needs of the audience.",
+            "answer": false
+        },
+        {
+            "question": "Ethical behavior in media includes providing opportunities for diverse voices and perspectives to be heard.",
+            "answer": true
+        },
+        {
+            "question": "Media ethics apply only to traditional media outlets and do not extend to social media platforms.",
+            "answer": false
+        }
+    ],
+    "difficult": [
+        {
+            "question": "__________ is the ethical principle that requires media professionals to treat individuals, groups, and organizations fairly and impartially.",
+            "answer": ["Fairness"]
+        },
+        {
+            "question": "__________ is the principle that involves admitting and correcting mistakes or inaccuracies in media content.",
+            "answer": ["Accountability"]
+        },
+        {
+            "question": "The __________ is an ethical guideline that encourages media professionals to minimize the potential harm caused by their content.",
+            "answer": ["Principle of minimizing harm"]
+        },
+        {
+            "question": "__________ refers to the practice of presenting information in a way that intentionally misleads or deceives the audience.",
+            "answer": ["Misinformation", "disinformation"]
+        },
+        {
+            "question": "The __________ is a principle in media ethics that requires media professionals to respect the privacy and confidentiality of sources and individuals.",
+            "answer": ["Principle of privacy"]
+        },
+        {
+            "question": "The __________ is a principle that emphasizes the importance of diverse and representative media content.",
+            "answer": ["Principle of diversity", "representation"]
+        },
+        {
+            "question": "__________ is the practice of attributing credit to the original creator or source of media content.",
+            "answer": ["Attribution"]
+        },
+        {
+            "question": "The __________ is a principle that advocates for media professionals to disclose any potential conflicts of interest that may compromise their objectivity.",
+            "answer": ["Principle of transparency"]
+        },
+        {
+            "question": "The __________ is an ethical principle that encourages media professionals to seek and present multiple perspectives on an issue or topic.",
+            "answer": ["Principle of balance", "objectivity"]
+        },
+        {
+            "question": "__________ is the process of verifying information and ensuring its accuracy before publishing or broadcasting.",
+            "answer": ["Fact-checking", "verification"]
+        }
+    ]
+}

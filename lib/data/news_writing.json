@@ -1,0 +1,188 @@
+{
+    "easy": [
+        {
+            "question": "What is the primary goal of news writing in broadcasting?",
+            "options": {
+                "a": "To entertain the audience",
+                "b": "To inform the audience",
+                "c": "To promote a specific agenda",
+                "d": "To generate revenue"
+            },
+            "answer": "b"
+        },
+        {
+            "question": "What is the inverted pyramid structure in news writing?",
+            "options": {
+                "a": "Starting with the most important information and gradually providing less significant details",
+                "b": "Starting with the least important information and gradually building up to the most important",
+                "c": "Presenting information in a circular or cyclical manner",
+                "d": "Presenting information in a chronological order"
+            },
+            "answer": "a"
+        },
+        {
+            "question": "Which of the following is an example of a news lead?",
+            "options": {
+                "a": "\"Yesterday, a local business opened its doors to customers.\"",
+                "b": "\"John Smith, the CEO of XYZ Company, announced a new product launch.\"",
+                "c": "\"In a shocking turn of events, a major fire broke out in the city last night.\"",
+                "d": "\"According to recent statistics, the unemployment rate has decreased by 2%.\""
+            },
+            "answer": "c"
+        },
+        {
+            "question": "What is the purpose of attribution in news writing?",
+            "options": {
+                "a": "To provide sources for the information presented",
+                "b": "To create a sense of mystery and suspense",
+                "c": "To highlight the credibility of the journalist",
+                "d": "To ensure fairness and accuracy in reporting"
+            },
+            "answer": "a"
+        },
+        {
+            "question": "What does the term \"angle\" refer to in news writing?",
+            "options": {
+                "a": "The specific perspective or focus of a news story",
+                "b": "The physical position of the camera during a live broadcast",
+                "c": "The length or duration of a news segment",
+                "d": "The technical specifications of the broadcasting equipment"
+            },
+            "answer": "a"
+        },
+        {
+            "question": "What is the purpose of a news package in broadcasting?",
+            "options": {
+                "a": "To present a comprehensive and engaging news story through video, audio, and visuals",
+                "b": "To promote a specific product or service",
+                "c": "To deliver breaking news updates in real-time",
+                "d": "To conduct interviews with newsmakers and experts"
+            },
+            "answer": "a"
+        },
+        {
+            "question": "What is the role of a news anchor in broadcasting?",
+            "options": {
+                "a": "To write and produce news stories",
+                "b": "To deliver news reports on camera",
+                "c": "To edit and package news content",
+                "d": "To manage the technical aspects of a news broadcast"
+            },
+            "answer": "b"
+        },
+        {
+            "question": "What is the purpose of a headline in news writing?",
+            "options": {
+                "a": "To grab the audience's attention and summarize the main point of the news story",
+                "b": "To provide additional background information",
+                "c": "To include the names of the journalists involved in the story",
+                "d": "To promote the news organization's brand"
+            },
+            "answer": "a"
+        },
+        {
+            "question": "What is the significance of the 5 W's and H in news writing?",
+            "options": {
+                "a": "They provide a structure for organizing news stories.",
+                "b": "They serve as ethical guidelines for journalists.",
+                "c": "They help identify potential news angles.",
+                "d": "They ensure accuracy and completeness in reporting."
+            },
+            "answer": "d"
+        },
+        {
+            "question": "What is the purpose of fact-checking in news writing?",
+            "options": {
+                "a": "To verify the accuracy of information before publication",
+                "b": "To eliminate any controversial or sensitive content",
+                "c": "To enhance the emotional impact of the news story",
+                "d": "To increase the length and complexity of the news story"
+            },
+            "answer": "a"
+        }
+    ],
+    "average": [
+        {
+            "question": "News writing for broadcasting requires shorter sentences and simpler language compared to print journalism.",
+            "answer": true
+        },
+        {
+            "question": "The use of active voice is preferred over passive voice in news writing.",
+            "answer": true
+        },
+        {
+            "question": "Headlines should always be written in sentence case, with the first letter of each word capitalized.",
+            "answer": false
+        },
+        {
+            "question": "News writers should avoid using jargon and technical terms that may confuse the audience.",
+            "answer": true
+        },
+        {
+            "question": "Direct quotes should be attributed to the source immediately after the quote.",
+            "answer": true
+        },
+        {
+            "question": "News stories should always include the journalist's personal opinion or commentary.",
+            "answer": false
+        },
+        {
+            "question": "Broadcast news scripts should be written in a conversational style to engage the audience.",
+            "answer": true
+        },
+        {
+            "question": "News stories should strive for objectivity and avoid bias or favoritism.",
+            "answer": true
+        },
+        {
+            "question": "The dateline in a news story indicates the location and date of the reported event.",
+            "answer": true
+        },
+        {
+            "question": "News writers should always double-check the spelling and accuracy of names and other factual details.",
+            "answer": true
+        }
+    ],
+    "hard": [
+        {
+            "question": "The __________ is the part of a news story that provides additional information and context, expanding on the main points.",
+            "answer": ["Background","context"]
+        },
+        {
+            "question": "__________ refers to the process of gathering and verifying information before writing a news story.",
+            "answer": ["Reporting","researching"]
+        },
+        {
+            "question": "A __________ is a short news story, typically no more than one or two paragraphs, used to briefly report breaking news.",
+            "answer": ["News brief","news flash"]
+        },
+        {
+            "question": "__________ is the process of selecting and organizing news stories for a broadcast or publication.",
+            "answer": ["News editing", "news selection"]
+        },
+        {
+            "question": "__________ is a visual or graphic element used in broadcast news to provide additional information or enhance the storytelling.",
+            "answer": ["Visual aid","graphic element"]
+        },
+        {
+            "question": "The __________ is the person or organization that is the focus of the news story or is directly involved in the reported event.",
+            "answer": ["Newsmaker", "subject"]
+        },
+        {
+            "question": "A __________ is a concise statement that captures the main point of a news story.",
+            "answer": ["Summary","synopsis"]
+        },
+        {
+            "question": "The __________ is the segment of a news story that presents different perspectives or opinions on the reported event.",
+            "answer": ["Voiceover","quote segment"]
+        },
+        {
+            "question": "A __________ is a detailed report or analysis of a specific topic, providing in-depth information and background.",
+            "answer": ["Feature","investigative report"]
+        },
+        {
+            "question": "__________ is the process of adapting news content for different platforms, such as television, radio, and online.",
+            "answer": ["Cross-platform","multi-platform distribution"]
+        }
+    ]
+}

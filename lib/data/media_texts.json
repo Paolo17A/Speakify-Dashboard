@@ -1,0 +1,156 @@
+{
+    "easy": [
+        {
+            "question": "What is the term used to describe the specific form or medium through which a message is conveyed?",
+            "options": {
+                "a": "Media text",
+                "b": "Media literacy",
+                "c": "Media production",
+                "d": "Media convergence"
+            },
+            "answer": "a"
+        },
+        {
+            "question": "Which of the following is an example of a media text?",
+            "options": {
+                "a": "Television show",
+                "b": "Smartphone",
+                "c": "Internet connection",
+                "d": "Radio station"
+            },
+            "answer": "a"
+        },
+        {
+            "question": "What is the primary purpose of media texts?",
+            "options": {
+                "a": "To entertain audiences",
+                "b": "To educate viewers",
+                "c": "To inform the public",
+                "d": "All of the above"
+            },
+            "answer": "d"
+        },
+        {
+            "question": "Which of the following elements are typically found in media texts?",
+            "options": {
+                "a": "Visuals and audio",
+                "b": "Text and graphics",
+                "c": "Narration and music",
+                "d": "All of the above"
+            },
+            "answer": "d"
+        },
+        {
+            "question": "What is the term used to describe the intended audience or target group for a media text?",
+            "options": {
+                "a": "Viewer demographics",
+                "b": "Media reception",
+                "c": "Media consumption",
+                "d": "Target audience"
+            },
+            "answer": "d"
+        },
+        {
+            "question": "Which of the following is an example of a print media text?",
+            "options": {
+                "a": "Newspaper article",
+                "b": "Television commercial",
+                "c": "Online video",
+                "d": "Podcast episode"
+            },
+            "answer": "a"
+        },
+        {
+            "question": "What is the term used to describe the manipulation and editing of media texts to convey a specific message or viewpoint?",
+            "options": {
+                "a": "Media bias",
+                "b": "Media framing",
+                "c": "Media convergence",
+                "d": "Media literacy"
+            },
+            "answer": "b"
+        },
+        {
+            "question": "Which of the following is a characteristic of digital media texts?",
+            "options": {
+                "a": "Interactivity",
+                "b": "Linear storytelling",
+                "c": "One-way communication",
+                "d": "Limited accessibility"
+            },
+            "answer": "a"
+        }
+    ],
+    "average": [
+        {
+            "question": "Media texts are created and produced solely by media professionals.",
+            "answer": true
+        },
+        {
+            "question": "Media texts can include written, visual, and audio elements.",
+            "answer": true
+        },
+        {
+            "question": "The primary purpose of media texts is to entertain audiences.",
+            "answer": false
+        },
+        {
+            "question": "Media texts are static and unchanging.",
+            "answer": false
+        },
+        {
+            "question": "Media texts can be consumed and accessed through various platforms and devices.",
+            "answer": true
+        },
+        {
+            "question": "Media framing refers to the manipulation and editing of media texts to convey a specific message or viewpoint.",
+            "answer": true
+        },
+        {
+            "question": "Digital media texts are characterized by interactivity and user engagement.",
+            "answer": true
+        }
+    ],
+    "difficult": [
+        {
+            "question": "__________ is the process of examining the social, cultural, and political influences embedded in media texts.",
+            "answer": ["Media analysis", "media critique"]
+        },
+        {
+            "question": "__________ refers to the strategies and techniques used in media texts to evoke emotional responses from the audience.",
+            "answer": ["Persuasive techniques", "emotional appeals"]
+        },
+        {
+            "question": "The __________ is the central idea or message conveyed by a media text.",
+            "answer": ["Theme", "main concept"]
+        },
+        {
+            "question": "In media studies, __________ refers to the manipulation and alteration of media texts to create new meanings and interpretations.",
+            "answer": ["Intertextuality", "remix culture"]
+        },
+        {
+            "question": "__________ is the term used to describe the conscious or unconscious biases present in media texts.",
+            "answer": ["Media bias","ideological bias"]
+        },
+        {
+            "question": "__________ is a theoretical framework used to analyze how power structures and social identities are represented in media texts.",
+            "answer": ["Media representation","critical theory"]
+        },
+        {
+            "question": "The __________ refers to the process of decoding and interpreting the meanings and messages conveyed by media texts.",
+            "answer": ["Media reception","audience interpretation"]
+        },
+        {
+            "question": "__________ refers to the ways in which media texts are organized and structured to engage and captivate audiences.",
+            "answer": ["Narrative techniques","storytelling devices"]
+        },
+        {
+            "question": "__________ is the term used to describe the convergence of different media platforms and technologies in the digital age.",
+            "answer": ["Media convergence","technological convergence"]
+        },
+        {
+            "question": "The __________ is the context in which a media text is created and received, including the cultural, historical, and social factors.",
+            "answer": ["Media context","cultural context"]
+        }
+    ]
+}

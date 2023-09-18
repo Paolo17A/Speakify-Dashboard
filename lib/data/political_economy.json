@@ -1,0 +1,189 @@
+{
+    "easy": [
+      {
+        "question": "Which of the following is NOT a characteristic of the political economy of media?",
+        "options": {
+          "a": "Ownership and control",
+          "b": "Regulation and policy",
+          "c": "Content and programming",
+          "d": "Advertising and revenue"
+        },
+        "answer": "c"
+      },
+      {
+        "question": "What is the term used to describe media companies that operate across multiple platforms and outlets?",
+        "options": {
+          "a": "Monopoly",
+          "b": "Oligopoly",
+          "c": "Conglomerate",
+          "d": "Cartel"
+        },
+        "answer": "c"
+      },
+      {
+        "question": "Which regulatory body oversees broadcasting and telecommunications in the United States?",
+        "options": {
+          "a": "FCC",
+          "b": "FTC",
+          "c": "FDA",
+          "d": "CIA"
+        },
+        "answer": "a"
+      },
+      {
+        "question": "Which of the following is an example of a public broadcasting network?",
+        "options": {
+          "a": "ABC",
+          "b": "CBS",
+          "c": "BBC",
+          "d": "NBC"
+        },
+        "answer": "c"
+      },
+      {
+        "question": "What is the term used to describe the process of media companies merging or being acquired by larger companies?",
+        "options": {
+          "a": "Diversification",
+          "b": "Fragmentation",
+          "c": "Monetization",
+          "d": "Consolidation"
+        },
+        "answer": "d"
+      },
+      {
+        "question": "Which of the following is a key factor that influences media content and programming?",
+        "options": {
+          "a": "Consumer demand",
+          "b": "Government regulations",
+          "c": "Technological advancements",
+          "d": "All of the above"
+        },
+        "answer": "d"
+      },
+      {
+        "question": "What is the term used to describe the practice of tailoring media content to specific demographic groups?",
+        "options": {
+          "a": "Targeting",
+          "b": "Segmentation",
+          "c": "Personalization",
+          "d": "Localization"
+        },
+        "answer": "b"
+      },
+      {
+        "question": "Which of the following is NOT a traditional form of media ownership?",
+        "options": {
+          "a": "Public",
+          "b": "Private",
+          "c": "Cooperative",
+          "d": "Nonprofit"
+        },
+        "answer": "d"
+      },
+      {
+        "question": "What is the term used to describe the practice of media companies giving preferential treatment to certain content or services?",
+        "options": {
+          "a": "Net neutrality",
+          "b": "Media bias",
+          "c": "Content filtering",
+          "d": "Vertical integration"
+        },
+        "answer": "d"
+      },
+      {
+        "question": "What is the primary source of revenue for most media companies?",
+        "options": {
+          "a": "Subscription fees",
+          "b": "Advertising",
+          "c": "Government funding",
+          "d": "Donations"
+        },
+        "answer": "b"
+      }
+    ],
+    "average": [
+      {
+        "question": "The political economy of broadcasting focuses on the study of the relationship between politics and the media.",
+        "answer": true
+      },
+      {
+        "question": "Interactive media refers to media platforms that allow users to actively participate and engage with the content.",
+        "answer": true
+      },
+      {
+        "question": "The emergence of digital media has significantly reduced the concentration of media ownership.",
+        "answer": false
+      },
+      {
+        "question": "The political economy approach emphasizes the role of government regulation in shaping the media industry.",
+        "answer": true
+      },
+      {
+        "question": "Broadcasting regulations aim to promote diversity and competition in the media sector.",
+        "answer": true
+      },
+      {
+        "question": "The concept of net neutrality advocates for equal access to online content without any discrimination or preference.",
+        "answer": true
+      },
+      {
+        "question": "Media convergence refers to the merging of different media platforms into a single medium.",
+        "answer": true
+      },
+      {
+        "question": "Advertising is the primary source of revenue for most broadcasting companies.",
+        "answer": true
+      },
+      {
+        "question": "The digital divide refers to the unequal access to digital technologies and resources among different groups in society.",
+        "answer": true
+      },
+      {
+        "question": "Media globalization has led to the homogenization of cultural products and the dominance of Western media.",
+        "answer": true
+      }
+    ],
+    "difficult": [
+      {
+        "question": "_______ is a term used to describe the concentration of media ownership in the hands of a few large corporations.",
+        "answer": ["Media Consolidation"]
+      },
+      {
+        "question": "The term _______ refers to the practice of tailoring content and advertisements to specific individuals based on their personal data.",
+        "answer": ["Data Targeting"]
+      },
+      {
+        "question": "The process of _______ involves the conversion of analog signals into digital format for broadcasting.",
+        "answer": ["Digitalization"]
+      },
+      {
+        "question": "The term _______ refers to the idea that media organizations have agendas and biases that influence the content they produce.",
+        "answer": ["Media Bias"]
+      },
+      {
+        "question": "_______ refers to the practice of using media outlets to shape public opinion and influence political processes.",
+        "answer": ["Media Manipulation"]
+      },
+      {
+        "question": "The term _______ refers to the integration of different forms of media, such as text, audio, and video, into a single digital platform.",
+        "answer": ["Multimedia"]
+      },
+      {
+        "question": "_______ refers to the practice of restricting or controlling the flow of information and ideas in a society.",
+        "answer": ["Censorship"]
+      },
+      {
+        "question": "The term _______ refers to the process of negotiating and settling disputes between media organizations and individuals.",
+        "answer": ["Media Arbitration"]
+      },
+      {
+        "question": "The concept of _______ refers to the idea that media organizations serve the interests of the ruling elite or dominant social groups.",
+        "answer": ["Media Hegemony"]
+      },
+      {
+        "question": "The term _______ refers to the practice of using media outlets to promote specific political ideologies or agendas.",
+        "answer": ["Propaganda"]
+      }
+    ]
+  }
+  

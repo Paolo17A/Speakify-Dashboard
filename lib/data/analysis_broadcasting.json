@@ -1,0 +1,189 @@
+{
+    "easy": [
+      {
+        "question": "Media analysis involves studying the __________ of media texts.",
+        "options": {
+          "a": "Content",
+          "b": "Structure",
+          "c": "Audience",
+          "d": "All of the above"
+        },
+        "answer": "d"
+      },
+      {
+        "question": "Which of the following is NOT a form of media text?",
+        "options": {
+          "a": "Television show",
+          "b": "Video game",
+          "c": "Radio station",
+          "d": "Social media post"
+        },
+        "answer": "d"
+      },
+      {
+        "question": "Media analysis helps in understanding the __________ of media messages.",
+        "options": {
+          "a": "Purpose",
+          "b": "Influence",
+          "c": "Bias",
+          "d": "All of the above"
+        },
+        "answer": "d"
+      },
+      {
+        "question": "The term \"convergence\" in media analysis refers to:",
+        "options": {
+          "a": "The merging of different media platforms",
+          "b": "The interaction between media texts and audiences",
+          "c": "The impact of media on society",
+          "d": "The analysis of media texts for hidden meanings"
+        },
+        "answer": "a"
+      },
+      {
+        "question": "Media analysis involves examining the __________ used in media texts.",
+        "options": {
+          "a": "Visual elements",
+          "b": "Narrative structure",
+          "c": "Symbolism",
+          "d": "All of the above"
+        },
+        "answer": "d"
+      },
+      {
+        "question": "Which of the following is an example of a media text?",
+        "options": {
+          "a": "News article",
+          "b": "Advertising campaign",
+          "c": "Film",
+          "d": "All of the above"
+        },
+        "answer": "d"
+      },
+      {
+        "question": "Media analysis helps in identifying __________ in media texts.",
+        "options": {
+          "a": "Biases",
+          "b": "Stereotypes",
+          "c": "Propaganda",
+          "d": "All of the above"
+        },
+        "answer": "d"
+      },
+      {
+        "question": "Media analysis involves studying the __________ of media texts.",
+        "options": {
+          "a": "Cultural context",
+          "b": "Historical context",
+          "c": "Social context",
+          "d": "All of the above"
+        },
+        "answer": "d"
+      },
+      {
+        "question": "Media analysis helps in understanding the __________ of media production.",
+        "options": {
+          "a": "Techniques",
+          "b": "Industry practices",
+          "c": "Economic factors",
+          "d": "All of the above"
+        },
+        "answer": "d"
+      },
+      {
+        "question": "Which of the following is an example of an interactive media text?",
+        "options": {
+          "a": "Video game",
+          "b": "Magazine article",
+          "c": "Television show",
+          "d": "Documentary film"
+        },
+        "answer": "a"
+      }
+    ],
+    "average": [
+      {
+        "question": "Media analysis only focuses on analyzing television programs.",
+        "answer": false
+      },
+      {
+        "question": "Media analysis helps in understanding the intended message of media texts.",
+        "answer": true
+      },
+      {
+        "question": "Media analysis involves examining the role of media in shaping public opinion.",
+        "answer": true
+      },
+      {
+        "question": "Media analysis is limited to traditional forms of media and does not include digital media.",
+        "answer": false
+      },
+      {
+        "question": "Media analysis aims to provide an objective interpretation of media texts.",
+        "answer": true
+      },
+      {
+        "question": "Media analysis does not consider the cultural and social context of media texts.",
+        "answer": false
+      },
+      {
+        "question": "Media analysis involves studying the production techniques used in media texts.",
+        "answer": true
+      },
+      {
+        "question": "Media analysis is only applicable to fictional media texts.",
+        "answer": false
+      },
+      {
+        "question": "Media analysis does not consider the role of audiences in interpreting media texts.",
+        "answer": false
+      },
+      {
+        "question": "Media analysis is a subjective process and can vary between individuals.",
+        "answer": true
+      }
+    ],
+    "difficult": [
+      {
+        "question": "In the analysis of broadcasting, interactive, and emerging media texts, __________ refers to the process of interpreting and understanding the meaning behind the content.",
+        "answer": ["semiotics"]
+      },
+      {
+        "question": "__________ is a term used to describe the study of how media texts influence or manipulate the audience's emotions and behaviors.",
+        "answer": ["media effects"]
+      },
+      {
+        "question": "The __________ theory suggests that media texts have the power to shape the audience's perception of reality.",
+        "answer": ["cultivation"]
+      },
+      {
+        "question": "__________ analysis is a method used to examine the social and cultural aspects embedded in media texts.",
+        "answer": ["cultural"]
+      },
+      {
+        "question": "__________ refers to the practice of examining the production and distribution processes of media texts.",
+        "answer": ["political economy"]
+      },
+      {
+        "question": "In media analysis, the term __________ refers to the specific techniques and conventions used in media production.",
+        "answer": ["mise-en-scène"]
+      },
+      {
+        "question": "The __________ theory focuses on how media texts construct and reinforce gender roles and stereotypes.",
+        "answer": ["feminist"]
+      },
+      {
+        "question": "__________ analysis involves examining the power dynamics and representation of social groups in media texts.",
+        "answer": ["critical"]
+      },
+      {
+        "question": "The __________ theory emphasizes the role of media in shaping public opinion and political discourse.",
+        "answer": ["agenda-setting"]
+      },
+      {
+        "question": "In media analysis, __________ refers to the process of deconstructing and challenging dominant ideologies present in media texts.",
+        "answer": ["ideological"]
+      }
+    ]
+  }
+  

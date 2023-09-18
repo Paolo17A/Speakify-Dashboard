@@ -1,0 +1,189 @@
+{
+    "easy": [
+      {
+        "question": "Which of the following is a common advertising objective?",
+        "options": {
+          "a": "Increasing brand awareness",
+          "b": "Reducing production costs",
+          "c": "Improving employee morale",
+          "d": "Enhancing product packaging"
+        },
+        "answer": "a"
+      },
+      {
+        "question": "What is the term used to describe the process of delivering an advertising message to a target audience?",
+        "options": {
+          "a": "Promotion",
+          "b": "Segmentation",
+          "c": "Distribution",
+          "d": "Communication"
+        },
+        "answer": "c"
+      },
+      {
+        "question": "Which of the following is an example of a traditional advertising medium?",
+        "options": {
+          "a": "Social media",
+          "b": "Influencer marketing",
+          "c": "Television",
+          "d": "Search engine optimization"
+        },
+        "answer": "c"
+      },
+      {
+        "question": "What is the purpose of a call-to-action in advertising?",
+        "options": {
+          "a": "To provide contact information for the advertiser",
+          "b": "To highlight the unique selling proposition",
+          "c": "To encourage immediate response or action",
+          "d": "To build brand awareness"
+        },
+        "answer": "c"
+      },
+      {
+        "question": "What is the term used to describe the process of selecting specific media channels to reach the target audience?",
+        "options": {
+          "a": "Media buying",
+          "b": "Market research",
+          "c": "Competitive analysis",
+          "d": "Creative development"
+        },
+        "answer": "a"
+      },
+      {
+        "question": "Which of the following is an example of a demographic segmentation variable?",
+        "options": {
+          "a": "Psychographics",
+          "b": "Geographic location",
+          "c": "Behavioral patterns",
+          "d": "Income level"
+        },
+        "answer": "d"
+      },
+      {
+        "question": "What is the primary purpose of a headline in an advertisement?",
+        "options": {
+          "a": "To introduce the brand or product",
+          "b": "To provide detailed product information",
+          "c": "To grab the attention of the audience",
+          "d": "To list the features and benefits"
+        },
+        "answer": "c"
+      },
+      {
+        "question": "Which of the following is a key element of effective advertising copy?",
+        "options": {
+          "a": "Repetition",
+          "b": "Jargon",
+          "c": "Lengthy paragraphs",
+          "d": "Complex vocabulary"
+        },
+        "answer": "a"
+      },
+      {
+        "question": "What is the term used to describe the process of evaluating the effectiveness of an advertising campaign?",
+        "options": {
+          "a": "Pretesting",
+          "b": "Media planning",
+          "c": "Post-analysis",
+          "d": "Brand positioning"
+        },
+        "answer": "c"
+      },
+      {
+        "question": "Which of the following is an example of a digital advertising format?",
+        "options": {
+          "a": "Billboard",
+          "b": "Radio spot",
+          "c": "Native ad",
+          "d": "Direct mail"
+        },
+        "answer": "c"
+      }
+    ],
+    "average": [
+      {
+        "question": "The target audience for an advertising campaign should be clearly defined.",
+        "answer": true
+      },
+      {
+        "question": "Advertising is only about selling products or services.",
+        "answer": false
+      },
+      {
+        "question": "Influencer marketing involves partnering with influential individuals to promote products or services.",
+        "answer": true
+      },
+      {
+        "question": "The unique selling proposition (USP) refers to the distinctive features of a product or service.",
+        "answer": true
+      },
+      {
+        "question": "Media planning involves determining the best time and place to deliver advertising messages.",
+        "answer": true
+      },
+      {
+        "question": "Brand positioning is the process of creating a unique and favorable perception of a brand in the minds of consumers.",
+        "answer": true
+      },
+      {
+        "question": "AIDA stands for Attention, Interest, Desire, and Action, which represents the stages of the consumer decision-making process.",
+        "answer": true
+      },
+      {
+        "question": "Frequency refers to the number of times an advertisement is shown to a target audience.",
+        "answer": true
+      },
+      {
+        "question": "Conversion rate measures the percentage of people who take a desired action after seeing an advertisement.",
+        "answer": true
+      },
+      {
+        "question": "Programmatic advertising involves buying and selling advertising space through an automated system.",
+        "answer": true
+      }
+    ],
+    "difficult": [
+      {
+        "question": "__________ is the process of identifying the target audience and understanding their characteristics and preferences.",
+        "answer": ["market segmentation"]
+      },
+      {
+        "question": "__________ is a marketing strategy in which two or more brands collaborate on a promotional campaign.",
+        "answer": ["co-marketing"]
+      },
+      {
+        "question": "__________ is a pricing model in which advertisers pay only when a specific action, such as a click or purchase, occurs.",
+        "answer": ["cost-per-action"]
+      },
+      {
+        "question": "__________ is a marketing technique that involves creating content that is useful or entertaining to the target audience.",
+        "answer": ["content marketing"]
+      },
+      {
+        "question": "The __________ rate measures the percentage of people who open an email or click on a link within an email.",
+        "answer": ["open rate"]
+      },
+      {
+        "question": "__________ refers to the percentage of people who see an advertisement and then visit the advertiser's website within a specific time frame.",
+        "answer": ["click-through rate"]
+      },
+      {
+        "question": "__________ is a method of advertising in which the ad is seamlessly integrated into the content of a website or social media platform.",
+        "answer": ["native advertising"]
+      },
+      {
+        "question": "__________ refers to the process of identifying and reaching out to individuals who are likely to be interested in a product or service.",
+        "answer": ["targeting"]
+      },
+      {
+        "question": "The __________ model of advertising involves advertisers bidding for ad space in real-time auctions.",
+        "answer": ["real-time bidding"]
+      },
+      {
+        "question": "__________ is the process of monitoring and responding to customer feedback and inquiries on social media platforms.",
+        "answer": ["social media monitoring"]
+      }
+    ]
+  }
+  

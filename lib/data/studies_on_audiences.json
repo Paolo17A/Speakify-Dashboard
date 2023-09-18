@@ -1,0 +1,188 @@
+{
+    "easy": [
+        {
+            "question": "What is the term used to describe the systematic study of audiences?",
+            "options": {
+                "a": "Broadcast analysis",
+                "b": "Media sociology",
+                "c": "Audience research",
+                "d": "Communication psychology"
+            },
+            "answer": "c"
+        },
+        {
+            "question": "Which of the following factors can influence audience preferences for specific media content?",
+            "options": {
+                "a": "Age and gender",
+                "b": "Political affiliation",
+                "c": "Socioeconomic status",
+                "d": "All of the above"
+            },
+            "answer": "d"
+        },
+        {
+            "question": "Which audience measurement metric is commonly used to determine television viewership?",
+            "options": {
+                "a": "Ratings",
+                "b": "Impressions",
+                "c": "Reach",
+                "d": "Engagement"
+            },
+            "answer": "a"
+        },
+        {
+            "question": "Which of the following is NOT a method used in audience research?",
+            "options": {
+                "a": "Surveys and questionnaires",
+                "b": "Focus groups",
+                "c": "Social media monitoring",
+                "d": "Telepathic communication"
+            },
+            "answer": "d"
+        },
+        {
+            "question": "Which term refers to the process of tailoring content to specific audience segments?",
+            "options": {
+                "a": "Mass customization",
+                "b": "Personalization",
+                "c": "Target marketing",
+                "d": "Demographic analysis"
+            },
+            "answer": "b"
+        },
+        {
+            "question": "Which demographic group is typically known as the 'cord-cutters'?",
+            "options": {
+                "a": "Older adults",
+                "b": "Teenagers",
+                "c": "Millennials",
+                "d": "Baby boomers"
+            },
+            "answer": "c"
+        },
+        {
+            "question": "What is the term for the process of selecting and gathering a representative group of individuals for research?",
+            "options": {
+                "a": "Sampling",
+                "b": "Surveying",
+                "c": "Interviewing",
+                "d": "Profiling"
+            },
+            "answer": "a"
+        },
+        {
+            "question": "Which of the following is a common technique for analyzing audience behavior on websites and apps?",
+            "options": {
+                "a": "Eyetracking",
+                "b": "Brain imaging",
+                "c": "Heart rate monitoring",
+                "d": "Fingerprint analysis"
+            },
+            "answer": "a"
+        },
+        {
+            "question": "What is the term used to describe the ability of audiences to actively engage with media content?",
+            "options": {
+                "a": "Passive consumption",
+                "b": "Active participation",
+                "c": "Audience interactivity",
+                "d": "Media immersion"
+            },
+            "answer": "b"
+        },
+        {
+            "question": "Which research method involves observing and documenting natural audience behavior in their everyday environment?",
+            "options": {
+                "a": "Ethnography",
+                "b": "Experiments",
+                "c": "Content analysis",
+                "d": "Case studies"
+            },
+            "answer": "a"
+        }
+    ],
+    "average": [
+        {
+            "question": "Audience research helps broadcasters understand their target audience's preferences and behavior.",
+            "answer": true
+        },
+        {
+            "question": "The use of big data and analytics has revolutionized audience research in the digital age.",
+            "answer": true
+        },
+        {
+            "question": "Socioeconomic status has no impact on media consumption patterns.",
+            "answer": false
+        },
+        {
+            "question": "Ratings are the primary method for measuring audience engagement on social media platforms.",
+            "answer": false
+        },
+        {
+            "question": "Audience segmentation involves dividing the audience into distinct groups based on their characteristics.",
+            "answer": true
+        },
+        {
+            "question": "Millennials are more likely to consume traditional television content compared to older generations.",
+            "answer": false
+        },
+        {
+            "question": "Sampling allows researchers to gather data from the entire population being studied.",
+            "answer": false
+        },
+        {
+            "question": "Heatmaps can provide insights into how audiences visually engage with websites and interfaces.",
+            "answer": true
+        },
+        {
+            "question": "Active audience participation is more prevalent in interactive and emerging media compared to traditional broadcasting.",
+            "answer": true
+        },
+        {
+            "question": "Ethnography involves conducting surveys and questionnaires to gather audience data.",
+            "answer": false
+        }
+    ],
+    "difficult": [
+        {
+            "question": "Media ____________ involves studying the social and cultural aspects of media consumption.",
+            "answer": ["anthropology"]
+        },
+        {
+            "question": "____________ research focuses on understanding how audiences interpret and make meaning from media content.",
+            "answer": ["semiotic"]
+        },
+        {
+            "question": "The ____________ effect refers to the phenomenon where audiences seek out media content that confirms their existing beliefs.",
+            "answer": ["confirmation"]
+        },
+        {
+            "question": "____________ analysis involves examining the content of media messages to understand their underlying meaning.",
+            "answer": ["content"]
+        },
+        {
+            "question": "The ____________ hypothesis suggests that audiences actively select and consume media content that aligns with their existing values and beliefs.",
+            "answer": ["selective exposure"]
+        },
+        {
+            "question": "In audience research, ____________ refers to the process of identifying and understanding the needs and desires of the audience.",
+            "answer": ["audience analysis"]
+        },
+        {
+            "question": "The ____________ theory posits that audiences are active and interpret media content based on their own experiences and social context.",
+            "answer": ["uses and gratifications"]
+        },
+        {
+            "question": "In audience research, ____________ refers to the process of gathering data from a subset of the population that represents the larger group.",
+            "answer": ["sampling"]
+        },
+        {
+            "question": "The ____________ model of media effects suggests that media has a direct and powerful influence on audiences.",
+            "answer": ["hypodermic"]
+        },
+        {
+            "question": "____________ measurement involves tracking and analyzing audience behavior across different media platforms.",
+            "answer": ["audience"]
+        }
+    ]
+}

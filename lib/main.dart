@@ -7,6 +7,7 @@ import 'package:speechlab_dashboard/screens/home_screen.dart';
 import 'package:speechlab_dashboard/screens/instructors_screen.dart';
 import 'package:speechlab_dashboard/screens/lessons_screen.dart';
 import 'package:speechlab_dashboard/screens/rankings_screen.dart';
+import 'package:speechlab_dashboard/screens/reset_password_screen.dart';
 import 'package:speechlab_dashboard/screens/scores_screen.dart';
 import 'package:speechlab_dashboard/screens/students_sections_screen.dart';
 
@@ -27,6 +28,7 @@ class App extends StatelessWidget {
     '/': (context) => const Welcome(),
     '/register': (context) => const RegisterScreen(),
     '/login': (context) => const LoginScreen(),
+    '/reset': (context) => const ResetPasswordScreen(),
     '/home': (context) => const HomeScreen(),
     '/sections': (context) => const StudentsSectionsScreen(),
     '/instructors': (context) => const InstructorsScreen(),
@@ -41,8 +43,9 @@ class App extends StatelessWidget {
       colorScheme: ColorScheme.fromSeed(
           seedColor: const Color.fromARGB(255, 60, 19, 97)),
       scaffoldBackgroundColor: const Color.fromARGB(255, 245, 245, 245),
+      snackBarTheme: const SnackBarThemeData(backgroundColor: Colors.purple),
       appBarTheme:
-          const AppBarTheme(backgroundColor: Color.fromARGB(255, 102, 58, 130)),
+          const AppBarTheme(backgroundColor: Color.fromARGB(255, 18, 13, 43)),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
           backgroundColor: Color.fromARGB(255, 82, 48, 124),
           selectedItemColor: Color.fromARGB(255, 120, 87, 161)),

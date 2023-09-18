@@ -1,0 +1,189 @@
+{
+    "easy": [
+      {
+        "question": "Which term refers to the stereotypical portrayal of women in media, often emphasizing their physical appearance?",
+        "options": {
+          "a": "Misogyny",
+          "b": "Feminism",
+          "c": "Objectification",
+          "d": "Empowerment"
+        },
+        "answer": "c"
+      },
+      {
+        "question": "Gender refers to:",
+        "options": {
+          "a": "Biological differences between males and females",
+          "b": "Socially constructed roles and expectations associated with being male or female",
+          "c": "Sexual orientation and preferences",
+          "d": "None of the above"
+        },
+        "answer": "b"
+      },
+      {
+        "question": "Which term describes the belief in the inherent superiority or inferiority of one gender over the other?",
+        "options": {
+          "a": "Gender equality",
+          "b": "Gender identity",
+          "c": "Gender bias",
+          "d": "Gender stereotypes"
+        },
+        "answer": "c"
+      },
+      {
+        "question": "The Bechdel Test is used to assess:",
+        "options": {
+          "a": "The portrayal of women in media based on their physical attractiveness",
+          "b": "The representation of LGBTQ+ characters in media",
+          "c": "The presence of female characters in media who have conversations about topics other than men",
+          "d": "The accuracy of gender roles in historical dramas"
+        },
+        "answer": "c"
+      },
+      {
+        "question": "Which term describes the process of assigning gender to an individual based on their appearance at birth?",
+        "options": {
+          "a": "Gender fluidity",
+          "b": "Gender identity",
+          "c": "Gender assignment",
+          "d": "Gender dysphoria"
+        },
+        "answer": "c"
+      },
+      {
+        "question": "Which of the following is an example of gender-based violence?",
+        "options": {
+          "a": "Cyberbullying",
+          "b": "Workplace discrimination",
+          "c": "Sexual harassment",
+          "d": "All of the above"
+        },
+        "answer": "d"
+      },
+      {
+        "question": "Media literacy refers to:",
+        "options": {
+          "a": "The ability to critically analyze and evaluate media messages",
+          "b": "The promotion of female empowerment in media",
+          "c": "The censorship of controversial media content",
+          "d": "The regulation of media ownership"
+        },
+        "answer": "a"
+      },
+      {
+        "question": "The term \"glass ceiling\" refers to:",
+        "options": {
+          "a": "The invisible barriers that prevent women from reaching top positions in the workplace",
+          "b": "The idealized image of women portrayed in media",
+          "c": "The lack of representation of women in political offices",
+          "d": "The physical limitations imposed on women in certain sports"
+        },
+        "answer": "a"
+      },
+      {
+        "question": "Which of the following is an example of gender mainstreaming?",
+        "options": {
+          "a": "Promoting equal pay for men and women in the workplace",
+          "b": "Encouraging women to pursue careers in STEM fields",
+          "c": "Ensuring that gender perspectives are integrated into policy and decision-making processes",
+          "d": "Providing scholarships exclusively for women in higher education"
+        },
+        "answer": "c"
+      },
+      {
+        "question": "Which term describes the belief that women should have the same social, economic, and political rights as men?",
+        "options": {
+          "a": "Feminism",
+          "b": "Misogyny",
+          "c": "Patriarchy",
+          "d": "Sexism"
+        },
+        "answer": "a"
+      }
+    ],
+    "average": [
+      {
+        "question": "True or False: Gender representation in media has a significant impact on shaping societal norms and expectations.",
+        "answer": true
+      },
+      {
+        "question": "True or False: Stereotypes and gender biases are rarely present in media portrayals.",
+        "answer": false
+      },
+      {
+        "question": "True or False: Media plays a role in reinforcing traditional gender roles and norms.",
+        "answer": true
+      },
+      {
+        "question": "True or False: Gender inequality is not reflected in the underrepresentation of women in media leadership positions.",
+        "answer": false
+      },
+      {
+        "question": "True or False: Media has no influence on shaping body image ideals and beauty standards for both men and women.",
+        "answer": false
+      },
+      {
+        "question": "True or False: Gender-based violence is rarely perpetuated or glorified in media content.",
+        "answer": false
+      },
+      {
+        "question": "True or False: The Bechdel Test is a tool used to assess gender representation in films.",
+        "answer": true
+      },
+      {
+        "question": "True or False: Media literacy and critical thinking skills can help challenge and deconstruct gender stereotypes in media.",
+        "answer": true
+      },
+      {
+        "question": "True or False: Gender equality has been fully achieved in the media industry.",
+        "answer": false
+      },
+      {
+        "question": "True or False: Media has no impact on shaping children's understanding of gender roles and identities.",
+        "answer": false
+      }
+    ],
+    "difficult": [
+      {
+        "question": "The concept of __________ refers to the idea that media representations of gender are not fixed but are socially constructed and can change over time.",
+        "answer": ["gender performativity"]
+      },
+      {
+        "question": "The __________ theory focuses on how media constructs and reinforces cultural understandings of femininity and masculinity.",
+        "answer": ["gender and media"]
+      },
+      {
+        "question": "__________ is the term used to describe the underrepresentation or limited portrayal of women in media.",
+        "answer": ["media invisibility"]
+      },
+      {
+        "question": "The __________ perspective examines how media representations of gender intersect with other social categories such as race, class, and sexuality.",
+        "answer": ["intersectional"]
+      },
+      {
+        "question": "The term __________ refers to the phenomenon where women are portrayed as objects of male sexual desire in media.",
+        "answer": ["sexual objectification"]
+      },
+      {
+        "question": "__________ is a concept that refers to the acceptance and normalization of violence against women in media.",
+        "answer": ["rape culture"]
+      },
+      {
+        "question": "The __________ theory suggests that media representations of gender play a crucial role in shaping individual and collective identity.",
+        "answer": ["identity formation"]
+      },
+      {
+        "question": "The __________ theory examines how media representations of gender reinforce and perpetuate power imbalances and inequalities in society.",
+        "answer": ["hegemonic masculinity"]
+      },
+      {
+        "question": "The __________ perspective emphasizes the agency and resistance of women in challenging and transforming media representations.",
+        "answer": ["feminist"]
+      },
+      {
+        "question": "__________ is the term used to describe the practice of using gender-neutral language and inclusive representation in media.",
+        "answer": ["gender sensitivity"]
+      }
+    ]
+  }
+  

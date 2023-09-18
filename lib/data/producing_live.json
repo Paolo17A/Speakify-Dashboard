@@ -1,0 +1,189 @@
+{
+    "easy": [
+      {
+        "question": "Which of the following is NOT a common component of a live production setup?",
+        "options": {
+          "a": "Cameras",
+          "b": "Lighting",
+          "c": "Microphones",
+          "d": "Editing software"
+        },
+        "answer": "d"
+      },
+      {
+        "question": "In live broadcasting, what does the acronym \"CG\" stand for?",
+        "options": {
+          "a": "Camera Grip",
+          "b": "Computer Graphics",
+          "c": "Control Group",
+          "d": "Camera Gimbal"
+        },
+        "answer": "b"
+      },
+      {
+        "question": "What is the primary purpose of a vision mixer (or video switcher) in live production?",
+        "options": {
+          "a": "Adjusting the volume levels of audio sources",
+          "b": "Controlling the lighting setup",
+          "c": "Switching between different camera feeds",
+          "d": "Editing recorded video footage"
+        },
+        "answer": "c"
+      },
+      {
+        "question": "Which of the following is NOT a commonly used live streaming platform?",
+        "options": {
+          "a": "YouTube Live",
+          "b": "Facebook Live",
+          "c": "Twitch",
+          "d": "Snapchat"
+        },
+        "answer": "d"
+      },
+      {
+        "question": "What is the role of a floor manager in live production?",
+        "options": {
+          "a": "Operating the camera equipment",
+          "b": "Managing the lighting setup",
+          "c": "Directing the talent and crew on set",
+          "d": "Editing the live footage in real-time"
+        },
+        "answer": "c"
+      },
+      {
+        "question": "What is the purpose of a teleprompter in live broadcasting?",
+        "options": {
+          "a": "To display live tweets from viewers",
+          "b": "To provide a script for the on-air talent",
+          "c": "To control the audio levels of different sources",
+          "d": "To switch between different camera angles"
+        },
+        "answer": "b"
+      },
+      {
+        "question": "What is the function of a delay unit in live broadcasting?",
+        "options": {
+          "a": "To synchronize audio and video signals",
+          "b": "To add special effects to the live footage",
+          "c": "To create a time delay for censorship purposes",
+          "d": "To adjust the color balance of the video feed"
+        },
+        "answer": "c"
+      },
+      {
+        "question": "What does the acronym \"IFB\" stand for in the context of live production?",
+        "options": {
+          "a": "In-Field Broadcasting",
+          "b": "Integrated Feedback",
+          "c": "Interrupted Feed Back",
+          "d": "Interruptible Foldback"
+        },
+        "answer": "d"
+      },
+      {
+        "question": "What is the purpose of a talkback system in live production?",
+        "options": {
+          "a": "To communicate with remote guests via video conferencing",
+          "b": "To provide live commentary during sports events",
+          "c": "To enable communication between the director and crew members",
+          "d": "To stream live video content to online platforms"
+        },
+        "answer": "c"
+      },
+      {
+        "question": "Which of the following is a key consideration when producing live content for interactive media?",
+        "options": {
+          "a": "Pre-recording the entire production for better quality",
+          "b": "Engaging with viewers through real-time interactions",
+          "c": "Limiting the use of social media during the broadcast",
+          "d": "Focusing solely on visual elements rather than audio"
+        },
+        "answer": "b"
+      }
+    ],
+    "average": [
+      {
+        "question": "Live streaming is a one-way communication process.",
+        "answer": false
+      },
+      {
+        "question": "The term \"OTT\" stands for Over-The-Television.",
+        "answer": false
+      },
+      {
+        "question": "A multicamera setup is commonly used in live broadcasting to capture different angles simultaneously.",
+        "answer": true
+      },
+      {
+        "question": "Latency refers to the delay between the transmission and reception of a live broadcast.",
+        "answer": true
+      },
+      {
+        "question": "Chroma keying is a technique used to replace a specific color in a video with another image or background.",
+        "answer": true
+      },
+      {
+        "question": "Adaptive bitrate streaming adjusts the quality of a live stream based on the viewer's internet connection.",
+        "answer": true
+      },
+      {
+        "question": "A cue sheet is a document that outlines the order of events and timing for a live production.",
+        "answer": true
+      },
+      {
+        "question": "Closed captions are not required for live broadcasts as they are primarily used for prerecorded content.",
+        "answer": false
+      },
+      {
+        "question": "A \"bug\" in live broadcasting refers to a small technical glitch or error during the transmission.",
+        "answer": false
+      },
+      {
+        "question": "Live production workflows typically involve pre-production, production, and post-production stages.",
+        "answer": true
+      }
+    ],
+    "difficult": [
+      {
+        "question": "In live broadcasting, the _________ is responsible for overseeing all technical aspects of the production.",
+        "answer": ["technical director"]
+      },
+      {
+        "question": "The process of adjusting audio levels in real-time during a live production is known as __________.",
+        "answer": ["audio mixing"]
+      },
+      {
+        "question": "__________ is a method of transmitting audio and video signals over the internet in real-time.",
+        "answer": ["live streaming"]
+      },
+      {
+        "question": "A __________ is a device used to convert analog video signals into digital signals for live broadcasting.",
+        "answer": ["video encoder"]
+      },
+      {
+        "question": "__________ is a technique used in live production to switch between different video sources seamlessly.",
+        "answer": ["video switching"]
+      },
+      {
+        "question": "The _________ is responsible for ensuring smooth transitions between different elements of a live production.",
+        "answer": ["director"]
+      },
+      {
+        "question": "__________ is the process of capturing live video footage from a remote location and transmitting it to the broadcasting studio.",
+        "answer": ["remote contribution"]
+      },
+      {
+        "question": "In live production, a _________ is used to synchronize different audio and video sources for seamless playback.",
+        "answer": ["genlock"]
+      },
+      {
+        "question": "A __________ is a graphical element overlaid on the live video feed to display information or branding.",
+        "answer": ["lower third"]
+      },
+      {
+        "question": "__________ is a technique used in live production to replay a portion of the live footage instantly.",
+        "answer": ["instant replay"]
+      }
+    ]
+  }
+  

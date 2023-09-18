@@ -1,0 +1,188 @@
+{
+    "easy": [
+        {
+            "question": "Which of the following is an example of a broadcasting medium?",
+            "choices": {
+                "a": "Newspaper",
+                "b": "Podcast",
+                "c": "Social media",
+                "d": "Television"
+            },
+            "answer": "d"
+        },
+        {
+            "question": "What is the term used to describe the process of creating and delivering personalized media content through digital platforms?",
+            "choices": {
+                "a": "Broadcasting",
+                "b": "Narrowcasting",
+                "c": "Webcasting",
+                "d": "Telecasting"
+            },
+            "answer": "b"
+        },
+        {
+            "question": "Which of the following is a characteristic of interactive media?",
+            "choices": {
+                "a": "One-way communication",
+                "b": "Passive audience engagement",
+                "c": "Limited user participation",
+                "d": "Active user engagement"
+            },
+            "answer": "d"
+        },
+        {
+            "question": "What is the purpose of pre-production in media production?",
+            "choices": {
+                "a": "Editing and post-production",
+                "b": "Writing scripts and planning",
+                "c": "Broadcasting and distribution",
+                "d": "Audience feedback and evaluation"
+            },
+            "answer": "b"
+        },
+        {
+            "question": "Which of the following is an essential role in media production?",
+            "choices": {
+                "a": "Producer",
+                "b": "Viewer",
+                "c": "Audience",
+                "d": "Distributor"
+            },
+            "answer": "a"
+        },
+        {
+            "question": "What is the term used to describe the process of combining different audio and visual elements in media production?",
+            "choices": {
+                "a": "Editing",
+                "b": "Scripting",
+                "c": "Storyboarding",
+                "d": "Filming"
+            },
+            "answer": "a"
+        },
+        {
+            "question": "Which of the following is a popular emerging media platform?",
+            "choices": {
+                "a": "Television",
+                "b": "Radio",
+                "c": "Virtual reality",
+                "d": "Print newspapers"
+            },
+            "answer": "c"
+        },
+        {
+            "question": "In media production, what does the term \"shot\" refer to?",
+            "choices": {
+                "a": "A unit of audio recording",
+                "b": "A written script",
+                "c": "A single take of a camera",
+                "d": "A promotional advertisement"
+            },
+            "answer": "c"
+        },
+        {
+            "question": "What is the purpose of post-production in media production?",
+            "choices": {
+                "a": "Writing scripts and planning",
+                "b": "Recording audio and video",
+                "c": "Distributing media content",
+                "d": "Editing and finalizing the project"
+            },
+            "answer": "d"
+        },
+        {
+            "question": "Which of the following is an example of a media text?",
+            "choices": {
+                "a": "News article",
+                "b": "Email",
+                "c": "Phone call",
+                "d": "Personal diary"
+            },
+            "answer": "a"
+        }
+    ],
+    "average": [
+        {
+            "question": "Interactive media allows for active user engagement and participation.",
+            "answer": true
+        },
+        {
+            "question": "In media production, post-production involves filming and capturing raw footage.",
+            "answer": false
+        },
+        {
+            "question": "Broadcasting and narrowcasting refer to the same process of delivering media content to a wide audience.",
+            "answer": false
+        },
+        {
+            "question": "Storyboarding is a visual planning tool used in media production to outline the sequence of shots.",
+            "answer": true
+        },
+        {
+            "question": "Media texts can take various forms, such as written articles, videos, or audio recordings.",
+            "answer": true
+        },
+        {
+            "question": "Pre-production involves the final editing and polishing of media content.",
+            "answer": false
+        },
+        {
+            "question": "Virtual reality is an emerging media platform that provides an immersive and interactive experience to users.",
+            "answer": true
+        },
+        {
+            "question": "Media production relies solely on the creative vision of the producer and does not involve teamwork.",
+            "answer": false
+        },
+        {
+            "question": "Distribution is an essential step in media production that involves making the content available to the target audience.",
+            "answer": true
+        },
+        {
+            "question": "Media production encompasses the processes of planning, filming, and editing content for broadcasting and publication.",
+            "answer": true
+        }
+    ],
+    "difficult": [
+        {
+            "question": "In media production, __________ is the process of organizing and scheduling the various components required for a project, such as scripts, props, and locations.",
+            "answer": ["Production coordination", "production management"]
+        },
+        {
+            "question": "__________ is a technique used in editing to smoothly transition between two shots by overlapping their content.",
+            "answer": ["Crossfade", "dissolve"]
+        },
+        {
+            "question": "__________ refers to the process of analyzing and selecting the most compelling and relevant footage from the raw materials for editing.",
+            "answer": ["Footage logging", "footage selection"]
+        },
+        {
+            "question": "A __________ is a graphical representation of a scene or shot, often used in storyboarding to plan camera angles and movements.",
+            "answer": ["Shot diagram", "shot composition"]
+        },
+        {
+            "question": "The __________ is responsible for managing the technical aspects of a live broadcast, such as camera switching and audio mixing.",
+            "answer": ["Technical director", "vision mixer"]
+        },
+        {
+            "question": "In media production, __________ is the process of adjusting and enhancing the audio elements, such as dialogue, music, and sound effects.",
+            "answer": ["Sound mixing", "audio mastering"]
+        },
+        {
+            "question": "__________ is a technique used in post-production to combine different elements, such as visual effects, graphics, and animations, into the final video.",
+            "answer": ["Compositing", "visual effects"]
+        },
+        {
+            "question": "__________ refers to the legal and ethical guidelines that govern the use and distribution of copyrighted material in media production.",
+            "answer": ["Copyright clearance", "fair use"]
+        },
+        {
+            "question": "The __________ is the individual responsible for coordinating and overseeing the entire production process, from pre-production to post-production.",
+            "answer": ["Producer", "production manager"]
+        },
+        {
+            "question": "__________ is a technique used in media production to create a sense of continuity and smooth flow between shots by matching the movement or action from one shot to the next.",
+            "answer": ["Match cut", "continuity editing"]
+        }
+    ]
+}

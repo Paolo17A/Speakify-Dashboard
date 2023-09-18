@@ -1,0 +1,140 @@
+{
+    "easy": [
+      {
+        "question": "Which term refers to the phenomenon where women are underrepresented in key roles in the broadcasting industry?",
+        "options": {
+          "a": "Gender pay gap",
+          "b": "Glass ceiling",
+          "c": "Patriarchy",
+          "d": "Tokenism"
+        },
+        "answer": "b"
+      },
+      {
+        "question": "Which of the following is an example of gender stereotyping in broadcasting?",
+        "options": {
+          "a": "Portraying women as knowledgeable experts in various fields",
+          "b": "Providing equal opportunities for men and women in broadcasting careers",
+          "c": "Assigning women to cover 'soft' topics like fashion and lifestyle",
+          "d": "Promoting gender-neutral language in broadcasting scripts"
+        },
+        "answer": "c"
+      },
+      {
+        "question": "The Bechdel Test is a criterion used to assess gender representation in which of the following media formats?",
+        "options": {
+          "a": "Films",
+          "b": "Television shows",
+          "c": "Broadcasting in general",
+          "d": "All of the above"
+        },
+        "answer": "d"
+      },
+      {
+        "question": "Which concept refers to the practice of representing women primarily as objects of sexual desire in broadcasting?",
+        "options": {
+          "a": "Misogyny",
+          "b": "Stereotyping",
+          "c": "Objectification",
+          "d": "Discrimination"
+        },
+        "answer": "c"
+      },
+      {
+        "question": "Which term describes the process of excluding certain groups, such as women or minorities, from participating in broadcasting?",
+        "options": {
+          "a": "Censorship",
+          "b": "Exclusionary practices",
+          "c": "Discrimination",
+          "d": "Gender bias"
+        },
+        "answer": "b"
+      }
+    ],
+    "average": [
+      {
+        "question": "The gender pay gap does not exist in the broadcasting industry.",
+        "answer": false
+      },
+      {
+        "question": "Gender stereotyping in broadcasting can limit opportunities for women.",
+        "answer": true
+      },
+      {
+        "question": "The Bechdel Test is a criterion used to assess gender representation in films but does not apply to television shows or broadcasting in general.",
+        "answer": false
+      },
+      {
+        "question": "Objectification is the practice of representing women primarily as objects of sexual desire in broadcasting.",
+        "answer": true
+      },
+      {
+        "question": "Gender diversity in broadcasting has no impact on audience perception or engagement.",
+        "answer": false
+      },
+      {
+        "question": "Gender quotas are a strategy used to address gender inequality in broadcasting.",
+        "answer": true
+      },
+      {
+        "question": "Using gender-neutral language in broadcasting is not necessary or important.",
+        "answer": false
+      },
+      {
+        "question": "Gender bias in broadcasting can contribute to reinforcing harmful social norms and perpetuating inequality.",
+        "answer": true
+      },
+      {
+        "question": "Tokenism refers to the inclusion of a diverse range of voices and perspectives in broadcasting.",
+        "answer": false
+      },
+      {
+        "question": "The representation of women as passive and submissive in broadcasting is empowering.",
+        "answer": false
+      }
+    ],
+    
+        "difficult": [
+          {
+            "question": "The underrepresentation of women in key roles in the broadcasting industry is often referred to as the ________.",
+            "answer": ["glass ceiling"]
+          },
+          {
+            "question": "Gender ________ in broadcasting can lead to limited opportunities and biased portrayals of individuals.",
+            "answer": ["stereotyping"]
+          },
+          {
+            "question": "The ________ Test is a criterion used to assess gender representation in films, television shows, and broadcasting in general.",
+            "answer": ["Bechdel"]
+          },
+          {
+            "question": "Objectification is the practice of representing individuals, particularly women, primarily as objects of ________ desire in broadcasting.",
+            "answer": ["sexual"]
+          },
+          {
+            "question": "Gender diversity in broadcasting can positively impact audience perception and ________.",
+            "answer": ["engagement"]
+          },
+          {
+            "question": "Gender ________ are a strategy used to address gender inequality in broadcasting by ensuring equitable participation.",
+            "answer": ["quotas"]
+          },
+          {
+            "question": "Using gender-neutral language in broadcasting is essential to promote ________ and inclusivity.",
+            "answer": ["diversity"]
+          },
+          {
+            "question": "Gender bias in broadcasting can contribute to reinforcing harmful social norms and perpetuating ________.",
+            "answer": ["inequality"]
+          },
+          {
+            "question": "Tokenism refers to the inclusion of individuals from underrepresented groups to give the appearance of ________, without addressing the underlying issues of representation.",
+            "answer": ["diversity"]
+          },
+          {
+            "question": "The portrayal of women as passive and submissive in broadcasting perpetuates harmful ________ norms.",
+            "answer": ["social"]
+          }
+        ]
+  }
+  

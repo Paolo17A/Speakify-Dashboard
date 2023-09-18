@@ -1,0 +1,189 @@
+{
+    "easy": [
+      {
+        "question": "Which communication theory suggests that individuals use media to fulfill their specific needs and desires?",
+        "options": {
+          "a": "Cultivation theory",
+          "b": "Uses and gratifications theory",
+          "c": "Social learning theory",
+          "d": "Agenda-setting theory"
+        },
+        "answer": "b"
+      },
+      {
+        "question": "Which theory focuses on the social and cultural impact of media and how it shapes our perception of reality?",
+        "options": {
+          "a": "Cultivation theory",
+          "b": "Symbolic interactionism",
+          "c": "Agenda-setting theory",
+          "d": "Diffusion of innovations"
+        },
+        "answer": "a"
+      },
+      {
+        "question": "According to the social learning theory, individuals learn behaviors and attitudes through:",
+        "options": {
+          "a": "Mass media exposure",
+          "b": "Personal experiences",
+          "c": "Social interactions",
+          "d": "Genetic predispositions"
+        },
+        "answer": "c"
+      },
+      {
+        "question": "The agenda-setting theory proposes that media:",
+        "options": {
+          "a": "Influences the importance placed on certain issues by the public",
+          "b": "Shapes our perception of reality through symbolic interactions",
+          "c": "Impacts our behavior and attitudes through observational learning",
+          "d": "Expands our social networks and facilitates diffusion of information"
+        },
+        "answer": "a"
+      },
+      {
+        "question": "The medium is the message is a key concept introduced by:",
+        "options": {
+          "a": "Marshall McLuhan",
+          "b": "Albert Bandura",
+          "c": "Stuart Hall",
+          "d": "Harold Lasswell"
+        },
+        "answer": "a"
+      },
+      {
+        "question": "The hypodermic needle model suggests that media messages: ",
+        "options": {
+          "a": "Have a direct and powerful effect on audiences",
+          "b": "Shapes our perception of reality through symbolic interactions",
+          "c": "Reinforce existing beliefs and attitudes through observational learning",
+          "d": "Influence the importance placed on certain issues by the public"
+        },
+        "answer": "a"
+      },
+      {
+        "question": "Which theory focuses on the role of gatekeepers in selecting and controlling the information presented to the public?",
+        "options": {
+          "a": "Cultivation theory",
+          "b": "Uses and gratifications theory",
+          "c": "Agenda-setting theory",
+          "d": "Gatekeeping theory"
+        },
+        "answer": "d"
+      },
+      {
+        "question": "According to the spiral of silence theory, individuals are more likely to express their opinions when they perceive: ",
+        "options": {
+          "a": "Agreement with the majority",
+          "b": "Disagreement with the majority",
+          "c": "Support from social networks",
+          "d": "Uncertainty about their opinions"
+        },
+        "answer": "a"
+      },
+      {
+        "question": "The diffusion of innovations theory explains the process of how: ",
+        "options": {
+          "a": "Media messages shape our perception og reality",
+          "b": "Individuals learn behaviors and attitudes through media exposure",
+          "c": "New ideas or technologies spread through a social system",
+          "d": "Media selects and controls the information presented to the public"
+        },
+        "answer": "c"
+      },
+      {
+        "question": "The concept of media literacy refers to ",
+        "options": {
+          "a": "The ability to critically analyze and evaluate media messages",
+          "b": "The process of adapting communication styles to fit different audiences",
+          "c": "The deliberate spreading of false or misleading information through media channels",
+          "d": "The practice of selecting and controlling the information presented to the public"
+        },
+        "answer": "a"
+      }
+    ],
+    "average": [
+      {
+        "question": "The cultivation theory suggests that media exposure influences our perception of reality.",
+        "answer": true
+      },
+      {
+        "question": "Symbolic interactionism focuses on how individuals learn behaviors and attitudes through media exposure.",
+        "answer": false
+      },
+      {
+        "question": "The magic bullet theory proposes that media messages have a direct and powerful effect on audiences.",
+        "answer": true
+      },
+      {
+        "question": "The social learning theory emphasizes the role of social interactions in shaping our behavior and attitudes.",
+        "answer": true
+      },
+      {
+        "question": "The spiral of silence theory suggests that individuals are more likely to express their opinions when they perceive agreement with the majority.",
+        "answer": true
+      },
+      {
+        "question": "The uses and gratification theory focuses on how individuals use media to fulfill their specific needs and desires",
+        "answer": true
+      },
+      {
+        "question": "The gatekeeping theory highlights the role of gatekeepers in controlling the flow of information through media channels.",
+        "answer": true
+      },
+      {
+        "question": "The medium is the message is a key concept introduced by Albert Bandura",
+        "answer": false
+      },
+      {
+        "question": "The agenda-setting theory proposes that media influences the importance placed on certain issues by the public",
+        "answer": true
+      },
+      {
+        "question": "The diffusion of innovations theory explains how individuals learn behaviors and attitudes through media exposure",
+        "answer": true
+      }
+    ],
+    "difficult": [
+        {
+          "question": "The __________ theory suggests that media messages are interpreted differently based on the cultural and social context in which they are received.",
+          "answer": ["Cultural studies theory"]
+        },
+        {
+          "question": "The __________ effect refers to the phenomenon where individuals seek out and pay attention to information that confirms their existing beliefs and values.",
+          "answer": ["Confirmation bias"]
+        },
+        {
+          "question": "The __________ theory posits that media shapes our perception of reality by selectively presenting certain aspects of the world and influencing how we interpret them.",
+          "answer": ["Agenda-setting theory"]
+        },
+        {
+          "question": "The __________ model of communication recognizes that communication is a complex process involving multiple layers of meanings and interpretations.",
+          "answer": ["Symbolic interactionism"]
+        },
+        {
+          "question": "__________ refers to the process of using media messages as a source of information and learning about the world.",
+          "answer": ["Media socialization"]
+        },
+        {
+          "question": "The __________ theory suggests that media representations play a significant role in constructing our understanding of social reality.",
+          "answer": ["Representation theory"]
+        },
+        {
+          "question": "__________ refers to the ability to access, analyze, evaluate, and create media in a variety of forms",
+          "answer": ["Media literacy"]
+        },
+        {
+          "question": "The __________ theory posits that media content has a cumulative and long-term effect on the audience's perceptions and beliefs about the world.",
+          "answer": ["cultivation"]
+        },
+        {
+          "question": "The __________ model of communication emphasizes the importance of feedback and interaction between the sender and receiver of a message.",
+          "answer": ["transactional"]
+        },
+        {
+          "question": "The __________ theory examines how individuals and communities create meaning and negotiate shared understanding through media interactions.",
+          "answer": ["cultural studies"]
+        }
+      ]
+  }
+  

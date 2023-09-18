@@ -1,0 +1,188 @@
+{
+    "easy": [
+        {
+            "question": "What is the primary purpose of research in broadcasting, interactive, and emerging media?",
+            "options": {
+                "a": "To entertain audiences",
+                "b": "To inform the public",
+                "c": "To understand audience behavior",
+                "d": "To generate advertising revenue"
+            },
+            "answer": "c"
+        },
+        {
+            "question": "Which of the following is NOT a research method commonly used in media studies?",
+            "options": {
+                "a": "Surveys and questionnaires",
+                "b": "Interviews and focus groups",
+                "c": "Content analysis",
+                "d": "Magic tricks"
+            },
+            "answer": "d"
+        },
+        {
+            "question": "Which type of research examines the content of media messages to analyze their themes and representations?",
+            "options": {
+                "a": "Audience research",
+                "b": "Experimental research",
+                "c": "Content analysis",
+                "d": "Market research"
+            },
+            "answer": "c"
+        },
+        {
+            "question": "What is the purpose of conducting audience surveys in media research?",
+            "options": {
+                "a": "To gather demographic data",
+                "b": "To measure audience engagement",
+                "c": "To evaluate the effectiveness of media campaigns",
+                "d": "All of the above"
+            },
+            "answer": "d"
+        },
+        {
+            "question": "Which of the following is a primary source of data in media research?",
+            "options": {
+                "a": "News articles",
+                "b": "Academic journals",
+                "c": "Online forums",
+                "d": "Personal opinions"
+            },
+            "answer": "d"
+        },
+        {
+            "question": "Which research approach involves observing and documenting audience behavior without intervening or influencing it?",
+            "options": {
+                "a": "Experimental research",
+                "b": "Ethnographic research",
+                "c": "Longitudinal research",
+                "d": "Theoretical research"
+            },
+            "answer": "b"
+        },
+        {
+            "question": "What is the term used to describe the process of systematically selecting a subset of the population for research?",
+            "options": {
+                "a": "Sampling",
+                "b": "Targeting",
+                "c": "Segmenting",
+                "d": "Randomizing"
+            },
+            "answer": "a"
+        },
+        {
+            "question": "Which of the following is an ethical consideration in media research?",
+            "options": {
+                "a": "Informed consent of participants",
+                "b": "Accuracy and transparency in reporting findings",
+                "c": "Protection of participant confidentiality",
+                "d": "All of the above"
+            },
+            "answer": "d"
+        },
+        {
+            "question": "Which research method involves manipulating independent variables to observe their effects on dependent variables?",
+            "options": {
+                "a": "Survey research",
+                "b": "Content analysis",
+                "c": "Experimental research",
+                "d": "Observational research"
+            },
+            "answer": "c"
+        },
+        {
+            "question": "What is the goal of longitudinal research in media studies?",
+            "options": {
+                "a": "To study media effects in real-time",
+                "b": "To analyze media content across different platforms",
+                "c": "To observe changes in audience behavior over time",
+                "d": "To compare media consumption across different demographic groups"
+            },
+            "answer": "c"
+        }
+    ],
+    "average": [
+        {
+            "question": "Content analysis is a research method that examines the underlying meanings and messages in media content.",
+            "answer": true
+        },
+        {
+            "question": "Experimental research allows researchers to establish causation between variables.",
+            "answer": true
+        },
+        {
+            "question": "Focus groups are typically used to collect qualitative data in media research.",
+            "answer": true
+        },
+        {
+            "question": "Sampling is the process of collecting data from the entire population being studied.",
+            "answer": false
+        },
+        {
+            "question": "Longitudinal research studies are conducted over a short period of time.",
+            "answer": false
+        },
+        {
+            "question": "Theoretical research in media studies focuses on practical applications and real-world implications.",
+            "answer": false
+        },
+        {
+            "question": "Informed consent is not required in media research as it can compromise the validity of the findings.",
+            "answer": false
+        },
+        {
+            "question": "Observational research involves actively intervening and manipulating variables to study their effects.",
+            "answer": false
+        },
+        {
+            "question": "Market research is primarily concerned with studying consumer behavior and preferences.",
+            "answer": true
+        },
+        {
+            "question": "Correlation research examines the relationship between variables but does not establish causation.",
+            "answer": true
+        }
+    ],
+    "difficult": [
+        {
+            "question": "____________ research involves examining media effects on individuals and society.",
+            "answer": ["media effects"]
+        },
+        {
+            "question": "____________ sampling is a research technique that involves selecting participants based on specific criteria.",
+            "answer": ["purposive"]
+        },
+        {
+            "question": "In media research, ____________ validity refers to the extent to which findings can be generalized to the larger population.",
+            "answer": ["external"]
+        },
+        {
+            "question": "The ____________ research approach aims to understand media phenomena through the analysis of existing literature.",
+            "answer": ["theoretical"]
+        },
+        {
+            "question": "____________ research focuses on understanding the economic aspects of media industries and markets.",
+            "answer": ["media economics"]
+        },
+        {
+            "question": "____________ is a statistical technique used to analyze the relationship between variables in media research.",
+            "answer": ["regression"]
+        },
+        {
+            "question": "____________ research studies changes in media consumption patterns and audience behavior over an extended period.",
+            "answer": ["longitudinal"]
+        },
+        {
+            "question": "____________ is the process of critically evaluating and analyzing existing research literature on a specific topic.",
+            "answer": ["literature review"]
+        },
+        {
+            "question": "____________ research involves studying a particular group or community's media consumption and production practices.",
+            "answer": ["ethnographic"]
+        },
+        {
+            "question": "____________ analysis is a research method that examines the frequency and nature of specific elements in media content.",
+            "answer": ["content"]
+        }
+    ]
+}

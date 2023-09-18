@@ -20,7 +20,7 @@ void displayStudentAchievementsDialogue(
         child: Column(
           children: [
             //  PROFILE IMAGE
-            profileImageURL == ''
+            profileImageURL.isEmpty
                 ? const CircleAvatar(
                     radius: 50,
                     backgroundColor: Colors.white,
@@ -94,7 +94,7 @@ void displayStudentAchievementsDialogue(
                                 child: Container(
                                     width:
                                         MediaQuery.of(context).size.width * 0.9,
-                                    height: 145,
+                                    height: 150,
                                     decoration: const BoxDecoration(
                                         color: Color.fromARGB(255, 53, 1, 36),
                                         borderRadius: BorderRadius.all(

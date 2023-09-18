@@ -1,0 +1,189 @@
+{
+    "easy": [
+      {
+        "question": "What is the primary goal of writing non-dramatic materials for broadcasting?",
+        "options": {
+          "a": "To entertain the audience",
+          "b": "To inform and educate the audience",
+          "c": "To create suspense and tension",
+          "d": "To promote a specific product"
+        },
+        "answer": "b"
+      },
+      {
+        "question": "Which of the following is an example of non-dramatic material?",
+        "options": {
+          "a": "News report",
+          "b": "Soap opera",
+          "c": "Reality TV show",
+          "d": "Action movie"
+        },
+        "answer": "a"
+      },
+      {
+        "question": "Non-dramatic writing should focus on delivering information in a __________ manner.",
+        "options": {
+          "a": "Creative",
+          "b": "Biased",
+          "c": "Objective",
+          "d": "Sensational"
+        },
+        "answer": "c"
+      },
+      {
+        "question": "When writing non-dramatic materials, it is important to use __________ language that is easily understood by the audience.",
+        "options": {
+          "a": "Technical",
+          "b": "Abstract",
+          "c": "Jargon-filled",
+          "d": "Plain and simple"
+        },
+        "answer": "d"
+      },
+      {
+        "question": "Which of the following is a key element of non-dramatic writing?",
+        "options": {
+          "a": "Conflict and resolution",
+          "b": "Character development",
+          "c": "Clear and concise language",
+          "d": "Cliffhangers"
+        },
+        "answer": "c"
+      },
+      {
+        "question": "Non-dramatic materials for broadcasting should be __________ to accommodate various platforms and time constraints.",
+        "options": {
+          "a": "Lengthy",
+          "b": "Complex",
+          "c": "Flexible",
+          "d": "Controversial"
+        },
+        "answer": "c"
+      },
+      {
+        "question": "Non-dramatic writing for broadcasting often includes elements such as __________ and sound bites.",
+        "options": {
+          "a": "Music",
+          "b": "Visual effects",
+          "c": "Interviews",
+          "d": "Action sequences"
+        },
+        "answer": "c"
+      },
+      {
+        "question": "Which of the following is an important consideration when writing non-dramatic materials for interactive media?",
+        "options": {
+          "a": "Creating captivating storylines",
+          "b": "Encouraging user participation",
+          "c": "Incorporating special effects",
+          "d": "Maintaining a consistent tone"
+        },
+        "answer": "b"
+      },
+      {
+        "question": "Non-dramatic materials for broadcasting should be __________ to reflect the target audience's interests and needs.",
+        "options": {
+          "a": "Generic",
+          "b": "Controversial",
+          "c": "Relatable",
+          "d": "Exclusive"
+        },
+        "answer": "c"
+      },
+      {
+        "question": "In non-dramatic writing, it is important to __________ the main points and key information for the audience.",
+        "options": {
+          "a": "Omit",
+          "b": "Repeat",
+          "c": "Highlight",
+          "d": "Confuse"
+        },
+        "answer": "c"
+      }
+    ],
+    "average": [
+      {
+        "question": "Non-dramatic materials primarily focus on fictional narratives.",
+        "answer": false
+      },
+      {
+        "question": "Non-dramatic writing aims to inform and educate the audience.",
+        "answer": true
+      },
+      {
+        "question": "Non-dramatic materials for broadcasting are only relevant for traditional media outlets.",
+        "answer": false
+      },
+      {
+        "question": "Non-dramatic writing requires extensive research and fact-checking.",
+        "answer": true
+      },
+      {
+        "question": "Non-dramatic materials can include genres such as documentaries, educational programs, and informative articles.",
+        "answer": true
+      },
+      {
+        "question": "Non-dramatic writing should use descriptive language and poetic devices to engage the audience.",
+        "answer": false
+      },
+      {
+        "question": "Non-dramatic materials should aim to evoke emotional responses from the audience.",
+        "answer": false
+      },
+      {
+        "question": "Non-dramatic writing should be structured and organized to convey information effectively.",
+        "answer": true
+      },
+      {
+        "question": "Non-dramatic materials for broadcasting can be adapted for interactive and online platforms.",
+        "answer": true
+      },
+      {
+        "question": "Non-dramatic writing should prioritize entertainment over providing accurate information.",
+        "answer": false
+      }
+    ],
+    "difficult": [
+      {
+        "question": "Non-dramatic writing should use __________ language that is easily understood by the audience.",
+        "answer": ["clear and concise"]
+      },
+      {
+        "question": "Non-dramatic materials should present information in an __________ manner.",
+        "answer": ["objective"]
+      },
+      {
+        "question": "Non-dramatic writing should avoid the use of __________ to maintain credibility and clarity.",
+        "answer": ["jargon"]
+      },
+      {
+        "question": "When writing for emerging media, non-dramatic materials should be __________ to engage and interact with the audience.",
+        "answer": ["interactive"]
+      },
+      {
+        "question": "Non-dramatic materials for broadcasting should be __________ to reflect the target audience's interests and needs.",
+        "answer": ["tailored"]
+      },
+      {
+        "question": "Non-dramatic writing should include __________ to provide evidence and support claims.",
+        "answer": ["sources"]
+      },
+      {
+        "question": "Non-dramatic materials for interactive media should encourage __________ participation and engagement.",
+        "answer": ["user"]
+      },
+      {
+        "question": "Non-dramatic writing should present information in a __________ manner to maintain audience attention.",
+        "answer": ["compelling"]
+      },
+      {
+        "question": "Non-dramatic materials for broadcasting should be adapted to different __________ and time constraints.",
+        "answer": ["platforms"]
+      },
+      {
+        "question": "Non-dramatic writing should emphasize __________ and key information for the audience.",
+        "answer": ["main points"]
+      }
+    ]
+  }
+  

@@ -1,0 +1,188 @@
+{
+    "easy": [
+        {
+            "question": "What is the term used to describe the technique of creating a three-dimensional representation of an object?",
+            "options": {
+                "a": "Sculpture",
+                "b": "Painting",
+                "c": "Collage",
+                "d": "Photography"
+            },
+            "answer": "a"
+        },
+        {
+            "question": "Which of the following is a primary element of visual art?",
+            "options": {
+                "a": "Color",
+                "b": "Sound",
+                "c": "Taste",
+                "d": "Smell"
+            },
+            "answer": "a"
+        },
+        {
+            "question": "What is the term used to describe the technique of creating images by using small, colored pieces of glass, stone, or other materials?",
+            "options": {
+                "a": "Collage",
+                "b": "Fresco",
+                "c": "Mosaic",
+                "d": "Engraving"
+            },
+            "answer": "c"
+        },
+        {
+            "question": "Which of the following is a famous painting by Leonardo da Vinci?",
+            "options": {
+                "a": "Starry Night",
+                "b": "The Last Supper",
+                "c": "Guernica",
+                "d": "The Persistence of Memory"
+            },
+            "answer": "b"
+        },
+        {
+            "question": "What is the term used to describe an artwork that represents an exaggerated or distorted view of reality?",
+            "options": {
+                "a": "Realism",
+                "b": "Impressionism",
+                "c": "Cubism",
+                "d": "Surrealism"
+            },
+            "answer": "d"
+        },
+        {
+            "question": "Which of the following is a traditional art medium?",
+            "options": {
+                "a": "Digital art",
+                "b": "Performance art",
+                "c": "Installation art",
+                "d": "Oil painting"
+            },
+            "answer": "d"
+        },
+        {
+            "question": "What is the term used to describe the use of light and dark shades in an artwork to create a sense of depth and volume?",
+            "options": {
+                "a": "Perspective",
+                "b": "Texture",
+                "c": "Proportion",
+                "d": "Value"
+            },
+            "answer": "d"
+        },
+        {
+            "question": "Which of the following is a famous sculpture by Michelangelo?",
+            "options": {
+                "a": "The Starry Night",
+                "b": "The Sistine Chapel",
+                "c": "The Thinker",
+                "d": "David"
+            },
+            "answer": "d"
+        },
+        {
+            "question": "What is the term used to describe the visual path that guides the viewer's eye through an artwork?",
+            "options": {
+                "a": "Composition",
+                "b": "Contrast",
+                "c": "Balance",
+                "d": "Movement"
+            },
+            "answer": "a"
+        },
+        {
+            "question": "Which of the following is an art movement characterized by spontaneous, expressive brushstrokes and vibrant colors?",
+            "options": {
+                "a": "Abstract expressionism",
+                "b": "Pop art",
+                "c": "Minimalism",
+                "d": "Renaissance"
+            },
+            "answer": "a"
+        }
+    ],
+    "average": [
+        {
+            "question": "The Mona Lisa is a famous painting by Vincent van Gogh.",
+            "answer": false
+        },
+        {
+            "question": "A collage is a two-dimensional artwork made by assembling different materials onto a surface.",
+            "answer": true
+        },
+        {
+            "question": "The use of perspective in art creates a sense of depth and space.",
+            "answer": true
+        },
+        {
+            "question": "The term \"abstract art\" refers to artworks that depict recognizable objects and scenes.",
+            "answer": false
+        },
+        {
+            "question": "Performance art is an art form that primarily relies on the use of digital technology.",
+            "answer": false
+        },
+        {
+            "question": "Watercolor is a traditional art medium that uses water-soluble pigments.",
+            "answer": true
+        },
+        {
+            "question": "The art movement known as \"Dada\" emerged during the Renaissance period.",
+            "answer": false
+        },
+        {
+            "question": "The use of repetition in art can create a sense of pattern and rhythm.",
+            "answer": true
+        },
+        {
+            "question": "A monochromatic color scheme in art uses a single color and its different shades and tints.",
+            "answer": true
+        },
+        {
+            "question": "The term \"sculpture\" refers only to artworks made out of clay.",
+            "answer": false
+        }
+    ],
+    "difficult": [
+        {
+            "question": "In media production, __________ is the process of organizing and scheduling the various components required for a project, such as scripts, props, and locations.",
+            "answer": ["Production coordination","production management"]
+        },
+        {
+            "question": "__________ is a technique in which an artist etches a design onto a metal plate using acid.",
+            "answer": ["Etching"] 
+        },
+        {
+            "question": "The __________ movement rejected traditional artistic conventions and focused on the exploration of subjective emotions.",
+            "answer": ["Expressionist"]
+        },
+        {
+            "question": "The __________ is an optical illusion that creates the illusion of depth on a two-dimensional surface.",
+            "answer": ["Trompe-l’oeil"]
+        },
+        {
+            "question": "__________ is a technique in which an artist applies paint to wet plaster on a wall or ceiling.",
+            "answer": ["Fresco"]
+        },
+        {
+            "question": "__________ is a technique in which an artist scratches the surface of a material to create lines or textures.",
+            "answer": ["Incising"]
+        },
+        {
+            "question": "The __________ art movement emphasized the use of simple geometric shapes and primary colors.",
+            "answer": ["Geometric abstraction"]
+        },
+        {
+            "question": "__________ is a technique in which an artist applies paint in thick layers to create texture and dimension.",
+            "answer": ["Impasto"]
+        },
+        {
+            "question": "__________ is a technique in which an artist creates an artwork by assembling various found objects.",
+            "answer": ["Assemblage"]
+        },
+        {
+            "question": "The __________ is the visual effect created when colors opposite each other on the color wheel are placed together.",
+            "answer": ["Contrast"]
+        }
+    ]
+}

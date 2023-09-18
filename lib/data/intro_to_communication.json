@@ -1,0 +1,188 @@
+{
+    "easy": [
+        {
+            "question": "What is the term used to describe the process of transmitting information from a sender to a receiver?",
+            "options": {
+                "a": "Encoding",
+                "b": "Decoding",
+                "c": "Feedback",
+                "d": "Channel"
+            },
+            "answer": "a"
+        },
+        {
+            "question": "Which of the following is an example of mass media?",
+            "options": {
+                "a": "Face-to-face conversation",
+                "b": "Television",
+                "c": "Text message",
+                "d": "Radio"
+            },
+            "answer": "b"
+        },
+        {
+            "question": "Which theory suggests that individuals use media to fulfill their specific needs and desires?",
+            "options": {
+                "a": "Agenda-setting theory",
+                "b": "Uses and gratifications theory",
+                "c": "Cultivation theory",
+                "d": "Social learning theory"
+            },
+            "answer": "b"
+        },
+        {
+            "question": "What is the term used to describe the process of adapting one's communication style to fit a particular audience or situation?",
+            "options": {
+                "a": "Feedback",
+                "b": "Noise",
+                "c": "Selective exposure",
+                "d": "Audience adaptation"
+            },
+            "answer": "d"
+        },
+        {
+            "question": "Which of the following is an example of non-verbal communication?",
+            "options": {
+                "a": "Speaking",
+                "b": "Writing",
+                "c": "Facial expressions",
+                "d": "Listening"
+            },
+            "answer": "c"
+        },
+        {
+            "question": "Which communication model represents communication as a linear process with a sender, message, and receiver?",
+            "options": {
+                "a": "Shannon-Weaver model",
+                "b": "Transactional model",
+                "c": "Social media model",
+                "d": "Cognitive dissonance model"
+            },
+            "answer": "a"
+        },
+        {
+            "question": "What does the term 'gatekeeping' refer to in the context of media?",
+            "options": {
+                "a": "The process of selecting and controlling the information that is presented to the public",
+                "b": "The ability of media to reach a large audience",
+                "c": "The practice of media organizations competing for audience attention",
+                "d": "The role of media in shaping public opinion"
+            },
+            "answer": "a"
+        },
+        {
+            "question": "Which of the following is an example of a traditional mass media platform?",
+            "options": {
+                "a": "Social media",
+                "b": "Newspaper",
+                "c": "Podcast",
+                "d": "Email"
+            },
+            "answer": "b"
+        },
+        {
+            "question": "What is the term used to describe the deliberate spreading of false or misleading information through media channels?",
+            "options": {
+                "a": "Propaganda",
+                "b": "Censorship",
+                "c": "Gatekeeping",
+                "d": "Feedback"
+            },
+            "answer": "a"
+        },
+        {
+            "question": "What is the term used to describe the ability to critically analyze and evaluate media messages?",
+            "options": {
+                "a": "Media bias",
+                "b": "Media literacy",
+                "c": "Media convergence",
+                "d": "Media ecology"
+            },
+            "answer": "b"
+        }
+    ],
+    "average": [
+        {
+            "question": "Mass communication refers to communication between individuals within a small group.",
+            "answer": false
+        },
+        {
+            "question": "The hypodermic needle model suggests that media messages have a direct and powerful effect on audiences.",
+            "answer": true
+        },
+        {
+            "question": "Social media platforms are considered a one-way form of communication.",
+            "answer": false
+        },
+        {
+            "question": "Media convergence refers to the merging of different mass media technologies into a single platform.",
+            "answer": true
+        },
+        {
+            "question": "The 'long tail' refers to the concentration of media consumption on a few popular mainstream sources.",
+            "answer": false
+        },
+        {
+            "question": "The digital divide refers to the gap between those who have access to digital technology and those who do not.",
+            "answer": true
+        },
+        {
+            "question": "The media plays no role in shaping public opinion.",
+            "answer": false
+        },
+        {
+            "question": "The concept of agenda-setting suggests that media can influence the importance placed on certain issues by the public.",
+            "answer": true
+        },
+        {
+            "question": "Gatekeeping refers to the process of monitoring and controlling internet access.",
+            "answer": false
+        },
+        {
+            "question": "Media literacy refers to the ability to effectively communicate using media platforms.",
+            "answer": false
+        }
+    ],
+    "difficult": [
+        {
+            "question": "__________ is the term used to describe the practice of intentionally presenting information in a way that influences public perception.",
+            "answer": ["Framing"]
+        },
+        {
+            "question": "The __________ theory suggests that media content has a cumulative and long-term effect on the audience's perceptions and beliefs about the world.",
+            "answer": ["Cultivation"]
+        },
+        {
+            "question": "__________ is the process of selecting and interpreting media messages based on our own beliefs, values, and experiences.",
+            "answer": ["Selective exposure"]
+        },
+        {
+            "question": "The concept of __________ refers to the idea that media organizations and advertisers are primarily driven by profit and commercial interests.",
+            "answer": ["Commercialism"]
+        },
+        {
+            "question": "The __________ model of communication recognizes that communication is a two-way process involving simultaneous sending and receiving of messages.",
+            "answer": ["Transactional"]
+        },
+        {
+            "question": "The __________ effect refers to the tendency for individuals to seek out and pay attention to information that confirms their existing beliefs and values.",
+            "answer": ["Confirmation"]
+        },
+        {
+            "question": "Media __________ refers to the concentration of media ownership in the hands of a few large corporations.",
+            "answer": ["Consolidation"]
+        },
+        {
+            "question": "The __________ theory suggests that media has the power to shape how we perceive reality by selectively presenting certain aspects of the world.",
+            "answer": ["Symbolic interactionism"]
+        },
+        {
+            "question": "The term __________ refers to the ability of media audiences to actively engage with and contribute to media content.",
+            "answer": ["Participatory culture"]
+        },
+        {
+            "question": "The __________ theory suggests that media messages can have different meanings and interpretations depending on the cultural and social context.",
+            "answer": ["Cultural studies theory"]
+        }
+    ]
+}
