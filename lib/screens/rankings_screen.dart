@@ -92,8 +92,8 @@ class _RankingsScreenState extends State<RankingsScreen> {
                             children: [
                               Container(
                                 height:
-                                    MediaQuery.of(context).size.height * 0.05,
-                                width: MediaQuery.of(context).size.width * 0.1,
+                                    MediaQuery.of(context).size.height * 0.08,
+                                width: MediaQuery.of(context).size.width * 0.12,
                                 decoration: BoxDecoration(
                                   color: const Color.fromARGB(
                                       255, 60, 19, 97), // Border properties
@@ -156,8 +156,8 @@ class _RankingsScreenState extends State<RankingsScreen> {
                               ),
                               Container(
                                 height:
-                                    MediaQuery.of(context).size.height * 0.05,
-                                width: MediaQuery.of(context).size.width * 0.1,
+                                    MediaQuery.of(context).size.height * 0.08,
+                                width: MediaQuery.of(context).size.width * 0.12,
                                 decoration: BoxDecoration(
                                     color:
                                         const Color.fromARGB(255, 60, 19, 97),
@@ -202,31 +202,56 @@ class _RankingsScreenState extends State<RankingsScreen> {
                                           padding: const EdgeInsets.all(5),
                                           child: Row(
                                               mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
+                                                  MainAxisAlignment.spaceEvenly,
                                               children: [
-                                                Text((index + 1).toString(),
-                                                    style: const TextStyle(
-                                                        color: Colors.white,
-                                                        fontSize: 20,
-                                                        fontWeight:
-                                                            FontWeight.bold)),
-                                                Text(
-                                                    (_userDocs[index].data()!
-                                                        as Map<dynamic,
-                                                            dynamic>)['email'],
-                                                    style: const TextStyle(
-                                                        color: Colors.white,
-                                                        fontSize: 15,
-                                                        fontWeight:
-                                                            FontWeight.bold)),
-                                                Text(
-                                                    'Current Level: ${(_userDocs[index].data()! as Map<dynamic, dynamic>)[_leaderboardType]}',
-                                                    style: const TextStyle(
-                                                        color: Colors.white,
-                                                        fontSize: 15,
-                                                        fontWeight:
-                                                            FontWeight.bold))
+                                                SizedBox(
+                                                  width: MediaQuery.of(context)
+                                                          .size
+                                                          .width *
+                                                      0.1,
+                                                  child: Center(
+                                                    child: Text(
+                                                        (index + 1).toString(),
+                                                        style: const TextStyle(
+                                                            color: Colors.white,
+                                                            fontSize: 20,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold)),
+                                                  ),
+                                                ),
+                                                SizedBox(
+                                                  width: MediaQuery.of(context)
+                                                          .size
+                                                          .width *
+                                                      0.3,
+                                                  child: Center(
+                                                    child: Text(
+                                                        '${(_userDocs[index].data()! as Map<dynamic, dynamic>)['firstName']} ${(_userDocs[index].data()! as Map<dynamic, dynamic>)['lastName']}',
+                                                        style: const TextStyle(
+                                                            color: Colors.white,
+                                                            fontSize: 15,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold)),
+                                                  ),
+                                                ),
+                                                SizedBox(
+                                                  width: MediaQuery.of(context)
+                                                          .size
+                                                          .width *
+                                                      0.3,
+                                                  child: Center(
+                                                    child: Text(
+                                                        'Current Level: ${(_userDocs[index].data()! as Map<dynamic, dynamic>)[_leaderboardType]}',
+                                                        style: const TextStyle(
+                                                            color: Colors.white,
+                                                            fontSize: 15,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold)),
+                                                  ),
+                                                )
                                               ]),
                                         ),
                                       ),

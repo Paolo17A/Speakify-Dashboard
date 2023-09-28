@@ -16,7 +16,7 @@ void displayStudentAchievementsDialogue(
       backgroundColor: const Color.fromARGB(255, 60, 19, 97),
       content: SizedBox(
         width: MediaQuery.of(context).size.width * 0.35,
-        height: MediaQuery.of(context).size.height * 0.75,
+        height: MediaQuery.of(context).size.height * 0.85,
         child: Column(
           children: [
             //  PROFILE IMAGE
@@ -61,90 +61,93 @@ void displayStudentAchievementsDialogue(
                                 fontSize: 50,
                                 fontWeight: FontWeight.bold))),
                   )
-                : Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: Container(
-                          width: double.infinity,
-                          decoration: const BoxDecoration(
-                              color: Color.fromARGB(255, 53, 1, 36),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(20))),
-                          child: const Padding(
-                              padding: EdgeInsets.all(10),
-                              child: Text('ACHIEVEMENTS',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 30,
-                                      fontWeight: FontWeight.bold))),
-                        ),
-                      ),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.45,
-                        child: SingleChildScrollView(
-                          child: Column(
-                            children: List.generate(earnedAchievements.length,
-                                (index) {
-                              var achievement =
-                                  earnedAchievements.values.toList()[index];
-                              return Padding(
-                                padding: const EdgeInsets.all(4),
-                                child: Container(
-                                    width:
-                                        MediaQuery.of(context).size.width * 0.9,
-                                    height: 150,
-                                    decoration: const BoxDecoration(
-                                        color: Color.fromARGB(255, 53, 1, 36),
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(20))),
-                                    child: Column(
-                                      children: [
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              vertical: 10),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceEvenly,
-                                            children: [
-                                              achievement.imagePath == null
-                                                  ? Icon(achievement.icon,
-                                                      size: 60,
-                                                      color: Colors.white)
-                                                  : Image.asset(
-                                                      achievement.imagePath!,
-                                                      scale: 6,
-                                                    ),
-                                              Text(
-                                                earnedAchievements.keys
-                                                    .toList()[index],
-                                                textAlign: TextAlign.center,
-                                                style: const TextStyle(
-                                                    fontSize: 25,
-                                                    color: Colors.white,
-                                                    fontWeight:
-                                                        FontWeight.w900),
-                                              )
-                                            ],
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              vertical: 8),
-                                          child: Text(achievement.description,
-                                              style: const TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 20)),
-                                        )
-                                      ],
-                                    )),
-                              );
-                            }),
+                : SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.6,
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(10),
+                          child: Container(
+                            width: double.infinity,
+                            decoration: const BoxDecoration(
+                                color: Color.fromARGB(255, 53, 1, 36),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(20))),
+                            child: const Padding(
+                                padding: EdgeInsets.all(10),
+                                child: Text('ACHIEVEMENTS',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 30,
+                                        fontWeight: FontWeight.bold))),
                           ),
                         ),
-                      ),
-                    ],
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.45,
+                          child: SingleChildScrollView(
+                            child: Column(
+                              children: List.generate(earnedAchievements.length,
+                                  (index) {
+                                var achievement =
+                                    earnedAchievements.values.toList()[index];
+                                return Padding(
+                                  padding: const EdgeInsets.all(4),
+                                  child: Container(
+                                      width: MediaQuery.of(context).size.width *
+                                          0.9,
+                                      height: 165,
+                                      decoration: const BoxDecoration(
+                                          color: Color.fromARGB(255, 53, 1, 36),
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(20))),
+                                      child: Column(
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                                vertical: 10),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.spaceEvenly,
+                                              children: [
+                                                achievement.imagePath == null
+                                                    ? Icon(achievement.icon,
+                                                        size: 60,
+                                                        color: Colors.white)
+                                                    : Image.asset(
+                                                        achievement.imagePath!,
+                                                        scale: 7,
+                                                      ),
+                                                Text(
+                                                  earnedAchievements.keys
+                                                      .toList()[index],
+                                                  textAlign: TextAlign.center,
+                                                  style: const TextStyle(
+                                                      fontSize: 25,
+                                                      color: Colors.white,
+                                                      fontWeight:
+                                                          FontWeight.w900),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                                vertical: 8, horizontal: 30),
+                                            child: Text(achievement.description,
+                                                style: const TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 20)),
+                                          )
+                                        ],
+                                      )),
+                                );
+                              }),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
           ],
         ),
