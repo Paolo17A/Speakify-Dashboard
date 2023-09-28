@@ -129,7 +129,8 @@ class _RankingsScreenState extends State<RankingsScreen> {
                                             value,
                                             textAlign: TextAlign.center,
                                             style: const TextStyle(
-                                                color: Colors.white),
+                                                color: Colors.white,
+                                                fontSize: 30),
                                           ),
                                         ),
                                       );

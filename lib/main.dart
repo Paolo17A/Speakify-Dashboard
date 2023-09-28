@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:speechlab_dashboard/firebase_options.dart';
 import 'package:speechlab_dashboard/screens/active_students_screen.dart';
 import 'package:speechlab_dashboard/screens/activies_quizzes_screen.dart';
+import 'package:speechlab_dashboard/screens/add_lesson_screen.dart';
 import 'package:speechlab_dashboard/screens/edit_profile_screen.dart';
 import 'package:speechlab_dashboard/screens/home_screen.dart';
 import 'package:speechlab_dashboard/screens/instructors_screen.dart';
@@ -35,6 +36,7 @@ class App extends StatelessWidget {
     '/instructors': (context) => const InstructorsScreen(),
     '/edit': (context) => const EditProfileScreen(),
     '/lessons': (context) => const LessonsScreen(),
+    '/addLesson': (context) => const AddLessonScreen(),
     '/activeStudents': (context) => const ActiveStudentsScreen(),
     '/activitiesAndQuizzes': (context) => const ActiviesQuizzesScreen(),
     '/scores': (context) => const ScoresScreen(),

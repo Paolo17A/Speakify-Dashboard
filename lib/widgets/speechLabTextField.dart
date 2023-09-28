@@ -24,5 +24,5 @@ TextField speechLabTextField(String text, TextEditingController controller,
           contentPadding:
               const EdgeInsets.symmetric(vertical: 10, horizontal: 10)),
       keyboardType: textInputType,
-      maxLines: textInputType == TextInputType.multiline ? 6 : 1);
+      maxLines: textInputType == TextInputType.multiline ? 9 : 1);
 }
