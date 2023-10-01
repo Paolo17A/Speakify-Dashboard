@@ -45,7 +45,7 @@ class _LessonsScreenState extends State<LessonsScreen> {
             lefNavigator(context, 3),
             Container(
               width: MediaQuery.of(context).size.width * 0.8,
-              height: double.infinity,
+              height: MediaQuery.of(context).size.height,
               color: Colors.white,
               child: _isLoading
                   ? const Center(child: CircularProgressIndicator())
@@ -77,7 +77,7 @@ class _LessonsScreenState extends State<LessonsScreen> {
                                     child: const Text(
                                       'ADD NEW LESSON',
                                       style: TextStyle(
-                                          color: Colors.white, fontSize: 25),
+                                          color: Colors.white, fontSize: 20),
                                     )),
                               )
                             ],
@@ -89,7 +89,7 @@ class _LessonsScreenState extends State<LessonsScreen> {
                                 child: SizedBox(
                                     width: double.infinity,
                                     height: MediaQuery.of(context).size.height *
-                                        0.75,
+                                        0.7,
                                     child: Wrap(
                                       alignment: WrapAlignment.start,
                                       spacing:
@@ -114,17 +114,18 @@ class _LessonsScreenState extends State<LessonsScreen> {
                                                     context,
                                                     MaterialPageRoute(
                                                         builder: (context) => EditLessonScreen(
+                                                            additionalResources:
+                                                                (lesson.data() as Map<dynamic, dynamic>)[
+                                                                    'additionalResources'],
                                                             lessonID: lesson.id,
                                                             lessonTitle: (lesson
                                                                         .data()
                                                                     as Map<dynamic, dynamic>)[
                                                                 'lessonTitle'],
-                                                            lessonContent: (lesson
-                                                                        .data()
-                                                                    as Map<
-                                                                        dynamic,
-                                                                        dynamic>)[
-                                                                'lessonContent'])));
+                                                            lessonContent:
+                                                                (lesson.data() as Map<
+                                                                    dynamic,
+                                                                    dynamic>)['lessonContent'])));
                                               },
                                               child: Text(
                                                 (lesson.data() as Map<dynamic,

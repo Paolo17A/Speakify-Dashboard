@@ -1,5 +1,3 @@
-// ignore_for_file: use_build_context_synchronously
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -26,6 +24,7 @@ class _LoginScreenState extends State<LoginScreen> {
       return;
     }
     final scaffoldState = ScaffoldMessenger.of(context);
+    final navigator = Navigator.of(context);
     try {
       setState(() {
         _isLoading = true;
@@ -45,8 +44,9 @@ class _LoginScreenState extends State<LoginScreen> {
       }
 
       if (currentUserData.data()!['userType'] == 'STUDENT') {
-        displayError(context,
-            'Students are not allowed to access the teacher\'s dashboard');
+        scaffoldState.showSnackBar(const SnackBar(
+            content: Text(
+                'Students are not allowed to access the teacher\'s dashboard')));
 
         setState(() {
           _emailController.clear();
@@ -54,10 +54,11 @@ class _LoginScreenState extends State<LoginScreen> {
           _isLoading = false;
         });
       } else if (currentUserData.data()!['userType'] == 'TEACHER') {
-        Navigator.of(context).pushNamed('/home');
+        navigator.pushNamed('/home');
       }
     } on FirebaseAuthException catch (error) {
-      displayError(context, 'Error logging in: $error');
+      scaffoldState
+          .showSnackBar(SnackBar(content: Text('Error logging in: $error')));
       setState(() {
         _isLoading = false;
         _emailController.clear();
@@ -76,108 +77,144 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Scaffold(
             body: Stack(children: [
           Center(
-              child: Container(
-                  width: MediaQuery.of(context).size.width * 0.85,
-                  height: MediaQuery.of(context).size.height * 0.75,
+              child: Column(
+            children: [
+              SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.15,
+                  width: double.infinity,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 15),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        CircleAvatar(
+                            radius: 50,
+                            backgroundColor: Colors.transparent,
+                            child: Image.asset(
+                                'assets/images/speechlab_logo.png')),
+                        SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.01),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.15,
+                          child: const Center(
+                            child: Text(
+                              'SPEAKIFY',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  color: Color.fromARGB(255, 124, 48, 114),
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 40),
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  )),
+              Container(
+                  width: MediaQuery.of(context).size.width * 0.3,
+                  height: MediaQuery.of(context).size.height * 0.8,
                   color: const Color.fromARGB(255, 82, 48, 124),
                   child: Padding(
                       padding: const EdgeInsets.all(10),
                       child: Container(
                           color: const Color.fromARGB(255, 245, 245, 245),
-                          child: SingleChildScrollView(
-                              child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                Padding(
-                                  padding: const EdgeInsets.all(6.0),
-                                  child: CircleAvatar(
-                                      radius: 45,
-                                      backgroundColor: Colors.transparent,
-                                      child: Image.asset(
-                                          'assets/images/speechlab_logo.png')),
-                                ),
-                                const SizedBox(height: 5),
-                                const Text('LOG-IN',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 25)),
-                                const SizedBox(height: 10),
-                                SizedBox(
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.65,
-                                  child: Column(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      speechLabTextField(
-                                          'Email Address',
-                                          _emailController,
-                                          TextInputType.emailAddress),
-                                      const SizedBox(height: 5.0),
-                                      speechLabTextField(
-                                          'Password',
-                                          _passwordController,
-                                          TextInputType.visiblePassword),
-                                      const SizedBox(height: 5.0),
-                                    ],
+                          child: Padding(
+                            padding: const EdgeInsets.all(20),
+                            child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  const Text('LOG-IN',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 45)),
+                                  const SizedBox(height: 50),
+                                  SizedBox(
+                                    width: MediaQuery.of(context).size.width *
+                                        0.65,
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        speechLabTextField(
+                                            'Email Address',
+                                            _emailController,
+                                            TextInputType.emailAddress),
+                                        const SizedBox(height: 5.0),
+                                        SpeechLabTextField(
+                                            text: 'Password',
+                                            controller: _passwordController,
+                                            textInputType:
+                                                TextInputType.visiblePassword),
+                                        const SizedBox(height: 5.0),
+                                      ],
+                                    ),
                                   ),
-                                ),
-                                SizedBox(
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.65,
-                                  child: Row(
-                                    children: [
-                                      TextButton(
-                                          onPressed: () {
-                                            Navigator.pushNamed(
-                                                context, '/reset');
-                                          },
-                                          child: const Text('Forgot Password?',
-                                              style: TextStyle(
-                                                  color: Colors.purple,
-                                                  decoration: TextDecoration
-                                                      .underline)))
-                                    ],
+                                  SizedBox(
+                                    width: MediaQuery.of(context).size.width *
+                                        0.65,
+                                    child: Row(
+                                      children: [
+                                        TextButton(
+                                            onPressed: () {
+                                              Navigator.pushNamed(
+                                                  context, '/reset');
+                                            },
+                                            child: const Text(
+                                                'Forgot Password?',
+                                                style: TextStyle(
+                                                    color: Colors.purple,
+                                                    decoration: TextDecoration
+                                                        .underline))),
+                                      ],
+                                    ),
                                   ),
-                                ),
-                                const SizedBox(height: 50),
-                                SizedBox(
-                                  height: 50,
-                                  width: 150,
-                                  child: ElevatedButton(
-                                      onPressed: _loginUser,
-                                      child: const Text('LOG-IN',
-                                          style: TextStyle(
-                                              fontSize: 20,
-                                              fontWeight: FontWeight.bold))),
-                                ),
-                                const SizedBox(height: 30),
-                                Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      const Text(
-                                        'Don\'t Have an Account?',
-                                        style: TextStyle(
-                                            fontSize: 25,
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      TextButton(
-                                          onPressed: () {
-                                            Navigator.pushNamed(
-                                                context, '/register');
-                                          },
-                                          child: const Text(
-                                            'Register Now',
+                                  const SizedBox(height: 50),
+                                  SizedBox(
+                                    height: 50,
+                                    width: 125,
+                                    child: ElevatedButton(
+                                        onPressed: _loginUser,
+                                        child: const Text('LOG-IN',
                                             style: TextStyle(
-                                                fontSize: 25,
-                                                color: Color.fromARGB(
-                                                    255, 102, 58, 130),
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.bold))),
+                                  ),
+                                  const SizedBox(height: 40),
+                                  SizedBox(
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.5,
+                                    child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          const Text(
+                                            'Don\'t Have an Account?',
+                                            style: TextStyle(
+                                                fontSize: 20,
+                                                color: Colors.black,
                                                 fontWeight: FontWeight.bold),
-                                          ))
-                                    ])
-                              ])))))),
+                                          ),
+                                          TextButton(
+                                              onPressed: () {
+                                                Navigator.pushNamed(
+                                                    context, '/register');
+                                              },
+                                              child: const Text(
+                                                'Register Now',
+                                                style: TextStyle(
+                                                    fontSize: 20,
+                                                    color: Color.fromARGB(
+                                                        255, 102, 58, 130),
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ))
+                                        ]),
+                                  )
+                                ]),
+                          )))),
+            ],
+          )),
           if (_isLoading)
             Container(
                 width: MediaQuery.of(context).size.width,

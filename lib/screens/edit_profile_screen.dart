@@ -89,10 +89,18 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     if (profileImageURL != '') {
       return CircleAvatar(
         radius: 100,
+        backgroundColor: const Color.fromARGB(255, 60, 19, 97),
         backgroundImage: NetworkImage(profileImageURL),
       );
     } else {
-      return const CircleAvatar(radius: 100, child: Icon(Icons.person));
+      return const CircleAvatar(
+          radius: 100,
+          backgroundColor: Color.fromARGB(255, 60, 19, 97),
+          child: Icon(
+            Icons.person,
+            color: Colors.white,
+            size: 80,
+          ));
     }
   }
 

@@ -68,6 +68,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
         'profileImageURL': '',
       });
 
+      setState(() {
+        _isLoading = false;
+        _emailController.clear();
+        _passwordController.clear();
+        _firstNameController.clear();
+        _lastNameController.clear();
+      });
+
       FirebaseAuth.instance
           .signOut()
           .then((value) => Navigator.pushNamed(context, '/login'));
@@ -94,33 +102,58 @@ class _RegisterScreenState extends State<RegisterScreen> {
       child: Scaffold(
         body: Stack(children: [
           Center(
-              child: Container(
-                  width: MediaQuery.of(context).size.width * 0.85,
-                  height: MediaQuery.of(context).size.height * 0.80,
+              child: Column(
+            children: [
+              SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.15,
+                  width: double.infinity,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 15),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        CircleAvatar(
+                            radius: 50,
+                            backgroundColor: Colors.transparent,
+                            child: Image.asset(
+                                'assets/images/speechlab_logo.png')),
+                        SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.01),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.15,
+                          child: const Center(
+                            child: Text(
+                              'SPEAKIFY',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  color: Color.fromARGB(255, 124, 48, 114),
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 40),
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  )),
+              Container(
+                  width: MediaQuery.of(context).size.width * 0.3,
+                  height: MediaQuery.of(context).size.height * 0.8,
                   color: const Color.fromARGB(255, 82, 48, 124),
                   child: Padding(
                     padding: const EdgeInsets.all(10),
                     child: Container(
                         color: const Color.fromARGB(255, 245, 245, 245),
-                        child: SingleChildScrollView(
+                        child: Padding(
+                          padding: const EdgeInsets.all(15),
                           child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Padding(
-                                  padding: const EdgeInsets.all(6.0),
-                                  child: CircleAvatar(
-                                      radius: 45,
-                                      backgroundColor: Colors.transparent,
-                                      child: Image.asset(
-                                          'assets/images/speechlab_logo.png')),
-                                ),
-                                const SizedBox(height: 5),
                                 const Text('REGISTER',
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
-                                        fontSize: 25)),
-                                const SizedBox(height: 25),
+                                        fontSize: 40)),
+                                const SizedBox(height: 20),
                                 SizedBox(
                                   width:
                                       MediaQuery.of(context).size.width * 0.65,
@@ -133,16 +166,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                           _emailController,
                                           TextInputType.emailAddress),
                                       const SizedBox(height: 5.0),
-                                      speechLabTextField(
-                                          'Password',
-                                          _passwordController,
-                                          TextInputType.visiblePassword),
+                                      SpeechLabTextField(
+                                          text: 'Password',
+                                          controller: _passwordController,
+                                          textInputType:
+                                              TextInputType.visiblePassword),
                                       const SizedBox(height: 5.0),
-                                      speechLabTextField(
-                                          'Confirm Password',
-                                          _confirmPasswordController,
-                                          TextInputType.visiblePassword),
-                                      const SizedBox(height: 45),
+                                      SpeechLabTextField(
+                                          text: 'Confirm Password',
+                                          controller:
+                                              _confirmPasswordController,
+                                          textInputType:
+                                              TextInputType.visiblePassword),
+                                      const SizedBox(height: 40),
                                       speechLabTextField(
                                           'First Name',
                                           _firstNameController,
@@ -152,11 +188,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                           'Last Name',
                                           _lastNameController,
                                           TextInputType.name),
-                                      const SizedBox(height: 10),
                                     ],
                                   ),
                                 ),
-                                const SizedBox(height: 50),
+                                const SizedBox(height: 20),
                                 SizedBox(
                                   height: 50,
                                   width: 150,
@@ -196,7 +231,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     ]),
                               ]),
                         )),
-                  ))),
+                  )),
+            ],
+          )),
           if (_isLoading)
             Container(
               width: MediaQuery.of(context).size.width,

@@ -9,11 +9,13 @@ class EditLessonScreen extends StatefulWidget {
   final String lessonID;
   final String lessonTitle;
   final String lessonContent;
+  final List<dynamic> additionalResources;
   const EditLessonScreen(
       {super.key,
       required this.lessonID,
       required this.lessonTitle,
-      required this.lessonContent});
+      required this.lessonContent,
+      required this.additionalResources});
 
   @override
   State<EditLessonScreen> createState() => _EditLessonScreenState();
@@ -23,12 +25,22 @@ class _EditLessonScreenState extends State<EditLessonScreen> {
   bool _isLoading = false;
   final TextEditingController _titleController = TextEditingController();
   final TextEditingController _contentController = TextEditingController();
+  final List<TextEditingController> _fileNameControllers = [];
+  final List<TextEditingController> _downloadLinkControllers = [];
 
   @override
   void initState() {
     super.initState();
     _titleController.text = widget.lessonTitle;
     _contentController.text = widget.lessonContent;
+    for (int i = 0; i < widget.additionalResources.length; i++) {
+      _fileNameControllers.add(TextEditingController());
+      _fileNameControllers[i].text =
+          (widget.additionalResources[i] as Map<dynamic, dynamic>)['fileName'];
+      _downloadLinkControllers.add(TextEditingController());
+      _downloadLinkControllers[i].text = (widget.additionalResources[i]
+          as Map<dynamic, dynamic>)['downloadLink'];
+    }
   }
 
   @override
@@ -36,6 +48,10 @@ class _EditLessonScreenState extends State<EditLessonScreen> {
     super.dispose();
     _titleController.dispose();
     _contentController.dispose();
+    for (int i = 0; i < _fileNameControllers.length; i++) {
+      _fileNameControllers[i].dispose();
+      _downloadLinkControllers[i].dispose();
+    }
   }
 
   void editCustomLesson() async {
@@ -46,27 +62,50 @@ class _EditLessonScreenState extends State<EditLessonScreen> {
           const SnackBar(content: Text('Please fill up all fields')));
       return;
     }
+    for (int i = 0; i < _downloadLinkControllers.length; i++) {
+      if (_fileNameControllers[i].text.isEmpty ||
+          _downloadLinkControllers[i].text.isEmpty) {
+        scaffoldMessenger.showSnackBar(const SnackBar(
+            content: Text(
+                'Please fill up all additional resource fields or delete unused ones.')));
+        return;
+      } else if (!Uri.tryParse(_downloadLinkControllers[i].text.trim())!
+          .hasAbsolutePath) {
+        scaffoldMessenger.showSnackBar(SnackBar(
+            content:
+                Text('The URL provided in resource #${i + 1} is invalid')));
+        return;
+      }
+    }
 
     try {
       setState(() {
         _isLoading = true;
       });
 
+      List<Map<dynamic, dynamic>> additionalResources = [];
+      for (int i = 0; i < _downloadLinkControllers.length; i++) {
+        additionalResources.add({
+          'fileName': _fileNameControllers[i].text.trim(),
+          'downloadLink': _downloadLinkControllers[i].text.trim()
+        });
+      }
       await FirebaseFirestore.instance
           .collection('lessons')
           .doc(widget.lessonID)
           .update({
         'lessonTitle': _titleController.text.trim(),
-        'lessonContent': _contentController.text.trim()
+        'lessonContent': _contentController.text.trim(),
+        'additionalResources': additionalResources
       });
 
-      scaffoldMessenger.showSnackBar(const SnackBar(
-          content: Text('Successfully added new custom lesson!')));
+      scaffoldMessenger.showSnackBar(
+          const SnackBar(content: Text('Successfully edited custom lesson!')));
       navigator.pop();
       navigator.pushReplacementNamed('/lessons');
     } catch (error) {
       scaffoldMessenger.showSnackBar(
-          SnackBar(content: Text('Error adding new custom lesson: $error')));
+          SnackBar(content: Text('Error editing custom lesson: $error')));
       setState(() {
         _isLoading = false;
       });
@@ -108,7 +147,69 @@ class _EditLessonScreenState extends State<EditLessonScreen> {
                         ),
                         speechLabTextField('Lesson Content', _contentController,
                             TextInputType.multiline),
-                        const SizedBox(height: 50),
+                        const SizedBox(height: 30),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Text('Additional Resources',
+                                style: TextStyle(fontWeight: FontWeight.bold)),
+                            TextButton(
+                                onPressed: () {
+                                  setState(() {
+                                    _fileNameControllers
+                                        .add(TextEditingController());
+                                    _downloadLinkControllers
+                                        .add(TextEditingController());
+                                  });
+                                },
+                                child: const Text('ADD',
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold)))
+                          ],
+                        ),
+                        if (_downloadLinkControllers.isNotEmpty)
+                          ListView.builder(
+                              shrinkWrap: true,
+                              itemCount: _downloadLinkControllers.length,
+                              itemBuilder: (context, index) {
+                                return Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    SizedBox(
+                                      width: MediaQuery.of(context).size.width *
+                                          0.7,
+                                      child: Column(children: [
+                                        speechLabTextField(
+                                            'Name',
+                                            _fileNameControllers[index],
+                                            TextInputType.text),
+                                        speechLabTextField(
+                                            'URL',
+                                            _downloadLinkControllers[index],
+                                            TextInputType.url),
+                                      ]),
+                                    ),
+                                    SizedBox(
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.05,
+                                        child: ElevatedButton(
+                                          onPressed: () {
+                                            setState(() {
+                                              _fileNameControllers
+                                                  .removeAt(index);
+                                              _downloadLinkControllers
+                                                  .removeAt(index);
+                                            });
+                                          },
+                                          child: const Icon(Icons.delete,
+                                              color: Colors.white),
+                                        ))
+                                  ],
+                                );
+                              }),
+                        const SizedBox(height: 20),
                         ElevatedButton(
                             onPressed: editCustomLesson,
                             child: const Text('SAVE CHANGES',

@@ -16,12 +16,23 @@ class _AddLessonScreenState extends State<AddLessonScreen> {
   bool _isLoading = false;
   final TextEditingController _titleController = TextEditingController();
   final TextEditingController _contentController = TextEditingController();
+  final List<TextEditingController> _fileNameControllers = [];
+  final List<TextEditingController> _downloadLinkControllers = [];
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   void dispose() {
     super.dispose();
     _titleController.dispose();
     _contentController.dispose();
+    for (int i = 0; i < _fileNameControllers.length; i++) {
+      _fileNameControllers[i].dispose();
+      _downloadLinkControllers[i].dispose();
+    }
   }
 
   void addNewCustomLesson() async {
@@ -32,7 +43,21 @@ class _AddLessonScreenState extends State<AddLessonScreen> {
           const SnackBar(content: Text('Please fill up all fields')));
       return;
     }
-
+    for (int i = 0; i < _downloadLinkControllers.length; i++) {
+      if (_fileNameControllers[i].text.isEmpty ||
+          _downloadLinkControllers[i].text.isEmpty) {
+        scaffoldMessenger.showSnackBar(const SnackBar(
+            content: Text(
+                'Please fill up all additional resource fields or delete unused ones.')));
+        return;
+      } else if (!Uri.tryParse(_downloadLinkControllers[i].text.trim())!
+          .hasAbsolutePath) {
+        scaffoldMessenger.showSnackBar(SnackBar(
+            content:
+                Text('The URL provided in resource #${i + 1} is invalid')));
+        return;
+      }
+    }
     try {
       setState(() {
         _isLoading = true;
@@ -42,9 +67,17 @@ class _AddLessonScreenState extends State<AddLessonScreen> {
       int lessonCount = currentLessons.docs.length;
       String lessonID = 'lesson${lessonCount.toString().padLeft(3, '0')}';
 
+      List<Map<dynamic, dynamic>> additionalResources = [];
+      for (int i = 0; i < _downloadLinkControllers.length; i++) {
+        additionalResources.add({
+          'fileName': _fileNameControllers[i].text.trim(),
+          'downloadLink': _downloadLinkControllers[i].text.trim()
+        });
+      }
       await FirebaseFirestore.instance.collection('lessons').doc(lessonID).set({
         'lessonTitle': _titleController.text.trim(),
-        'lessonContent': _contentController.text.trim()
+        'lessonContent': _contentController.text.trim(),
+        'additionalResources': additionalResources
       });
 
       scaffoldMessenger.showSnackBar(const SnackBar(
@@ -69,7 +102,7 @@ class _AddLessonScreenState extends State<AddLessonScreen> {
             lefNavigator(context, 3),
             Container(
               width: MediaQuery.of(context).size.width * 0.8,
-              height: double.infinity,
+              height: MediaQuery.of(context).size.height,
               color: Colors.white,
               child: Stack(
                 children: [
@@ -95,7 +128,77 @@ class _AddLessonScreenState extends State<AddLessonScreen> {
                         ),
                         speechLabTextField('Lesson Content', _contentController,
                             TextInputType.multiline),
-                        const SizedBox(height: 50),
+                        const SizedBox(height: 30),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Text('Additional Resources',
+                                style: TextStyle(fontWeight: FontWeight.bold)),
+                            TextButton(
+                                onPressed: () {
+                                  setState(() {
+                                    _fileNameControllers
+                                        .add(TextEditingController());
+                                    _downloadLinkControllers
+                                        .add(TextEditingController());
+                                  });
+                                },
+                                child: const Text('ADD',
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold)))
+                          ],
+                        ),
+                        if (_downloadLinkControllers.isNotEmpty)
+                          ListView.builder(
+                              shrinkWrap: true,
+                              itemCount: _downloadLinkControllers.length,
+                              itemBuilder: (context, index) {
+                                return Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    SizedBox(
+                                      width: MediaQuery.of(context).size.width *
+                                          0.7,
+                                      child: Column(children: [
+                                        Row(
+                                          children: [
+                                            Text('Resource # ${index + 1}',
+                                                style: const TextStyle(
+                                                    fontWeight:
+                                                        FontWeight.w300)),
+                                          ],
+                                        ),
+                                        speechLabTextField(
+                                            'Name',
+                                            _fileNameControllers[index],
+                                            TextInputType.text),
+                                        speechLabTextField(
+                                            'URL',
+                                            _downloadLinkControllers[index],
+                                            TextInputType.url),
+                                      ]),
+                                    ),
+                                    SizedBox(
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.05,
+                                        child: ElevatedButton(
+                                          onPressed: () {
+                                            setState(() {
+                                              _fileNameControllers
+                                                  .removeAt(index);
+                                              _downloadLinkControllers
+                                                  .removeAt(index);
+                                            });
+                                          },
+                                          child: const Icon(Icons.delete,
+                                              color: Colors.white),
+                                        ))
+                                  ],
+                                );
+                              }),
+                        const SizedBox(height: 20),
                         ElevatedButton(
                             onPressed: addNewCustomLesson,
                             child: const Text('CREATE NEW LESSON',
