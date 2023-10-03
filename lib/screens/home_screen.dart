@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:speechlab_dashboard/screens/active_students_screen.dart';
+import 'package:speechlab_dashboard/widgets/active_students_widget.dart';
 import 'package:speechlab_dashboard/utils/personalized_widgets_util.dart';
 import 'package:speechlab_dashboard/widgets/appbar_title_widget.dart';
 import 'package:speechlab_dashboard/widgets/date_time_widget.dart';
@@ -115,8 +115,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                           MediaQuery.of(context).size.width *
                                               0.10, () {
                                         Navigator.pushNamed(
-                                            context, '/activitiesAndQuizzes');
-                                      }, 'ACTIVIES & QUIZZES'),
+                                            context, '/quizzes');
+                                      }, 'QUIZZES'),
                                       homeDashboardRowButton(
                                           MediaQuery.of(context).size.width *
                                               0.15,
@@ -145,7 +145,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             width: MediaQuery.of(context).size.width * 0.2,
                             color: const Color.fromARGB(255, 74, 0, 49)
                                 .withOpacity(0.75),
-                            child: const ActiveStudentsScreen())
+                            child: const ActiveStudentsWidget())
                       ])));
   }
 }

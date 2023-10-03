@@ -2,14 +2,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-class ActiveStudentsScreen extends StatefulWidget {
-  const ActiveStudentsScreen({super.key});
+class ActiveStudentsWidget extends StatefulWidget {
+  const ActiveStudentsWidget({super.key});
 
   @override
-  State<ActiveStudentsScreen> createState() => _ActiveStudentsScreenState();
+  State<ActiveStudentsWidget> createState() => _ActiveStudentsScreenWidget();
 }
 
-class _ActiveStudentsScreenState extends State<ActiveStudentsScreen> {
+class _ActiveStudentsScreenWidget extends State<ActiveStudentsWidget> {
   bool _isLoading = true;
   List<DocumentSnapshot> activeStudents = [];
 
@@ -89,8 +89,14 @@ class _ActiveStudentsScreenState extends State<ActiveStudentsScreen> {
                     child: activeStudents.isEmpty
                         ? const Expanded(
                             child: Center(
-                                child: Text(
-                                    'THERE ARE CURRENTLY NO ACTIVE STUDENTS')))
+                            child: Text(
+                                'THERE ARE CURRENTLY NO ACTIVE STUDENTS',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 25,
+                                    fontWeight: FontWeight.w700)),
+                          ))
                         : Padding(
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 15, vertical: 10),

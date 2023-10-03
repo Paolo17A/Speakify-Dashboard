@@ -56,7 +56,7 @@ class _LoginScreenState extends State<LoginScreen> {
       } else if (currentUserData.data()!['userType'] == 'TEACHER') {
         navigator.pushNamed('/home');
       }
-    } on FirebaseAuthException catch (error) {
+    } catch (error) {
       scaffoldState
           .showSnackBar(SnackBar(content: Text('Error logging in: $error')));
       setState(() {
