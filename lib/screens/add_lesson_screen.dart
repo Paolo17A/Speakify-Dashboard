@@ -118,7 +118,7 @@ class _AddLessonScreenState extends State<AddLessonScreen> {
                           ],
                         ),
                         speechLabTextField('Lesson Title', _titleController,
-                            TextInputType.text),
+                            TextInputType.text, null),
                         const SizedBox(height: 25),
                         const Row(
                           children: [
@@ -127,7 +127,7 @@ class _AddLessonScreenState extends State<AddLessonScreen> {
                           ],
                         ),
                         speechLabTextField('Lesson Content', _contentController,
-                            TextInputType.multiline),
+                            TextInputType.multiline, null),
                         const SizedBox(height: 30),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -172,11 +172,14 @@ class _AddLessonScreenState extends State<AddLessonScreen> {
                                         speechLabTextField(
                                             'Name',
                                             _fileNameControllers[index],
-                                            TextInputType.text),
+                                            TextInputType.text,
+                                            null),
+                                        const SizedBox(height: 10),
                                         speechLabTextField(
                                             'URL',
                                             _downloadLinkControllers[index],
-                                            TextInputType.url),
+                                            TextInputType.url,
+                                            null),
                                       ]),
                                     ),
                                     SizedBox(

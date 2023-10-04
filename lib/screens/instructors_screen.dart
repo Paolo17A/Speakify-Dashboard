@@ -99,13 +99,24 @@ class _InstructorsScreenState extends State<InstructorsScreen> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.1,
-                  child: const CircleAvatar(
-                    radius: 30,
-                    backgroundColor: Color.fromARGB(255, 82, 48, 124),
-                    child: Icon(Icons.person, color: Colors.white),
-                  )),
+              if (isCurrentInstructor)
+                SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.1,
+                    child: CircleAvatar(
+                      radius: 30,
+                      backgroundColor: const Color.fromARGB(255, 60, 19, 97),
+                      backgroundImage: NetworkImage(
+                          instructorData['profileImageURL'],
+                          scale: 0.5),
+                    )),
+              if (!isCurrentInstructor)
+                SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.1,
+                    child: const CircleAvatar(
+                      radius: 30,
+                      backgroundColor: Color.fromARGB(255, 82, 48, 124),
+                      child: Icon(Icons.person, color: Colors.white),
+                    )),
               SizedBox(
                   width: MediaQuery.of(context).size.width * 0.3,
                   child: Text(

@@ -1,25 +1,32 @@
 import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:speechlab_dashboard/widgets/bool_choices_radio_widget.dart';
-import 'package:speechlab_dashboard/widgets/string_choices_radio_widget.dart';
-import 'package:speechlab_dashboard/widgets/speechLabTextField.dart';
-import '../widgets/appbar_title_widget.dart';
-import '../widgets/left_navigator_widget.dart';
 
-class AddQuizScreen extends StatefulWidget {
-  const AddQuizScreen({super.key});
+import '../widgets/appbar_title_widget.dart';
+import '../widgets/bool_choices_radio_widget.dart';
+import '../widgets/left_navigator_widget.dart';
+import '../widgets/speechLabTextField.dart';
+import '../widgets/string_choices_radio_widget.dart';
+
+class EditQuizScreen extends StatefulWidget {
+  final String quizTitle;
+  final String serializedQuizContent;
+  const EditQuizScreen(
+      {super.key,
+      required this.quizTitle,
+      required this.serializedQuizContent});
 
   @override
-  State<AddQuizScreen> createState() => _AddQuizScreenState();
+  State<EditQuizScreen> createState() => _EditQuizScreenState();
 }
 
-class _AddQuizScreenState extends State<AddQuizScreen> {
+class _EditQuizScreenState extends State<EditQuizScreen> {
   bool _isLoading = false;
   String currentDifficulty = 'Easy';
   int currentQuestion = 0;
 
-  final TextEditingController _titleController = TextEditingController();
+  String quizTitle = '';
   final TextEditingController _questionController = TextEditingController();
   final List<TextEditingController> _choicesControllers = [];
   final TextEditingController _identificationController =
@@ -40,12 +47,27 @@ class _AddQuizScreenState extends State<AddQuizScreen> {
     for (int i = 0; i < 4; i++) {
       _choicesControllers.add(TextEditingController());
     }
+    Map<String, dynamic> quizContent = jsonDecode(widget.serializedQuizContent);
+    easyQuestions = quizContent['easy'];
+    averageQuestions = quizContent['average'];
+    difficultQuestions = quizContent['difficult'];
+
+    _questionController.text = easyQuestions[currentQuestion]['question'];
+    _choicesControllers[0].text =
+        easyQuestions[currentQuestion]['options']['a'];
+    _choicesControllers[1].text =
+        easyQuestions[currentQuestion]['options']['b'];
+    _choicesControllers[2].text =
+        easyQuestions[currentQuestion]['options']['c'];
+    _choicesControllers[3].text =
+        easyQuestions[currentQuestion]['options']['d'];
+    _correctChoiceString = easyQuestions[currentQuestion]['answer'];
+    stringChoice.currentState?.SetChoice(_correctChoiceString!);
   }
 
   @override
   void dispose() {
     super.dispose();
-    _titleController.dispose();
     _questionController.dispose();
     for (var choice in _choicesControllers) {
       choice.dispose();
@@ -60,18 +82,7 @@ class _AddQuizScreenState extends State<AddQuizScreen> {
       setState(() {
         _isLoading = true;
       });
-      final customLessons =
-          await FirebaseFirestore.instance.collection('quizzes').get();
-      final existingLesson = customLessons.docs
-          .where((element) => element.id == _titleController.text.trim());
-      if (existingLesson.isNotEmpty) {
-        scaffoldMessenger.showSnackBar(const SnackBar(
-            content: Text('A quiz with this title already exists')));
-        setState(() {
-          _isLoading = false;
-        });
-        return;
-      }
+
       Map<dynamic, dynamic> quizContent = {
         'easy': easyQuestions,
         'average': averageQuestions,
@@ -80,7 +91,7 @@ class _AddQuizScreenState extends State<AddQuizScreen> {
       String encodedQuiz = jsonEncode(quizContent);
       await FirebaseFirestore.instance
           .collection('quizzes')
-          .doc(_titleController.text.trim())
+          .doc(widget.quizTitle)
           .set({
         'quizContent': encodedQuiz,
         'isArchived': false,
@@ -98,11 +109,7 @@ class _AddQuizScreenState extends State<AddQuizScreen> {
 
   void nextQuestion() {
     //  VALIDATION GUARDS
-    if (_titleController.text.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-          content: Text('Please provide a title for this quiz.')));
-      return;
-    } else if (_questionController.text.isEmpty) {
+    if (_questionController.text.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('Please provide a question.')));
       return;
@@ -143,31 +150,19 @@ class _AddQuizScreenState extends State<AddQuizScreen> {
         },
         'answer': _correctChoiceString
       };
-      if (currentQuestion == easyQuestions.length) {
-        easyQuestions.add(easyQuestionEntry);
-      } else {
-        easyQuestions[currentQuestion] = easyQuestionEntry;
-      }
+      easyQuestions[currentQuestion] = easyQuestionEntry;
     } else if (currentDifficulty == 'Average') {
       Map<String, dynamic> averageQuestionEntry = {
         'question': _questionController.text.trim(),
         'answer': _correctChoiceBool
       };
-      if (currentQuestion == averageQuestions.length) {
-        averageQuestions.add(averageQuestionEntry);
-      } else {
-        averageQuestions[currentQuestion] = averageQuestionEntry;
-      }
+      averageQuestions[currentQuestion] = averageQuestionEntry;
     } else if (currentDifficulty == 'Difficult') {
       Map<String, dynamic> difficultQuestionEntry = {
         'question': _questionController.text.trim(),
         'answer': [_identificationController.text.trim()]
       };
-      if (currentQuestion == difficultQuestions.length) {
-        difficultQuestions.add(difficultQuestionEntry);
-      } else {
-        difficultQuestions[currentQuestion] = difficultQuestionEntry;
-      }
+      difficultQuestions[currentQuestion] = difficultQuestionEntry;
     }
     setState(() {
       currentQuestion++;
@@ -205,20 +200,6 @@ class _AddQuizScreenState extends State<AddQuizScreen> {
             difficultQuestions[currentQuestion];
         _questionController.text = selectedQuestion['question'];
         _identificationController.text = selectedQuestion['answer'][0];
-      } else {
-        _questionController.clear();
-        if (currentDifficulty == 'Easy') {
-          for (TextEditingController choice in _choicesControllers) {
-            choice.clear();
-          }
-          _correctChoiceString = null;
-          stringChoice.currentState?.ResetChoice();
-        } else if (currentDifficulty == 'Average') {
-          _correctChoiceBool = null;
-          boolChoice.currentState?.ResetChoice();
-        } else if (currentDifficulty == 'Difficult') {
-          _identificationController.clear();
-        }
       }
     });
   }
@@ -281,16 +262,11 @@ class _AddQuizScreenState extends State<AddQuizScreen> {
                     padding: const EdgeInsets.all(15),
                     child: Column(
                       children: [
-                        const Row(children: [
-                          Text('QUIZ TITLE',
-                              style: TextStyle(
+                        Row(children: [
+                          Text(widget.quizTitle,
+                              style: const TextStyle(
                                   fontSize: 30, fontWeight: FontWeight.bold))
                         ]),
-                        SpeechLabTextField(
-                            text: 'Quiz Title',
-                            controller: _titleController,
-                            textInputType: TextInputType.text,
-                            displayPrefixIcon: null),
                         const SizedBox(height: 30),
                         Container(
                           width: MediaQuery.of(context).size.width * 0.6,

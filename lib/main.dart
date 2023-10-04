@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:speechlab_dashboard/firebase_options.dart';
+import 'package:speechlab_dashboard/screens/add_quiz_screen.dart';
 import 'package:speechlab_dashboard/screens/custom_quizzes_screen.dart';
 import 'package:speechlab_dashboard/screens/add_lesson_screen.dart';
 import 'package:speechlab_dashboard/screens/edit_profile_screen.dart';
@@ -37,6 +38,7 @@ class App extends StatelessWidget {
     '/lessons': (context) => const LessonsScreen(),
     '/addLesson': (context) => const AddLessonScreen(),
     '/quizzes': (context) => const CustomQuizzesScreen(),
+    '/addQuiz': (context) => const AddQuizScreen(),
     '/scores': (context) => const ScoresScreen(),
     '/ranking': (context) => const RankingsScreen()
   };

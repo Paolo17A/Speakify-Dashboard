@@ -1,39 +1,50 @@
 import 'package:flutter/material.dart';
 
-class ChoicesRadioWidget extends StatefulWidget {
-  final bool willReset;
-  final void Function(String?, bool) choiceSelectCallback;
+class StringChoicesRadioWidget extends StatefulWidget {
+  final String? initialString;
+  final void Function(String?) choiceSelectCallback;
   final List<String> choiceLetters;
 
-  const ChoicesRadioWidget(
+  const StringChoicesRadioWidget(
       {super.key,
-      required this.willReset,
+      required this.initialString,
       required this.choiceSelectCallback,
       required this.choiceLetters});
 
   @override
-  State<ChoicesRadioWidget> createState() => _ChoicesRadioWidgetState();
+  State<StringChoicesRadioWidget> createState() => ChoicesRadioWidgetState();
 }
 
-class _ChoicesRadioWidgetState extends State<ChoicesRadioWidget> {
+class ChoicesRadioWidgetState extends State<StringChoicesRadioWidget> {
   String? _choice;
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    if (widget.willReset) {
-      print('WE WILL RESET');
+    setState(() {
+      _choice = widget.initialString;
+    });
+  }
+
+  void ResetChoice() {
+    setState(() {
       _choice = null;
-    } else {
-      print('NO NEED TO RESET');
-    }
+    });
+  }
+
+  void SetChoice(String choice) {
+    setState(() {
+      _choice = choice;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      decoration: BoxDecoration(border: Border.all(color: Colors.black)),
+      decoration: BoxDecoration(
+          border: Border.all(color: Colors.black),
+          borderRadius: BorderRadius.circular(20)),
       child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -52,7 +63,7 @@ class _ChoicesRadioWidgetState extends State<ChoicesRadioWidget> {
                       onChanged: (String? value) {
                         setState(() {
                           _choice = value;
-                          widget.choiceSelectCallback(_choice, false);
+                          widget.choiceSelectCallback(_choice);
                         });
                       },
                       activeColor: const Color.fromARGB(255, 60, 19, 97),

@@ -6,11 +6,13 @@ class SpeechLabTextField extends StatefulWidget {
   final String text;
   final TextEditingController controller;
   final TextInputType textInputType;
+  final Icon? displayPrefixIcon;
   const SpeechLabTextField(
       {super.key,
       required this.text,
       required this.controller,
-      required this.textInputType});
+      required this.textInputType,
+      required this.displayPrefixIcon});
 
   @override
   State<SpeechLabTextField> createState() => _SpeechLabTextFieldState();
@@ -41,11 +43,12 @@ class _SpeechLabTextFieldState extends State<SpeechLabTextField> {
             filled: true,
             floatingLabelBehavior: FloatingLabelBehavior.never,
             fillColor: Colors.white.withOpacity(0.4),
-            border: const OutlineInputBorder(
-                borderRadius: BorderRadius.zero,
-                borderSide: BorderSide(color: Colors.black, width: 3.0)),
+            border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(20),
+                borderSide: const BorderSide(color: Colors.black, width: 3.0)),
             contentPadding:
                 const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+            prefixIcon: widget.displayPrefixIcon,
             suffixIcon: widget.textInputType == TextInputType.visiblePassword
                 ? IconButton(
                     onPressed: () {
@@ -64,7 +67,7 @@ class _SpeechLabTextFieldState extends State<SpeechLabTextField> {
 }
 
 TextField speechLabTextField(String text, TextEditingController controller,
-    TextInputType textInputType) {
+    TextInputType textInputType, Icon? displayPrefixIcon) {
   bool isPassword = textInputType == TextInputType.visiblePassword;
   bool isObscured = isPassword;
   return TextField(
@@ -81,11 +84,12 @@ TextField speechLabTextField(String text, TextEditingController controller,
           filled: true,
           floatingLabelBehavior: FloatingLabelBehavior.never,
           fillColor: Colors.white.withOpacity(0.4),
-          border: const OutlineInputBorder(
-              borderRadius: BorderRadius.zero,
-              borderSide: BorderSide(color: Colors.black, width: 3.0)),
+          border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(20),
+              borderSide: const BorderSide(color: Colors.black, width: 3.0)),
           contentPadding:
               const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+          prefixIcon: displayPrefixIcon,
           suffixIcon: isPassword
               ? IconButton(
                   onPressed: () {

@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:speechlab_dashboard/screens/add_quiz_screen.dart';
+import 'package:speechlab_dashboard/screens/edit_quiz_screen.dart';
 import 'package:speechlab_dashboard/widgets/appbar_title_widget.dart';
 import 'package:speechlab_dashboard/widgets/left_navigator_widget.dart';
 
@@ -18,6 +18,7 @@ class _CustomQuizzesScreenState extends State<CustomQuizzesScreen> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+    getCustomQuizzes();
   }
 
   void getCustomQuizzes() async {
@@ -39,6 +40,18 @@ class _CustomQuizzesScreenState extends State<CustomQuizzesScreen> {
       scaffoldMessenger.showSnackBar(
           SnackBar(content: Text('Error getting custom quizzes: $error')));
     }
+  }
+
+  void archiveQuiz(String quizTitle, bool currentValue) async {
+    await FirebaseFirestore.instance
+        .collection('quizzes')
+        .doc(quizTitle)
+        .update({'isArchived': !currentValue});
+    final quizSnapshot =
+        await FirebaseFirestore.instance.collection('quizzes').get();
+    setState(() {
+      customQuizzes = quizSnapshot.docs;
+    });
   }
 
   @override
@@ -75,11 +88,8 @@ class _CustomQuizzesScreenState extends State<CustomQuizzesScreen> {
                                 height: 50,
                                 child: ElevatedButton(
                                     onPressed: () {
-                                      Navigator.of(context).push(
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  const AddQuizScreen(
-                                                      isEditing: false)));
+                                      Navigator.of(context)
+                                          .pushNamed('/addQuiz');
                                     },
                                     child: const Text(
                                       'CREATE NEW QUIZ',
@@ -91,12 +101,63 @@ class _CustomQuizzesScreenState extends State<CustomQuizzesScreen> {
                           ),
                         ),
                         customQuizzes.isNotEmpty
-                            ? ListView.builder(
-                                itemBuilder: (context, index) {
-                                  return ElevatedButton(
-                                      onPressed: () {},
-                                      child: Text('${index + 1}'));
-                                },
+                            ? SizedBox(
+                                width: MediaQuery.of(context).size.width * 0.6,
+                                height:
+                                    MediaQuery.of(context).size.height * 0.7,
+                                child: ListView.builder(
+                                  shrinkWrap: true,
+                                  itemCount: customQuizzes.length,
+                                  itemBuilder: (context, index) {
+                                    Map<dynamic, dynamic> quizData =
+                                        customQuizzes[index].data()
+                                            as Map<dynamic, dynamic>;
+                                    return Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        SizedBox(
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.5,
+                                          height: 100,
+                                          child: ElevatedButton(
+                                              onPressed: () => Navigator.of(context)
+                                                  .push(MaterialPageRoute(
+                                                      builder: (context) => EditQuizScreen(
+                                                          quizTitle:
+                                                              customQuizzes[index]
+                                                                  .id,
+                                                          serializedQuizContent:
+                                                              quizData[
+                                                                  'quizContent']))),
+                                              child: Text(customQuizzes[index].id,
+                                                  style: const TextStyle(
+                                                      fontSize: 28,
+                                                      fontWeight:
+                                                          FontWeight.bold))),
+                                        ),
+                                        SizedBox(
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.08,
+                                          height: 100,
+                                          child: ElevatedButton(
+                                              onPressed: () {
+                                                archiveQuiz(
+                                                    customQuizzes[index].id,
+                                                    quizData['isArchived']);
+                                              },
+                                              child: Text(quizData['isArchived']
+                                                  ? 'RESTORE'
+                                                  : 'ARCHIVE')),
+                                        )
+                                      ],
+                                    );
+                                  },
+                                ),
                               )
                             : const Expanded(
                                 child: Center(

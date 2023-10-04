@@ -110,7 +110,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 15),
                     child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         CircleAvatar(
                             radius: 50,
@@ -135,103 +135,129 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       ],
                     ),
                   )),
-              Container(
-                  width: MediaQuery.of(context).size.width * 0.3,
-                  height: MediaQuery.of(context).size.height * 0.8,
-                  color: const Color.fromARGB(255, 82, 48, 124),
-                  child: Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: Container(
-                        color: const Color.fromARGB(255, 245, 245, 245),
+              SizedBox(
+                width: MediaQuery.of(context).size.width * 0.9,
+                child: Row(
+                  children: [
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.6,
+                      height: MediaQuery.of(context).size.height * 0.8,
+                      child: Expanded(
+                        child:
+                            Image.asset('assets/images/dashboard_welcome.png'),
+                      ),
+                    ),
+                    Container(
+                        width: MediaQuery.of(context).size.width * 0.3,
+                        height: MediaQuery.of(context).size.height * 0.8,
+                        color: const Color.fromARGB(255, 82, 48, 124),
                         child: Padding(
-                          padding: const EdgeInsets.all(15),
-                          child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                const Text('REGISTER',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 40)),
-                                const SizedBox(height: 20),
-                                SizedBox(
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.65,
-                                  child: Column(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      speechLabTextField(
-                                          'Email Address',
-                                          _emailController,
-                                          TextInputType.emailAddress),
-                                      const SizedBox(height: 5.0),
-                                      SpeechLabTextField(
-                                          text: 'Password',
-                                          controller: _passwordController,
-                                          textInputType:
-                                              TextInputType.visiblePassword),
-                                      const SizedBox(height: 5.0),
-                                      SpeechLabTextField(
-                                          text: 'Confirm Password',
-                                          controller:
-                                              _confirmPasswordController,
-                                          textInputType:
-                                              TextInputType.visiblePassword),
-                                      const SizedBox(height: 40),
-                                      speechLabTextField(
-                                          'First Name',
-                                          _firstNameController,
-                                          TextInputType.name),
-                                      const SizedBox(height: 5.0),
-                                      speechLabTextField(
-                                          'Last Name',
-                                          _lastNameController,
-                                          TextInputType.name),
-                                    ],
-                                  ),
-                                ),
-                                const SizedBox(height: 20),
-                                SizedBox(
-                                  height: 50,
-                                  width: 150,
-                                  child: ElevatedButton(
-                                      onPressed: _registerUser,
-                                      child: const Text(
-                                        'REGISTER',
-                                        style: TextStyle(
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.bold),
-                                      )),
-                                ),
-                                const SizedBox(height: 30),
-                                Row(
+                          padding: const EdgeInsets.all(10),
+                          child: Container(
+                              color: const Color.fromARGB(255, 245, 245, 245),
+                              child: Padding(
+                                padding: const EdgeInsets.all(15),
+                                child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
                                     children: [
-                                      const Text(
-                                        'Have an Account?',
-                                        style: TextStyle(
-                                            fontSize: 25,
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.bold),
+                                      const Text('REGISTER',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 40)),
+                                      const SizedBox(height: 20),
+                                      SizedBox(
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.65,
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceEvenly,
+                                          children: [
+                                            speechLabTextField(
+                                                'Email Address',
+                                                _emailController,
+                                                TextInputType.emailAddress,
+                                                const Icon(Icons.email)),
+                                            const SizedBox(height: 5.0),
+                                            SpeechLabTextField(
+                                                text: 'Password',
+                                                controller: _passwordController,
+                                                textInputType: TextInputType
+                                                    .visiblePassword,
+                                                displayPrefixIcon:
+                                                    const Icon(Icons.lock)),
+                                            const SizedBox(height: 5.0),
+                                            SpeechLabTextField(
+                                                text: 'Confirm Password',
+                                                controller:
+                                                    _confirmPasswordController,
+                                                textInputType: TextInputType
+                                                    .visiblePassword,
+                                                displayPrefixIcon:
+                                                    const Icon(Icons.lock)),
+                                            const SizedBox(height: 40),
+                                            speechLabTextField(
+                                                'First Name',
+                                                _firstNameController,
+                                                TextInputType.name,
+                                                const Icon(Icons.person_2)),
+                                            const SizedBox(height: 5.0),
+                                            speechLabTextField(
+                                                'Last Name',
+                                                _lastNameController,
+                                                TextInputType.name,
+                                                const Icon(Icons.person_2)),
+                                          ],
+                                        ),
                                       ),
-                                      TextButton(
-                                          onPressed: () {
-                                            Navigator.pushNamed(
-                                                context, '/login');
-                                          },
-                                          child: const Text(
-                                            'Sign in',
-                                            style: TextStyle(
-                                                fontSize: 25,
-                                                color: Color.fromARGB(
-                                                    255, 102, 58, 130),
-                                                fontWeight: FontWeight.bold),
-                                          ))
+                                      const SizedBox(height: 20),
+                                      SizedBox(
+                                        height: 50,
+                                        width: 150,
+                                        child: ElevatedButton(
+                                            onPressed: _registerUser,
+                                            child: const Text(
+                                              'REGISTER',
+                                              style: TextStyle(
+                                                  fontSize: 20,
+                                                  fontWeight: FontWeight.bold),
+                                            )),
+                                      ),
+                                      const SizedBox(height: 30),
+                                      Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            const Text(
+                                              'Have an Account?',
+                                              style: TextStyle(
+                                                  fontSize: 25,
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            TextButton(
+                                                onPressed: () {
+                                                  Navigator.pushNamed(
+                                                      context, '/login');
+                                                },
+                                                child: const Text(
+                                                  'Sign in',
+                                                  style: TextStyle(
+                                                      fontSize: 25,
+                                                      color: Color.fromARGB(
+                                                          255, 102, 58, 130),
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                ))
+                                          ]),
                                     ]),
-                              ]),
+                              )),
                         )),
-                  )),
+                  ],
+                ),
+              ),
             ],
           )),
           if (_isLoading)

@@ -1,6 +1,9 @@
+import 'dart:typed_data';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker_web/image_picker_web.dart';
 import 'package:speechlab_dashboard/widgets/appbar_title_widget.dart';
 import 'package:speechlab_dashboard/widgets/left_navigator_widget.dart';
 import 'package:speechlab_dashboard/widgets/speechLabTextField.dart';
@@ -14,6 +17,7 @@ class EditProfileScreen extends StatefulWidget {
 
 class _EditProfileScreenState extends State<EditProfileScreen> {
   bool _isLoading = true;
+  Uint8List? currentSelectedFile;
   String profileImageURL = '';
 
   final TextEditingController _firstNameController = TextEditingController();
@@ -72,6 +76,26 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         'firstName': _firstNameController.text.trim(),
         'lastName': _lastNameController.text.trim()
       });
+
+      if (currentSelectedFile != null) {
+        final storageRef = FirebaseStorage.instance
+            .ref()
+            .child('profilePics')
+            .child(FirebaseAuth.instance.currentUser!.uid);
+
+        final uploadTask = storageRef.putData(currentSelectedFile!);
+        final taskSnapshot = await uploadTask.whenComplete(() {});
+        final downloadURL = await taskSnapshot.ref.getDownloadURL();
+
+        // Update the user's data in Firestore with the image URL
+        await FirebaseFirestore.instance
+            .collection('users')
+            .doc(FirebaseAuth.instance.currentUser!.uid)
+            .update({
+          'profileImageURL': downloadURL,
+        });
+      }
+
       scaffoldMessenger.showSnackBar(
           const SnackBar(content: Text('Successfully updated user profile!')));
       navigator.pop();
@@ -85,7 +109,20 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     }
   }
 
+  Future<void> _pickImage() async {
+    final pickedFile = await ImagePickerWeb.getImageAsBytes();
+    if (pickedFile != null) {
+      setState(() {
+        currentSelectedFile = pickedFile;
+      });
+    }
+  }
+
   Widget _buildProfileImage() {
+    if (currentSelectedFile != null) {
+      return CircleAvatar(
+          radius: 70, backgroundImage: MemoryImage(currentSelectedFile!));
+    }
     if (profileImageURL != '') {
       return CircleAvatar(
         radius: 100,
@@ -104,6 +141,42 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     }
   }
 
+  Future<void> _removeProfilePic() async {
+    final scaffoldMessenger = ScaffoldMessenger.of(context);
+    try {
+      setState(() {
+        _isLoading = true;
+      });
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(FirebaseAuth.instance.currentUser!.uid)
+          .update({'profileImageURL': ''});
+
+      final storageRef = FirebaseStorage.instance
+          .ref()
+          .child('profilePics')
+          .child(FirebaseAuth.instance.currentUser!.uid);
+
+      await storageRef.delete();
+
+      setState(() {
+        currentSelectedFile = null;
+        profileImageURL = '';
+        _isLoading = false;
+      });
+    } catch (error) {
+      scaffoldMessenger.showSnackBar(SnackBar(
+          content: Text('Error removing current profile pic: $error')));
+      _firstNameController.clear();
+      _lastNameController.clear();
+      setState(() {
+        currentSelectedFile = null;
+        profileImageURL = '';
+        _isLoading = false;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -118,7 +191,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               children: [
                 Center(
                   child: Container(
-                    width: MediaQuery.of(context).size.width * 0.75,
+                    width: MediaQuery.of(context).size.width * 0.3,
                     height: MediaQuery.of(context).size.height * 0.75,
                     color: const Color.fromARGB(255, 82, 48, 124),
                     child: Padding(
@@ -131,19 +204,51 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               padding: const EdgeInsets.all(15),
                               child: _buildProfileImage(),
                             ),
+                            if (currentSelectedFile != null)
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 10),
+                                child: ElevatedButton(
+                                    onPressed: () {
+                                      setState(() {
+                                        currentSelectedFile = null;
+                                      });
+                                    },
+                                    child:
+                                        const Text('Remove Selected Picture')),
+                              ),
+                            if (currentSelectedFile == null &&
+                                profileImageURL != '')
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 10),
+                                child: ElevatedButton(
+                                    onPressed: _removeProfilePic,
+                                    child:
+                                        const Text('Remove Current Picture')),
+                              ),
+                            ElevatedButton(
+                                onPressed: _pickImage,
+                                child: const Text('Upload Profile Picture')),
                             const SizedBox(height: 20),
                             Padding(
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 20),
-                              child: speechLabTextField('First Name',
-                                  _firstNameController, TextInputType.name),
+                              child: speechLabTextField(
+                                  'First Name',
+                                  _firstNameController,
+                                  TextInputType.name,
+                                  null),
                             ),
                             const SizedBox(height: 10),
                             Padding(
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 20),
-                              child: speechLabTextField('Last Name',
-                                  _lastNameController, TextInputType.name),
+                              child: speechLabTextField(
+                                  'Last Name',
+                                  _lastNameController,
+                                  TextInputType.name,
+                                  null),
                             ),
                             const SizedBox(height: 40),
                             SizedBox(
