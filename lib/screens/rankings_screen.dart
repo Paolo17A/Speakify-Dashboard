@@ -17,8 +17,8 @@ class _RankingsScreenState extends State<RankingsScreen> {
   String _selectedSection = 'AB Broad 3A';
 
   @override
-  void initState() {
-    super.initState();
+  void didChangeDependencies() {
+    super.didChangeDependencies();
     _initializeLeaderboard();
   }
 

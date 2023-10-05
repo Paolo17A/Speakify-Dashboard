@@ -33,123 +33,328 @@ void main() async {
 class App extends StatelessWidget {
   App({super.key});
 
-  /*final Map<String, WidgetBuilder> _routes = {
-    '/': (context) => const Welcome(),
-    '/register': (context) => const RegisterScreen(),
-    '/login': (context) => const LoginScreen(),
-    '/reset': (context) => const ResetPasswordScreen(),
-    '/home': (context) => const HomeScreen(),
-    '/sections': (context) => const StudentsSectionsScreen(),
-    '/instructors': (context) => const InstructorsScreen(),
-    '/edit': (context) => const EditProfileScreen(),
-    '/lessons': (context) => const LessonsScreen(),
-    '/addLesson': (context) => const AddLessonScreen(),
-    '/quizzes': (context) => const CustomQuizzesScreen(),
-    '/addQuiz': (context) => const AddQuizScreen(),
-    '/scores': (context) => const ScoresScreen(),
-    '/ranking': (context) => const RankingsScreen()
-  };*/
-
   final GoRouter _router = GoRouter(initialLocation: '/', routes: [
-    GoRoute(path: '/', builder: (context, state) => const Welcome(), routes: [
-      GoRoute(
-          path: 'register',
-          builder: (context, state) => const RegisterScreen()),
-      GoRoute(path: 'login', builder: (context, state) => const LoginScreen()),
-      GoRoute(
-          path: 'reset',
-          builder: (context, state) => const ResetPasswordScreen()),
-      GoRoute(path: 'home', builder: (context, state) => const HomeScreen()),
-      GoRoute(
-          path: 'sections',
-          builder: (context, builder) => const StudentsSectionsScreen(),
-          routes: [
-            GoRoute(
-                path: 'selectedSection',
-                builder: (context, state) {
-                  final sectionParams = state.extra as Map<dynamic, dynamic>;
-                  return SelectedSectionScreen(
-                      section: sectionParams['section']);
-                })
-          ]),
-      GoRoute(
-          path: 'instructors',
-          builder: (context, state) => const InstructorsScreen(),
-          routes: [
-            GoRoute(
-                path: 'edit',
-                builder: (context, state) => const EditProfileScreen())
-          ]),
-      GoRoute(
-          path: 'lessons',
-          builder: (context, state) => const LessonsScreen(),
-          routes: [
-            GoRoute(
-                path: 'addLesson',
-                builder: (context, state) => const AddLessonScreen()),
-            GoRoute(
-                path: 'editLesson',
-                builder: (context, state) {
-                  final lessonParams = state.extra as Map<dynamic, dynamic>;
+    GoRoute(
+        path: '/',
+        pageBuilder: (context, state) {
+          return CustomTransitionPage(
+              fullscreenDialog: true,
+              key: state.pageKey,
+              child: const Welcome(),
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) {
+                return FadeTransition(
+                    opacity: CurveTween(curve: Curves.easeInOutCirc)
+                        .animate(animation),
+                    child: child);
+              });
+        },
+        routes: [
+          GoRoute(
+            path: 'register',
+            pageBuilder: (context, state) {
+              return CustomTransitionPage(
+                  fullscreenDialog: true,
+                  key: state.pageKey,
+                  child: const RegisterScreen(),
+                  transitionsBuilder:
+                      (context, animation, secondaryAnimation, child) {
+                    return FadeTransition(
+                        opacity: CurveTween(curve: Curves.easeInOutCirc)
+                            .animate(animation),
+                        child: child);
+                  });
+            },
+          ),
+          GoRoute(
+              path: 'login',
+              pageBuilder: (context, state) {
+                return CustomTransitionPage(
+                    key: state.pageKey,
+                    child: const LoginScreen(),
+                    transitionsBuilder:
+                        (context, animation, secondaryAnimation, child) {
+                      return FadeTransition(
+                          opacity: CurveTween(curve: Curves.easeInOutCirc)
+                              .animate(animation),
+                          child: child);
+                    });
+              }),
+          GoRoute(
+              path: 'reset',
+              pageBuilder: (context, state) {
+                return CustomTransitionPage(
+                    key: state.pageKey,
+                    child: const ResetPasswordScreen(),
+                    transitionsBuilder:
+                        (context, animation, secondaryAnimation, child) {
+                      return FadeTransition(
+                          opacity: CurveTween(curve: Curves.easeInOutCirc)
+                              .animate(animation),
+                          child: child);
+                    });
+              }),
+          GoRoute(
+              path: 'home',
+              pageBuilder: (context, state) {
+                return CustomTransitionPage(
+                    key: state.pageKey,
+                    child: const HomeScreen(),
+                    transitionsBuilder:
+                        (context, animation, secondaryAnimation, child) {
+                      return FadeTransition(
+                          opacity: CurveTween(curve: Curves.easeInOutCirc)
+                              .animate(animation),
+                          child: child);
+                    });
+              }),
+          GoRoute(
+              path: 'sections',
+              pageBuilder: (context, state) {
+                return CustomTransitionPage(
+                    key: state.pageKey,
+                    child: const StudentsSectionsScreen(),
+                    transitionsBuilder:
+                        (context, animation, secondaryAnimation, child) {
+                      return FadeTransition(
+                          opacity: CurveTween(curve: Curves.easeInOutCirc)
+                              .animate(animation),
+                          child: child);
+                    });
+              },
+              routes: [
+                GoRoute(
+                    path: 'selectedSection',
+                    pageBuilder: (context, state) {
+                      final sectionParams =
+                          state.extra as Map<dynamic, dynamic>;
+                      return CustomTransitionPage(
+                          key: state.pageKey,
+                          child: SelectedSectionScreen(
+                              section: sectionParams['section']),
+                          transitionsBuilder:
+                              (context, animation, secondaryAnimation, child) {
+                            return FadeTransition(
+                                opacity: CurveTween(curve: Curves.easeInOutCirc)
+                                    .animate(animation),
+                                child: child);
+                          });
+                    })
+              ]),
+          GoRoute(
+              path: 'instructors',
+              pageBuilder: (context, state) {
+                return CustomTransitionPage(
+                    key: state.pageKey,
+                    child: const InstructorsScreen(),
+                    transitionsBuilder:
+                        (context, animation, secondaryAnimation, child) {
+                      return FadeTransition(
+                          opacity: CurveTween(curve: Curves.easeInOutCirc)
+                              .animate(animation),
+                          child: child);
+                    });
+              },
+              routes: [
+                GoRoute(
+                    path: 'edit',
+                    pageBuilder: (context, state) {
+                      return CustomTransitionPage(
+                          key: state.pageKey,
+                          child: const EditProfileScreen(),
+                          transitionsBuilder:
+                              (context, animation, secondaryAnimation, child) {
+                            return FadeTransition(
+                                opacity: CurveTween(curve: Curves.easeInOutCirc)
+                                    .animate(animation),
+                                child: child);
+                          });
+                    })
+              ]),
+          GoRoute(
+              path: 'lessons',
+              pageBuilder: (context, state) {
+                return CustomTransitionPage(
+                    key: state.pageKey,
+                    child: const LessonsScreen(),
+                    transitionsBuilder:
+                        (context, animation, secondaryAnimation, child) {
+                      return FadeTransition(
+                          opacity: CurveTween(curve: Curves.easeInOutCirc)
+                              .animate(animation),
+                          child: child);
+                    });
+              },
+              routes: [
+                GoRoute(
+                    path: 'addLesson',
+                    pageBuilder: (context, state) {
+                      return CustomTransitionPage(
+                          key: state.pageKey,
+                          child: const AddLessonScreen(),
+                          transitionsBuilder:
+                              (context, animation, secondaryAnimation, child) {
+                            return FadeTransition(
+                                opacity: CurveTween(curve: Curves.easeInOutCirc)
+                                    .animate(animation),
+                                child: child);
+                          });
+                    }),
+                GoRoute(
+                    path: 'editLesson',
+                    pageBuilder: (context, state) {
+                      final lessonParams = state.extra as Map<dynamic, dynamic>;
+                      return CustomTransitionPage(
+                          key: state.pageKey,
+                          child: EditLessonScreen(
+                              lessonID: lessonParams['lessonID'],
+                              lessonTitle: lessonParams['lessonTitle'],
+                              lessonContent: lessonParams['lessonContent'],
+                              additionalResources:
+                                  lessonParams['additionalResources']),
+                          transitionsBuilder:
+                              (context, animation, secondaryAnimation, child) {
+                            return FadeTransition(
+                                opacity: CurveTween(curve: Curves.easeInOutCirc)
+                                    .animate(animation),
+                                child: child);
+                          });
+                    })
+              ]),
+          GoRoute(
+              path: 'scores',
+              pageBuilder: (context, state) {
+                return CustomTransitionPage(
+                    key: state.pageKey,
+                    child: const ScoresScreen(),
+                    transitionsBuilder:
+                        (context, animation, secondaryAnimation, child) {
+                      return FadeTransition(
+                          opacity: CurveTween(curve: Curves.easeInOutCirc)
+                              .animate(animation),
+                          child: child);
+                    });
+              },
+              routes: [
+                GoRoute(
+                    path: 'selectedQuiz',
+                    pageBuilder: (context, state) {
+                      final quizParams = state.extra as Map<dynamic, dynamic>;
+                      return CustomTransitionPage(
+                          key: state.pageKey,
+                          child: SelectedQuizScreen(
+                              currentQuizLevelReq:
+                                  quizParams['currentQuizLevelReq'],
+                              selectedQuiz: quizParams['selectedQuiz']),
+                          transitionsBuilder:
+                              (context, animation, secondaryAnimation, child) {
+                            return FadeTransition(
+                                opacity: CurveTween(curve: Curves.easeInOutCirc)
+                                    .animate(animation),
+                                child: child);
+                          });
+                    }),
+                GoRoute(
+                    path: 'selectedCustomQuiz',
+                    pageBuilder: (context, state) {
+                      final quizParams = state.extra as Map<dynamic, dynamic>;
+                      return CustomTransitionPage(
+                          key: state.pageKey,
+                          child: SelectedCustomQuizScreen(
+                              quizTitle: quizParams['quizTitle'],
+                              serializedquizQuestions:
+                                  quizParams['serializedquizQuestions']),
+                          transitionsBuilder:
+                              (context, animation, secondaryAnimation, child) {
+                            return FadeTransition(
+                                opacity: CurveTween(curve: Curves.easeInOutCirc)
+                                    .animate(animation),
+                                child: child);
+                          });
+                    }),
+                GoRoute(
+                    path: 'selectedSpeechLab',
+                    pageBuilder: (context, state) {
+                      final quizParams = state.extra as Map<dynamic, dynamic>;
+                      return CustomTransitionPage(
+                          key: state.pageKey,
+                          child: SelectedSpeechLabScreen(
+                              currentSpeechLevelReq:
+                                  quizParams['currentSpeechLevelReq'],
+                              selectedLevel: quizParams['selectedLevel']),
+                          transitionsBuilder:
+                              (context, animation, secondaryAnimation, child) {
+                            return FadeTransition(
+                                opacity: CurveTween(curve: Curves.easeInOutCirc)
+                                    .animate(animation),
+                                child: child);
+                          });
+                    })
+              ]),
+          GoRoute(
+              path: 'quizzes',
+              pageBuilder: (context, state) {
+                return CustomTransitionPage(
+                    key: state.pageKey,
+                    child: const CustomQuizzesScreen(),
+                    transitionsBuilder:
+                        (context, animation, secondaryAnimation, child) {
+                      return FadeTransition(
+                          opacity: CurveTween(curve: Curves.easeInOutCirc)
+                              .animate(animation),
+                          child: child);
+                    });
+              },
+              routes: [
+                GoRoute(
+                    path: 'addQuiz',
+                    pageBuilder: (context, state) {
+                      return CustomTransitionPage(
+                          key: state.pageKey,
+                          child: const AddQuizScreen(),
+                          transitionsBuilder:
+                              (context, animation, secondaryAnimation, child) {
+                            return FadeTransition(
+                                opacity: CurveTween(curve: Curves.easeInOutCirc)
+                                    .animate(animation),
+                                child: child);
+                          });
+                    }),
+                GoRoute(
+                    path: 'editQuiz',
+                    pageBuilder: (context, state) {
+                      final quizParams = state.extra as Map<dynamic, dynamic>;
 
-                  return EditLessonScreen(
-                      lessonID: lessonParams['lessonID'],
-                      lessonTitle: lessonParams['lessonTitle'],
-                      lessonContent: lessonParams['lessonContent'],
-                      additionalResources: lessonParams['additionalResources']);
-                })
-          ]),
-      GoRoute(
-          path: 'scores',
-          builder: (context, state) => const ScoresScreen(),
-          routes: [
-            GoRoute(
-                path: 'selectedQuiz',
-                builder: (context, state) {
-                  final quizParams = state.extra as Map<dynamic, dynamic>;
-                  return SelectedQuizScreen(
-                      currentQuizLevelReq: quizParams['currentQuizLevelReq'],
-                      selectedQuiz: quizParams['selectedQuiz']);
-                }),
-            GoRoute(
-                path: 'selectedCustomQuiz',
-                builder: (context, state) {
-                  final quizParams = state.extra as Map<dynamic, dynamic>;
-                  return SelectedCustomQuizScreen(
-                      quizTitle: quizParams['quizTitle'],
-                      serializedquizQuestions:
-                          quizParams['serializedquizQuestions']);
-                }),
-            GoRoute(
-                path: 'selectedSpeechLab',
-                builder: (context, state) {
-                  final quizParams = state.extra as Map<dynamic, dynamic>;
-                  return SelectedSpeechLabScreen(
-                      currentSpeechLevelReq:
-                          quizParams['currentSpeechLevelReq'],
-                      selectedLevel: quizParams['selectedLevel']);
-                })
-          ]),
-      GoRoute(
-          path: 'quizzes',
-          builder: (context, state) => const CustomQuizzesScreen(),
-          routes: [
-            GoRoute(
-                path: 'addQuiz',
-                builder: (context, state) => const AddQuizScreen()),
-            GoRoute(
-                path: 'editQuiz',
-                builder: (context, state) {
-                  final quizParams = state.extra as Map<dynamic, dynamic>;
-                  return EditQuizScreen(
-                      quizTitle: quizParams['quizTitle']!,
-                      serializedQuizContent:
-                          quizParams['serializedQuizContent']!);
-                })
-          ]),
-      GoRoute(
-          path: 'ranking', builder: (context, state) => const RankingsScreen())
-    ]),
+                      return CustomTransitionPage(
+                          key: state.pageKey,
+                          child: EditQuizScreen(
+                              quizTitle: quizParams['quizTitle']!,
+                              serializedQuizContent:
+                                  quizParams['serializedQuizContent']!),
+                          transitionsBuilder:
+                              (context, animation, secondaryAnimation, child) {
+                            return FadeTransition(
+                                opacity: CurveTween(curve: Curves.easeInOutCirc)
+                                    .animate(animation),
+                                child: child);
+                          });
+                    })
+              ]),
+          GoRoute(
+              path: 'ranking',
+              pageBuilder: (context, state) {
+                return CustomTransitionPage(
+                    key: state.pageKey,
+                    child: const RankingsScreen(),
+                    transitionsBuilder:
+                        (context, animation, secondaryAnimation, child) {
+                      return FadeTransition(
+                          opacity: CurveTween(curve: Curves.easeInOutCirc)
+                              .animate(animation),
+                          child: child);
+                    });
+              })
+        ]),
   ]);
 
   final ThemeData _themeData = ThemeData(
@@ -179,8 +384,6 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       title: 'SpeechLab Dashboard',
-      /*initialRoute: '/',
-      routes: _routes,*/
       routerConfig: _router,
       theme: _themeData,
     );
