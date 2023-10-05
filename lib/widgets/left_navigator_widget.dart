@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 Widget lefNavigator(BuildContext context, int index) {
   return Container(
@@ -17,7 +18,7 @@ Widget lefNavigator(BuildContext context, int index) {
                   leading: const Icon(Icons.home),
                   title: Text('Dashboard', style: _textStyle()),
                   onTap: () {
-                    Navigator.of(context).pushNamed('/home');
+                    GoRouter.of(context).go('/home');
                   },
                 ),
               ),
@@ -30,7 +31,7 @@ Widget lefNavigator(BuildContext context, int index) {
                     style: _textStyle(),
                   ),
                   onTap: () {
-                    Navigator.pushNamed(context, '/sections');
+                    GoRouter.of(context).go('/sections');
                   },
                 ),
               ),
@@ -40,7 +41,7 @@ Widget lefNavigator(BuildContext context, int index) {
                   leading: const Icon(Icons.person_2),
                   title: Text('Instructor', style: _textStyle()),
                   onTap: () {
-                    Navigator.pushNamed(context, '/instructors');
+                    GoRouter.of(context).go('/instructors');
                   },
                 ),
               ),
@@ -50,7 +51,7 @@ Widget lefNavigator(BuildContext context, int index) {
                   leading: const Icon(Icons.book_rounded),
                   title: Text('Lessons', style: _textStyle()),
                   onTap: () {
-                    Navigator.pushNamed(context, '/lessons');
+                    GoRouter.of(context).go('/lessons');
                   },
                 ),
               ),
@@ -62,7 +63,8 @@ Widget lefNavigator(BuildContext context, int index) {
           title: Text('Log Out', style: _textStyle()),
           onTap: () {
             FirebaseAuth.instance.signOut().then((value) {
-              Navigator.popUntil(context, (route) => route.isFirst);
+              GoRouter.of(context).go('/');
+              //Navigator.popUntil(context, (route) => route.isFirst);
             });
           },
         ),

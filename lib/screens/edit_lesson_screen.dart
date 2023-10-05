@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:speechlab_dashboard/widgets/appbar_title_widget.dart';
 import 'package:speechlab_dashboard/widgets/speechLabTextField.dart';
 
@@ -57,7 +58,7 @@ class _EditLessonScreenState extends State<EditLessonScreen> {
 
   void editCustomLesson() async {
     final scaffoldMessenger = ScaffoldMessenger.of(context);
-    final navigator = Navigator.of(context);
+    final goRouter = GoRouter.of(context);
     if (_titleController.text.isEmpty || _contentController.text.isEmpty) {
       scaffoldMessenger.showSnackBar(
           const SnackBar(content: Text('Please fill up all fields')));
@@ -117,10 +118,13 @@ class _EditLessonScreenState extends State<EditLessonScreen> {
             '${instructorData['firstName']} ${instructorData['lastName']} edited this lesson: ${_titleController.text.trim()}.'
       });
 
+      setState(() {
+        _isLoading = false;
+      });
+
       scaffoldMessenger.showSnackBar(
           const SnackBar(content: Text('Successfully edited custom lesson!')));
-      navigator.pop();
-      navigator.pushReplacementNamed('/lessons');
+      goRouter.go('/lessons');
     } catch (error) {
       scaffoldMessenger.showSnackBar(
           SnackBar(content: Text('Error editing custom lesson: $error')));

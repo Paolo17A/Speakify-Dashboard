@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../widgets/speechLabTextField.dart';
 
@@ -23,7 +24,7 @@ class _MyWidgetState extends State<ResetPasswordScreen> {
 
   void _sendResetPassword() async {
     final scaffoldMessenger = ScaffoldMessenger.of(context);
-    final navigator = Navigator.of(context);
+    final goRouter = GoRouter.of(context);
     if (!_emailController.text.contains('@') ||
         !_emailController.text.contains('.com')) {
       scaffoldMessenger.showSnackBar(
@@ -54,7 +55,7 @@ class _MyWidgetState extends State<ResetPasswordScreen> {
 
       scaffoldMessenger.showSnackBar(const SnackBar(
           content: Text('Successfully sent password reset email!')));
-      navigator.pop();
+      goRouter.go('/login');
     } catch (error) {
       setState(() {
         _isLoading = false;

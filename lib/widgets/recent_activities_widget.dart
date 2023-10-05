@@ -57,7 +57,7 @@ class _RecentActiviesWidgetState extends State<RecentActiviesWidget> {
                         const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
                     child: SizedBox(
                       width: MediaQuery.of(context).size.width * 0.5,
-                      height: MediaQuery.of(context).size.height * 0.35,
+                      height: MediaQuery.of(context).size.height * 0.45,
                       child: ListView.builder(
                           shrinkWrap: true,
                           itemCount: recentActivities.length,

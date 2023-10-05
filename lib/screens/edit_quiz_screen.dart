@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../widgets/appbar_title_widget.dart';
 import '../widgets/bool_choices_radio_widget.dart';
@@ -78,7 +79,7 @@ class _EditQuizScreenState extends State<EditQuizScreen> {
 
   void uploadCustomQuiz() async {
     final scaffoldMessenger = ScaffoldMessenger.of(context);
-    final navigator = Navigator.of(context);
+    final goRouter = GoRouter.of(context);
     try {
       setState(() {
         _isLoading = true;
@@ -119,7 +120,8 @@ class _EditQuizScreenState extends State<EditQuizScreen> {
       setState(() {
         _isLoading = false;
       });
-      navigator.pushNamed('/quizzes');
+
+      goRouter.go('/quizzes');
     } catch (error) {
       scaffoldMessenger.showSnackBar(
           SnackBar(content: Text('Error uploading custom quiz: $error')));

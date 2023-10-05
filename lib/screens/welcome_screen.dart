@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class Welcome extends StatelessWidget {
   const Welcome({super.key});
@@ -30,13 +31,13 @@ class Welcome extends StatelessWidget {
                         backgroundColor: MaterialStateProperty.all<Color>(
                             const Color.fromARGB(255, 60, 19, 97))),
                     onPressed: () {
-                      Navigator.pushNamed(context, '/register');
+                      GoRouter.of(context).go('/register');
                     },
                     child: const Text('GET STARTED')),
                 const SizedBox(height: 20),
                 TextButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, '/login');
+                      GoRouter.of(context).go('/login');
                     },
                     child: const Text('I ALREADY HAVE AN ACCOUNT',
                         style: TextStyle(

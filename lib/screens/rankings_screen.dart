@@ -1,8 +1,5 @@
-// ignore_for_file: use_build_context_synchronously
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:speechlab_dashboard/utils/error_message.dart';
 import 'package:speechlab_dashboard/widgets/appbar_title_widget.dart';
 import 'package:speechlab_dashboard/widgets/left_navigator_widget.dart';
 
@@ -26,6 +23,7 @@ class _RankingsScreenState extends State<RankingsScreen> {
   }
 
   void _initializeLeaderboard() async {
+    final scaffoldMessenger = ScaffoldMessenger.of(context);
     try {
       QuerySnapshot querySnapshot =
           await FirebaseFirestore.instance.collection('users').get();
@@ -52,8 +50,8 @@ class _RankingsScreenState extends State<RankingsScreen> {
         _isLoading = false;
       });
     } catch (error) {
-      displayError(
-          context, 'Error initializing leaderboard: ${error.toString()}');
+      scaffoldMessenger.showSnackBar(
+          SnackBar(content: Text('Error initializing leaderboard: $error')));
     }
   }
 

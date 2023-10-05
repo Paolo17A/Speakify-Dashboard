@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:speechlab_dashboard/screens/edit_lesson_screen.dart';
+import 'package:go_router/go_router.dart';
 import 'package:speechlab_dashboard/widgets/appbar_title_widget.dart';
 import 'package:speechlab_dashboard/widgets/left_navigator_widget.dart';
 
@@ -71,8 +71,8 @@ class _LessonsScreenState extends State<LessonsScreen> {
                                 height: 50,
                                 child: ElevatedButton(
                                     onPressed: () {
-                                      Navigator.pushNamed(
-                                          context, '/addLesson');
+                                      GoRouter.of(context)
+                                          .go('/lessons/addLesson');
                                     },
                                     child: const Text(
                                       'ADD NEW LESSON',
@@ -110,22 +110,26 @@ class _LessonsScreenState extends State<LessonsScreen> {
                                               0.15,
                                           child: ElevatedButton(
                                               onPressed: () {
-                                                Navigator.push(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                        builder: (context) => EditLessonScreen(
-                                                            additionalResources:
-                                                                (lesson.data() as Map<dynamic, dynamic>)[
-                                                                    'additionalResources'],
-                                                            lessonID: lesson.id,
-                                                            lessonTitle: (lesson
-                                                                        .data()
-                                                                    as Map<dynamic, dynamic>)[
-                                                                'lessonTitle'],
-                                                            lessonContent:
-                                                                (lesson.data() as Map<
-                                                                    dynamic,
-                                                                    dynamic>)['lessonContent'])));
+                                                GoRouter.of(context).go(
+                                                    '/lessons/editLesson',
+                                                    extra: {
+                                                      'additionalResources':
+                                                          (lesson.data() as Map<
+                                                                  dynamic,
+                                                                  dynamic>)[
+                                                              'additionalResources'],
+                                                      'lessonID': lesson.id,
+                                                      'lessonTitle':
+                                                          (lesson.data() as Map<
+                                                                  dynamic,
+                                                                  dynamic>)[
+                                                              'lessonTitle'],
+                                                      'lessonContent':
+                                                          (lesson.data() as Map<
+                                                                  dynamic,
+                                                                  dynamic>)[
+                                                              'lessonContent']
+                                                    });
                                               },
                                               child: Text(
                                                 (lesson.data() as Map<dynamic,

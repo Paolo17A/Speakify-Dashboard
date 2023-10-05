@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:speechlab_dashboard/widgets/bool_choices_radio_widget.dart';
 import 'package:speechlab_dashboard/widgets/string_choices_radio_widget.dart';
 import 'package:speechlab_dashboard/widgets/speechLabTextField.dart';
@@ -56,7 +57,7 @@ class _AddQuizScreenState extends State<AddQuizScreen> {
 
   void uploadCustomQuiz() async {
     final scaffoldMessenger = ScaffoldMessenger.of(context);
-    final navigator = Navigator.of(context);
+    final goRouter = GoRouter.of(context);
     try {
       setState(() {
         _isLoading = true;
@@ -107,7 +108,7 @@ class _AddQuizScreenState extends State<AddQuizScreen> {
       setState(() {
         _isLoading = false;
       });
-      navigator.pushNamed('/quizzes');
+      goRouter.go('/quizzes');
     } catch (error) {
       scaffoldMessenger.showSnackBar(
           SnackBar(content: Text('Error uploading custom quiz: $error')));

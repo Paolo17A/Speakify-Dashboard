@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:speechlab_dashboard/screens/edit_quiz_screen.dart';
+import 'package:go_router/go_router.dart';
 import 'package:speechlab_dashboard/widgets/appbar_title_widget.dart';
 import 'package:speechlab_dashboard/widgets/left_navigator_widget.dart';
 
@@ -106,8 +106,8 @@ class _CustomQuizzesScreenState extends State<CustomQuizzesScreen> {
                                 height: 50,
                                 child: ElevatedButton(
                                     onPressed: () {
-                                      Navigator.of(context)
-                                          .pushNamed('/addQuiz');
+                                      GoRouter.of(context)
+                                          .go('/quizzes/addQuiz');
                                     },
                                     child: const Text(
                                       'CREATE NEW QUIZ',
@@ -141,16 +141,19 @@ class _CustomQuizzesScreenState extends State<CustomQuizzesScreen> {
                                               0.5,
                                           height: 100,
                                           child: ElevatedButton(
-                                              onPressed: () => Navigator.of(context)
-                                                  .push(MaterialPageRoute(
-                                                      builder: (context) => EditQuizScreen(
-                                                          quizTitle:
-                                                              customQuizzes[index]
-                                                                  .id,
-                                                          serializedQuizContent:
-                                                              quizData[
-                                                                  'quizContent']))),
-                                              child: Text(customQuizzes[index].id,
+                                              onPressed: () =>
+                                                  GoRouter.of(context).go(
+                                                      '/quizzes/editQuiz',
+                                                      extra: {
+                                                        'quizTitle':
+                                                            customQuizzes[index]
+                                                                .id,
+                                                        'serializedQuizContent':
+                                                            quizData[
+                                                                'quizContent']
+                                                      }),
+                                              child: Text(
+                                                  customQuizzes[index].id,
                                                   style: const TextStyle(
                                                       fontSize: 28,
                                                       fontWeight:

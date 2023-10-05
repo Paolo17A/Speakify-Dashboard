@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:go_router/go_router.dart';
 
 import '../utils/error_message.dart';
 import '../widgets/speechLabTextField.dart';
@@ -88,7 +89,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
       FirebaseAuth.instance
           .signOut()
-          .then((value) => Navigator.pushNamed(context, '/login'));
+          .then((value) => GoRouter.of(context).go('/login'));
     } on FirebaseAuthException catch (error) {
       scaffoldMessenger.showSnackBar(SnackBar(content: Text(error.toString())));
       setState(() {
@@ -106,7 +107,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
+        //Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
+        GoRouter.of(context).pop();
         return false;
       },
       child: Scaffold(
@@ -149,14 +151,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 width: MediaQuery.of(context).size.width * 0.9,
                 child: Row(
                   children: [
-                    /*SizedBox(
+                    SizedBox(
                       width: MediaQuery.of(context).size.width * 0.6,
                       height: MediaQuery.of(context).size.height * 0.8,
-                      child: Expanded(
-                        child:
-                            Image.asset('assets/images/dashboard_welcome.png'),
+                      child: Image.asset(
+                        'assets/images/dashboard_welcome.png',
+                        scale: 0.75,
                       ),
-                    ),*/
+                    ),
                     Container(
                         width: MediaQuery.of(context).size.width * 0.3,
                         height: MediaQuery.of(context).size.height * 0.8,
@@ -249,8 +251,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                             ),
                                             TextButton(
                                                 onPressed: () {
-                                                  Navigator.pushNamed(
-                                                      context, '/login');
+                                                  GoRouter.of(context)
+                                                      .go('/login');
                                                 },
                                                 child: const Text(
                                                   'Sign in',

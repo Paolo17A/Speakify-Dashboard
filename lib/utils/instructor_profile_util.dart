@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 void displayInstructorDialogue(BuildContext context, String profileImageURL,
     String instructorName, bool isCurrentUser) async {
@@ -43,8 +44,8 @@ void displayInstructorDialogue(BuildContext context, String profileImageURL,
                 if (isCurrentUser)
                   ElevatedButton(
                       onPressed: () {
-                        Navigator.pop(context);
-                        Navigator.pushNamed(context, '/edit');
+                        GoRouter.of(context).pop();
+                        GoRouter.of(context).go('/instructors/edit');
                       },
                       child: const Padding(
                         padding: EdgeInsets.all(30),

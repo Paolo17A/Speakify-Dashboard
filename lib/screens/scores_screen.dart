@@ -1,12 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:speechlab_dashboard/models/speech_model.dart';
-import 'package:speechlab_dashboard/screens/selected_custom_quiz_screen.dart';
-import 'package:speechlab_dashboard/screens/selected_quiz_screen.dart';
-import 'package:speechlab_dashboard/screens/selected_speechlab_screen.dart';
 import 'package:speechlab_dashboard/widgets/appbar_title_widget.dart';
 import 'package:speechlab_dashboard/widgets/left_navigator_widget.dart';
-
 import '../models/lesson_model.dart';
 
 class ScoresScreen extends StatefulWidget {
@@ -126,15 +123,13 @@ class _ScoresScreenState extends State<ScoresScreen> {
                                               0.15,
                                       child: ElevatedButton(
                                           onPressed: () {
-                                            Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        SelectedQuizScreen(
-                                                            currentQuizLevelReq:
-                                                                index + 1,
-                                                            selectedQuiz:
-                                                                lesson)));
+                                            GoRouter.of(context).go(
+                                                '/scores/selectedQuiz',
+                                                extra: {
+                                                  'currentQuizLevelReq':
+                                                      index + 1,
+                                                  'selectedQuiz': lesson
+                                                });
                                           },
                                           child: Column(
                                               mainAxisAlignment:
@@ -171,39 +166,47 @@ class _ScoresScreenState extends State<ScoresScreen> {
                                   thickness: 4,
                                 ),
                               ),
-                              Wrap(
-                                  runAlignment: WrapAlignment.start,
-                                  spacing:
-                                      MediaQuery.of(context).size.width * 0.05,
-                                  runSpacing:
-                                      MediaQuery.of(context).size.width * 0.05,
-                                  children: allCustomQuizzes
-                                      .map((customQuiz) => SizedBox(
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.15,
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.15,
-                                            child: ElevatedButton(
-                                                onPressed: () {
-                                                  Navigator.of(context).push(MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          SelectedCustomQuizScreen(
-                                                              quizTitle:
-                                                                  customQuiz.id,
-                                                              serializedquizQuestions: (customQuiz
-                                                                          .data()
-                                                                      as Map<
-                                                                          dynamic,
-                                                                          dynamic>)[
-                                                                  'quizContent'])));
-                                                },
-                                                child: Text(customQuiz.id)),
-                                          ))
-                                      .toList())
+                              Padding(
+                                padding: const EdgeInsets.all(20),
+                                child: SizedBox(
+                                  width: double.infinity,
+                                  child: Wrap(
+                                      runAlignment: WrapAlignment.start,
+                                      spacing:
+                                          MediaQuery.of(context).size.width *
+                                              0.05,
+                                      runSpacing:
+                                          MediaQuery.of(context).size.width *
+                                              0.05,
+                                      children: allCustomQuizzes
+                                          .map((customQuiz) => SizedBox(
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.15,
+                                                height: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.15,
+                                                child: ElevatedButton(
+                                                    onPressed: () {
+                                                      GoRouter.of(context).go(
+                                                          '/scores/selectedCustomQuiz',
+                                                          extra: {
+                                                            'quizTitle':
+                                                                customQuiz.id,
+                                                            'serializedquizQuestions':
+                                                                (customQuiz.data() as Map<
+                                                                        dynamic,
+                                                                        dynamic>)[
+                                                                    'quizContent']
+                                                          });
+                                                    },
+                                                    child: Text(customQuiz.id)),
+                                              ))
+                                          .toList()),
+                                ),
+                              )
                             ],
                           )
                         :
@@ -224,13 +227,13 @@ class _ScoresScreenState extends State<ScoresScreen> {
                                       MediaQuery.of(context).size.height * 0.15,
                                   child: ElevatedButton(
                                       onPressed: () {
-                                        Navigator.of(context).push(
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    SelectedSpeechLabScreen(
-                                                        currentSpeechLevelReq:
-                                                            index + 1,
-                                                        selectedLevel: level)));
+                                        GoRouter.of(context).go(
+                                            '/scores/selectedSpeechLab',
+                                            extra: {
+                                              'currentSpeechLevelReq':
+                                                  index + 1,
+                                              'selectedLevel': level
+                                            });
                                       },
                                       child: Column(
                                           mainAxisAlignment:

@@ -67,118 +67,119 @@ class _SelectedSpeechLabScreenState extends State<SelectedSpeechLabScreen> {
               color: Colors.white,
               child: _isLoading
                   ? const Center(child: CircularProgressIndicator())
-                  : SingleChildScrollView(
-                      child: Column(children: [
-                      Padding(
-                          padding: const EdgeInsets.all(20),
-                          child: Text(widget.selectedLevel.category,
-                              textAlign: TextAlign.center,
-                              style: const TextStyle(
-                                  color: Color.fromARGB(255, 60, 19, 97),
-                                  fontSize: 70,
-                                  fontWeight: FontWeight.bold))),
-                      _userDocs.isNotEmpty
-                          ? Column(children: [
-                              Container(
-                                  color: const Color.fromARGB(255, 82, 48, 124),
-                                  child: Padding(
-                                      padding: const EdgeInsets.all(10),
-                                      child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceEvenly,
-                                          children: [
-                                            SizedBox(
-                                                width: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.3,
-                                                child: Text('Student Name',
-                                                    style: _headerStyle())),
-                                            SizedBox(
-                                                width: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.3,
-                                                child: Text('AVERAGE SCORE',
-                                                    textAlign: TextAlign.center,
-                                                    style: _headerStyle())),
-                                          ]))),
-                              ListView.builder(
-                                  shrinkWrap: true,
-                                  itemCount: _userDocs.length,
-                                  itemBuilder: (context, index) {
-                                    Map<dynamic, dynamic> speechResults =
-                                        (_userDocs[index].data()! as Map<
-                                            dynamic, dynamic>)['speechResults'];
-                                    return Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            vertical: 5),
-                                        child: Container(
-                                            height: 85,
-                                            color: const Color.fromARGB(
-                                                255, 103, 65, 150),
-                                            child: Padding(
-                                                padding:
-                                                    const EdgeInsets.all(6.0),
-                                                child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceEvenly,
-                                                    children: [
-                                                      SizedBox(
-                                                          width: MediaQuery.of(
-                                                                      context)
-                                                                  .size
-                                                                  .width *
-                                                              0.3,
-                                                          child: Text(
-                                                              '${(_userDocs[index].data()! as Map<dynamic, dynamic>)['firstName']} ${(_userDocs[index].data()! as Map<dynamic, dynamic>)['lastName']}',
-                                                              style:
-                                                                  _studentEntryStyle())),
-                                                      SizedBox(
-                                                          width: MediaQuery.of(
-                                                                      context)
-                                                                  .size
-                                                                  .width *
-                                                              0.3,
-                                                          child: Column(
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .spaceEvenly,
-                                                              children: [
-                                                                Text(
-                                                                    'Average Score: ${calculateAverage(speechResults[widget.currentSpeechLevelReq.toString()]['confidenceScores']).toStringAsFixed(2)}%',
-                                                                    style:
-                                                                        _studentEntryStyle()),
-                                                                Padding(
-                                                                  padding:
-                                                                      const EdgeInsets
-                                                                          .all(
-                                                                          8.0),
-                                                                  child:
-                                                                      ElevatedButton(
-                                                                          onPressed: () =>
-                                                                              displaySpeechResultsDialogue(
-                                                                                context,
-                                                                                speechCategories[widget.currentSpeechLevelReq - 1].sentences,
-                                                                                speechResults[widget.currentSpeechLevelReq.toString()]['confidenceScores'],
-                                                                                (_userDocs[index].data()! as Map<dynamic, dynamic>)['profileImageURL'],
-                                                                                '${(_userDocs[index].data()! as Map<dynamic, dynamic>)['firstName']} ${(_userDocs[index].data()! as Map<dynamic, dynamic>)['lastName']}',
-                                                                              ),
-                                                                          child: const Text(
-                                                                              'VIEW RESULTS',
-                                                                              textAlign: TextAlign.center,
-                                                                              style: TextStyle(letterSpacing: 2))),
-                                                                )
-                                                              ]))
-                                                    ]))));
-                                  })
-                            ])
-                          : const Expanded(
-                              child: Center(
-                                  child: Text(
-                                      'No student has done this lesson yet')))
-                    ]))),
+                  : Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: SingleChildScrollView(
+                          child: Column(children: [
+                        Padding(
+                            padding: const EdgeInsets.all(20),
+                            child: Text(widget.selectedLevel.category,
+                                textAlign: TextAlign.center,
+                                style: const TextStyle(
+                                    color: Color.fromARGB(255, 60, 19, 97),
+                                    fontSize: 70,
+                                    fontWeight: FontWeight.bold))),
+                        _userDocs.isNotEmpty
+                            ? Column(children: [
+                                Container(
+                                    color:
+                                        const Color.fromARGB(255, 82, 48, 124),
+                                    child: Padding(
+                                        padding: const EdgeInsets.all(10),
+                                        child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceEvenly,
+                                            children: [
+                                              SizedBox(
+                                                  width: MediaQuery.of(context)
+                                                          .size
+                                                          .width *
+                                                      0.3,
+                                                  child: Text('Student Name',
+                                                      style: _headerStyle())),
+                                              SizedBox(
+                                                  width: MediaQuery.of(context)
+                                                          .size
+                                                          .width *
+                                                      0.3,
+                                                  child: Text('AVERAGE SCORE',
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      style: _headerStyle())),
+                                            ]))),
+                                ListView.builder(
+                                    shrinkWrap: true,
+                                    itemCount: _userDocs.length,
+                                    itemBuilder: (context, index) {
+                                      Map<dynamic, dynamic> speechResults =
+                                          (_userDocs[index].data()! as Map<
+                                              dynamic,
+                                              dynamic>)['speechResults'];
+                                      return Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              vertical: 5),
+                                          child: Container(
+                                              height: 85,
+                                              color: const Color.fromARGB(
+                                                  255, 103, 65, 150),
+                                              child: Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(6.0),
+                                                  child: Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceEvenly,
+                                                      children: [
+                                                        SizedBox(
+                                                            width: MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .width *
+                                                                0.3,
+                                                            child: Text(
+                                                                '${(_userDocs[index].data()! as Map<dynamic, dynamic>)['firstName']} ${(_userDocs[index].data()! as Map<dynamic, dynamic>)['lastName']}',
+                                                                style:
+                                                                    _studentEntryStyle())),
+                                                        SizedBox(
+                                                            width: MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .width *
+                                                                0.3,
+                                                            child: Column(
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .spaceEvenly,
+                                                                children: [
+                                                                  Text(
+                                                                      'Average Score: ${calculateAverage(speechResults[widget.currentSpeechLevelReq.toString()]['confidenceScores']).toStringAsFixed(2)}%',
+                                                                      style:
+                                                                          _studentEntryStyle()),
+                                                                  Padding(
+                                                                    padding:
+                                                                        const EdgeInsets
+                                                                            .all(
+                                                                            8.0),
+                                                                    child: ElevatedButton(
+                                                                        onPressed: () => displaySpeechResultsDialogue(
+                                                                              context,
+                                                                              speechCategories[widget.currentSpeechLevelReq - 1].sentences,
+                                                                              speechResults[widget.currentSpeechLevelReq.toString()]['confidenceScores'],
+                                                                              (_userDocs[index].data()! as Map<dynamic, dynamic>)['profileImageURL'],
+                                                                              '${(_userDocs[index].data()! as Map<dynamic, dynamic>)['firstName']} ${(_userDocs[index].data()! as Map<dynamic, dynamic>)['lastName']}',
+                                                                            ),
+                                                                        child: const Text('VIEW RESULTS', textAlign: TextAlign.center, style: TextStyle(letterSpacing: 2))),
+                                                                  )
+                                                                ]))
+                                                      ]))));
+                                    })
+                              ])
+                            : const Expanded(
+                                child: Center(
+                                    child: Text(
+                                        'No student has done this lesson yet')))
+                      ])),
+                    )),
         ],
       ),
     );

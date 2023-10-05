@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../utils/error_message.dart';
 import '../widgets/speechLabTextField.dart';
@@ -24,7 +25,7 @@ class _LoginScreenState extends State<LoginScreen> {
       return;
     }
     final scaffoldState = ScaffoldMessenger.of(context);
-    final navigator = Navigator.of(context);
+    final goRouter = GoRouter.of(context);
     try {
       setState(() {
         _isLoading = true;
@@ -54,7 +55,8 @@ class _LoginScreenState extends State<LoginScreen> {
           _isLoading = false;
         });
       } else if (currentUserData.data()!['userType'] == 'TEACHER') {
-        navigator.pushNamed('/home');
+        //navigator.pushNamed('/home');
+        goRouter.go('/home');
       }
     } catch (error) {
       scaffoldState
@@ -71,7 +73,8 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return WillPopScope(
         onWillPop: () async {
-          Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
+          //Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
+          GoRouter.of(context).pop();
           return false;
         },
         child: Scaffold(
@@ -114,14 +117,14 @@ class _LoginScreenState extends State<LoginScreen> {
                   width: MediaQuery.of(context).size.width * 0.9,
                   child: Row(
                     children: [
-                      /*SizedBox(
+                      SizedBox(
                         width: MediaQuery.of(context).size.width * 0.6,
                         height: MediaQuery.of(context).size.height * 0.8,
-                        child: Expanded(
-                          child: Image.asset(
-                              'assets/images/dashboard_welcome.png'),
+                        child: Image.asset(
+                          'assets/images/dashboard_welcome.png',
+                          scale: 0.75,
                         ),
-                      ),*/
+                      ),
                       Container(
                           width: MediaQuery.of(context).size.width * 0.3,
                           height: MediaQuery.of(context).size.height * 0.8,
@@ -205,8 +208,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                                 children: [
                                                   TextButton(
                                                       onPressed: () {
-                                                        Navigator.pushNamed(
-                                                            context, '/reset');
+                                                        /*Navigator.pushNamed(
+                                                            context, '/reset');*/
+                                                        GoRouter.of(context)
+                                                            .go('/reset');
                                                       },
                                                       child: const Text(
                                                           'Forgot Password?',
@@ -251,9 +256,11 @@ class _LoginScreenState extends State<LoginScreen> {
                                                   ),
                                                   TextButton(
                                                       onPressed: () {
-                                                        Navigator.pushNamed(
+                                                        /*Navigator.pushNamed(
                                                             context,
-                                                            '/register');
+                                                            '/register');*/
+                                                        GoRouter.of(context)
+                                                            .go('/register');
                                                       },
                                                       child: const Text(
                                                         'Register Now',
