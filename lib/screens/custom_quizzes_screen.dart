@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:speechlab_dashboard/screens/edit_quiz_screen.dart';
 import 'package:speechlab_dashboard/widgets/appbar_title_widget.dart';
@@ -49,6 +50,23 @@ class _CustomQuizzesScreenState extends State<CustomQuizzesScreen> {
         .update({'isArchived': !currentValue});
     final quizSnapshot =
         await FirebaseFirestore.instance.collection('quizzes').get();
+
+    final instructor = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .get();
+    Map<dynamic, dynamic> instructorData =
+        instructor.data() as Map<dynamic, dynamic>;
+
+    await FirebaseFirestore.instance
+        .collection('recentActivities')
+        .doc(DateTime.now().millisecondsSinceEpoch.toString())
+        .set({
+      'dateAdded': DateTime.now(),
+      'instructorInvolved': FirebaseAuth.instance.currentUser!.uid,
+      'activityMessage':
+          '${instructorData['firstName']} ${instructorData['lastName']} ${currentValue == false ? 'archived' : 'restored'} quiz $quizTitle.'
+    });
     setState(() {
       customQuizzes = quizSnapshot.docs;
     });

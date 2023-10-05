@@ -69,6 +69,23 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       setState(() {
         _isLoading = true;
       });
+      final instructor = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(FirebaseAuth.instance.currentUser!.uid)
+          .get();
+      Map<dynamic, dynamic> instructorData =
+          instructor.data() as Map<dynamic, dynamic>;
+
+      await FirebaseFirestore.instance
+          .collection('recentActivities')
+          .doc(DateTime.now().millisecondsSinceEpoch.toString())
+          .set({
+        'dateAdded': DateTime.now(),
+        'instructorInvolved': FirebaseAuth.instance.currentUser!.uid,
+        'activityMessage':
+            '${instructorData['firstName']} ${instructorData['lastName']} changed their name to ${_firstNameController.text.trim()} ${_lastNameController.text.trim()}.'
+      });
+
       await FirebaseFirestore.instance
           .collection('users')
           .doc(FirebaseAuth.instance.currentUser!.uid)
@@ -93,6 +110,16 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             .doc(FirebaseAuth.instance.currentUser!.uid)
             .update({
           'profileImageURL': downloadURL,
+        });
+
+        await FirebaseFirestore.instance
+            .collection('recentActivities')
+            .doc(DateTime.now().millisecondsSinceEpoch.toString())
+            .set({
+          'dateAdded': DateTime.now(),
+          'instructorInvolved': FirebaseAuth.instance.currentUser!.uid,
+          'activityMessage':
+              '${_firstNameController.text.trim()} ${_lastNameController.text.trim()} changed their profile picture.'
         });
       }
 
@@ -159,6 +186,23 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
 
       await storageRef.delete();
 
+      final instructor = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(FirebaseAuth.instance.currentUser!.uid)
+          .get();
+      Map<dynamic, dynamic> instructorData =
+          instructor.data() as Map<dynamic, dynamic>;
+
+      await FirebaseFirestore.instance
+          .collection('recentActivities')
+          .doc(DateTime.now().millisecondsSinceEpoch.toString())
+          .set({
+        'dateAdded': DateTime.now(),
+        'instructorInvolved': FirebaseAuth.instance.currentUser!.uid,
+        'activityMessage':
+            '${instructorData['firstName']} ${instructorData['lastName']} removed their profile picture.'
+      });
+
       setState(() {
         currentSelectedFile = null;
         profileImageURL = '';
@@ -192,7 +236,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 Center(
                   child: Container(
                     width: MediaQuery.of(context).size.width * 0.3,
-                    height: MediaQuery.of(context).size.height * 0.75,
+                    height: MediaQuery.of(context).size.height * 0.85,
                     color: const Color.fromARGB(255, 82, 48, 124),
                     child: Padding(
                       padding: const EdgeInsets.all(10),

@@ -68,6 +68,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
         'profileImageURL': '',
       });
 
+      await FirebaseFirestore.instance
+          .collection('recentActivities')
+          .doc(DateTime.now().millisecondsSinceEpoch.toString())
+          .set({
+        'dateAdded': DateTime.now(),
+        'instructorInvolved': FirebaseAuth.instance.currentUser!.uid,
+        'activityMessage':
+            '${_firstNameController.text.trim()} ${_lastNameController.text.trim()} just registered.'
+      });
+
       setState(() {
         _isLoading = false;
         _emailController.clear();
@@ -139,14 +149,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 width: MediaQuery.of(context).size.width * 0.9,
                 child: Row(
                   children: [
-                    SizedBox(
+                    /*SizedBox(
                       width: MediaQuery.of(context).size.width * 0.6,
                       height: MediaQuery.of(context).size.height * 0.8,
                       child: Expanded(
                         child:
                             Image.asset('assets/images/dashboard_welcome.png'),
                       ),
-                    ),
+                    ),*/
                     Container(
                         width: MediaQuery.of(context).size.width * 0.3,
                         height: MediaQuery.of(context).size.height * 0.8,

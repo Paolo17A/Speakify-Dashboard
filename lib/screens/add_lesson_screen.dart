@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:speechlab_dashboard/widgets/appbar_title_widget.dart';
 import 'package:speechlab_dashboard/widgets/speechLabTextField.dart';
@@ -78,6 +79,23 @@ class _AddLessonScreenState extends State<AddLessonScreen> {
         'lessonTitle': _titleController.text.trim(),
         'lessonContent': _contentController.text.trim(),
         'additionalResources': additionalResources
+      });
+
+      final instructor = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(FirebaseAuth.instance.currentUser!.uid)
+          .get();
+      Map<dynamic, dynamic> instructorData =
+          instructor.data() as Map<dynamic, dynamic>;
+
+      await FirebaseFirestore.instance
+          .collection('recentActivities')
+          .doc(DateTime.now().millisecondsSinceEpoch.toString())
+          .set({
+        'dateAdded': DateTime.now(),
+        'instructorInvolved': FirebaseAuth.instance.currentUser!.uid,
+        'activityMessage':
+            '${instructorData['firstName']} ${instructorData['lastName']} added a new lesson: ${_titleController.text.trim()}.'
       });
 
       scaffoldMessenger.showSnackBar(const SnackBar(

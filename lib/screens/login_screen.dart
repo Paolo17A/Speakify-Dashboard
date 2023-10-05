@@ -114,14 +114,14 @@ class _LoginScreenState extends State<LoginScreen> {
                   width: MediaQuery.of(context).size.width * 0.9,
                   child: Row(
                     children: [
-                      SizedBox(
+                      /*SizedBox(
                         width: MediaQuery.of(context).size.width * 0.6,
                         height: MediaQuery.of(context).size.height * 0.8,
                         child: Expanded(
                           child: Image.asset(
                               'assets/images/dashboard_welcome.png'),
                         ),
-                      ),
+                      ),*/
                       Container(
                           width: MediaQuery.of(context).size.width * 0.3,
                           height: MediaQuery.of(context).size.height * 0.8,

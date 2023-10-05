@@ -5,6 +5,7 @@ import 'package:speechlab_dashboard/utils/personalized_widgets_util.dart';
 import 'package:speechlab_dashboard/widgets/appbar_title_widget.dart';
 import 'package:speechlab_dashboard/widgets/date_time_widget.dart';
 import 'package:speechlab_dashboard/widgets/left_navigator_widget.dart';
+import 'package:speechlab_dashboard/widgets/recent_activities_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -138,7 +139,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                           fontWeight: FontWeight.bold)),
                                 ),
                               ],
-                            )
+                            ),
+                            const RecentActiviesWidget()
                           ]),
                         ),
                         Container(

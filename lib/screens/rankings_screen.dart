@@ -93,7 +93,7 @@ class _RankingsScreenState extends State<RankingsScreen> {
                               Container(
                                 height:
                                     MediaQuery.of(context).size.height * 0.08,
-                                width: MediaQuery.of(context).size.width * 0.12,
+                                width: MediaQuery.of(context).size.width * 0.15,
                                 decoration: BoxDecoration(
                                   color: const Color.fromARGB(
                                       255, 60, 19, 97), // Border properties
@@ -130,7 +130,7 @@ class _RankingsScreenState extends State<RankingsScreen> {
                                             textAlign: TextAlign.center,
                                             style: const TextStyle(
                                                 color: Colors.white,
-                                                fontSize: 30),
+                                                fontSize: 25),
                                           ),
                                         ),
                                       );
