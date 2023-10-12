@@ -9,40 +9,25 @@ import '../widgets/left_navigator_widget.dart';
 
 class EditLessonScreen extends StatefulWidget {
   final String lessonID;
-  final String lessonTitle;
-  final String lessonContent;
-  final List<dynamic> additionalResources;
-  const EditLessonScreen(
-      {super.key,
-      required this.lessonID,
-      required this.lessonTitle,
-      required this.lessonContent,
-      required this.additionalResources});
+  const EditLessonScreen({super.key, required this.lessonID});
 
   @override
   State<EditLessonScreen> createState() => _EditLessonScreenState();
 }
 
 class _EditLessonScreenState extends State<EditLessonScreen> {
-  bool _isLoading = false;
+  bool _isLoading = true;
   final TextEditingController _titleController = TextEditingController();
   final TextEditingController _contentController = TextEditingController();
+  List<dynamic> additionalResources = [];
   final List<TextEditingController> _fileNameControllers = [];
   final List<TextEditingController> _downloadLinkControllers = [];
+  bool _isInitialized = false;
 
   @override
-  void initState() {
-    super.initState();
-    _titleController.text = widget.lessonTitle;
-    _contentController.text = widget.lessonContent;
-    for (int i = 0; i < widget.additionalResources.length; i++) {
-      _fileNameControllers.add(TextEditingController());
-      _fileNameControllers[i].text =
-          (widget.additionalResources[i] as Map<dynamic, dynamic>)['fileName'];
-      _downloadLinkControllers.add(TextEditingController());
-      _downloadLinkControllers[i].text = (widget.additionalResources[i]
-          as Map<dynamic, dynamic>)['downloadLink'];
-    }
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _getLessonData();
   }
 
   @override
@@ -53,6 +38,40 @@ class _EditLessonScreenState extends State<EditLessonScreen> {
     for (int i = 0; i < _fileNameControllers.length; i++) {
       _fileNameControllers[i].dispose();
       _downloadLinkControllers[i].dispose();
+    }
+  }
+
+  Future _getLessonData() async {
+    if (_isInitialized) {
+      return;
+    }
+    final scaffoldMessenger = ScaffoldMessenger.of(context);
+    try {
+      final lesson = await FirebaseFirestore.instance
+          .collection('lessons')
+          .doc(widget.lessonID)
+          .get();
+      final lessonData = lesson.data()!;
+      _titleController.text = lessonData['lessonTitle'];
+      _contentController.text = lessonData['lessonContent'];
+
+      //  Retrieve and handle additional resources
+      additionalResources = lessonData['additionalResources'];
+      for (int i = 0; i < additionalResources.length; i++) {
+        Map<dynamic, dynamic> resourceEntry = additionalResources[i];
+        _fileNameControllers.add(TextEditingController());
+        _fileNameControllers[i].text = resourceEntry['fileName'];
+        _downloadLinkControllers.add(TextEditingController());
+        _downloadLinkControllers[i].text = resourceEntry['downloadLink'];
+      }
+
+      setState(() {
+        _isLoading = false;
+        _isInitialized = true;
+      });
+    } catch (error) {
+      scaffoldMessenger.showSnackBar(
+          SnackBar(content: Text('Error getting lesson data: $error')));
     }
   }
 

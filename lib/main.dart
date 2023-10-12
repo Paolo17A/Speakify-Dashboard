@@ -15,7 +15,6 @@ import 'package:speechlab_dashboard/screens/rankings_screen.dart';
 import 'package:speechlab_dashboard/screens/reset_password_screen.dart';
 import 'package:speechlab_dashboard/screens/scores_screen.dart';
 import 'package:speechlab_dashboard/screens/selected_custom_quiz_screen.dart';
-import 'package:speechlab_dashboard/screens/selected_quiz_screen.dart';
 import 'package:speechlab_dashboard/screens/selected_section_screen.dart';
 import 'package:speechlab_dashboard/screens/selected_speechlab_screen.dart';
 import 'package:speechlab_dashboard/screens/students_sections_screen.dart';
@@ -121,26 +120,23 @@ class App extends StatelessWidget {
                               .animate(animation),
                           child: child);
                     });
-              },
-              routes: [
-                GoRoute(
-                    path: 'selectedSection',
-                    pageBuilder: (context, state) {
-                      final sectionParams =
-                          state.extra as Map<dynamic, dynamic>;
-                      return CustomTransitionPage(
-                          key: state.pageKey,
-                          child: SelectedSectionScreen(
-                              section: sectionParams['section']),
-                          transitionsBuilder:
-                              (context, animation, secondaryAnimation, child) {
-                            return FadeTransition(
-                                opacity: CurveTween(curve: Curves.easeInOutCirc)
-                                    .animate(animation),
-                                child: child);
-                          });
-                    })
-              ]),
+              }),
+          GoRoute(
+              name: 'selectedSection',
+              path: 'sections/:selectedSection',
+              pageBuilder: (context, state) {
+                return CustomTransitionPage(
+                    key: state.pageKey,
+                    child: SelectedSectionScreen(
+                        section: state.pathParameters['selectedSection']!),
+                    transitionsBuilder:
+                        (context, animation, secondaryAnimation, child) {
+                      return FadeTransition(
+                          opacity: CurveTween(curve: Curves.easeInOutCirc)
+                              .animate(animation),
+                          child: child);
+                    });
+              }),
           GoRoute(
               path: 'instructors',
               pageBuilder: (context, state) {
@@ -184,43 +180,37 @@ class App extends StatelessWidget {
                               .animate(animation),
                           child: child);
                     });
-              },
-              routes: [
-                GoRoute(
-                    path: 'addLesson',
-                    pageBuilder: (context, state) {
-                      return CustomTransitionPage(
-                          key: state.pageKey,
-                          child: const AddLessonScreen(),
-                          transitionsBuilder:
-                              (context, animation, secondaryAnimation, child) {
-                            return FadeTransition(
-                                opacity: CurveTween(curve: Curves.easeInOutCirc)
-                                    .animate(animation),
-                                child: child);
-                          });
-                    }),
-                GoRoute(
-                    path: 'editLesson',
-                    pageBuilder: (context, state) {
-                      final lessonParams = state.extra as Map<dynamic, dynamic>;
-                      return CustomTransitionPage(
-                          key: state.pageKey,
-                          child: EditLessonScreen(
-                              lessonID: lessonParams['lessonID'],
-                              lessonTitle: lessonParams['lessonTitle'],
-                              lessonContent: lessonParams['lessonContent'],
-                              additionalResources:
-                                  lessonParams['additionalResources']),
-                          transitionsBuilder:
-                              (context, animation, secondaryAnimation, child) {
-                            return FadeTransition(
-                                opacity: CurveTween(curve: Curves.easeInOutCirc)
-                                    .animate(animation),
-                                child: child);
-                          });
-                    })
-              ]),
+              }),
+          GoRoute(
+              path: 'lessons/addLesson',
+              pageBuilder: (context, state) {
+                return CustomTransitionPage(
+                    key: state.pageKey,
+                    child: const AddLessonScreen(),
+                    transitionsBuilder:
+                        (context, animation, secondaryAnimation, child) {
+                      return FadeTransition(
+                          opacity: CurveTween(curve: Curves.easeInOutCirc)
+                              .animate(animation),
+                          child: child);
+                    });
+              }),
+          GoRoute(
+              name: 'editLesson',
+              path: 'lessons/editLesson/:lessonID',
+              pageBuilder: (context, state) {
+                return CustomTransitionPage(
+                    key: state.pageKey,
+                    child: EditLessonScreen(
+                        lessonID: state.pathParameters['lessonID']!),
+                    transitionsBuilder:
+                        (context, animation, secondaryAnimation, child) {
+                      return FadeTransition(
+                          opacity: CurveTween(curve: Curves.easeInOutCirc)
+                              .animate(animation),
+                          child: child);
+                    });
+              }),
           GoRoute(
               path: 'scores',
               pageBuilder: (context, state) {
@@ -234,63 +224,44 @@ class App extends StatelessWidget {
                               .animate(animation),
                           child: child);
                     });
-              },
-              routes: [
-                GoRoute(
-                    path: 'selectedQuiz',
-                    pageBuilder: (context, state) {
-                      final quizParams = state.extra as Map<dynamic, dynamic>;
-                      return CustomTransitionPage(
-                          key: state.pageKey,
-                          child: SelectedQuizScreen(
-                              currentQuizLevelReq:
-                                  quizParams['currentQuizLevelReq'],
-                              selectedQuiz: quizParams['selectedQuiz']),
-                          transitionsBuilder:
-                              (context, animation, secondaryAnimation, child) {
-                            return FadeTransition(
-                                opacity: CurveTween(curve: Curves.easeInOutCirc)
-                                    .animate(animation),
-                                child: child);
-                          });
-                    }),
-                GoRoute(
-                    path: 'selectedCustomQuiz',
-                    pageBuilder: (context, state) {
-                      final quizParams = state.extra as Map<dynamic, dynamic>;
-                      return CustomTransitionPage(
-                          key: state.pageKey,
-                          child: SelectedCustomQuizScreen(
-                              quizTitle: quizParams['quizTitle'],
-                              serializedquizQuestions:
-                                  quizParams['serializedquizQuestions']),
-                          transitionsBuilder:
-                              (context, animation, secondaryAnimation, child) {
-                            return FadeTransition(
-                                opacity: CurveTween(curve: Curves.easeInOutCirc)
-                                    .animate(animation),
-                                child: child);
-                          });
-                    }),
-                GoRoute(
-                    path: 'selectedSpeechLab',
-                    pageBuilder: (context, state) {
-                      final quizParams = state.extra as Map<dynamic, dynamic>;
-                      return CustomTransitionPage(
-                          key: state.pageKey,
-                          child: SelectedSpeechLabScreen(
-                              currentSpeechLevelReq:
-                                  quizParams['currentSpeechLevelReq'],
-                              selectedLevel: quizParams['selectedLevel']),
-                          transitionsBuilder:
-                              (context, animation, secondaryAnimation, child) {
-                            return FadeTransition(
-                                opacity: CurveTween(curve: Curves.easeInOutCirc)
-                                    .animate(animation),
-                                child: child);
-                          });
-                    })
-              ]),
+              }),
+          GoRoute(
+              name: 'selectedQuiz',
+              path: 'scores/selectedQuiz/:quizTitle/:serializedQuizQuestions',
+              pageBuilder: (context, state) {
+                return CustomTransitionPage(
+                    key: state.pageKey,
+                    child: SelectedCustomQuizScreen(
+                        quizTitle: state.pathParameters['quizTitle']!,
+                        serializedQuizQuestions:
+                            state.pathParameters['serializedQuizQuestions']!),
+                    transitionsBuilder:
+                        (context, animation, secondaryAnimation, child) {
+                      return FadeTransition(
+                          opacity: CurveTween(curve: Curves.easeInOutCirc)
+                              .animate(animation),
+                          child: child);
+                    });
+              }),
+          GoRoute(
+              name: 'selectedSpeechLab',
+              path:
+                  'scores/selectedSpeechLab/:currentSpeechLevelReq/:selectedLevel',
+              pageBuilder: (context, state) {
+                return CustomTransitionPage(
+                    key: state.pageKey,
+                    child: SelectedSpeechLabScreen(
+                        currentSpeechLevelReq:
+                            state.pathParameters['currentSpeechLevelReq']!,
+                        selectedLevel: state.pathParameters['selectedLevel']!),
+                    transitionsBuilder:
+                        (context, animation, secondaryAnimation, child) {
+                      return FadeTransition(
+                          opacity: CurveTween(curve: Curves.easeInOutCirc)
+                              .animate(animation),
+                          child: child);
+                    });
+              }),
           GoRoute(
               path: 'quizzes',
               pageBuilder: (context, state) {
@@ -304,42 +275,39 @@ class App extends StatelessWidget {
                               .animate(animation),
                           child: child);
                     });
-              },
-              routes: [
-                GoRoute(
-                    path: 'addQuiz',
-                    pageBuilder: (context, state) {
-                      return CustomTransitionPage(
-                          key: state.pageKey,
-                          child: const AddQuizScreen(),
-                          transitionsBuilder:
-                              (context, animation, secondaryAnimation, child) {
-                            return FadeTransition(
-                                opacity: CurveTween(curve: Curves.easeInOutCirc)
-                                    .animate(animation),
-                                child: child);
-                          });
-                    }),
-                GoRoute(
-                    path: 'editQuiz',
-                    pageBuilder: (context, state) {
-                      final quizParams = state.extra as Map<dynamic, dynamic>;
-
-                      return CustomTransitionPage(
-                          key: state.pageKey,
-                          child: EditQuizScreen(
-                              quizTitle: quizParams['quizTitle']!,
-                              serializedQuizContent:
-                                  quizParams['serializedQuizContent']!),
-                          transitionsBuilder:
-                              (context, animation, secondaryAnimation, child) {
-                            return FadeTransition(
-                                opacity: CurveTween(curve: Curves.easeInOutCirc)
-                                    .animate(animation),
-                                child: child);
-                          });
-                    })
-              ]),
+              }),
+          GoRoute(
+              path: 'quizzes/addQuiz',
+              pageBuilder: (context, state) {
+                return CustomTransitionPage(
+                    key: state.pageKey,
+                    child: const AddQuizScreen(),
+                    transitionsBuilder:
+                        (context, animation, secondaryAnimation, child) {
+                      return FadeTransition(
+                          opacity: CurveTween(curve: Curves.easeInOutCirc)
+                              .animate(animation),
+                          child: child);
+                    });
+              }),
+          GoRoute(
+              name: 'editQuiz',
+              path: 'quizzes/editQuiz/:quizTitle/:serializedQuizContent',
+              pageBuilder: (context, state) {
+                return CustomTransitionPage(
+                    key: state.pageKey,
+                    child: EditQuizScreen(
+                        quizTitle: state.pathParameters['quizTitle']!,
+                        serializedQuizContent:
+                            state.pathParameters['serializedQuizContent']!),
+                    transitionsBuilder:
+                        (context, animation, secondaryAnimation, child) {
+                      return FadeTransition(
+                          opacity: CurveTween(curve: Curves.easeInOutCirc)
+                              .animate(animation),
+                          child: child);
+                    });
+              }),
           GoRoute(
               path: 'ranking',
               pageBuilder: (context, state) {
@@ -363,7 +331,7 @@ class App extends StatelessWidget {
       scaffoldBackgroundColor: const Color.fromARGB(255, 245, 245, 245),
       snackBarTheme: const SnackBarThemeData(backgroundColor: Colors.purple),
       appBarTheme:
-          const AppBarTheme(backgroundColor: Color.fromARGB(255, 18, 13, 43)),
+          const AppBarTheme(backgroundColor: Color.fromARGB(255, 82, 48, 124)),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
           backgroundColor: Color.fromARGB(255, 82, 48, 124),
           selectedItemColor: Color.fromARGB(255, 120, 87, 161)),

@@ -210,14 +210,14 @@ class _AddQuizScreenState extends State<AddQuizScreen> {
         _choicesControllers[2].text = selectedQuestion['options']['c'];
         _choicesControllers[3].text = selectedQuestion['options']['d'];
         _correctChoiceString = selectedQuestion['answer'];
-        stringChoice.currentState?.SetChoice(_correctChoiceString!);
+        stringChoice.currentState?.setChoice(_correctChoiceString!);
       } else if (currentDifficulty == 'Average' &&
           currentQuestion <= averageQuestions.length - 1) {
         Map<dynamic, dynamic> selectedQuestion =
             averageQuestions[currentQuestion];
         _questionController.text = selectedQuestion['question'];
         _correctChoiceBool = selectedQuestion['answer'];
-        boolChoice.currentState?.SetChoice(_correctChoiceBool!);
+        boolChoice.currentState?.setChoice(_correctChoiceBool!);
       } else if (currentDifficulty == 'Difficult' &&
           currentQuestion <= difficultQuestions.length - 1) {
         Map<dynamic, dynamic> selectedQuestion =
@@ -231,10 +231,10 @@ class _AddQuizScreenState extends State<AddQuizScreen> {
             choice.clear();
           }
           _correctChoiceString = null;
-          stringChoice.currentState?.ResetChoice();
+          stringChoice.currentState?.resetChoice();
         } else if (currentDifficulty == 'Average') {
           _correctChoiceBool = null;
-          boolChoice.currentState?.ResetChoice();
+          boolChoice.currentState?.resetChoice();
         } else if (currentDifficulty == 'Difficult') {
           _identificationController.clear();
         }
@@ -269,12 +269,12 @@ class _AddQuizScreenState extends State<AddQuizScreen> {
         _choicesControllers[3].text =
             easyQuestions[currentQuestion]['options']['d'];
         _correctChoiceString = easyQuestions[currentQuestion]['answer'];
-        stringChoice.currentState?.SetChoice(_correctChoiceString!);
+        stringChoice.currentState?.setChoice(_correctChoiceString!);
       } else if (currentDifficulty == 'Average') {
         _questionController.text =
             averageQuestions[currentQuestion]['question'];
         _correctChoiceBool = averageQuestions[currentQuestion]['answer'];
-        boolChoice.currentState?.SetChoice(_correctChoiceBool!);
+        boolChoice.currentState?.setChoice(_correctChoiceBool!);
       } else if (currentDifficulty == 'Difficult') {
         _questionController.text =
             difficultQuestions[currentQuestion]['question'];

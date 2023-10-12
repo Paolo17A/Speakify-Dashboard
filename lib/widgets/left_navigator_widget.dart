@@ -1,11 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:speechlab_dashboard/utils/color_util.dart';
 
 Widget lefNavigator(BuildContext context, int index) {
   return Container(
       width: MediaQuery.of(context).size.width * 0.2,
-      color: const Color.fromARGB(255, 74, 0, 49),
+      color: CustomColors.wine,
       child: Column(children: [
         Flexible(
           flex: 1,
@@ -13,7 +14,7 @@ Widget lefNavigator(BuildContext context, int index) {
             padding: EdgeInsets.zero,
             children: [
               Container(
-                color: index == 0 ? const Color.fromARGB(255, 41, 0, 27) : null,
+                color: index == 0 ? CustomColors.darkWine : null,
                 child: ListTile(
                   leading: const Icon(Icons.home),
                   title: Text('Dashboard', style: _textStyle()),
@@ -23,7 +24,7 @@ Widget lefNavigator(BuildContext context, int index) {
                 ),
               ),
               Container(
-                color: index == 1 ? const Color.fromARGB(255, 41, 0, 27) : null,
+                color: index == 1 ? CustomColors.darkWine : null,
                 child: ListTile(
                   leading: const Icon(Icons.people),
                   title: Text(
@@ -36,7 +37,7 @@ Widget lefNavigator(BuildContext context, int index) {
                 ),
               ),
               Container(
-                color: index == 2 ? const Color.fromARGB(255, 41, 0, 27) : null,
+                color: index == 2 ? CustomColors.darkWine : null,
                 child: ListTile(
                   leading: const Icon(Icons.person_2),
                   title: Text('Instructor', style: _textStyle()),
@@ -46,7 +47,7 @@ Widget lefNavigator(BuildContext context, int index) {
                 ),
               ),
               Container(
-                color: index == 3 ? const Color.fromARGB(255, 41, 0, 27) : null,
+                color: index == 3 ? CustomColors.darkWine : null,
                 child: ListTile(
                   leading: const Icon(Icons.book_rounded),
                   title: Text('Lessons', style: _textStyle()),
@@ -64,7 +65,6 @@ Widget lefNavigator(BuildContext context, int index) {
           onTap: () {
             FirebaseAuth.instance.signOut().then((value) {
               GoRouter.of(context).go('/');
-              //Navigator.popUntil(context, (route) => route.isFirst);
             });
           },
         ),

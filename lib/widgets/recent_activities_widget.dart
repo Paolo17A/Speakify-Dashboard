@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:speechlab_dashboard/utils/color_util.dart';
 
 class RecentActiviesWidget extends StatefulWidget {
   const RecentActiviesWidget({super.key});
@@ -50,62 +51,80 @@ class _RecentActiviesWidgetState extends State<RecentActiviesWidget> {
         padding: const EdgeInsets.all(8),
         child: _isLoading
             ? const Center(child: CircularProgressIndicator())
-            : recentActivities.isEmpty
-                ? const Center(child: Text('NO RECENT ACTIVIES AVAILABLE'))
-                : Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-                    child: SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.5,
-                      height: MediaQuery.of(context).size.height * 0.45,
-                      child: ListView.builder(
-                          shrinkWrap: true,
-                          itemCount: recentActivities.length,
-                          itemBuilder: (context, index) {
-                            return Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 5),
-                              child: Container(
-                                  height: 50,
-                                  decoration: BoxDecoration(
-                                      color:
-                                          const Color.fromARGB(255, 74, 0, 49)
-                                              .withOpacity(0.3),
-                                      borderRadius: BorderRadius.circular(10)),
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 15),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                            DateFormat('dd MMM yyyy hh:mm:ss a')
-                                                .format(((recentActivities[
-                                                                        index]
-                                                                    .data()
-                                                                as Map<dynamic,
-                                                                    dynamic>)[
-                                                            'dateAdded']
-                                                        as Timestamp)
-                                                    .toDate()),
-                                            style: const TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                color: Colors.white,
-                                                fontSize: 15)),
-                                        Text(
-                                            (recentActivities[index].data()
-                                                    as Map<dynamic, dynamic>)[
-                                                'activityMessage'],
-                                            style: const TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                color: Colors.white,
-                                                fontSize: 15))
-                                      ],
-                                    ),
-                                  )),
-                            );
-                          }),
-                    ),
-                  ));
+            : Container(
+                color: CustomColors.darkWine,
+                child: Padding(
+                  padding: const EdgeInsets.all(3),
+                  child: Container(
+                    color: CustomColors.lavender,
+                    child: recentActivities.isEmpty
+                        ? const Center(
+                            child: Text('NO RECENT ACTIVIES AVAILABLE'))
+                        : Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 15, vertical: 5),
+                            child: SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.55,
+                              height: MediaQuery.of(context).size.height * 0.5,
+                              child: ListView.builder(
+                                  shrinkWrap: true,
+                                  itemCount: recentActivities.length,
+                                  itemBuilder: (context, index) {
+                                    return Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 5),
+                                      child: Container(
+                                          height: 50,
+                                          decoration: BoxDecoration(
+                                              color: const Color.fromARGB(
+                                                      255, 74, 0, 49)
+                                                  .withOpacity(0.3),
+                                              borderRadius:
+                                                  BorderRadius.circular(10)),
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: 15),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Text(
+                                                    DateFormat(
+                                                            'dd MMM yyyy hh:mm:ss a')
+                                                        .format(((recentActivities[
+                                                                            index]
+                                                                        .data()
+                                                                    as Map<
+                                                                        dynamic,
+                                                                        dynamic>)['dateAdded']
+                                                                as Timestamp)
+                                                            .toDate()),
+                                                    style: const TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        color: Colors.white,
+                                                        fontSize: 15)),
+                                                Text(
+                                                    (recentActivities[index]
+                                                                .data()
+                                                            as Map<dynamic,
+                                                                dynamic>)[
+                                                        'activityMessage'],
+                                                    style: const TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        color: Colors.white,
+                                                        fontSize: 15))
+                                              ],
+                                            ),
+                                          )),
+                                    );
+                                  }),
+                            ),
+                          ),
+                  ),
+                ),
+              ));
   }
 }

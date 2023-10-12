@@ -36,10 +36,25 @@ class DateTimeDisplayState extends State<DateTimeDisplay> {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      DateFormat('dd MMM yyyy hh:mm:ss a').format(_currentDateTime),
-      style: const TextStyle(
-          fontSize: 30, fontWeight: FontWeight.bold, color: Colors.white),
-    );
+    return Row(children: [
+      const Padding(
+        padding: EdgeInsets.symmetric(horizontal: 9),
+        child: Icon(Icons.calendar_today),
+      ),
+      Text(
+        DateFormat('dd MMM yyyy').format(_currentDateTime),
+        style: const TextStyle(
+            fontSize: 30, fontWeight: FontWeight.bold, color: Colors.white),
+      ),
+      const Padding(
+        padding: EdgeInsets.symmetric(horizontal: 9),
+        child: Icon(Icons.access_time),
+      ),
+      Text(
+        DateFormat('hh:mm:ss a').format(_currentDateTime),
+        style: const TextStyle(
+            fontSize: 30, fontWeight: FontWeight.bold, color: Colors.white),
+      )
+    ]);
   }
 }

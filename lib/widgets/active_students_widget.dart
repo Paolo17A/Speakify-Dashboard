@@ -1,6 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:speechlab_dashboard/utils/color_util.dart';
+import 'package:speechlab_dashboard/widgets/custom_container_widgets.dart';
+import 'package:speechlab_dashboard/widgets/custom_text_widgets.dart';
 
 class ActiveStudentsWidget extends StatefulWidget {
   const ActiveStudentsWidget({super.key});
@@ -67,80 +70,88 @@ class _ActiveStudentsScreenWidget extends State<ActiveStudentsWidget> {
         padding: const EdgeInsets.all(15),
         child: Column(
           children: [
-            Container(
-                width: double.infinity,
-                height: 70,
-                decoration: BoxDecoration(
-                    color:
-                        const Color.fromARGB(255, 74, 0, 49).withOpacity(0.5),
-                    borderRadius: BorderRadius.circular(10)),
-                child: const Center(
-                  child: Text('ACTIVE STUDENTS',
-                      style: TextStyle(
-                          fontSize: 25,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold)),
-                )),
-            _isLoading
-                ? const Center(child: CircularProgressIndicator())
-                : Padding(
+            _activeStudentHeader(),
+            switchedLoadingContainer(
+                _isLoading,
+                Padding(
                     padding: const EdgeInsets.all(10),
                     child: activeStudents.isEmpty
-                        ? const Center(
-                            child: Text(
-                                'THERE ARE CURRENTLY NO ACTIVE STUDENTS',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 25,
-                                    fontWeight: FontWeight.w700)),
-                          )
-                        : Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 15, vertical: 10),
-                            child: ListView.builder(
-                                shrinkWrap: true,
-                                itemCount: activeStudents.length,
-                                itemBuilder: (context, index) {
-                                  Map<dynamic, dynamic> studentData =
-                                      activeStudents[index].data()
-                                          as Map<dynamic, dynamic>;
-                                  return Padding(
-                                    padding:
-                                        const EdgeInsets.symmetric(vertical: 9),
-                                    child: Container(
-                                        width:
-                                            MediaQuery.of(context).size.width *
-                                                0.18,
-                                        decoration: BoxDecoration(
-                                            color: const Color.fromARGB(
-                                                    255, 74, 0, 49)
-                                                .withOpacity(0.3),
-                                            borderRadius:
-                                                BorderRadius.circular(10)),
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(12),
-                                          child: Column(
-                                            children: [
-                                              Text(
-                                                '${studentData['firstName']} ${studentData['lastName']}',
-                                                style: const TextStyle(
-                                                    color: Colors.white,
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                              ),
-                                              Text(
-                                                  'Last Login: ${DateFormat('dd MMM yyyy hh:mm:ss a').format((studentData['lastLoginTime'] as Timestamp).toDate())}',
-                                                  style: const TextStyle(
-                                                      color: Colors.white,
-                                                      fontSize: 10))
-                                            ],
-                                          ),
-                                        )),
-                                  );
-                                }),
-                          ))
+                        ? _noActiveStudentsWidget()
+                        : _activeStudentsDisplayWidget()))
           ],
         ));
+  }
+
+  Widget _activeStudentHeader() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        const CircleAvatar(backgroundColor: Colors.green, radius: 5),
+        cambriaText(
+            text: 'ACTIVE STUDENTS', textStyle: whiteBoldStyle(size: 25)),
+      ],
+    );
+  }
+
+  Widget _noActiveStudentsWidget() {
+    return Center(
+      child: Text('THERE ARE CURRENTLY NO ACTIVE STUDENTS',
+          textAlign: TextAlign.center, style: whiteBoldStyle(size: 25)),
+    );
+  }
+
+  Widget _activeStudentsDisplayWidget() {
+    return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 15),
+        child: ListView.builder(
+            shrinkWrap: true,
+            itemCount: activeStudents.length,
+            itemBuilder: (context, index) {
+              final studentData =
+                  activeStudents[index].data() as Map<dynamic, dynamic>;
+              String imageURL = studentData['profileImageURL'];
+              return Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 9),
+                  child: roundedContainer(
+                      width: MediaQuery.of(context).size.width * 0.18,
+                      color: CustomColors.lavender.withOpacity(0.3),
+                      child: Padding(
+                          padding: const EdgeInsets.all(12),
+                          child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                _profileImageWidget(imageURL),
+                                _profileDataWidget(studentData)
+                              ]))));
+            }));
+  }
+
+  Widget _profileImageWidget(String imageURL) {
+    if (imageURL.isNotEmpty) {
+      return CircleAvatar(
+          backgroundColor: Colors.white,
+          radius: 20,
+          backgroundImage: NetworkImage(imageURL));
+    } else {
+      return const CircleAvatar(
+          backgroundColor: CustomColors.lavender,
+          radius: 20,
+          child: Icon(
+            Icons.person,
+            color: CustomColors.darkWine,
+          ));
+    }
+  }
+
+  Widget _profileDataWidget(Map<dynamic, dynamic> studentData) {
+    return Column(children: [
+      cambriaText(
+          text: '${studentData['firstName']} ${studentData['lastName']}',
+          textStyle: whiteBoldStyle()),
+      cambriaText(
+          text:
+              'Last Login: ${DateFormat('dd MMM yyyy hh:mm:ss a').format((studentData['lastLoginTime'] as Timestamp).toDate())}',
+          textStyle: const TextStyle(color: Colors.white, fontSize: 10))
+    ]);
   }
 }

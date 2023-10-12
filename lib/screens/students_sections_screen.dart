@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:speechlab_dashboard/utils/personalized_widgets_util.dart';
 import 'package:speechlab_dashboard/widgets/appbar_title_widget.dart';
 import 'package:speechlab_dashboard/widgets/left_navigator_widget.dart';
+
+import '../widgets/custom_buttons_widget.dart';
 
 class StudentsSectionsScreen extends StatelessWidget {
   const StudentsSectionsScreen({super.key});
@@ -54,14 +55,14 @@ class StudentsSectionsScreen extends StatelessWidget {
                         homeDashboardRowButton(
                             MediaQuery.of(context).size.width * 0.25,
                             MediaQuery.of(context).size.width * 0.15, () {
-                          GoRouter.of(context).go('/sections/selectedSection',
-                              extra: {'section': 'AB Broad 3A'});
+                          GoRouter.of(context).goNamed('selectedSection',
+                              pathParameters: {'section': 'AB Broad 3A'});
                         }, '3A - AB BROAD'),
                         homeDashboardRowButton(
                             MediaQuery.of(context).size.width * 0.25,
                             MediaQuery.of(context).size.width * 0.15, () {
-                          GoRouter.of(context).go('/sections/selectedSection',
-                              extra: {'section': 'AB Broad 3B'});
+                          GoRouter.of(context).goNamed('selectedSection',
+                              pathParameters: {'section': 'AB Broad 3B'});
                         }, '3B - AB BROAD'),
                       ],
                     ),
@@ -75,14 +76,14 @@ class StudentsSectionsScreen extends StatelessWidget {
                         homeDashboardRowButton(
                             MediaQuery.of(context).size.width * 0.25,
                             MediaQuery.of(context).size.width * 0.15, () {
-                          GoRouter.of(context).go('/sections/selectedSection',
-                              extra: {'section': 'AB Broad 4A'});
+                          GoRouter.of(context).goNamed('selectedSection',
+                              pathParameters: {'section': 'AB Broad 4A'});
                         }, '4A - AB BROAD'),
                         homeDashboardRowButton(
                             MediaQuery.of(context).size.width * 0.25,
                             MediaQuery.of(context).size.width * 0.15, () {
-                          GoRouter.of(context).go('/sections/selectedSection',
-                              extra: {'section': 'AB Broad 4B'});
+                          GoRouter.of(context).goNamed('selectedSection',
+                              pathParameters: {'section': 'AB Broad 4B'});
                         }, '4B - AB BROAD'),
                       ],
                     ),

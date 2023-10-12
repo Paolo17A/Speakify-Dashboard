@@ -142,9 +142,9 @@ class _CustomQuizzesScreenState extends State<CustomQuizzesScreen> {
                                           height: 100,
                                           child: ElevatedButton(
                                               onPressed: () =>
-                                                  GoRouter.of(context).go(
-                                                      '/quizzes/editQuiz',
-                                                      extra: {
+                                                  GoRouter.of(context).goNamed(
+                                                      'editQuiz',
+                                                      pathParameters: {
                                                         'quizTitle':
                                                             customQuizzes[index]
                                                                 .id,

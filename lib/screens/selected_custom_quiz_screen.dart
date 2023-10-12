@@ -9,11 +9,11 @@ import '../utils/student_quiz_util.dart';
 
 class SelectedCustomQuizScreen extends StatefulWidget {
   final String quizTitle;
-  final String serializedquizQuestions;
+  final String serializedQuizQuestions;
   const SelectedCustomQuizScreen(
       {super.key,
       required this.quizTitle,
-      required this.serializedquizQuestions});
+      required this.serializedQuizQuestions});
 
   @override
   State<SelectedCustomQuizScreen> createState() =>
@@ -28,7 +28,7 @@ class _SelectedCustomQuizScreenState extends State<SelectedCustomQuizScreen> {
   @override
   void initState() {
     super.initState();
-    allQuestions = json.decode(widget.serializedquizQuestions);
+    allQuestions = json.decode(widget.serializedQuizQuestions);
   }
 
   @override

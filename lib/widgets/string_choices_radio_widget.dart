@@ -26,13 +26,13 @@ class ChoicesRadioWidgetState extends State<StringChoicesRadioWidget> {
     });
   }
 
-  void ResetChoice() {
+  void resetChoice() {
     setState(() {
       _choice = null;
     });
   }
 
-  void SetChoice(String choice) {
+  void setChoice(String choice) {
     setState(() {
       _choice = choice;
     });

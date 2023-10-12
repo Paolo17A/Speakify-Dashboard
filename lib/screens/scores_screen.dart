@@ -1,10 +1,13 @@
+import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:speechlab_dashboard/models/speech_model.dart';
 import 'package:speechlab_dashboard/widgets/appbar_title_widget.dart';
+import 'package:speechlab_dashboard/widgets/custom_container_widgets.dart';
 import 'package:speechlab_dashboard/widgets/left_navigator_widget.dart';
-import '../models/lesson_model.dart';
+//import '../models/lesson_model.dart';
 
 class ScoresScreen extends StatefulWidget {
   const ScoresScreen({super.key});
@@ -14,6 +17,7 @@ class ScoresScreen extends StatefulWidget {
 }
 
 class _ScoresScreenState extends State<ScoresScreen> {
+  bool _isLoading = true;
   bool _viewingQuizScores = true;
   List<DocumentSnapshot> allCustomQuizzes = [];
 
@@ -33,7 +37,9 @@ class _ScoresScreenState extends State<ScoresScreen> {
           .where('isArchived', isEqualTo: false)
           .get();
       allCustomQuizzes = customQuizzes.docs;
-      setState(() {});
+      setState(() {
+        _isLoading = false;
+      });
     } catch (error) {
       scaffoldMessenger.showSnackBar(
           SnackBar(content: Text('Error getting custom quizzes: $error')));
@@ -46,219 +52,172 @@ class _ScoresScreenState extends State<ScoresScreen> {
         appBar: appBarTitle(),
         body: Row(children: [
           lefNavigator(context, 0),
-          Container(
-              width: MediaQuery.of(context).size.width * 0.8,
-              height: double.infinity,
-              color: Colors.white,
-              child: SingleChildScrollView(
-                  child: Column(children: [
-                Padding(
-                    padding: const EdgeInsets.all(40),
-                    child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.5,
-                              child: Center(
-                                  child: Column(children: [
-                                Text(
-                                    _viewingQuizScores
-                                        ? 'ALL QUIZ LESSONS'
-                                        : 'ALL SPEECHLAB LEVELS',
-                                    textAlign: TextAlign.center,
-                                    style: const TextStyle(
-                                        color: Color.fromARGB(255, 60, 19, 97),
-                                        fontSize: 70,
-                                        fontWeight: FontWeight.bold)),
-                                const Divider(thickness: 3)
-                              ]))),
-                          SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.15,
-                              height: 60,
-                              child: ElevatedButton(
-                                  onPressed: () {
-                                    setState(() {
-                                      _viewingQuizScores = !_viewingQuizScores;
-                                      if (_viewingQuizScores == true) {
-                                        getCustomQuizzes();
-                                      }
-                                    });
-                                  },
-                                  style: ElevatedButton.styleFrom(
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(30))),
-                                  child: Text(
-                                      _viewingQuizScores
-                                          ? 'VIEW SPEECHLAB SCORES'
-                                          : 'VIEW QUIZ SCORES',
-                                      textAlign: TextAlign.center,
-                                      style: const TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 20))))
-                        ])),
-                Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 20, vertical: 30),
-                    child: _viewingQuizScores
-                        ?
-                        //  View Quiz Scores
-                        Column(
+          bodyWidgetWhiteBG(
+              context,
+              switchedLoadingContainer(
+                  _isLoading,
+                  SingleChildScrollView(
+                      child: Column(children: [
+                    Padding(
+                        padding: const EdgeInsets.all(40),
+                        child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              Wrap(
-                                spacing:
-                                    MediaQuery.of(context).size.width * 0.05,
-                                runSpacing:
-                                    MediaQuery.of(context).size.width * 0.05,
-                                children:
-                                    allLessons.asMap().entries.map((entry) {
-                                  final int index = entry.key;
-                                  final LessonModel lesson = entry.value;
-
-                                  return SizedBox(
-                                      width: MediaQuery.of(context).size.width *
-                                          0.15,
-                                      height:
-                                          MediaQuery.of(context).size.width *
-                                              0.15,
-                                      child: ElevatedButton(
-                                          onPressed: () {
-                                            GoRouter.of(context).go(
-                                                '/scores/selectedQuiz',
-                                                extra: {
-                                                  'currentQuizLevelReq':
-                                                      index + 1,
-                                                  'selectedQuiz': lesson
-                                                });
-                                          },
-                                          child: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                Padding(
-                                                    padding:
-                                                        const EdgeInsets.all(
-                                                            20),
-                                                    child: Text(
-                                                        'Lesson ${index + 1}',
-                                                        style: const TextStyle(
-                                                            fontSize: 30,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .bold))),
-                                                Expanded(
-                                                    child: Center(
-                                                        child: Text(
-                                                            lesson.title,
-                                                            textAlign: TextAlign
-                                                                .center,
-                                                            style:
-                                                                const TextStyle(
-                                                                    fontSize:
-                                                                        20))))
-                                              ])));
-                                }).toList(),
-                              ),
-                              const Padding(
-                                padding: EdgeInsets.symmetric(vertical: 14),
-                                child: Divider(
-                                  thickness: 4,
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(20),
-                                child: SizedBox(
-                                  width: double.infinity,
-                                  child: Wrap(
-                                      runAlignment: WrapAlignment.start,
-                                      spacing:
-                                          MediaQuery.of(context).size.width *
-                                              0.05,
-                                      runSpacing:
-                                          MediaQuery.of(context).size.width *
-                                              0.05,
-                                      children: allCustomQuizzes
-                                          .map((customQuiz) => SizedBox(
-                                                width: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.15,
-                                                height: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.15,
-                                                child: ElevatedButton(
-                                                    onPressed: () {
-                                                      GoRouter.of(context).go(
-                                                          '/scores/selectedCustomQuiz',
-                                                          extra: {
-                                                            'quizTitle':
-                                                                customQuiz.id,
-                                                            'serializedquizQuestions':
-                                                                (customQuiz.data() as Map<
-                                                                        dynamic,
-                                                                        dynamic>)[
-                                                                    'quizContent']
-                                                          });
-                                                    },
-                                                    child: Text(customQuiz.id)),
-                                              ))
-                                          .toList()),
-                                ),
-                              )
-                            ],
-                          )
-                        :
-                        //  View Speech Scores
-                        Wrap(
-                            spacing: MediaQuery.of(context).size.width * 0.05,
-                            runSpacing:
-                                MediaQuery.of(context).size.width * 0.05,
-                            children:
-                                speechCategories.asMap().entries.map((entry) {
-                              final int index = entry.key;
-                              final SpeechModel level = entry.value;
-
-                              return SizedBox(
+                              SizedBox(
                                   width:
-                                      MediaQuery.of(context).size.width * 0.25,
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.15,
+                                      MediaQuery.of(context).size.width * 0.5,
+                                  child: Center(
+                                      child: Column(children: [
+                                    Text(
+                                        _viewingQuizScores
+                                            ? 'ALL QUIZ LESSONS'
+                                            : 'ALL SPEECHLAB LEVELS',
+                                        textAlign: TextAlign.center,
+                                        style: const TextStyle(
+                                            color:
+                                                Color.fromARGB(255, 60, 19, 97),
+                                            fontSize: 70,
+                                            fontWeight: FontWeight.bold)),
+                                    const Divider(thickness: 3)
+                                  ]))),
+                              SizedBox(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.15,
+                                  height: 60,
                                   child: ElevatedButton(
                                       onPressed: () {
-                                        GoRouter.of(context).go(
-                                            '/scores/selectedSpeechLab',
-                                            extra: {
-                                              'currentSpeechLevelReq':
-                                                  index + 1,
-                                              'selectedLevel': level
-                                            });
+                                        setState(() {
+                                          _viewingQuizScores =
+                                              !_viewingQuizScores;
+                                          if (_viewingQuizScores == true) {
+                                            getCustomQuizzes();
+                                          }
+                                        });
                                       },
-                                      child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Padding(
-                                                padding:
-                                                    const EdgeInsets.all(20),
-                                                child: Text(
-                                                    'Level ${index + 1}',
-                                                    style: const TextStyle(
-                                                        fontSize: 34,
-                                                        fontWeight:
-                                                            FontWeight.bold))),
-                                            Expanded(
-                                                child: Center(
-                                                    child: Text(level.category,
-                                                        textAlign:
-                                                            TextAlign.center,
-                                                        style: const TextStyle(
-                                                            fontSize: 25))))
-                                          ])));
-                            }).toList(),
-                          ))
-              ])))
+                                      style: ElevatedButton.styleFrom(
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(30))),
+                                      child: Text(
+                                          _viewingQuizScores
+                                              ? 'VIEW SPEECHLAB SCORES'
+                                              : 'VIEW QUIZ SCORES',
+                                          textAlign: TextAlign.center,
+                                          style: const TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 20))))
+                            ])),
+                    Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 20, vertical: 30),
+                        child: _viewingQuizScores
+                            ? _quizzesWidget()
+                            : _speechScoresWidget())
+                  ]))))
         ]));
+  }
+
+  Widget _quizzesWidget() {
+    /*Wrap(
+          spacing: MediaQuery.of(context).size.width * 0.05,
+          runSpacing: MediaQuery.of(context).size.width * 0.05,
+          children: allLessons.asMap().entries.map((entry) {
+            final int index = entry.key;
+            final LessonModel lesson = entry.value;
+
+            return SizedBox(
+                width: MediaQuery.of(context).size.width * 0.15,
+                height: MediaQuery.of(context).size.width * 0.15,
+                child: ElevatedButton(
+                    onPressed: () {
+                      GoRouter.of(context).go('/scores/selectedQuiz', extra: {
+                        'currentQuizLevelReq': index + 1,
+                        'selectedQuiz': lesson
+                      });
+                    },
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Padding(
+                              padding: const EdgeInsets.all(20),
+                              child: Text('Lesson ${index + 1}',
+                                  style: const TextStyle(
+                                      fontSize: 30,
+                                      fontWeight: FontWeight.bold))),
+                          Expanded(
+                              child: Center(
+                                  child: Text(lesson.title,
+                                      textAlign: TextAlign.center,
+                                      style: const TextStyle(fontSize: 20))))
+                        ])));
+          }).toList(),
+        ),
+        const Padding(
+          padding: EdgeInsets.symmetric(vertical: 14),
+          child: Divider(
+            thickness: 4,
+          ),
+        ),*/
+    return SizedBox(
+      width: double.infinity,
+      child: Wrap(
+          alignment: WrapAlignment.start,
+          runAlignment: WrapAlignment.start,
+          spacing: MediaQuery.of(context).size.width * 0.05,
+          runSpacing: MediaQuery.of(context).size.width * 0.05,
+          children: allCustomQuizzes
+              .map((customQuiz) => SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.15,
+                    height: MediaQuery.of(context).size.width * 0.15,
+                    child: ElevatedButton(
+                        onPressed: () {
+                          GoRouter.of(context)
+                              .goNamed('selectedQuiz', pathParameters: {
+                            'quizTitle': customQuiz.id,
+                            'serializedQuizQuestions': (customQuiz.data()
+                                as Map<dynamic, dynamic>)['quizContent']
+                          });
+                        },
+                        child: Text(customQuiz.id)),
+                  ))
+              .toList()),
+    );
+  }
+
+  Widget _speechScoresWidget() {
+    return Wrap(
+      spacing: MediaQuery.of(context).size.width * 0.05,
+      runSpacing: MediaQuery.of(context).size.width * 0.05,
+      children: speechCategories.asMap().entries.map((entry) {
+        final int index = entry.key;
+        final SpeechModel level = entry.value;
+
+        return SizedBox(
+            width: MediaQuery.of(context).size.width * 0.25,
+            height: MediaQuery.of(context).size.height * 0.15,
+            child: ElevatedButton(
+                onPressed: () {
+                  GoRouter.of(context)
+                      .goNamed('selectedSpeechLab', pathParameters: {
+                    'currentSpeechLevelReq': (index + 1).toString(),
+                    'selectedLevel': jsonEncode(level.toJson())
+                  });
+                },
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Padding(
+                          padding: const EdgeInsets.all(20),
+                          child: Text('Level ${index + 1}',
+                              style: const TextStyle(
+                                  fontSize: 34, fontWeight: FontWeight.bold))),
+                      Expanded(
+                          child: Center(
+                              child: Text(level.category,
+                                  textAlign: TextAlign.center,
+                                  style: const TextStyle(fontSize: 25))))
+                    ])));
+      }).toList(),
+    );
   }
 }

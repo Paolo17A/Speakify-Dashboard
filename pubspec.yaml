@@ -43,6 +43,8 @@ dependencies:
   dropdown_search: ^5.0.6
   firebase_storage: ^11.2.8
   go_router: ^11.1.2
+  google_fonts: ^6.1.0
+  auto_size_text: ^3.0.0
 
 dev_dependencies:
   flutter_test:
@@ -71,6 +73,7 @@ flutter:
     - assets/images/speakify_logo.png
     - assets/images/speechlab_logo.png
     - assets/images/dashboard_welcome.png
+    - assets/images/auth_background.png
     - assets/images/badges/
     - lib/data/
   #   - images/a_dot_ham.jpeg

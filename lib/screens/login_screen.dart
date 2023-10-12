@@ -2,6 +2,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:speechlab_dashboard/utils/color_util.dart';
+import 'package:speechlab_dashboard/widgets/custom_buttons_widget.dart';
+import 'package:speechlab_dashboard/widgets/custom_container_widgets.dart';
+import 'package:speechlab_dashboard/widgets/custom_miscellaneous_widgets.dart';
+import 'package:speechlab_dashboard/widgets/custom_text_widgets.dart';
 
 import '../utils/error_message.dart';
 import '../widgets/speechLabTextField.dart';
@@ -71,227 +76,110 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-        onWillPop: () async {
-          //Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
-          GoRouter.of(context).pop();
-          return false;
-        },
-        child: Scaffold(
-            body: Stack(children: [
-          Center(
-              child: Column(
-            children: [
-              SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.15,
-                  width: double.infinity,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 15),
-                    child: Row(
+    return Scaffold(
+        body: stackedLoadingContainer(context, _isLoading, [
+      authenticationBackgroundContainer(
+        context,
+        Row(
+          children: [
+            authenticationDesignImages(context),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.65,
+              child: authenticationFormContainer(
+                  context,
+                  Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        CircleAvatar(
-                            radius: 50,
-                            backgroundColor: Colors.transparent,
-                            child: Image.asset(
-                                'assets/images/speechlab_logo.png')),
-                        SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.01),
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.15,
-                          child: const Center(
-                            child: Text(
-                              'SPEAKIFY',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  color: Color.fromARGB(255, 124, 48, 114),
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 40),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  )),
-              SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.9,
-                  child: Row(
-                    children: [
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.6,
-                        height: MediaQuery.of(context).size.height * 0.8,
-                        child: Image.asset(
-                          'assets/images/dashboard_welcome.png',
-                          scale: 0.75,
-                        ),
-                      ),
-                      Container(
-                          width: MediaQuery.of(context).size.width * 0.3,
-                          height: MediaQuery.of(context).size.height * 0.8,
-                          color: const Color.fromARGB(255, 82, 48, 124),
-                          child: Padding(
-                              padding: const EdgeInsets.all(10),
-                              child: Container(
-                                  color:
-                                      const Color.fromARGB(255, 245, 245, 245),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(20),
-                                    child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                          const Text('LOG-IN',
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 45)),
-                                          const SizedBox(height: 50),
-                                          SizedBox(
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.65,
-                                            child: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.spaceEvenly,
-                                              children: [
-                                                Padding(
-                                                  padding: EdgeInsets.symmetric(
-                                                      horizontal:
-                                                          MediaQuery.of(context)
-                                                                  .size
-                                                                  .width *
-                                                              0.03),
-                                                  child: speechLabTextField(
-                                                      'Email Address',
-                                                      _emailController,
-                                                      TextInputType
-                                                          .emailAddress,
-                                                      const Icon(Icons.email)),
-                                                ),
-                                                const SizedBox(height: 5.0),
-                                                Padding(
-                                                  padding: EdgeInsets.symmetric(
-                                                      horizontal:
-                                                          MediaQuery.of(context)
-                                                                  .size
-                                                                  .width *
-                                                              0.03),
-                                                  child: SpeechLabTextField(
-                                                    text: 'Password',
-                                                    controller:
-                                                        _passwordController,
-                                                    textInputType: TextInputType
-                                                        .visiblePassword,
-                                                    displayPrefixIcon:
-                                                        const Icon(Icons.lock),
-                                                  ),
-                                                ),
-                                                const SizedBox(height: 5.0),
-                                              ],
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.65,
-                                            child: Padding(
-                                              padding: EdgeInsets.symmetric(
-                                                  horizontal:
-                                                      MediaQuery.of(context)
-                                                              .size
-                                                              .width *
-                                                          0.03),
-                                              child: Row(
-                                                children: [
-                                                  TextButton(
-                                                      onPressed: () {
-                                                        /*Navigator.pushNamed(
-                                                            context, '/reset');*/
-                                                        GoRouter.of(context)
-                                                            .go('/reset');
-                                                      },
-                                                      child: const Text(
-                                                          'Forgot Password?',
-                                                          style: TextStyle(
-                                                              color:
-                                                                  Colors.purple,
-                                                              decoration:
-                                                                  TextDecoration
-                                                                      .underline))),
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                          const SizedBox(height: 50),
-                                          SizedBox(
-                                            height: 50,
-                                            width: 125,
-                                            child: ElevatedButton(
-                                                onPressed: _loginUser,
-                                                child: const Text('LOG-IN',
-                                                    style: TextStyle(
-                                                        fontSize: 20,
-                                                        fontWeight:
-                                                            FontWeight.bold))),
-                                          ),
-                                          const SizedBox(height: 40),
-                                          SizedBox(
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.5,
-                                            child: Wrap(
-                                                alignment: WrapAlignment.center,
-                                                children: [
-                                                  const Text(
-                                                    'Don\'t Have an Account?',
-                                                    style: TextStyle(
-                                                        fontSize: 20,
-                                                        color: Colors.black,
-                                                        fontWeight:
-                                                            FontWeight.bold),
-                                                  ),
-                                                  TextButton(
-                                                      onPressed: () {
-                                                        /*Navigator.pushNamed(
-                                                            context,
-                                                            '/register');*/
-                                                        GoRouter.of(context)
-                                                            .go('/register');
-                                                      },
-                                                      child: const Text(
-                                                        'Register Now',
-                                                        style: TextStyle(
-                                                            fontSize: 20,
-                                                            color:
-                                                                Color.fromARGB(
-                                                                    255,
-                                                                    102,
-                                                                    58,
-                                                                    130),
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .bold),
-                                                      ))
-                                                ]),
-                                          )
-                                        ]),
-                                  )))),
-                    ],
-                  )),
+                        const SizedBox(height: 20),
+                        headerText(text: 'LOG-IN'),
+                        const SizedBox(height: 30),
+                        _loginInputFieldWidgets(),
+                        _forgotPasswordWidget(),
+                        const SizedBox(height: 60),
+                        authenticationButton('START', _loginUser, width: 170),
+                        const SizedBox(height: 60),
+                        _dontHaveAccountWidgets()
+                      ])),
+            )
+          ],
+        ),
+      )
+    ]));
+  }
+
+  Widget _loginInputFieldWidgets() {
+    return Column(
+      children: [
+        SizedBox(
+          width: MediaQuery.of(context).size.width * 0.65,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Padding(
+                padding: EdgeInsets.symmetric(
+                    horizontal: MediaQuery.of(context).size.width * 0.03),
+                child: speechLabTextField('Email Address', _emailController,
+                    TextInputType.emailAddress, const Icon(Icons.email)),
+              ),
+              const SizedBox(height: 5.0),
+              Padding(
+                padding: EdgeInsets.symmetric(
+                    horizontal: MediaQuery.of(context).size.width * 0.03),
+                child: SpeechLabTextField(
+                  text: 'Password',
+                  controller: _passwordController,
+                  textInputType: TextInputType.visiblePassword,
+                  displayPrefixIcon: const Icon(Icons.lock),
+                ),
+              ),
+              const SizedBox(height: 5.0),
             ],
-          )),
-          if (_isLoading)
-            Container(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height,
-                color: Colors.black.withOpacity(0.5),
-                child: const Center(
-                  child: CircularProgressIndicator(),
-                ))
-        ])));
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _forgotPasswordWidget() {
+    return SizedBox(
+        width: MediaQuery.of(context).size.width * 0.65,
+        child: Padding(
+            padding: EdgeInsets.symmetric(
+                horizontal: MediaQuery.of(context).size.width * 0.03),
+            child: Row(children: [
+              TextButton(
+                  onPressed: () {
+                    GoRouter.of(context).go('/reset');
+                  },
+                  child: cambriaText(
+                      text: 'Forgot Password? ',
+                      textStyle: const TextStyle(
+                          color: CustomColors.fuschia,
+                          decoration: TextDecoration.underline,
+                          fontWeight: FontWeight.bold)))
+            ])));
+  }
+
+  Widget _dontHaveAccountWidgets() {
+    return SizedBox(
+      width: MediaQuery.of(context).size.width * 0.5,
+      child: Wrap(alignment: WrapAlignment.center, children: [
+        cambriaText(
+            text: 'Don\'t Have an Account?',
+            textStyle: blackBoldStyle(size: 20)),
+        TextButton(
+            onPressed: () {
+              GoRouter.of(context).go('/register');
+            },
+            child: cambriaText(
+                text: 'Register Now',
+                textStyle: const TextStyle(
+                    fontSize: 17,
+                    decoration: TextDecoration.underline,
+                    color: CustomColors.fuschia,
+                    fontWeight: FontWeight.bold)))
+      ]),
+    );
   }
 }

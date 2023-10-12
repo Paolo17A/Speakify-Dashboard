@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'date_time_widget.dart';
+
 PreferredSizeWidget appBarTitle() {
   return AppBar(
       title: Row(
@@ -11,6 +13,11 @@ PreferredSizeWidget appBarTitle() {
             child:
                 Text('SPEAKIFY', style: TextStyle(fontWeight: FontWeight.bold)),
           ),
+          const Expanded(
+              child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [DateTimeDisplay()],
+          ))
         ],
       ),
       automaticallyImplyLeading: false);

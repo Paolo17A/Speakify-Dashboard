@@ -99,6 +99,8 @@ class _LessonsScreenState extends State<LessonsScreen> {
                                           MediaQuery.of(context).size.width *
                                               0.05,
                                       children: customLessons.map((lesson) {
+                                        final lessondata = lesson.data()
+                                            as Map<dynamic, dynamic>;
                                         return SizedBox(
                                           width: MediaQuery.of(context)
                                                   .size
@@ -110,30 +112,14 @@ class _LessonsScreenState extends State<LessonsScreen> {
                                               0.15,
                                           child: ElevatedButton(
                                               onPressed: () {
-                                                GoRouter.of(context).go(
-                                                    '/lessons/editLesson',
-                                                    extra: {
-                                                      'additionalResources':
-                                                          (lesson.data() as Map<
-                                                                  dynamic,
-                                                                  dynamic>)[
-                                                              'additionalResources'],
-                                                      'lessonID': lesson.id,
-                                                      'lessonTitle':
-                                                          (lesson.data() as Map<
-                                                                  dynamic,
-                                                                  dynamic>)[
-                                                              'lessonTitle'],
-                                                      'lessonContent':
-                                                          (lesson.data() as Map<
-                                                                  dynamic,
-                                                                  dynamic>)[
-                                                              'lessonContent']
+                                                GoRouter.of(context).goNamed(
+                                                    'editLesson',
+                                                    pathParameters: {
+                                                      'lessonID': lesson.id
                                                     });
                                               },
                                               child: Text(
-                                                (lesson.data() as Map<dynamic,
-                                                    dynamic>)['lessonTitle'],
+                                                lessondata['lessonTitle'],
                                                 textAlign: TextAlign.center,
                                                 style: const TextStyle(
                                                     fontSize: 24,

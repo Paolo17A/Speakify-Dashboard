@@ -24,13 +24,13 @@ class BoolChoicesRadioWidgetState extends State<BoolChoicesRadioWidget> {
     });
   }
 
-  void ResetChoice() {
+  void resetChoice() {
     setState(() {
       _choice = null;
     });
   }
 
-  void SetChoice(bool choice) {
+  void setChoice(bool choice) {
     setState(() {
       _choice = choice;
     });

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:speechlab_dashboard/widgets/custom_miscellaneous_widgets.dart';
+import 'package:speechlab_dashboard/widgets/custom_text_widgets.dart';
 
 class Welcome extends StatelessWidget {
   const Welcome({super.key});
@@ -17,11 +19,7 @@ class Welcome extends StatelessWidget {
               children: [
                 Padding(
                   padding: const EdgeInsets.only(top: 75, bottom: 75),
-                  child: CircleAvatar(
-                    radius: 150,
-                    backgroundColor: Colors.transparent,
-                    child: Image.asset('assets/images/speechlab_logo.png'),
-                  ),
+                  child: speechLabLogo(size: 150),
                 ),
                 const SizedBox(height: 100),
                 ElevatedButton(
@@ -33,15 +31,20 @@ class Welcome extends StatelessWidget {
                     onPressed: () {
                       GoRouter.of(context).go('/register');
                     },
-                    child: const Text('GET STARTED')),
+                    child:
+                        Text('GET STARTED', style: whiteBoldStyle(size: 30))),
                 const SizedBox(height: 20),
                 TextButton(
                     onPressed: () {
                       GoRouter.of(context).go('/login');
                     },
-                    child: const Text('I ALREADY HAVE AN ACCOUNT',
-                        style: TextStyle(
-                            color: Colors.black, fontWeight: FontWeight.bold)))
+                    child: cambriaText(
+                        text: 'I ALREADY HAVE AN ACCOUNT',
+                        textStyle: const TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                            decoration: TextDecoration.underline)))
               ],
             ),
           )),

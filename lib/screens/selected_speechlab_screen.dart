@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:speechlab_dashboard/models/speech_model.dart';
@@ -7,8 +9,8 @@ import 'package:speechlab_dashboard/widgets/appbar_title_widget.dart';
 import '../widgets/left_navigator_widget.dart';
 
 class SelectedSpeechLabScreen extends StatefulWidget {
-  final int currentSpeechLevelReq;
-  final SpeechModel selectedLevel;
+  final String currentSpeechLevelReq;
+  final String selectedLevel;
   const SelectedSpeechLabScreen(
       {super.key,
       required this.currentSpeechLevelReq,
@@ -22,6 +24,16 @@ class SelectedSpeechLabScreen extends StatefulWidget {
 class _SelectedSpeechLabScreenState extends State<SelectedSpeechLabScreen> {
   bool _isLoading = true;
   List<DocumentSnapshot> _userDocs = [];
+
+  late int currentSpeechLevelReq;
+  late SpeechModel selectedLevel;
+
+  @override
+  void initState() {
+    super.initState();
+    currentSpeechLevelReq = int.parse(widget.currentSpeechLevelReq);
+    selectedLevel = SpeechModel.fromJson(jsonDecode(widget.selectedLevel));
+  }
 
   @override
   void didChangeDependencies() {
@@ -40,9 +52,9 @@ class _SelectedSpeechLabScreenState extends State<SelectedSpeechLabScreen> {
         return data.containsKey('userType') &&
             data['userType'] == 'STUDENT' &&
             data.containsKey('speechLesson') &&
-            data['speechLesson'] >= widget.currentSpeechLevelReq &&
+            data['speechLesson'] >= currentSpeechLevelReq &&
             (data['speechResults'] as Map<dynamic, dynamic>)
-                .containsKey(widget.currentSpeechLevelReq.toString());
+                .containsKey(currentSpeechLevelReq.toString());
       }).toList();
       setState(() {
         _isLoading = false;
@@ -73,7 +85,7 @@ class _SelectedSpeechLabScreenState extends State<SelectedSpeechLabScreen> {
                           child: Column(children: [
                         Padding(
                             padding: const EdgeInsets.all(20),
-                            child: Text(widget.selectedLevel.category,
+                            child: Text(selectedLevel.category,
                                 textAlign: TextAlign.center,
                                 style: const TextStyle(
                                     color: Color.fromARGB(255, 60, 19, 97),
@@ -163,7 +175,7 @@ class _SelectedSpeechLabScreenState extends State<SelectedSpeechLabScreen> {
                                                                     child: ElevatedButton(
                                                                         onPressed: () => displaySpeechResultsDialogue(
                                                                               context,
-                                                                              speechCategories[widget.currentSpeechLevelReq - 1].sentences,
+                                                                              speechCategories[currentSpeechLevelReq - 1].sentences,
                                                                               speechResults[widget.currentSpeechLevelReq.toString()]['confidenceScores'],
                                                                               (_userDocs[index].data()! as Map<dynamic, dynamic>)['profileImageURL'],
                                                                               '${(_userDocs[index].data()! as Map<dynamic, dynamic>)['firstName']} ${(_userDocs[index].data()! as Map<dynamic, dynamic>)['lastName']}',

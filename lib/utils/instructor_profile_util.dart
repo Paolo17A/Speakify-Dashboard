@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:speechlab_dashboard/widgets/custom_text_widgets.dart';
 
 void displayInstructorDialogue(BuildContext context, String profileImageURL,
     String instructorName, bool isCurrentUser) async {
@@ -27,18 +28,14 @@ void displayInstructorDialogue(BuildContext context, String profileImageURL,
                     : CircleAvatar(
                         radius: 50,
                         backgroundColor: Colors.white,
-                        backgroundImage:
-                            NetworkImage(profileImageURL, scale: 1)),
+                        backgroundImage: NetworkImage(profileImageURL)),
                 Padding(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 20, vertical: 30),
                     child: Text(
                       instructorName,
                       textAlign: TextAlign.center,
-                      style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 40,
-                          fontWeight: FontWeight.bold),
+                      style: whiteBoldStyle(size: 40),
                     )),
                 const SizedBox(height: 50),
                 if (isCurrentUser)
@@ -47,13 +44,10 @@ void displayInstructorDialogue(BuildContext context, String profileImageURL,
                         GoRouter.of(context).pop();
                         GoRouter.of(context).go('/instructors/edit');
                       },
-                      child: const Padding(
-                        padding: EdgeInsets.all(30),
+                      child: Padding(
+                        padding: const EdgeInsets.all(30),
                         child: Text('EDIT PROFILE',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20)),
+                            style: whiteBoldStyle(size: 20)),
                       ))
               ]))));
 }
