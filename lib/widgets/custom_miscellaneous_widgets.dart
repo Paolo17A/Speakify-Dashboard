@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:speechlab_dashboard/utils/color_util.dart';
 
+import 'custom_padding_widgets.dart';
+import 'custom_text_widgets.dart';
+
 Widget speechLabLogo({double? size}) {
   return CircleAvatar(
     radius: size,
@@ -48,4 +51,63 @@ Widget authenticationDesignImages(BuildContext context) {
           Expanded(child: Image.asset('assets/images/dashboard_welcome.png')),
         ],
       ));
+}
+
+Widget lessonEntryWithActionsContainer(BuildContext context,
+    {required String label,
+    required Function editFunction,
+    required Function deleteFunction,
+    double? height = 60}) {
+  return SizedBox(
+    width: double.infinity,
+    height: height,
+    child: Container(
+        decoration: BoxDecoration(
+            color: CustomColors.mercury,
+            border: Border.all(color: CustomColors.wine),
+            borderRadius: BorderRadius.circular(10)),
+        child: all8Pix(Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            SizedBox(
+              width: MediaQuery.of(context).size.width * 0.6,
+              child: cambriaText(
+                  text: label,
+                  textStyle: const TextStyle(
+                      color: CustomColors.wine,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 28)),
+            ),
+            SizedBox(
+              width: MediaQuery.of(context).size.width * 0.1,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  SizedBox(
+                    height: 55,
+                    child: ElevatedButton(
+                        onPressed: () => editFunction(),
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: CustomColors.wine,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(60))),
+                        child: const Icon(Icons.edit)),
+                  ),
+                  const SizedBox(width: 10),
+                  SizedBox(
+                    height: 55,
+                    child: ElevatedButton(
+                        onPressed: () => deleteFunction(),
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: CustomColors.wine,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(60))),
+                        child: const Icon(Icons.delete)),
+                  )
+                ],
+              ),
+            )
+          ],
+        ))),
+  );
 }

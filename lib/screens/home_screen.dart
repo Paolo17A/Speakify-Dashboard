@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:speechlab_dashboard/widgets/active_students_widget.dart';
 import 'package:speechlab_dashboard/widgets/appbar_title_widget.dart';
 import 'package:speechlab_dashboard/widgets/custom_container_widgets.dart';
-import 'package:speechlab_dashboard/widgets/custom_text_widgets.dart';
 import 'package:speechlab_dashboard/widgets/left_navigator_widget.dart';
 import 'package:speechlab_dashboard/widgets/recent_activities_widget.dart';
 
@@ -57,18 +56,20 @@ class _HomeScreenState extends State<HomeScreen> {
               lefNavigator(context, 0),
               SizedBox(
                 width: MediaQuery.of(context).size.width * 0.6,
-                child: Column(children: [
-                  _homeDashboardRowWidgets(),
-                  const Divider(
-                    thickness: 4,
-                    color: Color.fromARGB(255, 60, 19, 97),
-                  ),
-                  _recentActivityWidget()
-                ]),
+                child: SingleChildScrollView(
+                  child: Column(children: [
+                    _homeDashboardRowWidgets(),
+                    const Divider(
+                      thickness: 4,
+                      color: CustomColors.oldPurple,
+                    ),
+                    const RecentActiviesWidget()
+                  ]),
+                ),
               ),
               Container(
                   width: MediaQuery.of(context).size.width * 0.2,
-                  color: CustomColors.darkWine,
+                  color: CustomColors.love,
                   child: const ActiveStudentsWidget())
             ])));
   }
@@ -90,18 +91,5 @@ class _HomeScreenState extends State<HomeScreen> {
             GoRouter.of(context).go('/ranking');
           }, 'RANKING')
         ]));
-  }
-
-  Widget _recentActivityWidget() {
-    return Column(children: [
-      Padding(
-        padding: EdgeInsets.symmetric(
-            horizontal: MediaQuery.of(context).size.width * 0.02),
-        child: Row(
-          children: [headerText(text: 'RECENT ACTIVITIES')],
-        ),
-      ),
-      const RecentActiviesWidget()
-    ]);
   }
 }

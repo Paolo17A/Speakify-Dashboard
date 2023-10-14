@@ -56,13 +56,17 @@ class StudentsSectionsScreen extends StatelessWidget {
                             MediaQuery.of(context).size.width * 0.25,
                             MediaQuery.of(context).size.width * 0.15, () {
                           GoRouter.of(context).goNamed('selectedSection',
-                              pathParameters: {'section': 'AB Broad 3A'});
+                              pathParameters: {
+                                'selectedSection': 'AB Broad 3A'
+                              });
                         }, '3A - AB BROAD'),
                         homeDashboardRowButton(
                             MediaQuery.of(context).size.width * 0.25,
                             MediaQuery.of(context).size.width * 0.15, () {
                           GoRouter.of(context).goNamed('selectedSection',
-                              pathParameters: {'section': 'AB Broad 3B'});
+                              pathParameters: {
+                                'selectedSection': 'AB Broad 3B'
+                              });
                         }, '3B - AB BROAD'),
                       ],
                     ),
@@ -77,13 +81,17 @@ class StudentsSectionsScreen extends StatelessWidget {
                             MediaQuery.of(context).size.width * 0.25,
                             MediaQuery.of(context).size.width * 0.15, () {
                           GoRouter.of(context).goNamed('selectedSection',
-                              pathParameters: {'section': 'AB Broad 4A'});
+                              pathParameters: {
+                                'selectedSection': 'AB Broad 4A'
+                              });
                         }, '4A - AB BROAD'),
                         homeDashboardRowButton(
                             MediaQuery.of(context).size.width * 0.25,
                             MediaQuery.of(context).size.width * 0.15, () {
                           GoRouter.of(context).goNamed('selectedSection',
-                              pathParameters: {'section': 'AB Broad 4B'});
+                              pathParameters: {
+                                'selectedSection': 'AB Broad 4B'
+                              });
                         }, '4B - AB BROAD'),
                       ],
                     ),

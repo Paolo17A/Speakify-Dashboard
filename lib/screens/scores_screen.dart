@@ -1,13 +1,15 @@
 import 'dart:convert';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:speechlab_dashboard/models/speech_model.dart';
+import 'package:speechlab_dashboard/utils/color_util.dart';
 import 'package:speechlab_dashboard/widgets/appbar_title_widget.dart';
+import 'package:speechlab_dashboard/widgets/custom_buttons_widget.dart';
 import 'package:speechlab_dashboard/widgets/custom_container_widgets.dart';
+import 'package:speechlab_dashboard/widgets/custom_padding_widgets.dart';
+import 'package:speechlab_dashboard/widgets/custom_text_widgets.dart';
 import 'package:speechlab_dashboard/widgets/left_navigator_widget.dart';
-//import '../models/lesson_model.dart';
 
 class ScoresScreen extends StatefulWidget {
   const ScoresScreen({super.key});
@@ -18,18 +20,20 @@ class ScoresScreen extends StatefulWidget {
 
 class _ScoresScreenState extends State<ScoresScreen> {
   bool _isLoading = true;
+  bool _isInitialized = false;
   bool _viewingQuizScores = true;
   List<DocumentSnapshot> allCustomQuizzes = [];
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    if (_viewingQuizScores == true) {
-      getCustomQuizzes();
-    }
+    getCustomQuizzes();
   }
 
   void getCustomQuizzes() async {
+    if (_isInitialized) {
+      return;
+    }
     final scaffoldMessenger = ScaffoldMessenger.of(context);
     try {
       final customQuizzes = await FirebaseFirestore.instance
@@ -39,6 +43,7 @@ class _ScoresScreenState extends State<ScoresScreen> {
       allCustomQuizzes = customQuizzes.docs;
       setState(() {
         _isLoading = false;
+        _isInitialized = true;
       });
     } catch (error) {
       scaffoldMessenger.showSnackBar(
@@ -56,56 +61,32 @@ class _ScoresScreenState extends State<ScoresScreen> {
               context,
               switchedLoadingContainer(
                   _isLoading,
-                  SingleChildScrollView(
+                  all8Pix(SingleChildScrollView(
                       child: Column(children: [
+                    SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.6,
+                        child: Column(children: [
+                          cambriaWineHeaderText(text: 'SCORING RESULTS'),
+                          const Divider(
+                            thickness: 5,
+                            color: CustomColors.darkWine,
+                          )
+                        ])),
                     Padding(
-                        padding: const EdgeInsets.all(40),
+                        padding: const EdgeInsets.all(20),
                         child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              SizedBox(
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.5,
-                                  child: Center(
-                                      child: Column(children: [
-                                    Text(
-                                        _viewingQuizScores
-                                            ? 'ALL QUIZ LESSONS'
-                                            : 'ALL SPEECHLAB LEVELS',
-                                        textAlign: TextAlign.center,
-                                        style: const TextStyle(
-                                            color:
-                                                Color.fromARGB(255, 60, 19, 97),
-                                            fontSize: 70,
-                                            fontWeight: FontWeight.bold)),
-                                    const Divider(thickness: 3)
-                                  ]))),
-                              SizedBox(
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.15,
-                                  height: 60,
-                                  child: ElevatedButton(
-                                      onPressed: () {
-                                        setState(() {
-                                          _viewingQuizScores =
-                                              !_viewingQuizScores;
-                                          if (_viewingQuizScores == true) {
-                                            getCustomQuizzes();
-                                          }
-                                        });
-                                      },
-                                      style: ElevatedButton.styleFrom(
-                                          shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(30))),
-                                      child: Text(
-                                          _viewingQuizScores
-                                              ? 'VIEW SPEECHLAB SCORES'
-                                              : 'VIEW QUIZ SCORES',
-                                          textAlign: TextAlign.center,
-                                          style: const TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 20))))
+                              scoreOptionButton(context,
+                                  label: 'Lesson Quiz Performance',
+                                  isSelected: _viewingQuizScores, onPress: () {
+                                setState(() => _viewingQuizScores = true);
+                              }),
+                              scoreOptionButton(context,
+                                  label: 'SpeechLab Performance',
+                                  isSelected: !_viewingQuizScores, onPress: () {
+                                setState(() => _viewingQuizScores = false);
+                              }),
                             ])),
                     Padding(
                         padding: const EdgeInsets.symmetric(
@@ -113,111 +94,48 @@ class _ScoresScreenState extends State<ScoresScreen> {
                         child: _viewingQuizScores
                             ? _quizzesWidget()
                             : _speechScoresWidget())
-                  ]))))
+                  ])))))
         ]));
   }
 
   Widget _quizzesWidget() {
-    /*Wrap(
-          spacing: MediaQuery.of(context).size.width * 0.05,
-          runSpacing: MediaQuery.of(context).size.width * 0.05,
-          children: allLessons.asMap().entries.map((entry) {
-            final int index = entry.key;
-            final LessonModel lesson = entry.value;
-
-            return SizedBox(
-                width: MediaQuery.of(context).size.width * 0.15,
-                height: MediaQuery.of(context).size.width * 0.15,
-                child: ElevatedButton(
-                    onPressed: () {
-                      GoRouter.of(context).go('/scores/selectedQuiz', extra: {
-                        'currentQuizLevelReq': index + 1,
-                        'selectedQuiz': lesson
-                      });
-                    },
-                    child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Padding(
-                              padding: const EdgeInsets.all(20),
-                              child: Text('Lesson ${index + 1}',
-                                  style: const TextStyle(
-                                      fontSize: 30,
-                                      fontWeight: FontWeight.bold))),
-                          Expanded(
-                              child: Center(
-                                  child: Text(lesson.title,
-                                      textAlign: TextAlign.center,
-                                      style: const TextStyle(fontSize: 20))))
-                        ])));
-          }).toList(),
-        ),
-        const Padding(
-          padding: EdgeInsets.symmetric(vertical: 14),
-          child: Divider(
-            thickness: 4,
-          ),
-        ),*/
-    return SizedBox(
-      width: double.infinity,
-      child: Wrap(
-          alignment: WrapAlignment.start,
-          runAlignment: WrapAlignment.start,
-          spacing: MediaQuery.of(context).size.width * 0.05,
-          runSpacing: MediaQuery.of(context).size.width * 0.05,
-          children: allCustomQuizzes
-              .map((customQuiz) => SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.15,
-                    height: MediaQuery.of(context).size.width * 0.15,
-                    child: ElevatedButton(
-                        onPressed: () {
-                          GoRouter.of(context)
-                              .goNamed('selectedQuiz', pathParameters: {
-                            'quizTitle': customQuiz.id,
-                            'serializedQuizQuestions': (customQuiz.data()
-                                as Map<dynamic, dynamic>)['quizContent']
-                          });
-                        },
-                        child: Text(customQuiz.id)),
-                  ))
-              .toList()),
-    );
+    return loveWineContainer(Column(
+        children: allCustomQuizzes
+            .map((customQuiz) => vertical10PixHorizontal30Pix(context,
+                child:
+                    longEntryButton(context, label: customQuiz.id, onPress: () {
+                  final quizData = customQuiz.data() as Map<dynamic, dynamic>;
+                  GoRouter.of(context).goNamed('selectedQuiz', pathParameters: {
+                    'quizTitle': customQuiz.id,
+                    'serializedQuizQuestions': quizData['quizContent']
+                  });
+                })))
+            .toList()));
   }
 
   Widget _speechScoresWidget() {
-    return Wrap(
-      spacing: MediaQuery.of(context).size.width * 0.05,
-      runSpacing: MediaQuery.of(context).size.width * 0.05,
-      children: speechCategories.asMap().entries.map((entry) {
-        final int index = entry.key;
-        final SpeechModel level = entry.value;
-
-        return SizedBox(
-            width: MediaQuery.of(context).size.width * 0.25,
-            height: MediaQuery.of(context).size.height * 0.15,
-            child: ElevatedButton(
-                onPressed: () {
-                  GoRouter.of(context)
-                      .goNamed('selectedSpeechLab', pathParameters: {
-                    'currentSpeechLevelReq': (index + 1).toString(),
-                    'selectedLevel': jsonEncode(level.toJson())
-                  });
-                },
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Padding(
-                          padding: const EdgeInsets.all(20),
-                          child: Text('Level ${index + 1}',
-                              style: const TextStyle(
-                                  fontSize: 34, fontWeight: FontWeight.bold))),
-                      Expanded(
-                          child: Center(
-                              child: Text(level.category,
-                                  textAlign: TextAlign.center,
-                                  style: const TextStyle(fontSize: 25))))
-                    ])));
-      }).toList(),
+    return loveWineContainer(
+      Center(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 15),
+          child: Wrap(
+            spacing: MediaQuery.of(context).size.width * 0.02,
+            runSpacing: MediaQuery.of(context).size.width * 0.01,
+            children: speechCategories.asMap().entries.map((entry) {
+              final int index = entry.key;
+              final SpeechModel level = entry.value;
+              return shortEntryButton(context,
+                  lessonIndex: index + 1,
+                  lessonName: level.category,
+                  onPress: () => GoRouter.of(context)
+                          .goNamed('selectedSpeechLab', pathParameters: {
+                        'currentSpeechLevelReq': (index + 1).toString(),
+                        'selectedLevel': jsonEncode(level.toJson())
+                      }));
+            }).toList(),
+          ),
+        ),
+      ),
     );
   }
 }

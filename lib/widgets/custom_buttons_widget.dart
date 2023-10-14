@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:speechlab_dashboard/widgets/custom_padding_widgets.dart';
 import 'package:speechlab_dashboard/widgets/custom_text_widgets.dart';
 
 import '../utils/color_util.dart';
@@ -28,10 +29,103 @@ Widget homeDashboardRowButton(
             onPress();
           },
           style: ElevatedButton.styleFrom(
-              backgroundColor: CustomColors.lavender,
-              side: const BorderSide(color: CustomColors.lilac, width: 2)),
-          child: Text(label,
-              textAlign: TextAlign.center, style: blackBoldStyle(size: 30)),
+              backgroundColor: CustomColors.orchid,
+              side: const BorderSide(color: CustomColors.wine, width: 2)),
+          child: cambriaText(text: label, textStyle: whiteBoldStyle(size: 30)),
         )),
+  );
+}
+
+Widget scoreOptionButton(BuildContext context,
+    {required String label,
+    required bool isSelected,
+    required Function onPress}) {
+  return SizedBox(
+      width: MediaQuery.of(context).size.width * 0.25,
+      height: 60,
+      child: ElevatedButton(
+          onPressed: () => onPress(),
+          style: ElevatedButton.styleFrom(
+              backgroundColor:
+                  isSelected ? CustomColors.mercury : CustomColors.orchid,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10))),
+          child: cambriaText(
+              text: 'Lesson Quiz Performance',
+              textStyle: TextStyle(
+                  color:
+                      isSelected ? CustomColors.orchid : CustomColors.mercury,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20))));
+}
+
+Widget longEntryButton(BuildContext context,
+    {required String label, required Function onPress, double? height = 80}) {
+  return SizedBox(
+    width: double.infinity,
+    height: height,
+    child: ElevatedButton(
+        onPressed: () => onPress(),
+        style: ElevatedButton.styleFrom(
+            side: const BorderSide(color: CustomColors.wine),
+            backgroundColor: CustomColors.mercury),
+        child: all8Pix(Row(
+          children: [
+            SizedBox(
+              width: MediaQuery.of(context).size.width * 0.6,
+              child: cambriaText(
+                  text: label,
+                  textStyle: const TextStyle(
+                      color: CustomColors.wine,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 28)),
+            )
+          ],
+        ))),
+  );
+}
+
+Widget shortEntryButton(BuildContext context,
+    {required int lessonIndex,
+    required String lessonName,
+    required Function onPress,
+    double? height = 100}) {
+  return SizedBox(
+    width: MediaQuery.of(context).size.width * 0.35,
+    height: height,
+    child: ElevatedButton(
+      onPressed: () => onPress(),
+      style: ElevatedButton.styleFrom(
+          side: const BorderSide(color: CustomColors.wine),
+          backgroundColor: CustomColors.mercury),
+      child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Row(
+            children: [
+              cambriaText(
+                  text: 'Lesson $lessonIndex: $lessonName',
+                  textStyle: const TextStyle(
+                      color: CustomColors.wine,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 28)),
+            ],
+          )),
+    ),
+  );
+}
+
+Widget addEntryButton(BuildContext context, {required Function onPress}) {
+  return vertical10PixHorizontal30Pix(
+    context,
+    child: SizedBox(
+      width: MediaQuery.of(context).size.width * 0.3,
+      height: 75,
+      child: ElevatedButton(
+          onPressed: () => onPress(),
+          style: ElevatedButton.styleFrom(backgroundColor: CustomColors.wine),
+          child: cambriaText(
+              text: 'ADD NEW LESSON',
+              textStyle: const TextStyle(color: Colors.white, fontSize: 30))),
+    ),
   );
 }

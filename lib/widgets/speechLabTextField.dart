@@ -1,6 +1,7 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:speechlab_dashboard/utils/color_util.dart';
 
 class SpeechLabTextField extends StatefulWidget {
   final String text;
@@ -32,9 +33,10 @@ class _SpeechLabTextFieldState extends State<SpeechLabTextField> {
     return TextField(
         controller: widget.controller,
         obscureText: isObscured,
-        cursorColor: Colors.black,
+        cursorColor: CustomColors.orchid,
         style: TextStyle(color: Colors.black.withOpacity(0.9)),
         decoration: InputDecoration(
+            focusColor: CustomColors.orchid,
             alignLabelWithHint: true,
             labelText: widget.text,
             labelStyle: TextStyle(

@@ -7,6 +7,7 @@ import 'package:speechlab_dashboard/widgets/bool_choices_radio_widget.dart';
 import 'package:speechlab_dashboard/widgets/string_choices_radio_widget.dart';
 import 'package:speechlab_dashboard/widgets/speechLabTextField.dart';
 import '../widgets/appbar_title_widget.dart';
+import '../widgets/custom_container_widgets.dart';
 import '../widgets/left_navigator_widget.dart';
 
 class AddQuizScreen extends StatefulWidget {
@@ -205,10 +206,10 @@ class _AddQuizScreenState extends State<AddQuizScreen> {
           currentQuestion <= easyQuestions.length - 1) {
         Map<dynamic, dynamic> selectedQuestion = easyQuestions[currentQuestion];
         _questionController.text = selectedQuestion['question'];
-        _choicesControllers[0].text = selectedQuestion['options']['a'];
-        _choicesControllers[1].text = selectedQuestion['options']['b'];
-        _choicesControllers[2].text = selectedQuestion['options']['c'];
-        _choicesControllers[3].text = selectedQuestion['options']['d'];
+        for (int i = 0; i < _choicesControllers.length; i++) {
+          _choicesControllers[i].text =
+              selectedQuestion['options'][choiceLetters[i]];
+        }
         _correctChoiceString = selectedQuestion['answer'];
         stringChoice.currentState?.setChoice(_correctChoiceString!);
       } else if (currentDifficulty == 'Average' &&
@@ -291,194 +292,200 @@ class _AddQuizScreenState extends State<AddQuizScreen> {
         body: Row(
           children: [
             lefNavigator(context, 0),
-            Container(
-              width: MediaQuery.of(context).size.width * 0.8,
-              height: double.infinity,
-              color: Colors.white,
-              child: Stack(children: [
-                Padding(
-                    padding: const EdgeInsets.all(15),
-                    child: Column(
-                      children: [
-                        const Row(children: [
-                          Text('QUIZ TITLE',
-                              style: TextStyle(
-                                  fontSize: 30, fontWeight: FontWeight.bold))
-                        ]),
-                        SpeechLabTextField(
-                            text: 'Quiz Title',
-                            controller: _titleController,
-                            textInputType: TextInputType.text,
-                            displayPrefixIcon: null),
-                        const SizedBox(height: 30),
-                        Container(
-                          width: MediaQuery.of(context).size.width * 0.6,
-                          height: MediaQuery.of(context).size.height * 0.7,
-                          decoration: BoxDecoration(
-                              color: Colors.deepPurple.withOpacity(0.4),
-                              borderRadius: BorderRadius.circular(20)),
-                          child: Padding(
-                              padding: const EdgeInsets.all(26),
-                              child: Column(
-                                children: [
-                                  Row(
-                                    children: [
-                                      Text(
-                                          '$currentDifficulty Question #${currentQuestion + 1}',
-                                          style: const TextStyle(
-                                              color: Colors.deepPurple,
-                                              fontSize: 25,
-                                              fontWeight: FontWeight.bold)),
-                                    ],
-                                  ),
-                                  const SizedBox(height: 5),
-                                  speechLabTextField(
-                                      'Question',
-                                      _questionController,
-                                      TextInputType.text,
-                                      null),
-                                  const SizedBox(height: 15),
-                                  if (currentDifficulty == 'Easy')
-                                    ListView.builder(
-                                        shrinkWrap: true,
-                                        itemCount: _choicesControllers.length,
-                                        itemBuilder: (context, index) {
-                                          return Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                                vertical: 3),
-                                            child: Row(children: [
-                                              SizedBox(
-                                                width: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.05,
-                                                child: Text(
-                                                  choiceLetters[index],
-                                                  textAlign: TextAlign.center,
-                                                  style: const TextStyle(
-                                                      color: Colors.deepPurple,
-                                                      fontSize: 20,
-                                                      fontWeight:
-                                                          FontWeight.bold),
-                                                ),
-                                              ),
-                                              SizedBox(
-                                                width: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.5,
-                                                child: speechLabTextField(
-                                                    'Choice',
-                                                    _choicesControllers[index],
-                                                    TextInputType.text,
-                                                    null),
-                                              )
-                                            ]),
-                                          );
-                                        }),
-                                  if (currentDifficulty == 'Easy')
-                                    Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 70, vertical: 20),
-                                        child: StringChoicesRadioWidget(
-                                            key: stringChoice,
-                                            initialString: _correctChoiceString,
-                                            choiceSelectCallback: (stringVal) {
-                                              if (stringVal != null) {
-                                                setState(() {
-                                                  _correctChoiceString =
-                                                      stringVal;
-                                                });
-                                              }
-                                            },
-                                            choiceLetters: choiceLetters)),
-                                  if (currentDifficulty == 'Average')
-                                    Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 70, vertical: 20),
-                                        child: BoolChoicesRadioWidget(
-                                            key: boolChoice,
-                                            initialBool: _correctChoiceBool,
-                                            choiceSelectCallback: (boolVal) {
-                                              if (boolVal != null) {
-                                                setState(() {
-                                                  _correctChoiceBool = boolVal;
-                                                });
-                                              }
-                                            })),
-                                  if (currentDifficulty == 'Difficult')
-                                    SizedBox(
-                                      width: MediaQuery.of(context).size.width *
-                                          0.5,
-                                      child: speechLabTextField(
-                                          'Correct Answer',
-                                          _identificationController,
-                                          TextInputType.text,
-                                          null),
+            bodyWidgetWhiteBG(
+                context,
+                stackedLoadingContainer(context, _isLoading, [
+                  Padding(
+                      padding: const EdgeInsets.all(15),
+                      child: Column(
+                        children: [
+                          _quizTitle(),
+                          Container(
+                            width: MediaQuery.of(context).size.width * 0.6,
+                            height: MediaQuery.of(context).size.height * 0.7,
+                            decoration: BoxDecoration(
+                                color: Colors.deepPurple.withOpacity(0.4),
+                                borderRadius: BorderRadius.circular(20)),
+                            child: Padding(
+                                padding: const EdgeInsets.all(26),
+                                child: Column(
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Text(
+                                            '$currentDifficulty Question #${currentQuestion + 1}',
+                                            style: const TextStyle(
+                                                color: Colors.deepPurple,
+                                                fontSize: 25,
+                                                fontWeight: FontWeight.bold)),
+                                      ],
                                     ),
-                                  Expanded(
-                                    child: Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 75),
-                                      child: Row(
+                                    const SizedBox(height: 5),
+                                    speechLabTextField(
+                                        'Question',
+                                        _questionController,
+                                        TextInputType.text,
+                                        null),
+                                    const SizedBox(height: 15),
+                                    if (currentDifficulty == 'Easy')
+                                      _easyQuestionInput(),
+                                    if (currentDifficulty == 'Average')
+                                      _averageQuestionInput(),
+                                    if (currentDifficulty == 'Difficult')
+                                      _difficultQuestionInput(),
+                                    Expanded(
+                                      child: Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 75),
+                                        child: Column(
                                           mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
+                                              MainAxisAlignment.end,
                                           children: [
-                                            SizedBox(
-                                              width: MediaQuery.of(context)
-                                                      .size
-                                                      .width *
-                                                  0.15,
-                                              height: MediaQuery.of(context)
-                                                      .size
-                                                      .height *
-                                                  0.1,
-                                              child: ElevatedButton(
-                                                  onPressed: previousQuestion,
-                                                  child: const Text('PREVIOUS',
-                                                      style: TextStyle(
-                                                          color:
-                                                              Colors.white))),
-                                            ),
-                                            SizedBox(
-                                              width: MediaQuery.of(context)
-                                                      .size
-                                                      .width *
-                                                  0.15,
-                                              height: MediaQuery.of(context)
-                                                      .size
-                                                      .height *
-                                                  0.1,
-                                              child: ElevatedButton(
-                                                  onPressed: nextQuestion,
-                                                  child: Text(
-                                                      (currentDifficulty ==
-                                                                  'Difficult' &&
-                                                              currentQuestion ==
-                                                                  9)
-                                                          ? 'SUBMIT'
-                                                          : 'NEXT',
-                                                      style: const TextStyle(
-                                                          color:
-                                                              Colors.white))),
-                                            )
-                                          ]),
-                                    ),
-                                  )
-                                ],
-                              )),
-                        )
-                      ],
-                    )),
-                if (_isLoading)
-                  Container(
-                      width: MediaQuery.of(context).size.width * 0.8,
-                      height: MediaQuery.of(context).size.height,
-                      color: Colors.black.withOpacity(0.5),
-                      child: const Center(child: CircularProgressIndicator()))
-              ]),
-            )
+                                            Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  SizedBox(
+                                                    width:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .width *
+                                                            0.15,
+                                                    height:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .height *
+                                                            0.1,
+                                                    child: ElevatedButton(
+                                                        onPressed:
+                                                            previousQuestion,
+                                                        child: const Text(
+                                                            'PREVIOUS',
+                                                            style: TextStyle(
+                                                                color: Colors
+                                                                    .white))),
+                                                  ),
+                                                  SizedBox(
+                                                    width:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .width *
+                                                            0.15,
+                                                    height:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .height *
+                                                            0.1,
+                                                    child: ElevatedButton(
+                                                        onPressed: nextQuestion,
+                                                        child: Text(
+                                                            (currentDifficulty ==
+                                                                        'Difficult' &&
+                                                                    currentQuestion ==
+                                                                        9)
+                                                                ? 'SUBMIT'
+                                                                : 'NEXT',
+                                                            style: const TextStyle(
+                                                                color: Colors
+                                                                    .white))),
+                                                  )
+                                                ]),
+                                          ],
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                )),
+                          )
+                        ],
+                      )),
+                ]))
           ],
         ));
+  }
+
+  Widget _quizTitle() {
+    return Column(children: [
+      const Row(children: [
+        Text('QUIZ TITLE',
+            style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold))
+      ]),
+      SpeechLabTextField(
+          text: 'Quiz Title',
+          controller: _titleController,
+          textInputType: TextInputType.text,
+          displayPrefixIcon: null),
+      const SizedBox(height: 30)
+    ]);
+  }
+
+  Widget _easyQuestionInput() {
+    return Column(
+      children: [
+        ListView.builder(
+            shrinkWrap: true,
+            itemCount: _choicesControllers.length,
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: const EdgeInsets.symmetric(vertical: 3),
+                child: Row(children: [
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.05,
+                    child: Text(
+                      choiceLetters[index],
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                          color: Colors.deepPurple,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.5,
+                    child: speechLabTextField('Choice',
+                        _choicesControllers[index], TextInputType.text, null),
+                  )
+                ]),
+              );
+            }),
+        Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 70, vertical: 20),
+            child: StringChoicesRadioWidget(
+                key: stringChoice,
+                initialString: _correctChoiceString,
+                choiceSelectCallback: (stringVal) {
+                  if (stringVal != null) {
+                    setState(() {
+                      _correctChoiceString = stringVal;
+                    });
+                  }
+                },
+                choiceLetters: choiceLetters)),
+      ],
+    );
+  }
+
+  Widget _averageQuestionInput() {
+    return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 70, vertical: 20),
+        child: BoolChoicesRadioWidget(
+            key: boolChoice,
+            initialBool: _correctChoiceBool,
+            choiceSelectCallback: (boolVal) {
+              if (boolVal != null) {
+                setState(() {
+                  _correctChoiceBool = boolVal;
+                });
+              }
+            }));
+  }
+
+  Widget _difficultQuestionInput() {
+    return SizedBox(
+      width: MediaQuery.of(context).size.width * 0.5,
+      child: speechLabTextField('Correct Answer', _identificationController,
+          TextInputType.text, null),
+    );
   }
 }

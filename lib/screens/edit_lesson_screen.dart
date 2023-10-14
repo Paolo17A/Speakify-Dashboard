@@ -2,7 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:speechlab_dashboard/utils/color_util.dart';
 import 'package:speechlab_dashboard/widgets/appbar_title_widget.dart';
+import 'package:speechlab_dashboard/widgets/custom_container_widgets.dart';
+import 'package:speechlab_dashboard/widgets/custom_padding_widgets.dart';
 import 'package:speechlab_dashboard/widgets/speechLabTextField.dart';
 
 import '../widgets/left_navigator_widget.dart';
@@ -160,102 +163,22 @@ class _EditLessonScreenState extends State<EditLessonScreen> {
         body: Row(
           children: [
             lefNavigator(context, 3),
-            Container(
-              width: MediaQuery.of(context).size.width * 0.8,
-              height: double.infinity,
-              color: Colors.white,
-              child: Stack(
-                children: [
+            bodyWidgetWhiteBG(
+                context,
+                stackedLoadingContainer(context, _isLoading, [
                   SingleChildScrollView(
-                      child: Padding(
-                    padding: const EdgeInsets.all(20),
-                    child: Column(
+                      child: all20Pix(
+                    Column(
                       children: [
-                        const Row(
-                          children: [
-                            Text('Lesson Title',
-                                style: TextStyle(fontWeight: FontWeight.bold)),
-                          ],
-                        ),
-                        speechLabTextField('Lesson Title', _titleController,
-                            TextInputType.text, null),
-                        const SizedBox(height: 25),
-                        const Row(
-                          children: [
-                            Text('Lesson Content',
-                                style: TextStyle(fontWeight: FontWeight.bold)),
-                          ],
-                        ),
-                        speechLabTextField('Lesson Content', _contentController,
-                            TextInputType.multiline, null),
+                        _lessonTitle(),
+                        _lessonContent(),
                         const SizedBox(height: 30),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            const Text('Additional Resources',
-                                style: TextStyle(fontWeight: FontWeight.bold)),
-                            TextButton(
-                                onPressed: () {
-                                  setState(() {
-                                    _fileNameControllers
-                                        .add(TextEditingController());
-                                    _downloadLinkControllers
-                                        .add(TextEditingController());
-                                  });
-                                },
-                                child: const Text('ADD',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold)))
-                          ],
-                        ),
-                        if (_downloadLinkControllers.isNotEmpty)
-                          ListView.builder(
-                              shrinkWrap: true,
-                              itemCount: _downloadLinkControllers.length,
-                              itemBuilder: (context, index) {
-                                return Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    SizedBox(
-                                      width: MediaQuery.of(context).size.width *
-                                          0.7,
-                                      child: Column(children: [
-                                        speechLabTextField(
-                                            'Name',
-                                            _fileNameControllers[index],
-                                            TextInputType.text,
-                                            null),
-                                        const SizedBox(height: 10),
-                                        speechLabTextField(
-                                            'URL',
-                                            _downloadLinkControllers[index],
-                                            TextInputType.url,
-                                            null),
-                                      ]),
-                                    ),
-                                    SizedBox(
-                                        width:
-                                            MediaQuery.of(context).size.width *
-                                                0.05,
-                                        child: ElevatedButton(
-                                          onPressed: () {
-                                            setState(() {
-                                              _fileNameControllers
-                                                  .removeAt(index);
-                                              _downloadLinkControllers
-                                                  .removeAt(index);
-                                            });
-                                          },
-                                          child: const Icon(Icons.delete,
-                                              color: Colors.white),
-                                        ))
-                                  ],
-                                );
-                              }),
+                        _additionalResources(),
                         const SizedBox(height: 20),
                         ElevatedButton(
                             onPressed: editCustomLesson,
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor: CustomColors.orchid),
                             child: const Text('SAVE CHANGES',
                                 style: TextStyle(
                                     color: Colors.white,
@@ -263,16 +186,92 @@ class _EditLessonScreenState extends State<EditLessonScreen> {
                       ],
                     ),
                   )),
-                  if (_isLoading)
-                    Container(
-                        width: MediaQuery.of(context).size.width * 0.8,
-                        height: MediaQuery.of(context).size.height,
-                        color: Colors.black.withOpacity(0.5),
-                        child: const Center(child: CircularProgressIndicator()))
-                ],
-              ),
-            )
+                ])),
           ],
         ));
+  }
+
+  Widget _lessonTitle() {
+    return Column(children: [
+      const Row(
+        children: [
+          Text('Lesson Title', style: TextStyle(fontWeight: FontWeight.bold)),
+        ],
+      ),
+      speechLabTextField(
+          'Lesson Title', _titleController, TextInputType.text, null),
+      const SizedBox(height: 25),
+    ]);
+  }
+
+  Widget _lessonContent() {
+    return Column(children: [
+      const Row(
+        children: [
+          Text('Lesson Content', style: TextStyle(fontWeight: FontWeight.bold)),
+        ],
+      ),
+      speechLabTextField(
+          'Lesson Content', _contentController, TextInputType.multiline, null),
+    ]);
+  }
+
+  Widget _additionalResources() {
+    return Column(children: [
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          const Text('Additional Resources',
+              style: TextStyle(fontWeight: FontWeight.bold)),
+          TextButton(
+              onPressed: () {
+                setState(() {
+                  _fileNameControllers.add(TextEditingController());
+                  _downloadLinkControllers.add(TextEditingController());
+                });
+              },
+              child: const Text('ADD',
+                  style: TextStyle(fontWeight: FontWeight.bold)))
+        ],
+      ),
+      if (_downloadLinkControllers.isNotEmpty)
+        ListView.builder(
+            shrinkWrap: true,
+            itemCount: _downloadLinkControllers.length,
+            itemBuilder: (context, index) {
+              return Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.7,
+                    child: Column(children: [
+                      speechLabTextField('Name', _fileNameControllers[index],
+                          TextInputType.text, null),
+                      const SizedBox(height: 10),
+                      speechLabTextField('URL', _downloadLinkControllers[index],
+                          TextInputType.url, null),
+                    ]),
+                  ),
+                  SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.05,
+                      height: 90,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          setState(() {
+                            _fileNameControllers.removeAt(index);
+                            _downloadLinkControllers.removeAt(index);
+                          });
+                        },
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: CustomColors.orchid),
+                        child: Transform.scale(
+                            scale: 2,
+                            child: const Icon(Icons.delete_rounded,
+                                color: Colors.white)),
+                      ))
+                ],
+              );
+            }),
+    ]);
   }
 }

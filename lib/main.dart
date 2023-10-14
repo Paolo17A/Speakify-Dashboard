@@ -18,6 +18,7 @@ import 'package:speechlab_dashboard/screens/selected_custom_quiz_screen.dart';
 import 'package:speechlab_dashboard/screens/selected_section_screen.dart';
 import 'package:speechlab_dashboard/screens/selected_speechlab_screen.dart';
 import 'package:speechlab_dashboard/screens/students_sections_screen.dart';
+import 'package:speechlab_dashboard/utils/color_util.dart';
 
 import 'screens/login_screen.dart';
 import 'screens/register_screen.dart';
@@ -330,11 +331,7 @@ class App extends StatelessWidget {
           seedColor: const Color.fromARGB(255, 60, 19, 97)),
       scaffoldBackgroundColor: const Color.fromARGB(255, 245, 245, 245),
       snackBarTheme: const SnackBarThemeData(backgroundColor: Colors.purple),
-      appBarTheme:
-          const AppBarTheme(backgroundColor: Color.fromARGB(255, 82, 48, 124)),
-      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-          backgroundColor: Color.fromARGB(255, 82, 48, 124),
-          selectedItemColor: Color.fromARGB(255, 120, 87, 161)),
+      appBarTheme: const AppBarTheme(backgroundColor: CustomColors.orchid),
       listTileTheme: const ListTileThemeData(
           iconColor: Color.fromARGB(255, 180, 145, 200),
           shape: RoundedRectangleBorder(
@@ -345,8 +342,8 @@ class App extends StatelessWidget {
                   const RoundedRectangleBorder(
                       borderRadius:
                           BorderRadiusDirectional.all(Radius.circular(10)))),
-              backgroundColor: MaterialStateProperty.all<Color>(
-                  const Color.fromARGB(255, 60, 19, 97)))));
+              backgroundColor:
+                  MaterialStateProperty.all<Color>(CustomColors.jam))));
 
   @override
   Widget build(BuildContext context) {

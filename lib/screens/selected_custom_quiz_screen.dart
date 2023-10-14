@@ -3,9 +3,13 @@ import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:speechlab_dashboard/widgets/appbar_title_widget.dart';
+import 'package:speechlab_dashboard/widgets/custom_container_widgets.dart';
+import 'package:speechlab_dashboard/widgets/custom_padding_widgets.dart';
 import 'package:speechlab_dashboard/widgets/left_navigator_widget.dart';
 
+import '../utils/color_util.dart';
 import '../utils/student_quiz_util.dart';
+import '../widgets/custom_text_widgets.dart';
 
 class SelectedCustomQuizScreen extends StatefulWidget {
   final String quizTitle;
@@ -61,158 +65,168 @@ class _SelectedCustomQuizScreenState extends State<SelectedCustomQuizScreen> {
     }
   }
 
+  bool _hasAnsweredThisQuiz(
+      Map<dynamic, dynamic> selectedQuiz, String difficulty) {
+    return selectedQuiz.containsKey(widget.quizTitle) &&
+        (selectedQuiz[widget.quizTitle] as Map<dynamic, dynamic>)
+            .containsKey(difficulty);
+  }
+
+  String _getQuizScoreFormatted(
+      Map<dynamic, dynamic> selectedQuiz, String difficulty) {
+    Map<dynamic, dynamic> quizData = selectedQuiz[widget.quizTitle];
+    final difficultyScore = quizData[difficulty]['score'];
+    final questionCount =
+        (quizData[difficulty]['answers'] as List<dynamic>).length;
+    return '$difficultyScore / $questionCount';
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appBarTitle(),
       body: Row(children: [
         lefNavigator(context, 0),
-        Container(
-          width: MediaQuery.of(context).size.width * 0.8,
-          height: double.infinity,
-          color: Colors.white,
-          child: _isLoading
-              ? const Center(child: CircularProgressIndicator())
-              : Padding(
-                  padding: const EdgeInsets.all(8),
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(20),
-                        child: Text(widget.quizTitle,
-                            textAlign: TextAlign.center,
-                            style: const TextStyle(
-                                color: Color.fromARGB(255, 60, 19, 97),
-                                fontSize: 70,
-                                fontWeight: FontWeight.bold)),
-                      ),
-                      allEligibleUsers.isNotEmpty
-                          ? Column(children: [
-                              Container(
-                                  color: const Color.fromARGB(255, 82, 48, 124),
-                                  child: Padding(
-                                      padding: const EdgeInsets.all(10),
-                                      child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceEvenly,
-                                          children: [
-                                            SizedBox(
-                                                width: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.30,
-                                                child: Text('Student Name',
-                                                    style: _headerStyle())),
-                                            SizedBox(
-                                                width: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.1,
-                                                child: Text('Easy Quiz',
-                                                    textAlign: TextAlign.center,
-                                                    style: _headerStyle())),
-                                            SizedBox(
-                                                width: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.1,
-                                                child: Text('Average Quiz',
-                                                    textAlign: TextAlign.center,
-                                                    style: _headerStyle())),
-                                            SizedBox(
-                                                width: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.1,
-                                                child: Text('Difficult Quiz',
-                                                    textAlign: TextAlign.center,
-                                                    style: _headerStyle()))
-                                          ]))),
-                              ListView.builder(
-                                  shrinkWrap: true,
-                                  itemCount: allEligibleUsers.length,
-                                  itemBuilder: (context, index) {
-                                    Map<dynamic, dynamic> quizResults =
-                                        (allEligibleUsers[index].data()! as Map<
-                                            dynamic,
-                                            dynamic>)['customQuizResults'];
-                                    return Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            vertical: 5),
-                                        child: Container(
-                                            height: 75,
-                                            color: const Color.fromARGB(
-                                                255, 103, 65, 150),
-                                            child: Padding(
-                                                padding:
-                                                    const EdgeInsets.all(6.0),
-                                                child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceEvenly,
-                                                    children: [
-                                                      SizedBox(
-                                                          width: MediaQuery.of(
-                                                                      context)
-                                                                  .size
-                                                                  .width *
-                                                              0.3,
-                                                          child: Text(
-                                                              '${(allEligibleUsers[index].data()! as Map<dynamic, dynamic>)['firstName']} ${(allEligibleUsers[index].data()! as Map<dynamic, dynamic>)['lastName']}',
-                                                              style:
-                                                                  _studentEntryStyle())),
-                                                      SizedBox(
-                                                          width: MediaQuery.of(
-                                                                      context)
-                                                                  .size
-                                                                  .width *
-                                                              0.1,
-                                                          child: _hasAnsweredThisQuiz(
-                                                                  quizResults,
-                                                                  'EASY')
-                                                              ? _quizResultEntry(
-                                                                  allEligibleUsers[
-                                                                      index],
-                                                                  'EASY')
-                                                              : _notAvailable()),
-                                                      SizedBox(
-                                                          width: MediaQuery.of(
-                                                                      context)
-                                                                  .size
-                                                                  .width *
-                                                              0.1,
-                                                          child: _hasAnsweredThisQuiz(
-                                                                  quizResults,
-                                                                  'AVERAGE')
-                                                              ? _quizResultEntry(
-                                                                  allEligibleUsers[
-                                                                      index],
-                                                                  'AVERAGE')
-                                                              : _notAvailable()),
-                                                      SizedBox(
-                                                          width: MediaQuery.of(
-                                                                      context)
-                                                                  .size
-                                                                  .width *
-                                                              0.1,
-                                                          child: _hasAnsweredThisQuiz(
-                                                                  quizResults,
-                                                                  'DIFFICULT')
-                                                              ? _quizResultEntry(
-                                                                  allEligibleUsers[
-                                                                      index],
-                                                                  'DIFFICULT')
-                                                              : _notAvailable())
-                                                    ]))));
-                                  })
-                            ])
-                          : const Center(
-                              child: Text(
-                                  'No student has done this custom lesson yet'))
-                    ],
-                  ),
-                ),
-        )
+        bodyWidgetWhiteBG(
+            context,
+            switchedLoadingContainer(
+                _isLoading,
+                all8Pix(Column(
+                  children: [
+                    SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.7,
+                        child: Column(children: [
+                          cambriaWineHeaderText(text: widget.quizTitle),
+                          const Divider(
+                            thickness: 5,
+                            color: CustomColors.darkWine,
+                          )
+                        ])),
+                    allEligibleUsers.isNotEmpty
+                        ? Column(children: [
+                            Container(
+                                color: const Color.fromARGB(255, 82, 48, 124),
+                                child: Padding(
+                                    padding: const EdgeInsets.all(10),
+                                    child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                        children: [
+                                          SizedBox(
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.30,
+                                              child: Text('Student Name',
+                                                  style: _headerStyle())),
+                                          SizedBox(
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.1,
+                                              child: Text('Easy Quiz',
+                                                  textAlign: TextAlign.center,
+                                                  style: _headerStyle())),
+                                          SizedBox(
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.1,
+                                              child: Text('Average Quiz',
+                                                  textAlign: TextAlign.center,
+                                                  style: _headerStyle())),
+                                          SizedBox(
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.1,
+                                              child: Text('Difficult Quiz',
+                                                  textAlign: TextAlign.center,
+                                                  style: _headerStyle()))
+                                        ]))),
+                            ListView.builder(
+                                shrinkWrap: true,
+                                itemCount: allEligibleUsers.length,
+                                itemBuilder: (context, index) {
+                                  Map<dynamic, dynamic> quizResults =
+                                      (allEligibleUsers[index].data()! as Map<
+                                          dynamic,
+                                          dynamic>)['customQuizResults'];
+                                  return Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 5),
+                                      child: Container(
+                                          height: 75,
+                                          color: const Color.fromARGB(
+                                              255, 103, 65, 150),
+                                          child: Padding(
+                                              padding:
+                                                  const EdgeInsets.all(6.0),
+                                              child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceEvenly,
+                                                  children: [
+                                                    SizedBox(
+                                                        width: MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .width *
+                                                            0.3,
+                                                        child: Text(
+                                                            '${(allEligibleUsers[index].data()! as Map<dynamic, dynamic>)['firstName']} ${(allEligibleUsers[index].data()! as Map<dynamic, dynamic>)['lastName']}',
+                                                            style:
+                                                                _studentEntryStyle())),
+                                                    SizedBox(
+                                                        width: MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .width *
+                                                            0.1,
+                                                        child: _hasAnsweredThisQuiz(
+                                                                quizResults,
+                                                                'EASY')
+                                                            ? _quizResultEntry(
+                                                                allEligibleUsers[
+                                                                    index],
+                                                                'EASY')
+                                                            : _notAvailable()),
+                                                    SizedBox(
+                                                        width: MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .width *
+                                                            0.1,
+                                                        child: _hasAnsweredThisQuiz(
+                                                                quizResults,
+                                                                'AVERAGE')
+                                                            ? _quizResultEntry(
+                                                                allEligibleUsers[
+                                                                    index],
+                                                                'AVERAGE')
+                                                            : _notAvailable()),
+                                                    SizedBox(
+                                                        width: MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .width *
+                                                            0.1,
+                                                        child: _hasAnsweredThisQuiz(
+                                                                quizResults,
+                                                                'DIFFICULT')
+                                                            ? _quizResultEntry(
+                                                                allEligibleUsers[
+                                                                    index],
+                                                                'DIFFICULT')
+                                                            : _notAvailable())
+                                                  ]))));
+                                })
+                          ])
+                        : const Center(
+                            child: Text(
+                                'No student has done this custom lesson yet'))
+                  ],
+                ))))
       ]),
     );
   }
@@ -253,21 +267,5 @@ class _SelectedCustomQuizScreenState extends State<SelectedCustomQuizScreen> {
           child: const Text('VIEW ANSWERS',
               textAlign: TextAlign.center, style: TextStyle(letterSpacing: 2)))
     ]);
-  }
-
-  bool _hasAnsweredThisQuiz(
-      Map<dynamic, dynamic> selectedQuiz, String difficulty) {
-    return selectedQuiz.containsKey(widget.quizTitle) &&
-        (selectedQuiz[widget.quizTitle] as Map<dynamic, dynamic>)
-            .containsKey(difficulty);
-  }
-
-  String _getQuizScoreFormatted(
-      Map<dynamic, dynamic> selectedQuiz, String difficulty) {
-    Map<dynamic, dynamic> quizData = selectedQuiz[widget.quizTitle];
-    final difficultyScore = quizData[difficulty]['score'];
-    final questionCount =
-        (quizData[difficulty]['answers'] as List<dynamic>).length;
-    return '$difficultyScore / $questionCount';
   }
 }

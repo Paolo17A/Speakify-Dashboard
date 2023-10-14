@@ -88,7 +88,11 @@ class _ActiveStudentsScreenWidget extends State<ActiveStudentsWidget> {
       children: [
         const CircleAvatar(backgroundColor: Colors.green, radius: 5),
         cambriaText(
-            text: 'ACTIVE STUDENTS', textStyle: whiteBoldStyle(size: 25)),
+            text: 'ACTIVE STUDENTS',
+            textStyle: const TextStyle(
+                color: CustomColors.orchid,
+                fontSize: 25,
+                fontWeight: FontWeight.bold)),
       ],
     );
   }
@@ -114,7 +118,8 @@ class _ActiveStudentsScreenWidget extends State<ActiveStudentsWidget> {
                   padding: const EdgeInsets.symmetric(vertical: 9),
                   child: roundedContainer(
                       width: MediaQuery.of(context).size.width * 0.18,
-                      color: CustomColors.lavender.withOpacity(0.3),
+                      color: CustomColors.amethyst.withOpacity(0.3),
+                      borderColor: CustomColors.lilac,
                       child: Padding(
                           padding: const EdgeInsets.all(12),
                           child: Row(
@@ -134,11 +139,11 @@ class _ActiveStudentsScreenWidget extends State<ActiveStudentsWidget> {
           backgroundImage: NetworkImage(imageURL));
     } else {
       return const CircleAvatar(
-          backgroundColor: CustomColors.lavender,
+          backgroundColor: CustomColors.amethyst,
           radius: 20,
           child: Icon(
             Icons.person,
-            color: CustomColors.darkWine,
+            color: CustomColors.love,
           ));
     }
   }
@@ -147,11 +152,12 @@ class _ActiveStudentsScreenWidget extends State<ActiveStudentsWidget> {
     return Column(children: [
       cambriaText(
           text: '${studentData['firstName']} ${studentData['lastName']}',
-          textStyle: whiteBoldStyle()),
+          textStyle: const TextStyle(
+              color: CustomColors.orchid, fontWeight: FontWeight.bold)),
       cambriaText(
           text:
               'Last Login: ${DateFormat('dd MMM yyyy hh:mm:ss a').format((studentData['lastLoginTime'] as Timestamp).toDate())}',
-          textStyle: const TextStyle(color: Colors.white, fontSize: 10))
+          textStyle: const TextStyle(color: CustomColors.orchid, fontSize: 10))
     ]);
   }
 }

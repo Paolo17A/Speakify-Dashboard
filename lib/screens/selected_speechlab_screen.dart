@@ -5,7 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:speechlab_dashboard/models/speech_model.dart';
 import 'package:speechlab_dashboard/utils/student_speech_util.dart';
 import 'package:speechlab_dashboard/widgets/appbar_title_widget.dart';
+import 'package:speechlab_dashboard/widgets/custom_container_widgets.dart';
+import 'package:speechlab_dashboard/widgets/custom_padding_widgets.dart';
 
+import '../utils/color_util.dart';
+import '../utils/number_util.dart';
+import '../widgets/custom_text_widgets.dart';
 import '../widgets/left_navigator_widget.dart';
 
 class SelectedSpeechLabScreen extends StatefulWidget {
@@ -32,7 +37,8 @@ class _SelectedSpeechLabScreenState extends State<SelectedSpeechLabScreen> {
   void initState() {
     super.initState();
     currentSpeechLevelReq = int.parse(widget.currentSpeechLevelReq);
-    selectedLevel = SpeechModel.fromJson(jsonDecode(widget.selectedLevel));
+    Map<String, dynamic> decodedJson = jsonDecode(widget.selectedLevel);
+    selectedLevel = SpeechModel.fromJson(decodedJson);
   }
 
   @override
@@ -60,9 +66,8 @@ class _SelectedSpeechLabScreenState extends State<SelectedSpeechLabScreen> {
         _isLoading = false;
       });
     } catch (error) {
-      scaffoldMessenger.showSnackBar(SnackBar(
-          content:
-              Text('Error getting eligible students: ${error.toString()}')));
+      scaffoldMessenger.showSnackBar(
+          SnackBar(content: Text('Error getting eligible students: $error')));
     }
   }
 
@@ -73,146 +78,152 @@ class _SelectedSpeechLabScreenState extends State<SelectedSpeechLabScreen> {
       body: Row(
         children: [
           lefNavigator(context, 0),
-          Container(
-              width: MediaQuery.of(context).size.width * 0.8,
-              height: double.infinity,
-              color: Colors.white,
-              child: _isLoading
-                  ? const Center(child: CircularProgressIndicator())
-                  : Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: SingleChildScrollView(
-                          child: Column(children: [
-                        Padding(
-                            padding: const EdgeInsets.all(20),
-                            child: Text(selectedLevel.category,
-                                textAlign: TextAlign.center,
-                                style: const TextStyle(
-                                    color: Color.fromARGB(255, 60, 19, 97),
-                                    fontSize: 70,
-                                    fontWeight: FontWeight.bold))),
-                        _userDocs.isNotEmpty
-                            ? Column(children: [
-                                Container(
-                                    color:
-                                        const Color.fromARGB(255, 82, 48, 124),
-                                    child: Padding(
-                                        padding: const EdgeInsets.all(10),
-                                        child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceEvenly,
-                                            children: [
-                                              SizedBox(
-                                                  width: MediaQuery.of(context)
-                                                          .size
-                                                          .width *
-                                                      0.3,
-                                                  child: Text('Student Name',
-                                                      style: _headerStyle())),
-                                              SizedBox(
-                                                  width: MediaQuery.of(context)
-                                                          .size
-                                                          .width *
-                                                      0.3,
-                                                  child: Text('AVERAGE SCORE',
-                                                      textAlign:
-                                                          TextAlign.center,
-                                                      style: _headerStyle())),
-                                            ]))),
-                                ListView.builder(
-                                    shrinkWrap: true,
-                                    itemCount: _userDocs.length,
-                                    itemBuilder: (context, index) {
-                                      Map<dynamic, dynamic> speechResults =
-                                          (_userDocs[index].data()! as Map<
-                                              dynamic,
-                                              dynamic>)['speechResults'];
-                                      return Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              vertical: 5),
-                                          child: Container(
-                                              height: 85,
-                                              color: const Color.fromARGB(
-                                                  255, 103, 65, 150),
-                                              child: Padding(
-                                                  padding:
-                                                      const EdgeInsets.all(6.0),
-                                                  child: Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceEvenly,
-                                                      children: [
-                                                        SizedBox(
-                                                            width: MediaQuery.of(
-                                                                        context)
-                                                                    .size
-                                                                    .width *
-                                                                0.3,
-                                                            child: Text(
-                                                                '${(_userDocs[index].data()! as Map<dynamic, dynamic>)['firstName']} ${(_userDocs[index].data()! as Map<dynamic, dynamic>)['lastName']}',
-                                                                style:
-                                                                    _studentEntryStyle())),
-                                                        SizedBox(
-                                                            width: MediaQuery.of(
-                                                                        context)
-                                                                    .size
-                                                                    .width *
-                                                                0.3,
-                                                            child: Column(
-                                                                mainAxisAlignment:
-                                                                    MainAxisAlignment
-                                                                        .spaceEvenly,
-                                                                children: [
-                                                                  Text(
-                                                                      'Average Score: ${calculateAverage(speechResults[widget.currentSpeechLevelReq.toString()]['confidenceScores']).toStringAsFixed(2)}%',
-                                                                      style:
-                                                                          _studentEntryStyle()),
-                                                                  Padding(
-                                                                    padding:
-                                                                        const EdgeInsets
-                                                                            .all(
-                                                                            8.0),
-                                                                    child: ElevatedButton(
-                                                                        onPressed: () => displaySpeechResultsDialogue(
-                                                                              context,
-                                                                              speechCategories[currentSpeechLevelReq - 1].sentences,
-                                                                              speechResults[widget.currentSpeechLevelReq.toString()]['confidenceScores'],
-                                                                              (_userDocs[index].data()! as Map<dynamic, dynamic>)['profileImageURL'],
-                                                                              '${(_userDocs[index].data()! as Map<dynamic, dynamic>)['firstName']} ${(_userDocs[index].data()! as Map<dynamic, dynamic>)['lastName']}',
-                                                                            ),
-                                                                        child: const Text('VIEW RESULTS', textAlign: TextAlign.center, style: TextStyle(letterSpacing: 2))),
-                                                                  )
-                                                                ]))
-                                                      ]))));
-                                    })
-                              ])
-                            : const Expanded(
-                                child: Center(
-                                    child: Text(
-                                        'No student has done this lesson yet')))
-                      ])),
+          bodyWidgetWhiteBG(
+              context,
+              switchedLoadingContainer(
+                  _isLoading,
+                  SingleChildScrollView(
+                    child: all8Pix(Column(
+                      children: [
+                        _selectedSpeechLabHeader(),
+                        loveWineContainer(
+                          height: MediaQuery.of(context).size.height * 0.8,
+                          all20Pix(Column(
+                            children: [
+                              _labelHeaderRow(),
+                              _speechLabEntriesContainer()
+                            ],
+                          )),
+                        ),
+                      ],
                     )),
+                  )))
         ],
       ),
     );
   }
 
-  TextStyle _headerStyle() {
-    return const TextStyle(
-        fontSize: 25, fontWeight: FontWeight.bold, color: Colors.white);
+  Widget _selectedSpeechLabHeader() {
+    return SizedBox(
+        width: MediaQuery.of(context).size.width * 0.6,
+        child: Column(children: [
+          cambriaWineHeaderText(text: selectedLevel.category),
+          const Divider(
+            thickness: 5,
+            color: CustomColors.darkWine,
+          )
+        ]));
+  }
+
+  Widget _labelHeaderRow() {
+    return Container(
+        height: 60,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: CustomColors.orchid,
+        ),
+        child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+          SizedBox(
+              width: MediaQuery.of(context).size.width * 0.2,
+              child: cambriaText(
+                  text: 'ID Number',
+                  textStyle: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: CustomColors.mercury,
+                      fontSize: 26))),
+          SizedBox(
+              width: MediaQuery.of(context).size.width * 0.2,
+              child: cambriaText(
+                  text: 'Student Name',
+                  textStyle: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: CustomColors.mercury,
+                      fontSize: 26))),
+          SizedBox(
+              width: MediaQuery.of(context).size.width * 0.2,
+              child: Center(
+                child: cambriaText(
+                    text: 'Average Score',
+                    textStyle: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: CustomColors.mercury,
+                        fontSize: 26)),
+              )),
+          SizedBox(
+            width: MediaQuery.of(context).size.width * 0.05,
+          )
+        ]));
+  }
+
+  Widget _speechLabEntriesContainer() {
+    return _userDocs.isNotEmpty
+        ? ListView.builder(
+            shrinkWrap: true,
+            itemCount: _userDocs.length,
+            itemBuilder: (context, index) {
+              final speechResults = (_userDocs[index].data()!
+                  as Map<dynamic, dynamic>)['speechResults'];
+              return Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 5),
+                  child: Container(
+                      height: 85,
+                      decoration: BoxDecoration(
+                          color: CustomColors.mercury,
+                          borderRadius: BorderRadius.circular(10)),
+                      child: Padding(
+                          padding: const EdgeInsets.all(6.0),
+                          child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                SizedBox(
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.2,
+                                    child: cambriaText(
+                                        text: 'ID Number',
+                                        textStyle: _studentEntryStyle())),
+                                SizedBox(
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.2,
+                                    child: cambriaText(
+                                        text:
+                                            '${(_userDocs[index].data()! as Map<dynamic, dynamic>)['firstName']} ${(_userDocs[index].data()! as Map<dynamic, dynamic>)['lastName']}',
+                                        textStyle: _studentEntryStyle())),
+                                SizedBox(
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.2,
+                                    child: Center(
+                                      child: cambriaText(
+                                          text:
+                                              '${calculateAverage(speechResults[widget.currentSpeechLevelReq.toString()]['confidenceScores']).toStringAsFixed(2)}%',
+                                          textStyle: _studentEntryStyle()),
+                                    )),
+                                SizedBox(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.05,
+                                  child: ElevatedButton(
+                                    onPressed: () =>
+                                        displaySpeechResultsDialogue(
+                                      context,
+                                      speechCategories[
+                                              currentSpeechLevelReq - 1]
+                                          .sentences,
+                                      speechResults[widget.currentSpeechLevelReq
+                                          .toString()]['confidenceScores'],
+                                      (_userDocs[index].data()! as Map<dynamic,
+                                          dynamic>)['profileImageURL'],
+                                      '${(_userDocs[index].data()! as Map<dynamic, dynamic>)['firstName']} ${(_userDocs[index].data()! as Map<dynamic, dynamic>)['lastName']}',
+                                    ),
+                                    child: const Icon(Icons.remove_red_eye),
+                                  ),
+                                )
+                              ]))));
+            })
+        : const Expanded(
+            child: Center(child: Text('No student has done this lesson yet')));
   }
 
   TextStyle _studentEntryStyle() {
-    return const TextStyle(fontSize: 20, color: Colors.white);
-  }
-
-  double calculateAverage(List<dynamic> selectedLevel) {
-    double sum = 0;
-
-    for (var value in selectedLevel) {
-      sum += value['average'];
-    }
-
-    return sum / selectedLevel.length;
+    return const TextStyle(
+        fontSize: 26, fontWeight: FontWeight.bold, color: CustomColors.orchid);
   }
 }

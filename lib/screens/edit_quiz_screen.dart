@@ -54,12 +54,12 @@ class _EditQuizScreenState extends State<EditQuizScreen> {
     easyQuestions = quizContent['easy'];
     averageQuestions = quizContent['average'];
     difficultQuestions = quizContent['difficult'];
-
     _questionController.text = easyQuestions[currentQuestion]['question'];
     for (int i = 0; i < _choicesControllers.length; i++) {
       _choicesControllers[i].text =
           easyQuestions[currentQuestion]['options'][choiceLetters[i]];
     }
+
     _correctChoiceString = easyQuestions[currentQuestion]['answer'];
     stringChoice.currentState?.setChoice(_correctChoiceString!);
   }
@@ -395,50 +395,62 @@ class _EditQuizScreenState extends State<EditQuizScreen> {
                                       child: Padding(
                                         padding: const EdgeInsets.symmetric(
                                             horizontal: 75),
-                                        child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              SizedBox(
-                                                width: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.15,
-                                                height: MediaQuery.of(context)
-                                                        .size
-                                                        .height *
-                                                    0.1,
-                                                child: ElevatedButton(
-                                                    onPressed: previousQuestion,
-                                                    child: const Text(
-                                                        'PREVIOUS',
-                                                        style: TextStyle(
-                                                            color:
-                                                                Colors.white))),
-                                              ),
-                                              SizedBox(
-                                                width: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.15,
-                                                height: MediaQuery.of(context)
-                                                        .size
-                                                        .height *
-                                                    0.1,
-                                                child: ElevatedButton(
-                                                    onPressed: nextQuestion,
-                                                    child: Text(
-                                                        (currentDifficulty ==
-                                                                    'Difficult' &&
-                                                                currentQuestion ==
-                                                                    9)
-                                                            ? 'SUBMIT'
-                                                            : 'NEXT',
-                                                        style: const TextStyle(
-                                                            color:
-                                                                Colors.white))),
-                                              )
-                                            ]),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.end,
+                                          children: [
+                                            Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  SizedBox(
+                                                    width:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .width *
+                                                            0.15,
+                                                    height:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .height *
+                                                            0.1,
+                                                    child: ElevatedButton(
+                                                        onPressed:
+                                                            previousQuestion,
+                                                        child: const Text(
+                                                            'PREVIOUS',
+                                                            style: TextStyle(
+                                                                color: Colors
+                                                                    .white))),
+                                                  ),
+                                                  SizedBox(
+                                                    width:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .width *
+                                                            0.15,
+                                                    height:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .height *
+                                                            0.1,
+                                                    child: ElevatedButton(
+                                                        onPressed: nextQuestion,
+                                                        child: Text(
+                                                            (currentDifficulty ==
+                                                                        'Difficult' &&
+                                                                    currentQuestion ==
+                                                                        9)
+                                                                ? 'SUBMIT'
+                                                                : 'NEXT',
+                                                            style: const TextStyle(
+                                                                color: Colors
+                                                                    .white))),
+                                                  )
+                                                ]),
+                                          ],
+                                        ),
                                       ),
                                     )
                                   ],
