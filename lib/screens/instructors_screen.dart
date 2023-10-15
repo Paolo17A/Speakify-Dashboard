@@ -5,6 +5,11 @@ import 'package:speechlab_dashboard/utils/instructor_profile_util.dart';
 import 'package:speechlab_dashboard/widgets/appbar_title_widget.dart';
 import 'package:speechlab_dashboard/widgets/left_navigator_widget.dart';
 
+import '../utils/color_util.dart';
+import '../widgets/custom_container_widgets.dart';
+import '../widgets/custom_padding_widgets.dart';
+import '../widgets/custom_text_widgets.dart';
+
 class InstructorsScreen extends StatefulWidget {
   const InstructorsScreen({super.key});
 
@@ -55,34 +60,47 @@ class _InstructorsScreenState extends State<InstructorsScreen> {
         body: Row(
           children: [
             lefNavigator(context, 2),
-            Container(
-                width: MediaQuery.of(context).size.width * 0.8,
-                height: double.infinity,
-                color: Colors.white,
-                child: _isLoading
-                    ? const Center(child: CircularProgressIndicator())
-                    : Column(
-                        children: [
-                          const SizedBox(height: 10),
-                          const Padding(
-                            padding: EdgeInsets.all(15),
-                            child: Text('ALL INSTRUCTORS',
-                                style: TextStyle(
-                                    color: Colors.deepPurple,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 45)),
+            bodyWidgetWhiteBG(
+                context,
+                switchedLoadingContainer(
+                    _isLoading,
+                    vertical10PixHorizontal30Pix(context,
+                        child: SingleChildScrollView(
+                          child: Column(
+                            children: [
+                              const SizedBox(height: 10),
+                              SizedBox(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.6,
+                                  child: Column(children: [
+                                    cambriaWineHeaderText(text: 'INSTRUCTORS'),
+                                    const Divider(
+                                      thickness: 5,
+                                      color: CustomColors.darkWine,
+                                    )
+                                  ])),
+                              loveWineContainer(SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.8,
+                                child: Column(
+                                  children: [
+                                    if (currentInstructor != null)
+                                      _teacherWidget(
+                                          currentInstructor!.data(), true),
+                                    ListView.builder(
+                                        itemCount: instructorDocs.length,
+                                        shrinkWrap: true,
+                                        itemBuilder: (context, index) {
+                                          return _teacherWidget(
+                                              instructorDocs[index].data(),
+                                              false);
+                                        }),
+                                  ],
+                                ),
+                              ))
+                            ],
                           ),
-                          if (currentInstructor != null)
-                            _teacherWidget(currentInstructor!.data(), true),
-                          ListView.builder(
-                              itemCount: instructorDocs.length,
-                              shrinkWrap: true,
-                              itemBuilder: (context, index) {
-                                return _teacherWidget(
-                                    instructorDocs[index].data(), false);
-                              }),
-                        ],
-                      ))
+                        ))))
           ],
         ));
   }
@@ -94,50 +112,57 @@ class _InstructorsScreenState extends State<InstructorsScreen> {
           width: MediaQuery.of(context).size.width * 0.9,
           height: 90,
           decoration: BoxDecoration(
-              color: const Color.fromARGB(255, 115, 76, 162),
+              color: CustomColors.mercury,
+              border: Border.all(color: CustomColors.wine, width: 3),
               borderRadius: BorderRadius.circular(20)),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              if (isCurrentInstructor)
-                SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.1,
-                    child: CircleAvatar(
-                      radius: 30,
-                      backgroundColor: const Color.fromARGB(255, 60, 19, 97),
-                      backgroundImage: NetworkImage(
-                          instructorData['profileImageURL'],
-                          scale: 0.5),
-                    )),
-              if (!isCurrentInstructor)
-                SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.1,
-                    child: const CircleAvatar(
-                      radius: 30,
-                      backgroundColor: Color.fromARGB(255, 82, 48, 124),
-                      child: Icon(Icons.person, color: Colors.white),
-                    )),
-              SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.3,
-                  child: Text(
-                    '${instructorData['firstName']} ${instructorData['lastName']}\t\t${isCurrentInstructor ? '(YOU)' : ''}',
-                    style: const TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 25),
-                  )),
-              SizedBox(
-                width: MediaQuery.of(context).size.width * 0.3,
-                height: 45,
-                child: Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: MediaQuery.of(context).size.width * 0.05),
+              Row(
+                children: [
+                  if (isCurrentInstructor)
+                    SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.1,
+                        child: CircleAvatar(
+                          radius: 30,
+                          backgroundColor: CustomColors.orchid,
+                          backgroundImage: NetworkImage(
+                              instructorData['profileImageURL'],
+                              scale: 0.5),
+                        )),
+                  if (!isCurrentInstructor)
+                    SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.1,
+                        child: const CircleAvatar(
+                          radius: 30,
+                          backgroundColor: CustomColors.orchid,
+                          child: Icon(Icons.person, color: Colors.white),
+                        )),
+                  SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.3,
+                      child: cambriaText(
+                          text:
+                              '${instructorData['firstName']} ${instructorData['lastName']}\t\t${isCurrentInstructor ? '(YOU)' : ''}',
+                          textStyle: const TextStyle(
+                              color: CustomColors.orchid,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 25))),
+                ],
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(
+                    horizontal: MediaQuery.of(context).size.width * 0.05),
+                child: SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.1,
+                  height: 45,
                   child: ElevatedButton(
                       onPressed: () => displayInstructorDialogue(
                           context,
                           instructorData['profileImageURL'],
                           '${instructorData['firstName']} ${instructorData['lastName']}',
                           isCurrentInstructor),
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: CustomColors.orchid),
                       child: const Text(
                         'VIEW PROFILE',
                         style: TextStyle(

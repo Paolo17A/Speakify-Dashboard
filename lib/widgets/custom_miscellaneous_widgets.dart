@@ -111,3 +111,15 @@ Widget lessonEntryWithActionsContainer(BuildContext context,
         ))),
   );
 }
+
+Widget pageHeaderWithDivider(BuildContext context, {required String label}) {
+  return SizedBox(
+      width: MediaQuery.of(context).size.width * 0.6,
+      child: Column(children: [
+        cambriaWineHeaderText(text: label),
+        const Divider(
+          thickness: 5,
+          color: CustomColors.darkWine,
+        )
+      ]));
+}

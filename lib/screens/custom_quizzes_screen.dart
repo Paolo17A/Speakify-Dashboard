@@ -140,16 +140,21 @@ class _CustomQuizzesScreenState extends State<CustomQuizzesScreen> {
                                   'serializedQuizContent':
                                       quizData['quizContent']
                                 }),
+                            style: ElevatedButton.styleFrom(
+                                side:
+                                    const BorderSide(color: CustomColors.wine),
+                                backgroundColor: CustomColors.mercury),
                             child: Row(
                               children: [
                                 SizedBox(
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.45,
-                                  child: Text(customQuizzes[index].id,
-                                      style: const TextStyle(
-                                          fontSize: 28,
-                                          fontWeight: FontWeight.bold)),
-                                ),
+                                    width: MediaQuery.of(context).size.width *
+                                        0.45,
+                                    child: cambriaText(
+                                        text: customQuizzes[index].id,
+                                        textStyle: const TextStyle(
+                                            color: CustomColors.orchid,
+                                            fontSize: 28,
+                                            fontWeight: FontWeight.bold))),
                               ],
                             )),
                       ),
@@ -161,9 +166,18 @@ class _CustomQuizzesScreenState extends State<CustomQuizzesScreen> {
                               archiveQuiz(customQuizzes[index].id,
                                   quizData['isArchived']);
                             },
-                            child: Text(quizData['isArchived']
-                                ? 'RESTORE'
-                                : 'ARCHIVE')),
+                            style: ElevatedButton.styleFrom(
+                                side:
+                                    const BorderSide(color: CustomColors.wine),
+                                backgroundColor: CustomColors.mercury),
+                            child: cambriaText(
+                                text: quizData['isArchived']
+                                    ? 'RESTORE'
+                                    : 'ARCHIVE',
+                                textStyle: const TextStyle(
+                                    color: CustomColors.orchid,
+                                    fontSize: 28,
+                                    fontWeight: FontWeight.bold))),
                       )
                     ],
                   ),

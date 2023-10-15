@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:speechlab_dashboard/widgets/custom_container_widgets.dart';
 
+import '../utils/color_util.dart';
 import '../widgets/appbar_title_widget.dart';
 import '../widgets/bool_choices_radio_widget.dart';
 import '../widgets/left_navigator_widget.dart';
@@ -283,7 +284,9 @@ class _EditQuizScreenState extends State<EditQuizScreen> {
                             width: MediaQuery.of(context).size.width * 0.6,
                             height: MediaQuery.of(context).size.height * 0.7,
                             decoration: BoxDecoration(
-                                color: Colors.deepPurple.withOpacity(0.4),
+                                color: CustomColors.love,
+                                border: Border.all(
+                                    color: CustomColors.wine, width: 3),
                                 borderRadius: BorderRadius.circular(20)),
                             child: Padding(
                                 padding: const EdgeInsets.all(26),
@@ -294,7 +297,7 @@ class _EditQuizScreenState extends State<EditQuizScreen> {
                                         Text(
                                             '$currentDifficulty Question #${currentQuestion + 1}',
                                             style: const TextStyle(
-                                                color: Colors.deepPurple,
+                                                color: CustomColors.orchid,
                                                 fontSize: 25,
                                                 fontWeight: FontWeight.bold)),
                                       ],
@@ -326,7 +329,7 @@ class _EditQuizScreenState extends State<EditQuizScreen> {
                                                     textAlign: TextAlign.center,
                                                     style: const TextStyle(
                                                         color:
-                                                            Colors.deepPurple,
+                                                            CustomColors.orchid,
                                                         fontSize: 20,
                                                         fontWeight:
                                                             FontWeight.bold),
@@ -418,6 +421,11 @@ class _EditQuizScreenState extends State<EditQuizScreen> {
                                                     child: ElevatedButton(
                                                         onPressed:
                                                             previousQuestion,
+                                                        style: ElevatedButton
+                                                            .styleFrom(
+                                                                backgroundColor:
+                                                                    CustomColors
+                                                                        .orchid),
                                                         child: const Text(
                                                             'PREVIOUS',
                                                             style: TextStyle(
@@ -437,6 +445,11 @@ class _EditQuizScreenState extends State<EditQuizScreen> {
                                                             0.1,
                                                     child: ElevatedButton(
                                                         onPressed: nextQuestion,
+                                                        style: ElevatedButton
+                                                            .styleFrom(
+                                                                backgroundColor:
+                                                                    CustomColors
+                                                                        .orchid),
                                                         child: Text(
                                                             (currentDifficulty ==
                                                                         'Difficult' &&

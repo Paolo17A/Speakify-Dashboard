@@ -343,7 +343,7 @@ class App extends StatelessWidget {
                       borderRadius:
                           BorderRadiusDirectional.all(Radius.circular(10)))),
               backgroundColor:
-                  MaterialStateProperty.all<Color>(CustomColors.jam))));
+                  MaterialStateProperty.all<Color>(CustomColors.orchid))));
 
   @override
   Widget build(BuildContext context) {

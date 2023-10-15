@@ -1,7 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:speechlab_dashboard/utils/color_util.dart';
 import 'package:speechlab_dashboard/widgets/appbar_title_widget.dart';
+import 'package:speechlab_dashboard/widgets/custom_container_widgets.dart';
 import 'package:speechlab_dashboard/widgets/left_navigator_widget.dart';
+
+import '../widgets/custom_padding_widgets.dart';
 
 class RankingsScreen extends StatefulWidget {
   const RankingsScreen({super.key});
@@ -74,17 +78,14 @@ class _RankingsScreenState extends State<RankingsScreen> {
         appBar: appBarTitle(),
         body: Row(children: [
           lefNavigator(context, 0),
-          Container(
-              width: MediaQuery.of(context).size.width * 0.8,
-              height: double.infinity,
-              color: Colors.white,
-              child: _isLoading
-                  ? const Center(child: CircularProgressIndicator())
-                  : SingleChildScrollView(
-                      child: Column(children: [
-                        Padding(
-                          padding: const EdgeInsets.all(10),
-                          child: Row(
+          bodyWidgetWhiteBG(
+              context,
+              switchedLoadingContainer(
+                  _isLoading,
+                  vertical10PixHorizontal30Pix(context,
+                      child: SingleChildScrollView(
+                        child: Column(children: [
+                          Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
@@ -139,7 +140,7 @@ class _RankingsScreenState extends State<RankingsScreen> {
                               SizedBox(
                                 height:
                                     MediaQuery.of(context).size.height * 0.2,
-                                width: MediaQuery.of(context).size.width * 0.5,
+                                width: MediaQuery.of(context).size.width * 0.4,
                                 child: Center(
                                   child: Text(
                                       _leaderboardType == 'currentLesson'
@@ -173,92 +174,112 @@ class _RankingsScreenState extends State<RankingsScreen> {
                               )
                             ],
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 30),
-                          child: _userDocs.isEmpty
-                              ? const Center(
-                                  child: Text(
-                                      'This section has no enrolled students',
-                                      style: TextStyle(
-                                          color: Colors.deepPurple,
-                                          fontSize: 50,
-                                          fontWeight: FontWeight.bold)),
-                                )
-                              : ListView.builder(
-                                  shrinkWrap: true,
-                                  itemCount: _userDocs.length,
-                                  itemBuilder: (context, index) {
-                                    return Padding(
-                                      padding: const EdgeInsets.all(5),
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                            color: const Color.fromARGB(
-                                                255, 60, 19, 97),
-                                            borderRadius:
-                                                BorderRadius.circular(10)),
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(5),
-                                          child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.spaceEvenly,
-                                              children: [
-                                                SizedBox(
-                                                  width: MediaQuery.of(context)
-                                                          .size
-                                                          .width *
-                                                      0.1,
-                                                  child: Center(
-                                                    child: Text(
-                                                        (index + 1).toString(),
-                                                        style: const TextStyle(
-                                                            color: Colors.white,
-                                                            fontSize: 20,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .bold)),
-                                                  ),
-                                                ),
-                                                SizedBox(
-                                                  width: MediaQuery.of(context)
-                                                          .size
-                                                          .width *
-                                                      0.3,
-                                                  child: Center(
-                                                    child: Text(
-                                                        '${(_userDocs[index].data()! as Map<dynamic, dynamic>)['firstName']} ${(_userDocs[index].data()! as Map<dynamic, dynamic>)['lastName']}',
-                                                        style: const TextStyle(
-                                                            color: Colors.white,
-                                                            fontSize: 15,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .bold)),
-                                                  ),
-                                                ),
-                                                SizedBox(
-                                                  width: MediaQuery.of(context)
-                                                          .size
-                                                          .width *
-                                                      0.3,
-                                                  child: Center(
-                                                    child: Text(
-                                                        'Current Level: ${(_userDocs[index].data()! as Map<dynamic, dynamic>)[_leaderboardType]}',
-                                                        style: const TextStyle(
-                                                            color: Colors.white,
-                                                            fontSize: 15,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .bold)),
-                                                  ),
-                                                )
-                                              ]),
-                                        ),
-                                      ),
-                                    );
-                                  }),
-                        )
-                      ]),
-                    ))
+                          loveWineContainer(
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 30),
+                                child: _userDocs.isEmpty
+                                    ? const Center(
+                                        child: Text(
+                                            'This section has no enrolled students',
+                                            style: TextStyle(
+                                                color: CustomColors.orchid,
+                                                fontSize: 50,
+                                                fontWeight: FontWeight.bold)),
+                                      )
+                                    : ListView.builder(
+                                        shrinkWrap: true,
+                                        itemCount: _userDocs.length,
+                                        itemBuilder: (context, index) {
+                                          return Padding(
+                                            padding: const EdgeInsets.all(5),
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                  color: CustomColors.mercury,
+                                                  border: Border.all(
+                                                      color: CustomColors.wine,
+                                                      width: 3),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          10)),
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.all(5),
+                                                child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceEvenly,
+                                                    children: [
+                                                      SizedBox(
+                                                        width: MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .width *
+                                                            0.1,
+                                                        child: Center(
+                                                          child: Text(
+                                                              '${(_userDocs[index].data()! as Map<dynamic, dynamic>)['studentID'] ?? ''}',
+                                                              style: const TextStyle(
+                                                                  color:
+                                                                      CustomColors
+                                                                          .orchid,
+                                                                  fontSize: 20,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold)),
+                                                        ),
+                                                      ),
+                                                      SizedBox(
+                                                        width: MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .width *
+                                                            0.3,
+                                                        child: Center(
+                                                          child: Row(
+                                                            children: [
+                                                              Text(
+                                                                  '${(_userDocs[index].data()! as Map<dynamic, dynamic>)['firstName']} ${(_userDocs[index].data()! as Map<dynamic, dynamic>)['lastName']}',
+                                                                  style: const TextStyle(
+                                                                      color: CustomColors
+                                                                          .orchid,
+                                                                      fontSize:
+                                                                          15,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold)),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      SizedBox(
+                                                        width: MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .width *
+                                                            0.3,
+                                                        child: Center(
+                                                          child: Text(
+                                                              'Current Level: ${(_userDocs[index].data()! as Map<dynamic, dynamic>)[_leaderboardType]}',
+                                                              style: const TextStyle(
+                                                                  color:
+                                                                      CustomColors
+                                                                          .orchid,
+                                                                  fontSize: 15,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold)),
+                                                        ),
+                                                      )
+                                                    ]),
+                                              ),
+                                            ),
+                                          );
+                                        }),
+                              ),
+                              height: MediaQuery.of(context).size.height * 0.8)
+                        ]),
+                      ))))
         ]));
   }
 }

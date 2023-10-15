@@ -161,8 +161,9 @@ class _SelectedSpeechLabScreenState extends State<SelectedSpeechLabScreen> {
             shrinkWrap: true,
             itemCount: _userDocs.length,
             itemBuilder: (context, index) {
-              final speechResults = (_userDocs[index].data()!
-                  as Map<dynamic, dynamic>)['speechResults'];
+              final userData =
+                  (_userDocs[index].data()! as Map<dynamic, dynamic>);
+              final speechResults = userData['speechResults'];
               return Padding(
                   padding: const EdgeInsets.symmetric(vertical: 5),
                   child: Container(
@@ -201,18 +202,18 @@ class _SelectedSpeechLabScreenState extends State<SelectedSpeechLabScreen> {
                                   width:
                                       MediaQuery.of(context).size.width * 0.05,
                                   child: ElevatedButton(
-                                    onPressed: () =>
-                                        displaySpeechResultsDialogue(
-                                      context,
-                                      speechCategories[
-                                              currentSpeechLevelReq - 1]
-                                          .sentences,
-                                      speechResults[widget.currentSpeechLevelReq
-                                          .toString()]['confidenceScores'],
-                                      (_userDocs[index].data()! as Map<dynamic,
-                                          dynamic>)['profileImageURL'],
-                                      '${(_userDocs[index].data()! as Map<dynamic, dynamic>)['firstName']} ${(_userDocs[index].data()! as Map<dynamic, dynamic>)['lastName']}',
-                                    ),
+                                    onPressed: () => displaySpeechResultsDialogue(
+                                        context,
+                                        sentences: speechCategories[
+                                                currentSpeechLevelReq - 1]
+                                            .sentences,
+                                        sentenceResults: speechResults[widget
+                                            .currentSpeechLevelReq
+                                            .toString()]['confidenceScores'],
+                                        profileImageURL:
+                                            userData['profileImageURL'],
+                                        studentName:
+                                            '${userData['firstName']} ${userData['lastName']}'),
                                     child: const Icon(Icons.remove_red_eye),
                                   ),
                                 )

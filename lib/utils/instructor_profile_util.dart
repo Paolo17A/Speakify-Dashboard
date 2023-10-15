@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:speechlab_dashboard/utils/color_util.dart';
 import 'package:speechlab_dashboard/widgets/custom_text_widgets.dart';
 
 void displayInstructorDialogue(BuildContext context, String profileImageURL,
@@ -7,7 +8,7 @@ void displayInstructorDialogue(BuildContext context, String profileImageURL,
   showDialog(
       context: context,
       builder: (context) => AlertDialog(
-          backgroundColor: const Color.fromARGB(255, 115, 76, 162),
+          backgroundColor: CustomColors.orchid,
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
           content: SizedBox(
@@ -44,6 +45,8 @@ void displayInstructorDialogue(BuildContext context, String profileImageURL,
                         GoRouter.of(context).pop();
                         GoRouter.of(context).go('/instructors/edit');
                       },
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: CustomColors.jam),
                       child: Padding(
                         padding: const EdgeInsets.all(30),
                         child: Text('EDIT PROFILE',

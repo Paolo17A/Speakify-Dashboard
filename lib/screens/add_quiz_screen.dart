@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:speechlab_dashboard/utils/color_util.dart';
 import 'package:speechlab_dashboard/widgets/bool_choices_radio_widget.dart';
 import 'package:speechlab_dashboard/widgets/string_choices_radio_widget.dart';
 import 'package:speechlab_dashboard/widgets/speechLabTextField.dart';
@@ -304,7 +305,9 @@ class _AddQuizScreenState extends State<AddQuizScreen> {
                             width: MediaQuery.of(context).size.width * 0.6,
                             height: MediaQuery.of(context).size.height * 0.7,
                             decoration: BoxDecoration(
-                                color: Colors.deepPurple.withOpacity(0.4),
+                                color: CustomColors.love,
+                                border: Border.all(
+                                    color: CustomColors.wine, width: 3),
                                 borderRadius: BorderRadius.circular(20)),
                             child: Padding(
                                 padding: const EdgeInsets.all(26),
@@ -315,7 +318,7 @@ class _AddQuizScreenState extends State<AddQuizScreen> {
                                         Text(
                                             '$currentDifficulty Question #${currentQuestion + 1}',
                                             style: const TextStyle(
-                                                color: Colors.deepPurple,
+                                                color: CustomColors.orchid,
                                                 fontSize: 25,
                                                 fontWeight: FontWeight.bold)),
                                       ],
@@ -360,6 +363,11 @@ class _AddQuizScreenState extends State<AddQuizScreen> {
                                                     child: ElevatedButton(
                                                         onPressed:
                                                             previousQuestion,
+                                                        style: ElevatedButton
+                                                            .styleFrom(
+                                                                backgroundColor:
+                                                                    CustomColors
+                                                                        .orchid),
                                                         child: const Text(
                                                             'PREVIOUS',
                                                             style: TextStyle(
@@ -379,6 +387,11 @@ class _AddQuizScreenState extends State<AddQuizScreen> {
                                                             0.1,
                                                     child: ElevatedButton(
                                                         onPressed: nextQuestion,
+                                                        style: ElevatedButton
+                                                            .styleFrom(
+                                                                backgroundColor:
+                                                                    CustomColors
+                                                                        .orchid),
                                                         child: Text(
                                                             (currentDifficulty ==
                                                                         'Difficult' &&
@@ -436,7 +449,7 @@ class _AddQuizScreenState extends State<AddQuizScreen> {
                       choiceLetters[index],
                       textAlign: TextAlign.center,
                       style: const TextStyle(
-                          color: Colors.deepPurple,
+                          color: CustomColors.orchid,
                           fontSize: 20,
                           fontWeight: FontWeight.bold),
                     ),

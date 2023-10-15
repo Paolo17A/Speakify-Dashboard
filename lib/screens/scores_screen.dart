@@ -86,7 +86,7 @@ class _ScoresScreenState extends State<ScoresScreen> {
                                   label: 'SpeechLab Performance',
                                   isSelected: !_viewingQuizScores, onPress: () {
                                 setState(() => _viewingQuizScores = false);
-                              }),
+                              })
                             ])),
                     Padding(
                         padding: const EdgeInsets.symmetric(

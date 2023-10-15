@@ -13,6 +13,7 @@ Widget authenticationButton(String label, Function onPress,
         onPressed: () {
           onPress();
         },
+        style: ElevatedButton.styleFrom(backgroundColor: CustomColors.jam),
         child: Text(label, style: whiteBoldStyle(size: 20))),
   );
 }
@@ -51,7 +52,7 @@ Widget scoreOptionButton(BuildContext context,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10))),
           child: cambriaText(
-              text: 'Lesson Quiz Performance',
+              text: label,
               textStyle: TextStyle(
                   color:
                       isSelected ? CustomColors.orchid : CustomColors.mercury,
@@ -60,9 +61,12 @@ Widget scoreOptionButton(BuildContext context,
 }
 
 Widget longEntryButton(BuildContext context,
-    {required String label, required Function onPress, double? height = 80}) {
+    {required String label,
+    required Function onPress,
+    double? width = double.infinity,
+    double? height = 80}) {
   return SizedBox(
-    width: double.infinity,
+    width: width ?? double.infinity,
     height: height,
     child: ElevatedButton(
         onPressed: () => onPress(),

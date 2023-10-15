@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:speechlab_dashboard/utils/error_message.dart';
 import 'package:speechlab_dashboard/utils/student_achievements_util.dart';
 import 'package:speechlab_dashboard/widgets/appbar_title_widget.dart';
+import 'package:speechlab_dashboard/widgets/custom_container_widgets.dart';
+import 'package:speechlab_dashboard/widgets/custom_miscellaneous_widgets.dart';
 import 'package:speechlab_dashboard/widgets/left_navigator_widget.dart';
 
 class SelectedSectionScreen extends StatefulWidget {
@@ -51,24 +53,18 @@ class _SelectedSectionScreenState extends State<SelectedSectionScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: appBarTitle(),
-        body: _isLoading
-            ? const Center(child: CircularProgressIndicator())
-            : Row(
-                children: [
-                  lefNavigator(context, 1),
-                  Container(
-                    width: MediaQuery.of(context).size.width * 0.8,
-                    height: double.infinity,
-                    color: Colors.white,
-                    child: SingleChildScrollView(
+        body: Row(
+          children: [
+            lefNavigator(context, 1),
+            bodyWidgetWhiteBG(
+                context,
+                switchedLoadingContainer(
+                    _isLoading,
+                    SingleChildScrollView(
                       child: Column(
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 20),
-                            child: Text('Students - ${widget.section}',
-                                style: const TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 30)),
-                          ),
+                          pageHeaderWithDivider(context,
+                              label: 'Students - ${widget.section}'),
                           Padding(
                               padding: const EdgeInsets.all(10),
                               child: _userDocs.isEmpty
@@ -261,10 +257,9 @@ class _SelectedSectionScreenState extends State<SelectedSectionScreen> {
                                     ))
                         ],
                       ),
-                    ),
-                  )
-                ],
-              ));
+                    )))
+          ],
+        ));
   }
 
   TextStyle _headerStyle() {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:speechlab_dashboard/utils/color_util.dart';
 
 void displayQuizAnswersDialogue(
     String difficulty,
@@ -11,7 +12,7 @@ void displayQuizAnswersDialogue(
   showDialog(
       context: context,
       builder: (context) => AlertDialog(
-          backgroundColor: const Color.fromARGB(255, 60, 19, 97),
+          backgroundColor: CustomColors.orchid,
           content: SizedBox(
               width: MediaQuery.of(context).size.width * 0.35,
               height: MediaQuery.of(context).size.height * 0.75,
@@ -25,7 +26,7 @@ void displayQuizAnswersDialogue(
                           child: Icon(
                             Icons.person,
                             size: 70,
-                            color: Color.fromARGB(255, 53, 1, 36),
+                            color: CustomColors.orchid,
                           ))
                       : CircleAvatar(
                           radius: 50,
@@ -64,7 +65,7 @@ void displayQuizAnswersDialogue(
                                   padding: const EdgeInsets.all(6),
                                   child: Container(
                                       decoration: const BoxDecoration(
-                                          color: Color.fromARGB(255, 44, 4, 31),
+                                          color: CustomColors.wine,
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(10))),
                                       child: Column(children: [

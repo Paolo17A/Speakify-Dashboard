@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:speechlab_dashboard/widgets/appbar_title_widget.dart';
@@ -102,10 +103,13 @@ class _SelectedCustomQuizScreenState extends State<SelectedCustomQuizScreen> {
                             color: CustomColors.darkWine,
                           )
                         ])),
-                    allEligibleUsers.isNotEmpty
+                    loveWineContainer(allEligibleUsers.isNotEmpty
                         ? Column(children: [
                             Container(
-                                color: const Color.fromARGB(255, 82, 48, 124),
+                                decoration: BoxDecoration(
+                                    color: CustomColors.mercury,
+                                    border: Border.all(
+                                        color: CustomColors.orchid, width: 3)),
                                 child: Padding(
                                     padding: const EdgeInsets.all(10),
                                     child: Row(
@@ -157,8 +161,11 @@ class _SelectedCustomQuizScreenState extends State<SelectedCustomQuizScreen> {
                                           vertical: 5),
                                       child: Container(
                                           height: 75,
-                                          color: const Color.fromARGB(
-                                              255, 103, 65, 150),
+                                          decoration: BoxDecoration(
+                                              color: CustomColors.mercury,
+                                              border: Border.all(
+                                                  color: CustomColors.orchid,
+                                                  width: 3)),
                                           child: Padding(
                                               padding:
                                                   const EdgeInsets.all(6.0),
@@ -173,9 +180,10 @@ class _SelectedCustomQuizScreenState extends State<SelectedCustomQuizScreen> {
                                                                 .size
                                                                 .width *
                                                             0.3,
-                                                        child: Text(
-                                                            '${(allEligibleUsers[index].data()! as Map<dynamic, dynamic>)['firstName']} ${(allEligibleUsers[index].data()! as Map<dynamic, dynamic>)['lastName']}',
-                                                            style:
+                                                        child: cambriaText(
+                                                            text:
+                                                                '${(allEligibleUsers[index].data()! as Map<dynamic, dynamic>)['firstName']} ${(allEligibleUsers[index].data()! as Map<dynamic, dynamic>)['lastName']}',
+                                                            textStyle:
                                                                 _studentEntryStyle())),
                                                     SizedBox(
                                                         width: MediaQuery.of(
@@ -190,7 +198,9 @@ class _SelectedCustomQuizScreenState extends State<SelectedCustomQuizScreen> {
                                                                 allEligibleUsers[
                                                                     index],
                                                                 'EASY')
-                                                            : _notAvailable()),
+                                                            : Center(
+                                                                child:
+                                                                    _notAvailable())),
                                                     SizedBox(
                                                         width: MediaQuery.of(
                                                                     context)
@@ -204,7 +214,9 @@ class _SelectedCustomQuizScreenState extends State<SelectedCustomQuizScreen> {
                                                                 allEligibleUsers[
                                                                     index],
                                                                 'AVERAGE')
-                                                            : _notAvailable()),
+                                                            : Center(
+                                                                child:
+                                                                    _notAvailable())),
                                                     SizedBox(
                                                         width: MediaQuery.of(
                                                                     context)
@@ -218,13 +230,15 @@ class _SelectedCustomQuizScreenState extends State<SelectedCustomQuizScreen> {
                                                                 allEligibleUsers[
                                                                     index],
                                                                 'DIFFICULT')
-                                                            : _notAvailable())
+                                                            : Center(
+                                                                child:
+                                                                    _notAvailable()))
                                                   ]))));
                                 })
                           ])
                         : const Center(
                             child: Text(
-                                'No student has done this custom lesson yet'))
+                                'No student has done this custom lesson yet')))
                   ],
                 ))))
       ]),
@@ -233,16 +247,16 @@ class _SelectedCustomQuizScreenState extends State<SelectedCustomQuizScreen> {
 
   TextStyle _headerStyle() {
     return const TextStyle(
-        fontSize: 25, fontWeight: FontWeight.bold, color: Colors.white);
+        fontSize: 25, fontWeight: FontWeight.bold, color: CustomColors.orchid);
   }
 
   TextStyle _studentEntryStyle() {
-    return const TextStyle(fontSize: 20, color: Colors.white);
+    return const TextStyle(
+        fontSize: 20, color: CustomColors.orchid, fontWeight: FontWeight.bold);
   }
 
-  Text _notAvailable() {
-    return Text('N/A',
-        textAlign: TextAlign.center, style: _studentEntryStyle());
+  AutoSizeText _notAvailable() {
+    return cambriaText(text: 'N/A', textStyle: _studentEntryStyle());
   }
 
   Widget _quizResultEntry(DocumentSnapshot selectedDoc, String difficulty) {
@@ -253,8 +267,9 @@ class _SelectedCustomQuizScreenState extends State<SelectedCustomQuizScreen> {
     Map<dynamic, dynamic> customQuizResults =
         (selectedDoc.data()! as Map<dynamic, dynamic>)['customQuizResults'];
     return Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-      Text(_getQuizScoreFormatted(customQuizResults, difficulty),
-          style: _studentEntryStyle()),
+      cambriaText(
+          text: _getQuizScoreFormatted(customQuizResults, difficulty),
+          textStyle: _studentEntryStyle()),
       ElevatedButton(
           onPressed: () => displayQuizAnswersDialogue(
               difficulty,
