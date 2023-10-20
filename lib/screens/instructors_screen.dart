@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:speechlab_dashboard/utils/instructor_profile_util.dart';
 import 'package:speechlab_dashboard/widgets/appbar_title_widget.dart';
@@ -37,13 +36,6 @@ class _InstructorsScreenState extends State<InstructorsScreen> {
           .where('userType', isEqualTo: 'TEACHER')
           .get();
       instructorDocs = allInstructors.docs;
-      for (int i = 0; i < instructorDocs.length; i++) {
-        if (instructorDocs[i].id == FirebaseAuth.instance.currentUser!.uid) {
-          currentInstructor = instructorDocs[i];
-          instructorDocs.removeAt(i);
-          break;
-        }
-      }
       setState(() {
         _isLoading = false;
       });
@@ -59,7 +51,7 @@ class _InstructorsScreenState extends State<InstructorsScreen> {
         appBar: appBarTitle(),
         body: Row(
           children: [
-            lefNavigator(context, 2),
+            lefNavigator(context, 2, isAdmin: true),
             bodyWidgetWhiteBG(
                 context,
                 switchedLoadingContainer(
@@ -82,21 +74,13 @@ class _InstructorsScreenState extends State<InstructorsScreen> {
                               loveWineContainer(SizedBox(
                                 height:
                                     MediaQuery.of(context).size.height * 0.8,
-                                child: Column(
-                                  children: [
-                                    if (currentInstructor != null)
-                                      _teacherWidget(
-                                          currentInstructor!.data(), true),
-                                    ListView.builder(
-                                        itemCount: instructorDocs.length,
-                                        shrinkWrap: true,
-                                        itemBuilder: (context, index) {
-                                          return _teacherWidget(
-                                              instructorDocs[index].data(),
-                                              false);
-                                        }),
-                                  ],
-                                ),
+                                child: ListView.builder(
+                                    itemCount: instructorDocs.length,
+                                    shrinkWrap: true,
+                                    itemBuilder: (context, index) {
+                                      return _teacherWidget(
+                                          instructorDocs[index].data());
+                                    }),
                               ))
                             ],
                           ),
@@ -105,7 +89,8 @@ class _InstructorsScreenState extends State<InstructorsScreen> {
         ));
   }
 
-  Widget _teacherWidget(dynamic instructorData, bool isCurrentInstructor) {
+  Widget _teacherWidget(dynamic instructorData) {
+    String profileImageUrl = instructorData['profileImageURL'];
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: Container(
@@ -120,7 +105,7 @@ class _InstructorsScreenState extends State<InstructorsScreen> {
             children: [
               Row(
                 children: [
-                  if (isCurrentInstructor)
+                  if (profileImageUrl.isNotEmpty)
                     SizedBox(
                         width: MediaQuery.of(context).size.width * 0.1,
                         child: CircleAvatar(
@@ -130,7 +115,7 @@ class _InstructorsScreenState extends State<InstructorsScreen> {
                               instructorData['profileImageURL'],
                               scale: 0.5),
                         )),
-                  if (!isCurrentInstructor)
+                  if (profileImageUrl.isEmpty)
                     SizedBox(
                         width: MediaQuery.of(context).size.width * 0.1,
                         child: const CircleAvatar(
@@ -142,7 +127,7 @@ class _InstructorsScreenState extends State<InstructorsScreen> {
                       width: MediaQuery.of(context).size.width * 0.3,
                       child: cambriaText(
                           text:
-                              '${instructorData['firstName']} ${instructorData['lastName']}\t\t${isCurrentInstructor ? '(YOU)' : ''}',
+                              '${instructorData['firstName']} ${instructorData['lastName']}',
                           textStyle: const TextStyle(
                               color: CustomColors.orchid,
                               fontWeight: FontWeight.bold,
@@ -159,8 +144,7 @@ class _InstructorsScreenState extends State<InstructorsScreen> {
                       onPressed: () => displayInstructorDialogue(
                           context,
                           instructorData['profileImageURL'],
-                          '${instructorData['firstName']} ${instructorData['lastName']}',
-                          isCurrentInstructor),
+                          '${instructorData['firstName']} ${instructorData['lastName']}'),
                       style: ElevatedButton.styleFrom(
                           backgroundColor: CustomColors.orchid),
                       child: const Text(

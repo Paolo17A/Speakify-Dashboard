@@ -266,7 +266,7 @@ class _EditQuizScreenState extends State<EditQuizScreen> {
         appBar: appBarTitle(),
         body: Row(
           children: [
-            lefNavigator(context, 0),
+            lefNavigator(context, 0, isAdmin: false),
             bodyWidgetWhiteBG(
                 context,
                 stackedLoadingContainer(context, _isLoading, [

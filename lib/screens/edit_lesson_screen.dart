@@ -162,7 +162,7 @@ class _EditLessonScreenState extends State<EditLessonScreen> {
         appBar: appBarTitle(),
         body: Row(
           children: [
-            lefNavigator(context, 3),
+            lefNavigator(context, 3, isAdmin: false),
             bodyWidgetWhiteBG(
                 context,
                 stackedLoadingContainer(context, _isLoading, [

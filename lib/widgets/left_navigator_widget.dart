@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:speechlab_dashboard/utils/color_util.dart';
 import 'package:speechlab_dashboard/widgets/custom_text_widgets.dart';
 
-Widget lefNavigator(BuildContext context, int index) {
+Widget lefNavigator(BuildContext context, int index, {bool isAdmin = false}) {
   return Container(
       width: MediaQuery.of(context).size.width * 0.2,
       color: CustomColors.jam,
@@ -32,16 +32,28 @@ Widget lefNavigator(BuildContext context, int index) {
                   onTap: () => GoRouter.of(context).go('/sections'),
                 ),
               ),
-              Container(
-                color: index == 2 ? CustomColors.orchid : null,
-                child: ListTile(
-                  leading:
-                      const Icon(Icons.person_2, color: CustomColors.mercury),
-                  title:
-                      cambriaText(text: 'Instructor', textStyle: _textStyle()),
-                  onTap: () => GoRouter.of(context).go('/instructors'),
+              if (isAdmin)
+                Container(
+                  color: index == 2 ? CustomColors.orchid : null,
+                  child: ListTile(
+                    leading:
+                        const Icon(Icons.person_2, color: CustomColors.mercury),
+                    title: cambriaText(
+                        text: 'All Instructors', textStyle: _textStyle()),
+                    onTap: () => GoRouter.of(context).go('/instructors'),
+                  ),
+                )
+              else if (!isAdmin)
+                Container(
+                  color: index == 2 ? CustomColors.orchid : null,
+                  child: ListTile(
+                    leading:
+                        const Icon(Icons.person_2, color: CustomColors.mercury),
+                    title: cambriaText(
+                        text: 'My Profile', textStyle: _textStyle()),
+                    onTap: () => GoRouter.of(context).go('/instructors/edit'),
+                  ),
                 ),
-              ),
               Container(
                 color: index == 3 ? CustomColors.orchid : null,
                 child: ListTile(

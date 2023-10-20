@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:speechlab_dashboard/utils/color_util.dart';
 import 'package:speechlab_dashboard/widgets/custom_text_widgets.dart';
 
-void displayInstructorDialogue(BuildContext context, String profileImageURL,
-    String instructorName, bool isCurrentUser) async {
+void displayInstructorDialogue(
+    BuildContext context, String profileImageURL, String instructorName) async {
   showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -39,18 +38,5 @@ void displayInstructorDialogue(BuildContext context, String profileImageURL,
                       style: whiteBoldStyle(size: 40),
                     )),
                 const SizedBox(height: 50),
-                if (isCurrentUser)
-                  ElevatedButton(
-                      onPressed: () {
-                        GoRouter.of(context).pop();
-                        GoRouter.of(context).go('/instructors/edit');
-                      },
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: CustomColors.jam),
-                      child: Padding(
-                        padding: const EdgeInsets.all(30),
-                        child: Text('EDIT PROFILE',
-                            style: whiteBoldStyle(size: 20)),
-                      ))
               ]))));
 }

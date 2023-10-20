@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+//import 'package:go_router/go_router.dart';
 import 'package:image_picker_web/image_picker_web.dart';
 import 'package:speechlab_dashboard/widgets/appbar_title_widget.dart';
 import 'package:speechlab_dashboard/widgets/left_navigator_widget.dart';
@@ -59,7 +59,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
 
   void updateUserProfile() async {
     final scaffoldMessenger = ScaffoldMessenger.of(context);
-    final goRouter = GoRouter.of(context);
+    //final goRouter = GoRouter.of(context);
     if (_firstNameController.text.isEmpty || _lastNameController.text.isEmpty) {
       scaffoldMessenger.showSnackBar(const SnackBar(
           content: Text('Please fill up your first and last name')));
@@ -130,7 +130,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
 
       scaffoldMessenger.showSnackBar(
           const SnackBar(content: Text('Successfully updated user profile!')));
-      goRouter.go('/instructors');
+      //goRouter.go('/instructors');
     } catch (error) {
       scaffoldMessenger.showSnackBar(
           SnackBar(content: Text('Error updating user profle: $error')));

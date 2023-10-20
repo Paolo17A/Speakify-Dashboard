@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:speechlab_dashboard/utils/firebase_util.dart';
 import 'package:speechlab_dashboard/widgets/appbar_title_widget.dart';
 import 'package:speechlab_dashboard/widgets/custom_container_widgets.dart';
 import 'package:speechlab_dashboard/widgets/custom_padding_widgets.dart';
@@ -27,6 +28,7 @@ class SelectedCustomQuizScreen extends StatefulWidget {
 
 class _SelectedCustomQuizScreenState extends State<SelectedCustomQuizScreen> {
   bool _isLoading = true;
+  bool _isAdmin = false;
   List<DocumentSnapshot> allEligibleUsers = [];
   Map<String, dynamic> allQuestions = {};
 
@@ -37,8 +39,9 @@ class _SelectedCustomQuizScreenState extends State<SelectedCustomQuizScreen> {
   }
 
   @override
-  void didChangeDependencies() {
+  void didChangeDependencies() async {
     super.didChangeDependencies();
+    _isAdmin = await isAdmin();
     _getEligibleUsers();
   }
 
@@ -87,7 +90,7 @@ class _SelectedCustomQuizScreenState extends State<SelectedCustomQuizScreen> {
     return Scaffold(
       appBar: appBarTitle(),
       body: Row(children: [
-        lefNavigator(context, 0),
+        lefNavigator(context, 0, isAdmin: _isAdmin),
         bodyWidgetWhiteBG(
             context,
             switchedLoadingContainer(

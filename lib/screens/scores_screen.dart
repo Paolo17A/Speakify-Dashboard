@@ -11,6 +11,8 @@ import 'package:speechlab_dashboard/widgets/custom_padding_widgets.dart';
 import 'package:speechlab_dashboard/widgets/custom_text_widgets.dart';
 import 'package:speechlab_dashboard/widgets/left_navigator_widget.dart';
 
+import '../utils/firebase_util.dart';
+
 class ScoresScreen extends StatefulWidget {
   const ScoresScreen({super.key});
 
@@ -20,13 +22,15 @@ class ScoresScreen extends StatefulWidget {
 
 class _ScoresScreenState extends State<ScoresScreen> {
   bool _isLoading = true;
+  bool _isAdmin = false;
   bool _isInitialized = false;
   bool _viewingQuizScores = true;
   List<DocumentSnapshot> allCustomQuizzes = [];
 
   @override
-  void didChangeDependencies() {
+  void didChangeDependencies() async {
     super.didChangeDependencies();
+    _isAdmin = await isAdmin();
     getCustomQuizzes();
   }
 
@@ -56,7 +60,7 @@ class _ScoresScreenState extends State<ScoresScreen> {
     return Scaffold(
         appBar: appBarTitle(),
         body: Row(children: [
-          lefNavigator(context, 0),
+          lefNavigator(context, 0, isAdmin: _isAdmin),
           bodyWidgetWhiteBG(
               context,
               switchedLoadingContainer(

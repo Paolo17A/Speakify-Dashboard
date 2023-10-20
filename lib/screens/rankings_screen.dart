@@ -5,6 +5,7 @@ import 'package:speechlab_dashboard/widgets/appbar_title_widget.dart';
 import 'package:speechlab_dashboard/widgets/custom_container_widgets.dart';
 import 'package:speechlab_dashboard/widgets/left_navigator_widget.dart';
 
+import '../utils/firebase_util.dart';
 import '../widgets/custom_padding_widgets.dart';
 
 class RankingsScreen extends StatefulWidget {
@@ -16,13 +17,15 @@ class RankingsScreen extends StatefulWidget {
 
 class _RankingsScreenState extends State<RankingsScreen> {
   bool _isLoading = true;
+  bool _isAdmin = false;
   List<DocumentSnapshot> _userDocs = [];
   String _leaderboardType = 'currentLesson';
   String _selectedSection = 'AB Broad 3A';
 
   @override
-  void didChangeDependencies() {
+  void didChangeDependencies() async {
     super.didChangeDependencies();
+    _isAdmin = await isAdmin();
     _initializeLeaderboard();
   }
 
@@ -77,7 +80,7 @@ class _RankingsScreenState extends State<RankingsScreen> {
     return Scaffold(
         appBar: appBarTitle(),
         body: Row(children: [
-          lefNavigator(context, 0),
+          lefNavigator(context, 0, isAdmin: _isAdmin),
           bodyWidgetWhiteBG(
               context,
               switchedLoadingContainer(

@@ -10,6 +10,8 @@ import 'package:speechlab_dashboard/widgets/custom_container_widgets.dart';
 import 'package:speechlab_dashboard/widgets/custom_padding_widgets.dart';
 import 'package:speechlab_dashboard/widgets/left_navigator_widget.dart';
 
+import '../utils/firebase_util.dart';
+
 class SelectedQuizScreen extends StatefulWidget {
   final int currentQuizLevelReq;
   final LessonModel selectedQuiz;
@@ -24,6 +26,7 @@ class SelectedQuizScreen extends StatefulWidget {
 
 class _SelectedQuizScreenState extends State<SelectedQuizScreen> {
   bool _isLoading = true;
+  bool _isAdmin = false;
   List<DocumentSnapshot> _userDocs = [];
   Map<String, dynamic> allQuestions = {};
   @override
@@ -35,10 +38,12 @@ class _SelectedQuizScreenState extends State<SelectedQuizScreen> {
   @override
   void didChangeDependencies() async {
     super.didChangeDependencies();
+
     await _loadQuiz();
   }
 
   void _getAllEligibleUsers() async {
+    _isAdmin = await isAdmin();
     QuerySnapshot querySnapshot =
         await FirebaseFirestore.instance.collection('users').get();
 
@@ -85,7 +90,7 @@ class _SelectedQuizScreenState extends State<SelectedQuizScreen> {
     return Scaffold(
         appBar: appBarTitle(),
         body: Row(children: [
-          lefNavigator(context, 0),
+          lefNavigator(context, 0, isAdmin: _isAdmin),
           bodyWidgetWhiteBG(
               context,
               switchedLoadingContainer(

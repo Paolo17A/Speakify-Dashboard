@@ -8,6 +8,7 @@ import 'package:speechlab_dashboard/widgets/left_navigator_widget.dart';
 import 'package:speechlab_dashboard/widgets/recent_activities_widget.dart';
 
 import '../utils/color_util.dart';
+import '../utils/firebase_util.dart';
 import '../widgets/custom_buttons_widget.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -19,11 +20,13 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   bool _isLoading = true;
+  bool _isAdmin = false;
   List<DocumentSnapshot> activeStudents = [];
 
   @override
-  void didChangeDependencies() {
+  void didChangeDependencies() async {
     super.didChangeDependencies();
+    _isAdmin = await isAdmin();
     _initializeHomeScreen();
   }
 
@@ -53,7 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
         body: switchedLoadingContainer(
             _isLoading,
             Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-              lefNavigator(context, 0),
+              lefNavigator(context, 0, isAdmin: _isAdmin),
               SizedBox(
                 width: MediaQuery.of(context).size.width * 0.6,
                 child: SingleChildScrollView(

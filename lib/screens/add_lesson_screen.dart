@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:speechlab_dashboard/widgets/appbar_title_widget.dart';
 import 'package:speechlab_dashboard/widgets/speechLabTextField.dart';
 
+import '../utils/firebase_util.dart';
 import '../widgets/left_navigator_widget.dart';
 
 class AddLessonScreen extends StatefulWidget {
@@ -16,14 +17,16 @@ class AddLessonScreen extends StatefulWidget {
 
 class _AddLessonScreenState extends State<AddLessonScreen> {
   bool _isLoading = false;
+  bool _isAdmin = false;
   final TextEditingController _titleController = TextEditingController();
   final TextEditingController _contentController = TextEditingController();
   final List<TextEditingController> _fileNameControllers = [];
   final List<TextEditingController> _downloadLinkControllers = [];
 
   @override
-  void initState() {
-    super.initState();
+  void didChangeDependencies() async {
+    super.didChangeDependencies();
+    _isAdmin = await isAdmin();
   }
 
   @override
@@ -121,7 +124,7 @@ class _AddLessonScreenState extends State<AddLessonScreen> {
         appBar: appBarTitle(),
         body: Row(
           children: [
-            lefNavigator(context, 3),
+            lefNavigator(context, 3, isAdmin: _isAdmin),
             Container(
               width: MediaQuery.of(context).size.width * 0.8,
               height: MediaQuery.of(context).size.height,

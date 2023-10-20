@@ -59,7 +59,8 @@ class _LoginScreenState extends State<LoginScreen> {
           _passwordController.clear();
           _isLoading = false;
         });
-      } else if (currentUserData.data()!['userType'] == 'TEACHER') {
+      } else if (currentUserData.data()!['userType'] == 'TEACHER' ||
+          currentUserData.data()!['userType'] == 'ADMIN') {
         //navigator.pushNamed('/home');
         goRouter.go('/home');
       }

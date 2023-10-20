@@ -8,6 +8,7 @@ import 'package:speechlab_dashboard/widgets/custom_padding_widgets.dart';
 import 'package:speechlab_dashboard/widgets/left_navigator_widget.dart';
 
 import '../utils/color_util.dart';
+import '../utils/firebase_util.dart';
 import '../widgets/custom_miscellaneous_widgets.dart';
 import '../widgets/custom_text_widgets.dart';
 
@@ -20,10 +21,12 @@ class LessonsScreen extends StatefulWidget {
 
 class _LessonsScreenState extends State<LessonsScreen> {
   bool _isLoading = true;
+  bool _isAdmin = false;
   List<DocumentSnapshot> customLessons = [];
   @override
-  void didChangeDependencies() {
+  void didChangeDependencies() async {
     super.didChangeDependencies();
+    _isAdmin = await isAdmin();
     getAllCustomLessons();
   }
 
@@ -48,7 +51,7 @@ class _LessonsScreenState extends State<LessonsScreen> {
     return Scaffold(
         appBar: appBarTitle(),
         body: Row(children: [
-          lefNavigator(context, 3),
+          lefNavigator(context, 3, isAdmin: _isAdmin),
           bodyWidgetWhiteBG(
               context,
               switchedLoadingContainer(

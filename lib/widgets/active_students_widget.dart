@@ -17,7 +17,7 @@ class _ActiveStudentsScreenWidget extends State<ActiveStudentsWidget> {
   List<DocumentSnapshot> activeStudents = [];
 
   @override
-  void didChangeDependencies() {
+  void didChangeDependencies() async {
     super.didChangeDependencies();
     getActiveStudents();
   }

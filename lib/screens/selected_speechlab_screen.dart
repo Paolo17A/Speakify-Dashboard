@@ -9,6 +9,7 @@ import 'package:speechlab_dashboard/widgets/custom_container_widgets.dart';
 import 'package:speechlab_dashboard/widgets/custom_padding_widgets.dart';
 
 import '../utils/color_util.dart';
+import '../utils/firebase_util.dart';
 import '../utils/number_util.dart';
 import '../widgets/custom_text_widgets.dart';
 import '../widgets/left_navigator_widget.dart';
@@ -28,6 +29,7 @@ class SelectedSpeechLabScreen extends StatefulWidget {
 
 class _SelectedSpeechLabScreenState extends State<SelectedSpeechLabScreen> {
   bool _isLoading = true;
+  bool _isAdmin = false;
   List<DocumentSnapshot> _userDocs = [];
 
   late int currentSpeechLevelReq;
@@ -42,8 +44,9 @@ class _SelectedSpeechLabScreenState extends State<SelectedSpeechLabScreen> {
   }
 
   @override
-  void didChangeDependencies() {
+  void didChangeDependencies() async {
     super.didChangeDependencies();
+    _isAdmin = await isAdmin();
     _getEligibleStudents();
   }
 
@@ -77,7 +80,7 @@ class _SelectedSpeechLabScreenState extends State<SelectedSpeechLabScreen> {
       appBar: appBarTitle(),
       body: Row(
         children: [
-          lefNavigator(context, 0),
+          lefNavigator(context, 0, isAdmin: _isAdmin),
           bodyWidgetWhiteBG(
               context,
               switchedLoadingContainer(
