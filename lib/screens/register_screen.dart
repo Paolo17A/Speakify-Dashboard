@@ -71,6 +71,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         'lastName': _lastNameController.text,
         'userType': 'TEACHER',
         'profileImageURL': '',
+        'handledSections': []
       });
 
       await FirebaseFirestore.instance

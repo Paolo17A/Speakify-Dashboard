@@ -15,11 +15,7 @@ import '../widgets/string_choices_radio_widget.dart';
 
 class EditQuizScreen extends StatefulWidget {
   final String quizTitle;
-  final String serializedQuizContent;
-  const EditQuizScreen(
-      {super.key,
-      required this.quizTitle,
-      required this.serializedQuizContent});
+  const EditQuizScreen({super.key, required this.quizTitle});
 
   @override
   State<EditQuizScreen> createState() => _EditQuizScreenState();
@@ -27,6 +23,7 @@ class EditQuizScreen extends StatefulWidget {
 
 class _EditQuizScreenState extends State<EditQuizScreen> {
   bool _isLoading = false;
+  bool _isInitialized = false;
   String currentDifficulty = 'Easy';
   int currentQuestion = 0;
 
@@ -51,18 +48,51 @@ class _EditQuizScreenState extends State<EditQuizScreen> {
     for (int i = 0; i < 4; i++) {
       _choicesControllers.add(TextEditingController());
     }
-    Map<String, dynamic> quizContent = jsonDecode(widget.serializedQuizContent);
-    easyQuestions = quizContent['easy'];
-    averageQuestions = quizContent['average'];
-    difficultQuestions = quizContent['difficult'];
-    _questionController.text = easyQuestions[currentQuestion]['question'];
-    for (int i = 0; i < _choicesControllers.length; i++) {
-      _choicesControllers[i].text =
-          easyQuestions[currentQuestion]['options'][choiceLetters[i]];
-    }
+  }
 
-    _correctChoiceString = easyQuestions[currentQuestion]['answer'];
-    stringChoice.currentState?.setChoice(_correctChoiceString!);
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (!_isInitialized) {
+      getSerializedQuizContent();
+    }
+  }
+
+  Future getSerializedQuizContent() async {
+    final scaffoldMessenger = ScaffoldMessenger.of(context);
+
+    try {
+      setState(() {
+        _isLoading = true;
+      });
+      final quiz = await FirebaseFirestore.instance
+          .collection('quizzes')
+          .doc(widget.quizTitle)
+          .get();
+      final quizData = quiz.data() as Map<dynamic, dynamic>;
+      final quizContent = jsonDecode(quizData['quizContent']);
+      easyQuestions = quizContent['easy'];
+      averageQuestions = quizContent['average'];
+      difficultQuestions = quizContent['difficult'];
+
+      _questionController.text = easyQuestions[currentQuestion]['question'];
+      for (int i = 0; i < _choicesControllers.length; i++) {
+        _choicesControllers[i].text =
+            easyQuestions[currentQuestion]['options'][choiceLetters[i]];
+      }
+      _correctChoiceString = easyQuestions[currentQuestion]['answer'];
+      stringChoice.currentState?.setChoice(_correctChoiceString!);
+      setState(() {
+        _isLoading = false;
+        _isInitialized = true;
+      });
+    } catch (error) {
+      scaffoldMessenger.showSnackBar(SnackBar(
+          content: Text('Error getting serialized quiz content: $error')));
+      setState(() {
+        _isLoading = false;
+      });
+    }
   }
 
   @override

@@ -57,6 +57,7 @@ Widget lessonEntryWithActionsContainer(BuildContext context,
     {required String label,
     required Function editFunction,
     required Function deleteFunction,
+    required bool mayEditLesson,
     double? height = 60}) {
   return SizedBox(
     width: double.infinity,
@@ -85,13 +86,15 @@ Widget lessonEntryWithActionsContainer(BuildContext context,
                 children: [
                   SizedBox(
                     height: 55,
-                    child: ElevatedButton(
-                        onPressed: () => editFunction(),
-                        style: ElevatedButton.styleFrom(
-                            backgroundColor: CustomColors.wine,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(60))),
-                        child: const Icon(Icons.edit)),
+                    child: mayEditLesson
+                        ? ElevatedButton(
+                            onPressed: () => editFunction(),
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor: CustomColors.wine,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(60))),
+                            child: const Icon(Icons.edit))
+                        : null,
                   ),
                   const SizedBox(width: 10),
                   SizedBox(

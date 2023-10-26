@@ -228,14 +228,12 @@ class App extends StatelessWidget {
               }),
           GoRoute(
               name: 'selectedQuiz',
-              path: 'scores/selectedQuiz/:quizTitle/:serializedQuizQuestions',
+              path: 'scores/selectedQuiz/:quizTitle',
               pageBuilder: (context, state) {
                 return CustomTransitionPage(
                     key: state.pageKey,
                     child: SelectedCustomQuizScreen(
-                        quizTitle: state.pathParameters['quizTitle']!,
-                        serializedQuizQuestions:
-                            state.pathParameters['serializedQuizQuestions']!),
+                        quizTitle: state.pathParameters['quizTitle']!),
                     transitionsBuilder:
                         (context, animation, secondaryAnimation, child) {
                       return FadeTransition(
@@ -293,14 +291,12 @@ class App extends StatelessWidget {
               }),
           GoRoute(
               name: 'editQuiz',
-              path: 'quizzes/editQuiz/:quizTitle/:serializedQuizContent',
+              path: 'quizzes/editQuiz/:quizTitle',
               pageBuilder: (context, state) {
                 return CustomTransitionPage(
                     key: state.pageKey,
                     child: EditQuizScreen(
-                        quizTitle: state.pathParameters['quizTitle']!,
-                        serializedQuizContent:
-                            state.pathParameters['serializedQuizContent']!),
+                        quizTitle: state.pathParameters['quizTitle']!),
                     transitionsBuilder:
                         (context, animation, secondaryAnimation, child) {
                       return FadeTransition(

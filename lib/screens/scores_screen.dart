@@ -108,11 +108,8 @@ class _ScoresScreenState extends State<ScoresScreen> {
             .map((customQuiz) => vertical10PixHorizontal30Pix(context,
                 child:
                     longEntryButton(context, label: customQuiz.id, onPress: () {
-                  final quizData = customQuiz.data() as Map<dynamic, dynamic>;
-                  GoRouter.of(context).goNamed('selectedQuiz', pathParameters: {
-                    'quizTitle': customQuiz.id,
-                    'serializedQuizQuestions': quizData['quizContent']
-                  });
+                  GoRouter.of(context).goNamed('selectedQuiz',
+                      pathParameters: {'quizTitle': customQuiz.id});
                 })))
             .toList()));
   }

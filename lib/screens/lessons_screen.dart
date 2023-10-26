@@ -60,9 +60,10 @@ class _LessonsScreenState extends State<LessonsScreen> {
                       child: all8Pix(Column(children: [
                     _customLessonsHeader(),
                     loveWineContainer(Column(children: [
-                      addEntryButton(context,
-                          onPress: () =>
-                              GoRouter.of(context).go('/lessons/addLesson')),
+                      if (!_isAdmin)
+                        addEntryButton(context,
+                            onPress: () =>
+                                GoRouter.of(context).go('/lessons/addLesson')),
                       _customLessonContainer()
                     ]))
                   ])))))
@@ -87,7 +88,9 @@ class _LessonsScreenState extends State<LessonsScreen> {
             padding: const EdgeInsets.all(20),
             child: SizedBox(
                 width: double.infinity,
-                height: MediaQuery.of(context).size.height * 0.65,
+                height: _isAdmin
+                    ? MediaQuery.of(context).size.height * 0.75
+                    : MediaQuery.of(context).size.height * 0.65,
                 child: Column(
                     children: customLessons.map((lesson) {
                   final lessondata = lesson.data() as Map<dynamic, dynamic>;
@@ -96,7 +99,7 @@ class _LessonsScreenState extends State<LessonsScreen> {
                           label: lessondata['lessonTitle'], editFunction: () {
                         GoRouter.of(context).goNamed('editLesson',
                             pathParameters: {'lessonID': lesson.id});
-                      }, deleteFunction: () {}));
+                      }, deleteFunction: () {}, mayEditLesson: !_isAdmin));
                 }).toList())),
           )
         : Expanded(

@@ -27,6 +27,15 @@ TextStyle whiteBoldStyle({double? size}) {
       color: Colors.white, fontWeight: FontWeight.bold, fontSize: size);
 }
 
+TextStyle wineBoldStyle({double? size}) {
+  return TextStyle(
+      color: CustomColors.wine, fontWeight: FontWeight.bold, fontSize: size);
+}
+
+TextStyle wineRegularStyle({double? size}) {
+  return TextStyle(color: CustomColors.wine, fontSize: size);
+}
+
 AutoSizeText cambriaWineHeaderText({required String text}) {
   return cambriaText(
       text: text,

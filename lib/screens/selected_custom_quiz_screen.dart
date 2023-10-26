@@ -15,11 +15,8 @@ import '../widgets/custom_text_widgets.dart';
 
 class SelectedCustomQuizScreen extends StatefulWidget {
   final String quizTitle;
-  final String serializedQuizQuestions;
-  const SelectedCustomQuizScreen(
-      {super.key,
-      required this.quizTitle,
-      required this.serializedQuizQuestions});
+  //final String serializedQuizQuestions;
+  const SelectedCustomQuizScreen({super.key, required this.quizTitle});
 
   @override
   State<SelectedCustomQuizScreen> createState() =>
@@ -28,6 +25,7 @@ class SelectedCustomQuizScreen extends StatefulWidget {
 
 class _SelectedCustomQuizScreenState extends State<SelectedCustomQuizScreen> {
   bool _isLoading = true;
+  bool _isInitialized = false;
   bool _isAdmin = false;
   List<DocumentSnapshot> allEligibleUsers = [];
   Map<String, dynamic> allQuestions = {};
@@ -35,14 +33,39 @@ class _SelectedCustomQuizScreenState extends State<SelectedCustomQuizScreen> {
   @override
   void initState() {
     super.initState();
-    allQuestions = json.decode(widget.serializedQuizQuestions);
+    //allQuestions = json.decode(widget.serializedQuizQuestions);
   }
 
   @override
   void didChangeDependencies() async {
     super.didChangeDependencies();
     _isAdmin = await isAdmin();
-    _getEligibleUsers();
+    if (!_isInitialized) {
+      await getSerializedQuizContent();
+      _getEligibleUsers();
+    }
+  }
+
+  Future getSerializedQuizContent() async {
+    final scaffoldMessenger = ScaffoldMessenger.of(context);
+
+    try {
+      setState(() {
+        _isLoading = true;
+      });
+      final quiz = await FirebaseFirestore.instance
+          .collection('quizzes')
+          .doc(widget.quizTitle)
+          .get();
+      final quizData = quiz.data() as Map<dynamic, dynamic>;
+      allQuestions = jsonDecode(quizData['quizContent']);
+    } catch (error) {
+      scaffoldMessenger.showSnackBar(SnackBar(
+          content: Text('Error getting serialized quiz content: $error')));
+      setState(() {
+        _isLoading = false;
+      });
+    }
   }
 
   void _getEligibleUsers() async {
@@ -62,6 +85,7 @@ class _SelectedCustomQuizScreenState extends State<SelectedCustomQuizScreen> {
 
       setState(() {
         _isLoading = false;
+        _isInitialized = true;
       });
     } catch (error) {
       scaffoldMessenger.showSnackBar(

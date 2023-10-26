@@ -95,9 +95,10 @@ class _CustomQuizzesScreenState extends State<CustomQuizzesScreen> {
                     child: all8Pix(Column(children: [
                       _customQuizzesHeader(),
                       loveWineContainer(Column(children: [
-                        addEntryButton(context,
-                            onPress: () =>
-                                GoRouter.of(context).go('/quizzes/addQuiz')),
+                        if (!_isAdmin)
+                          addEntryButton(context,
+                              onPress: () =>
+                                  GoRouter.of(context).go('/quizzes/addQuiz')),
                         _customQuizzesContainer()
                       ]))
                     ])),
@@ -121,7 +122,9 @@ class _CustomQuizzesScreenState extends State<CustomQuizzesScreen> {
     return customQuizzes.isNotEmpty
         ? SizedBox(
             width: MediaQuery.of(context).size.width * 0.7,
-            height: MediaQuery.of(context).size.height * 0.7,
+            height: _isAdmin
+                ? MediaQuery.of(context).size.height * 0.75
+                : MediaQuery.of(context).size.height * 0.65,
             child: ListView.builder(
               shrinkWrap: true,
               itemCount: customQuizzes.length,
@@ -137,12 +140,15 @@ class _CustomQuizzesScreenState extends State<CustomQuizzesScreen> {
                         width: MediaQuery.of(context).size.width * 0.5,
                         height: 100,
                         child: ElevatedButton(
-                            onPressed: () => GoRouter.of(context)
-                                    .goNamed('editQuiz', pathParameters: {
-                                  'quizTitle': customQuizzes[index].id,
-                                  'serializedQuizContent':
-                                      quizData['quizContent']
-                                }),
+                            onPressed: () {
+                              if (_isAdmin) {
+                                return;
+                              }
+                              GoRouter.of(context).goNamed('editQuiz',
+                                  pathParameters: {
+                                    'quizTitle': customQuizzes[index].id
+                                  });
+                            },
                             style: ElevatedButton.styleFrom(
                                 side:
                                     const BorderSide(color: CustomColors.wine),
@@ -188,14 +194,13 @@ class _CustomQuizzesScreenState extends State<CustomQuizzesScreen> {
               },
             ),
           )
-        : const Expanded(
-            child: Center(
-                child: Text(
+        : Center(
+            child: Text(
             'NO CUSTOM QUIZZES AVAILABLE',
             style: TextStyle(
-                color: Colors.deepPurple,
+                color: CustomColors.wine,
                 fontSize: 40,
                 fontWeight: FontWeight.bold),
-          )));
+          ));
   }
 }

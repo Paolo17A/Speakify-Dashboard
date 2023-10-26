@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:speechlab_dashboard/utils/error_message.dart';
-import 'package:speechlab_dashboard/utils/student_achievements_util.dart';
 import 'package:speechlab_dashboard/widgets/appbar_title_widget.dart';
 import 'package:speechlab_dashboard/widgets/custom_container_widgets.dart';
 import 'package:speechlab_dashboard/widgets/custom_miscellaneous_widgets.dart';
@@ -228,16 +227,19 @@ class _SelectedSectionScreenState extends State<SelectedSectionScreen> {
                                                                 0.15,
                                                             child:
                                                                 ElevatedButton(
-                                                                    onPressed: () => displayStudentAchievementsDialogue(
-                                                                        context,
-                                                                        '${(_userDocs[index].data() as Map<dynamic, dynamic>)['firstName']} ${(_userDocs[index].data() as Map<dynamic, dynamic>)['lastName']}',
-                                                                        List.from((_userDocs[index].data()
-                                                                                as Map<dynamic, dynamic>)[
-                                                                            'achievements']),
-                                                                        (_userDocs[index].data() as Map<
-                                                                            dynamic,
-                                                                            dynamic>)['profileImageURL']),
-                                                                    child: const Text(
+                                                                    onPressed:
+                                                                        () {
+                                                                      /*displayStudentAchievementsDialogue(
+                                                                          context,
+                                                                          '${(_userDocs[index].data() as Map<dynamic, dynamic>)['firstName']} ${(_userDocs[index].data() as Map<dynamic, dynamic>)['lastName']}',
+                                                                          List.from((_userDocs[index].data() as Map<dynamic, dynamic>)[
+                                                                              'achievements']),
+                                                                          (_userDocs[index].data() as Map<
+                                                                              dynamic,
+                                                                              dynamic>)['profileImageURL']);*/
+                                                                    },
+                                                                    child:
+                                                                        const Text(
                                                                       'VIEW ACHIEVEMENTS',
                                                                       style: TextStyle(
                                                                           letterSpacing:

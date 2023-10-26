@@ -8,12 +8,14 @@ class SpeechLabTextField extends StatefulWidget {
   final TextEditingController controller;
   final TextInputType textInputType;
   final Icon? displayPrefixIcon;
+  final Color color;
   const SpeechLabTextField(
       {super.key,
       required this.text,
       required this.controller,
       required this.textInputType,
-      required this.displayPrefixIcon});
+      required this.displayPrefixIcon,
+      this.color = Colors.black});
 
   @override
   State<SpeechLabTextField> createState() => _SpeechLabTextFieldState();
@@ -34,13 +36,13 @@ class _SpeechLabTextFieldState extends State<SpeechLabTextField> {
         controller: widget.controller,
         obscureText: isObscured,
         cursorColor: CustomColors.orchid,
-        style: TextStyle(color: Colors.black.withOpacity(0.9)),
+        style: TextStyle(color: widget.color.withOpacity(0.9)),
         decoration: InputDecoration(
             focusColor: CustomColors.orchid,
             alignLabelWithHint: true,
             labelText: widget.text,
             labelStyle: TextStyle(
-                color: Colors.black.withOpacity(0.5),
+                color: widget.color.withOpacity(0.5),
                 fontStyle: FontStyle.italic),
             filled: true,
             floatingLabelBehavior: FloatingLabelBehavior.never,

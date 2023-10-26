@@ -95,3 +95,27 @@ Container loveWineContainer(Widget child, {double? width, double? height}) {
           border: Border.all(color: CustomColors.wine, width: 5)),
       child: child);
 }
+
+Container mercuryWineContainer(Widget child,
+    {double? width, double? height, double borderWidth = 5}) {
+  return Container(
+      width: width,
+      height: height,
+      decoration: BoxDecoration(
+          color: CustomColors.mercury,
+          border: Border.all(color: CustomColors.wine, width: borderWidth),
+          borderRadius: BorderRadius.circular(10)),
+      child: child);
+}
+
+Container whiteWineContainer(Widget child,
+    {double? width, double? height, double borderWidth = 5}) {
+  return Container(
+      width: width,
+      height: height,
+      decoration: BoxDecoration(
+          color: Colors.white,
+          border: Border.all(color: CustomColors.wine, width: borderWidth),
+          borderRadius: BorderRadius.circular(10)),
+      child: child);
+}
