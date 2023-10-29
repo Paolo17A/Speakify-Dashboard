@@ -243,7 +243,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       false),
                   ElevatedButton(
                       onPressed: () => removeHandledSection(),
-                      child: all20Pix(Text('REWMOVE THIS SECTION')))
+                      child: all20Pix(Text('REMOVE THIS SECTION')))
                 ],
               )),
             ),

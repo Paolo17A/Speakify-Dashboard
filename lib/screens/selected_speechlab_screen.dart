@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:speechlab_dashboard/models/speech_model.dart';
 import 'package:speechlab_dashboard/utils/student_speech_util.dart';
@@ -65,6 +66,19 @@ class _SelectedSpeechLabScreenState extends State<SelectedSpeechLabScreen> {
             (data['speechResults'] as Map<dynamic, dynamic>)
                 .containsKey(currentSpeechLevelReq.toString());
       }).toList();
+
+      if (!_isAdmin) {
+        final instructor = await FirebaseFirestore.instance
+            .collection('users')
+            .doc(FirebaseAuth.instance.currentUser!.uid)
+            .get();
+        final instructorData = instructor.data() as Map<dynamic, dynamic>;
+        List<dynamic> handledSections = instructorData['handledSections'];
+        _userDocs = _userDocs.where((student) {
+          final studentData = student.data() as Map<dynamic, dynamic>;
+          return handledSections.contains(studentData['section']);
+        }).toList();
+      }
       setState(() {
         _isLoading = false;
       });
@@ -222,8 +236,10 @@ class _SelectedSpeechLabScreenState extends State<SelectedSpeechLabScreen> {
                                 )
                               ]))));
             })
-        : const Expanded(
-            child: Center(child: Text('No student has done this lesson yet')));
+        : Expanded(
+            child: Center(
+                child: Text('No student has done this lesson yet',
+                    style: wineBoldStyle(size: 25))));
   }
 
   TextStyle _studentEntryStyle() {

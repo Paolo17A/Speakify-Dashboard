@@ -1,4 +1,6 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:speechlab_dashboard/utils/student_achievements_util.dart';
@@ -24,7 +26,7 @@ class _StudentsSectionsScreenState extends State<StudentsSectionsScreen> {
   bool _isLoading = true;
   bool _isAdmin = false;
   int currentSectionIndex = 0;
-  List<DocumentSnapshot> allSections = [];
+  List<DocumentSnapshot> allDisplayableSections = [];
   List<String> allSectionChoices = [];
   List<DocumentSnapshot> sectionStudents = [];
   final sectionNameController = TextEditingController();
@@ -34,6 +36,9 @@ class _StudentsSectionsScreenState extends State<StudentsSectionsScreen> {
   final studentFirstNameController = TextEditingController();
   final studentLastNameController = TextEditingController();
   String _currentSelectedSection = '';
+
+  // Add Student
+  final studentEmailController = TextEditingController();
 
   @override
   void didChangeDependencies() async {
@@ -49,16 +54,32 @@ class _StudentsSectionsScreenState extends State<StudentsSectionsScreen> {
       setState(() {
         _isLoading = true;
       });
-      final sections =
-          await FirebaseFirestore.instance.collection('sections').get();
-      allSections = sections.docs;
+      QuerySnapshot sections;
+      if (_isAdmin == true) {
+        sections =
+            await FirebaseFirestore.instance.collection('sections').get();
+        allDisplayableSections = sections.docs;
+      } else {
+        sections = await FirebaseFirestore.instance
+            .collection('sections')
+            .where('instructors',
+                arrayContains: FirebaseAuth.instance.currentUser!.uid)
+            .get();
+        allDisplayableSections = sections.docs;
+        if (allDisplayableSections.isEmpty) {
+          setState(() {
+            _isLoading = false;
+          });
+          return;
+        }
+      }
       allSectionChoices.clear();
-      allSections.forEach((section) {
+      allDisplayableSections.forEach((section) {
         allSectionChoices.add(section.id);
       });
 
-      List<dynamic> enrolledStudents =
-          sections.docs[selectedSection].data()['students'];
+      List<dynamic> enrolledStudents = (sections.docs[selectedSection].data()
+          as Map<dynamic, dynamic>)['students'];
       getSectionStudents(enrolledStudents);
     } catch (error) {
       scaffoldMessenger.showSnackBar(
@@ -92,6 +113,8 @@ class _StudentsSectionsScreenState extends State<StudentsSectionsScreen> {
     }
   }
 
+  //DIALOGS
+  //============================================================================
   void showAddSectionDialog() {
     showDialog(
         context: context,
@@ -123,7 +146,7 @@ class _StudentsSectionsScreenState extends State<StudentsSectionsScreen> {
                       color: CustomColors.wine),
                   ElevatedButton(
                       onPressed: () => addNewSection(),
-                      child: all20Pix(Text('ADD NEW SECTION')))
+                      child: all20Pix(Text('ADD NEW SECTION'))),
                 ],
               )),
             ),
@@ -147,89 +170,161 @@ class _StudentsSectionsScreenState extends State<StudentsSectionsScreen> {
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
             content: Container(
-              width: MediaQuery.of(context).size.width * 0.45,
-              height: MediaQuery.of(context).size.height * 0.65,
+              width: MediaQuery.of(context).size.width * 0.35,
+              height: MediaQuery.of(context).size.height * 0.75,
               decoration: BoxDecoration(
                   border: Border.all(color: CustomColors.wine, width: 3)),
-              child: all20Pix(Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  profileImageURL.isEmpty
-                      ? const CircleAvatar(
-                          radius: 50,
-                          backgroundColor: Colors.white,
-                          child: Icon(
-                            Icons.person,
-                            size: 70,
-                            color: CustomColors.orchid,
-                          ))
-                      : CircleAvatar(
-                          radius: 50,
-                          backgroundColor: Colors.white,
-                          backgroundImage:
-                              NetworkImage(profileImageURL, scale: 1)),
-                  const SizedBox(height: 50),
-                  Text(
-                    'Student ID Number',
-                    style: TextStyle(
-                        color: CustomColors.wine,
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  SpeechLabTextField(
-                      text: 'Student ID #:',
-                      controller: studentIDController,
-                      textInputType: TextInputType.number,
-                      displayPrefixIcon: null,
-                      color: CustomColors.wine),
-                  Text(
-                    'First Name',
-                    style: TextStyle(
-                        color: CustomColors.wine,
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  SpeechLabTextField(
-                      text: 'First Name',
-                      controller: studentFirstNameController,
-                      textInputType: TextInputType.number,
-                      displayPrefixIcon: null,
-                      color: CustomColors.wine),
-                  Text(
-                    'First Name',
-                    style: TextStyle(
-                        color: CustomColors.wine,
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  SpeechLabTextField(
-                      text: 'Last Name',
-                      controller: studentLastNameController,
-                      textInputType: TextInputType.number,
-                      displayPrefixIcon: null,
-                      color: CustomColors.wine),
-                  Text(
-                    'Section',
-                    style: TextStyle(
-                        color: CustomColors.wine,
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  dropdownWidget(_currentSelectedSection, (selected) {
-                    setState(() {
-                      _currentSelectedSection = selected!;
-                    });
-                  }, allSectionChoices, _currentSelectedSection, false),
-                  ElevatedButton(
-                      onPressed: () => editSelectedUser(studentUID),
-                      child: all20Pix(Text('Edit User')))
-                ],
-              )),
+              child: SingleChildScrollView(
+                child: all20Pix(Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    profileImageURL.isEmpty
+                        ? const CircleAvatar(
+                            radius: 50,
+                            backgroundColor: Colors.white,
+                            child: Icon(
+                              Icons.person,
+                              size: 70,
+                              color: CustomColors.orchid,
+                            ))
+                        : CircleAvatar(
+                            radius: 50,
+                            backgroundColor: Colors.white,
+                            backgroundImage:
+                                NetworkImage(profileImageURL, scale: 1)),
+                    const SizedBox(height: 50),
+                    Row(children: [
+                      Text('Student ID Number', style: wineBoldStyle(size: 30))
+                    ]),
+                    SpeechLabTextField(
+                        text: 'Student ID #:',
+                        controller: studentIDController,
+                        textInputType: TextInputType.number,
+                        displayPrefixIcon: null,
+                        color: CustomColors.wine),
+                    const SizedBox(height: 30),
+                    Row(children: [
+                      Text('First Name', style: wineBoldStyle(size: 30))
+                    ]),
+                    SpeechLabTextField(
+                        text: 'First Name',
+                        controller: studentFirstNameController,
+                        textInputType: TextInputType.number,
+                        displayPrefixIcon: null,
+                        color: CustomColors.wine),
+                    const SizedBox(height: 30),
+                    Row(children: [
+                      Text('Last Name', style: wineBoldStyle(size: 30))
+                    ]),
+                    SpeechLabTextField(
+                        text: 'Last Name',
+                        controller: studentLastNameController,
+                        textInputType: TextInputType.number,
+                        displayPrefixIcon: null,
+                        color: CustomColors.wine),
+                    const SizedBox(height: 30),
+                    Row(children: [
+                      Text('Section', style: wineBoldStyle(size: 30))
+                    ]),
+                    dropdownWidget(_currentSelectedSection, (selected) {
+                      setState(() {
+                        _currentSelectedSection = selected!;
+                      });
+                    }, allSectionChoices, _currentSelectedSection, false),
+                    ElevatedButton(
+                        onPressed: () => editSelectedUser(studentUID),
+                        child: all20Pix(Text('Edit Student'))),
+                    const SizedBox(height: 75),
+                    ElevatedButton(
+                        onPressed: () =>
+                            deleteSelectedUser(studentUID, studentData),
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor:
+                                const Color.fromARGB(255, 161, 11, 0)),
+                        child: all20Pix(Text('Delete Student')))
+                  ],
+                )),
+              ),
             ),
           );
         });
   }
 
+  void showAddNewStudentDialog() {
+    showDialog(
+        context: context,
+        builder: (context) {
+          studentIDController.clear();
+          studentFirstNameController.clear();
+          studentLastNameController.clear();
+          studentEmailController.clear();
+          return AlertDialog(
+            backgroundColor: CustomColors.love,
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+            content: Container(
+              width: MediaQuery.of(context).size.width * 0.35,
+              height: MediaQuery.of(context).size.height * 0.65,
+              decoration: BoxDecoration(
+                  border: Border.all(color: CustomColors.wine, width: 3)),
+              child: SingleChildScrollView(
+                child: all20Pix(Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Row(children: [
+                      Text('Student ID Number', style: wineBoldStyle(size: 30))
+                    ]),
+                    SpeechLabTextField(
+                        text: 'Student ID #:',
+                        controller: studentIDController,
+                        textInputType: TextInputType.number,
+                        displayPrefixIcon: null,
+                        color: CustomColors.wine),
+                    const SizedBox(height: 30),
+                    Row(children: [
+                      Text('First Name', style: wineBoldStyle(size: 30))
+                    ]),
+                    SpeechLabTextField(
+                        text: 'First Name',
+                        controller: studentFirstNameController,
+                        textInputType: TextInputType.number,
+                        displayPrefixIcon: null,
+                        color: CustomColors.wine),
+                    const SizedBox(height: 30),
+                    Row(children: [
+                      Text('Last Name', style: wineBoldStyle(size: 30))
+                    ]),
+                    SpeechLabTextField(
+                        text: 'Last Name',
+                        controller: studentLastNameController,
+                        textInputType: TextInputType.number,
+                        displayPrefixIcon: null,
+                        color: CustomColors.wine),
+                    const SizedBox(height: 30),
+                    Row(children: [
+                      Text('Email Address', style: wineBoldStyle(size: 30))
+                    ]),
+                    SpeechLabTextField(
+                        text: 'Email Address',
+                        controller: studentEmailController,
+                        textInputType: TextInputType.emailAddress,
+                        displayPrefixIcon: null,
+                        color: CustomColors.wine),
+                    const SizedBox(height: 75),
+                    ElevatedButton(
+                        onPressed: () => addNewStudent(),
+                        child: all20Pix(Text(
+                            'Add Student to Section ${allSectionChoices[currentSectionIndex]}')))
+                  ],
+                )),
+              ),
+            ),
+          );
+        });
+  }
+
+  //FUTURES
+  //============================================================================
   Future addNewSection() async {
     final scaffoldMessenger = ScaffoldMessenger.of(context);
     final goRouter = GoRouter.of(context);
@@ -330,6 +425,168 @@ class _StudentsSectionsScreenState extends State<StudentsSectionsScreen> {
     }
   }
 
+  Future deleteSelectedUser(
+      String studentUID, Map<dynamic, dynamic> studentData) async {
+    final scaffoldMessenger = ScaffoldMessenger.of(context);
+    final goRouter = GoRouter.of(context);
+    try {
+      goRouter.pop();
+      setState(() {
+        _isLoading = true;
+      });
+
+      //  Store admin's current data locally
+      final currentUser = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(FirebaseAuth.instance.currentUser!.uid)
+          .get();
+      final currentUserData = currentUser.data() as Map<dynamic, dynamic>;
+      String userEmail = currentUserData['email'];
+      String userPassword = currentUserData['password'];
+      await FirebaseAuth.instance.signOut();
+
+      //  Sign in to the student's account and delete it
+      String studentEmail = studentData['email'];
+      String studentPassword = studentData['password'];
+      final studentToDelete = await FirebaseAuth.instance
+          .signInWithEmailAndPassword(
+              email: studentEmail, password: studentPassword);
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(studentToDelete.user!.uid)
+          .delete();
+      await studentToDelete.user!.delete();
+
+      //  Log-back in to admin or user's account and refresh the page
+      await FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: userEmail, password: userPassword);
+      getAllSections(currentSectionIndex);
+    } catch (error) {
+      setState(() {
+        _isLoading = false;
+      });
+      scaffoldMessenger.showSnackBar(
+          SnackBar(content: Text('Error adding new student: $error')));
+    }
+  }
+
+  Future addNewStudent() async {
+    final scaffoldMessenger = ScaffoldMessenger.of(context);
+    final goRouter = GoRouter.of(context);
+    if (studentFirstNameController.text.isEmpty ||
+        studentLastNameController.text.isEmpty ||
+        studentIDController.text.isEmpty ||
+        studentEmailController.text.isEmpty) {
+      scaffoldMessenger
+          .showSnackBar(SnackBar(content: Text('Please fill up all fields')));
+      return;
+    }
+    try {
+      goRouter.pop();
+      setState(() {
+        _isLoading = true;
+      });
+
+      final userWithThisEmail = await FirebaseFirestore.instance
+          .collection('users')
+          .where('email', isEqualTo: studentEmailController.text.trim())
+          .get();
+
+      if (userWithThisEmail.docs.isNotEmpty) {
+        scaffoldMessenger
+            .showSnackBar(SnackBar(content: Text('Email is already in use.')));
+        setState(() {
+          _isLoading = false;
+        });
+        return;
+      }
+
+      final userWithThisStudentID = await FirebaseFirestore.instance
+          .collection('users')
+          .where('userType', isEqualTo: 'STUDENT')
+          .where('studentID', isEqualTo: studentIDController.text.trim())
+          .get();
+
+      if (userWithThisStudentID.docs.isNotEmpty) {
+        scaffoldMessenger.showSnackBar(
+            SnackBar(content: Text('Student ID is already in use')));
+        setState(() {
+          _isLoading = false;
+        });
+        return;
+      }
+
+      //  Store admin's current data locally
+      final currentUser = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(FirebaseAuth.instance.currentUser!.uid)
+          .get();
+      final currentUserData = currentUser.data() as Map<dynamic, dynamic>;
+      String userEmail = currentUserData['email'];
+      String userPassword = currentUserData['password'];
+
+      await FirebaseAuth.instance.signOut();
+
+      //  Create new student and initialize their data.
+      final newUser = await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(
+              email: studentEmailController.text,
+              password: studentIDController.text);
+
+      String newStudentUID = newUser.user!.uid;
+
+      //  First we update the text field-based data
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(newStudentUID)
+          .set({
+        'email': studentEmailController.text.trim(),
+        'password': studentIDController.text,
+        'currentLesson': 1,
+        'speechLesson': 1,
+        'firstName': studentFirstNameController.text.trim(),
+        'lastName': studentLastNameController.text.trim(),
+        'userType': 'STUDENT',
+        'profileImageURL': '',
+        'quizResults': {},
+        'customQuizResults': {},
+        'speechResults': {},
+        'allPodcasts': {},
+        'achievements': [],
+        'lastLoginTime': DateTime.now(),
+        'section': allSectionChoices[currentSectionIndex],
+        'studentID': studentIDController.text.trim()
+      });
+
+      //  Add new user to current selected section
+      await FirebaseFirestore.instance
+          .collection('sections')
+          .doc(allSectionChoices[currentSectionIndex])
+          .update({
+        'students': FieldValue.arrayUnion([newStudentUID])
+      });
+
+      //  Sign out the newly created student and return to admin or teacher's account
+      await FirebaseAuth.instance.signOut();
+
+      await FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: userEmail, password: userPassword);
+
+      setState(() {
+        _isLoading = false;
+      });
+      getAllSections(currentSectionIndex);
+    } catch (error) {
+      setState(() {
+        _isLoading = false;
+      });
+      scaffoldMessenger.showSnackBar(
+          SnackBar(content: Text('Error adding new student: $error')));
+    }
+  }
+
+  //WIDGETS
+  //============================================================================
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -382,7 +639,7 @@ class _StudentsSectionsScreenState extends State<StudentsSectionsScreen> {
             child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 shrinkWrap: true,
-                itemCount: allSections.length,
+                itemCount: allDisplayableSections.length,
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -400,7 +657,7 @@ class _StudentsSectionsScreenState extends State<StudentsSectionsScreen> {
                               backgroundColor: index == currentSectionIndex
                                   ? Colors.white
                                   : CustomColors.orchid),
-                          child: Text(allSections[index].id,
+                          child: Text(allDisplayableSections[index].id,
                               style: index == currentSectionIndex
                                   ? blackBoldStyle()
                                   : whiteBoldStyle())),
@@ -408,20 +665,28 @@ class _StudentsSectionsScreenState extends State<StudentsSectionsScreen> {
                   );
                 }),
           ),
-          if (_isAdmin)
+          if (_isAdmin == true)
             SizedBox(
               width: MediaQuery.of(context).size.width * 0.05,
-              child: Transform.scale(
-                scale: 1.5,
+              child: ElevatedButton(
+                  onPressed: () => showAddSectionDialog(),
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: CustomColors.orchid,
+                      side: BorderSide(color: CustomColors.wine, width: 2)),
+                  child:
+                      AutoSizeText('Add Section', textAlign: TextAlign.center)),
+            ),
+          if (allSectionChoices.isNotEmpty)
+            SizedBox(
+                width: MediaQuery.of(context).size.width * 0.05,
                 child: ElevatedButton(
-                    onPressed: () => showAddSectionDialog(),
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: CustomColors.orchid,
-                        shape: CircleBorder(),
-                        side: BorderSide(color: CustomColors.wine, width: 2)),
-                    child: Icon(Icons.add)),
-              ),
-            )
+                  onPressed: () => showAddNewStudentDialog(),
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: CustomColors.orchid,
+                      side: BorderSide(color: CustomColors.wine, width: 2)),
+                  child:
+                      AutoSizeText('Add Student', textAlign: TextAlign.center),
+                ))
         ],
       ),
     );

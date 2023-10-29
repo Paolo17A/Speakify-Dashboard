@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:speechlab_dashboard/utils/color_util.dart';
+import 'package:speechlab_dashboard/utils/firebase_util.dart';
 import 'package:speechlab_dashboard/widgets/custom_container_widgets.dart';
 import 'package:speechlab_dashboard/widgets/custom_text_widgets.dart';
 
@@ -14,11 +16,13 @@ class ActiveStudentsWidget extends StatefulWidget {
 
 class _ActiveStudentsScreenWidget extends State<ActiveStudentsWidget> {
   bool _isLoading = true;
+  bool _isAdmin = false;
   List<DocumentSnapshot> activeStudents = [];
 
   @override
   void didChangeDependencies() async {
     super.didChangeDependencies();
+    _isAdmin = await isAdmin();
     getActiveStudents();
   }
 
@@ -36,6 +40,19 @@ class _ActiveStudentsScreenWidget extends State<ActiveStudentsWidget> {
                 (student.data()['lastLoginTime'] as Timestamp).toDate(),
                 DateTime.now());
       }).toList();
+
+      if (!_isAdmin) {
+        final instructor = await FirebaseFirestore.instance
+            .collection('users')
+            .doc(FirebaseAuth.instance.currentUser!.uid)
+            .get();
+        final instructorData = instructor.data() as Map<dynamic, dynamic>;
+        List<dynamic> handledSections = instructorData['handledSections'];
+        activeStudents = activeStudents.where((student) {
+          final studentData = student.data() as Map<dynamic, dynamic>;
+          return handledSections.contains(studentData['section']);
+        }).toList();
+      }
 
       // Sort the activeStudents based on lastLoginTime (most active to least active)
       activeStudents.sort((a, b) {
@@ -100,7 +117,7 @@ class _ActiveStudentsScreenWidget extends State<ActiveStudentsWidget> {
   Widget _noActiveStudentsWidget() {
     return Center(
       child: Text('THERE ARE CURRENTLY NO ACTIVE STUDENTS',
-          textAlign: TextAlign.center, style: whiteBoldStyle(size: 25)),
+          textAlign: TextAlign.center, style: wineBoldStyle(size: 25)),
     );
   }
 
