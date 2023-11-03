@@ -4,6 +4,7 @@ import 'package:speechlab_dashboard/utils/error_message.dart';
 import 'package:speechlab_dashboard/widgets/appbar_title_widget.dart';
 import 'package:speechlab_dashboard/widgets/custom_container_widgets.dart';
 import 'package:speechlab_dashboard/widgets/custom_miscellaneous_widgets.dart';
+import 'package:speechlab_dashboard/widgets/custom_text_widgets.dart';
 import 'package:speechlab_dashboard/widgets/left_navigator_widget.dart';
 
 class SelectedSectionScreen extends StatefulWidget {
@@ -99,7 +100,8 @@ class _SelectedSectionScreenState extends State<SelectedSectionScreen> {
                                                               0.20,
                                                       child: Text(
                                                         'Student Name',
-                                                        style: _headerStyle(),
+                                                        style: whiteBoldStyle(
+                                                            size: 25),
                                                       ),
                                                     ),
                                                     SizedBox(
@@ -112,7 +114,8 @@ class _SelectedSectionScreenState extends State<SelectedSectionScreen> {
                                                         'Current Quiz Lesson',
                                                         textAlign:
                                                             TextAlign.center,
-                                                        style: _headerStyle(),
+                                                        style: whiteBoldStyle(
+                                                            size: 25),
                                                       ),
                                                     ),
                                                     SizedBox(
@@ -125,7 +128,8 @@ class _SelectedSectionScreenState extends State<SelectedSectionScreen> {
                                                         'Current SpeechLab Level',
                                                         textAlign:
                                                             TextAlign.center,
-                                                        style: _headerStyle(),
+                                                        style: whiteBoldStyle(
+                                                            size: 25),
                                                       ),
                                                     ),
                                                     SizedBox(
@@ -138,7 +142,8 @@ class _SelectedSectionScreenState extends State<SelectedSectionScreen> {
                                                         'Achievements',
                                                         textAlign:
                                                             TextAlign.center,
-                                                        style: _headerStyle(),
+                                                        style: whiteBoldStyle(
+                                                            size: 25),
                                                       ),
                                                     )
                                                   ],
@@ -187,7 +192,7 @@ class _SelectedSectionScreenState extends State<SelectedSectionScreen> {
                                                                 Text(
                                                                     '${(_userDocs[index].data() as Map<dynamic, dynamic>)['firstName']} ${(_userDocs[index].data() as Map<dynamic, dynamic>)['lastName']}',
                                                                     style:
-                                                                        _studentEntryStyle()),
+                                                                        whiteBoldStyle()),
                                                               ],
                                                             ),
                                                           ),
@@ -203,7 +208,7 @@ class _SelectedSectionScreenState extends State<SelectedSectionScreen> {
                                                                     TextAlign
                                                                         .center,
                                                                 style:
-                                                                    _studentEntryStyle()),
+                                                                    whiteBoldStyle()),
                                                           ),
                                                           SizedBox(
                                                             width: MediaQuery.of(
@@ -217,7 +222,7 @@ class _SelectedSectionScreenState extends State<SelectedSectionScreen> {
                                                                     TextAlign
                                                                         .center,
                                                                 style:
-                                                                    _studentEntryStyle()),
+                                                                    whiteBoldStyle()),
                                                           ),
                                                           SizedBox(
                                                             width: MediaQuery.of(
@@ -262,14 +267,5 @@ class _SelectedSectionScreenState extends State<SelectedSectionScreen> {
                     )))
           ],
         ));
-  }
-
-  TextStyle _headerStyle() {
-    return const TextStyle(
-        fontSize: 25, fontWeight: FontWeight.bold, color: Colors.white);
-  }
-
-  TextStyle _studentEntryStyle() {
-    return const TextStyle(fontSize: 20, color: Colors.white);
   }
 }

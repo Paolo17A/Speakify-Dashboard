@@ -89,8 +89,7 @@ class _AddLessonScreenState extends State<AddLessonScreen> {
           .collection('users')
           .doc(FirebaseAuth.instance.currentUser!.uid)
           .get();
-      Map<dynamic, dynamic> instructorData =
-          instructor.data() as Map<dynamic, dynamic>;
+      final instructorData = instructor.data() as Map<dynamic, dynamic>;
 
       await FirebaseFirestore.instance
           .collection('recentActivities')

@@ -523,6 +523,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               children: [
                 if (!allSectionsHandled)
                   SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.08,
                       height: 50,
                       child: ElevatedButton(
                           onPressed: () {
@@ -531,10 +532,12 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           },
                           child: AutoSizeText(
                             'Add Section',
+                            textAlign: TextAlign.center,
                             style: whiteBoldStyle(),
                           ))),
                 if (handledSections.isNotEmpty)
                   SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.08,
                       height: 50,
                       child: ElevatedButton(
                           onPressed: () {
@@ -543,6 +546,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           },
                           child: AutoSizeText(
                             'Remove Section',
+                            textAlign: TextAlign.center,
                             style: whiteBoldStyle(),
                           ))),
               ],
@@ -562,7 +566,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       return all20Pix(SizedBox(
                         height: 75,
                         child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () => GoRouter.of(context)
+                                    .goNamed('editSection', pathParameters: {
+                                  'sectionName': handledSections[index]
+                                }),
                             child: Text(handledSections[index],
                                 style: whiteBoldStyle(size: 20))),
                       ));

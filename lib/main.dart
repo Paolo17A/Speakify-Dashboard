@@ -8,6 +8,7 @@ import 'package:speechlab_dashboard/screens/add_lesson_screen.dart';
 import 'package:speechlab_dashboard/screens/edit_lesson_screen.dart';
 import 'package:speechlab_dashboard/screens/edit_profile_screen.dart';
 import 'package:speechlab_dashboard/screens/edit_quiz_screen.dart';
+import 'package:speechlab_dashboard/screens/edit_section_screen.dart';
 import 'package:speechlab_dashboard/screens/home_screen.dart';
 import 'package:speechlab_dashboard/screens/instructors_screen.dart';
 import 'package:speechlab_dashboard/screens/lessons_screen.dart';
@@ -174,6 +175,23 @@ class App extends StatelessWidget {
                 return CustomTransitionPage(
                     key: state.pageKey,
                     child: const LessonsScreen(),
+                    transitionsBuilder:
+                        (context, animation, secondaryAnimation, child) {
+                      return FadeTransition(
+                          opacity: CurveTween(curve: Curves.easeInOutCirc)
+                              .animate(animation),
+                          child: child);
+                    });
+              }),
+          GoRoute(
+              name: 'editSection',
+              path: 'editSection/:sectionName',
+              pageBuilder: (context, state) {
+                return CustomTransitionPage(
+                    key: state.pageKey,
+                    child: EditSectionScreen(
+                      sectionName: state.pathParameters['sectionName']!,
+                    ),
                     transitionsBuilder:
                         (context, animation, secondaryAnimation, child) {
                       return FadeTransition(
