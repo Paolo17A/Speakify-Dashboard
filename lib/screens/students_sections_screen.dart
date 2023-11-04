@@ -697,12 +697,9 @@ class _StudentsSectionsScreenState extends State<StudentsSectionsScreen> {
       height: MediaQuery.of(context).size.height * 0.75,
       child: all8Pix(whiteWineContainer(
           sectionStudents.isEmpty
-              ? const Center(
+              ? Center(
                   child: Text('This section has no enrolled students',
-                      style: TextStyle(
-                          color: CustomColors.wine,
-                          fontSize: 50,
-                          fontWeight: FontWeight.bold)),
+                      style: wineBoldStyle(size: 50)),
                 )
               : SingleChildScrollView(
                   child: Padding(

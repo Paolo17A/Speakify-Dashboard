@@ -126,3 +126,154 @@ Widget pageHeaderWithDivider(BuildContext context, {required String label}) {
         )
       ]));
 }
+
+Widget rankingHeaders(BuildContext context) {
+  return Padding(
+    padding: const EdgeInsets.all(5),
+    child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+      SizedBox(
+        width: MediaQuery.of(context).size.width * 0.05,
+        child: Center(
+          child: Text('Rank', style: wineBoldStyle()),
+        ),
+      ),
+      SizedBox(
+        width: MediaQuery.of(context).size.width * 0.1,
+        child: Center(
+          child: Text('Student #', style: wineBoldStyle()),
+        ),
+      ),
+      SizedBox(
+        width: MediaQuery.of(context).size.width * 0.25,
+        child: Center(
+          child: Row(
+            children: [
+              Text('Student Name', style: wineBoldStyle()),
+            ],
+          ),
+        ),
+      ),
+      SizedBox(
+        width: MediaQuery.of(context).size.width * 0.25,
+        child: Center(
+          child: Text('Average Score', style: wineBoldStyle()),
+        ),
+      )
+    ]),
+  );
+}
+
+Widget studentQuizRankingEntry(BuildContext context,
+    {required int index,
+    required String quizTitle,
+    required Map<dynamic, dynamic> studentData}) {
+  double totalScore = 0;
+  double averageScore = 0;
+  Map<dynamic, dynamic> quizCategory =
+      studentData['customQuizResults'][quizTitle];
+  quizCategory.forEach((difficultyKey, difficultyValue) {
+    totalScore += (difficultyValue as Map<dynamic, dynamic>)['score'];
+  });
+  averageScore = (totalScore) / quizCategory.length;
+  return Padding(
+    padding: const EdgeInsets.all(5),
+    child: Container(
+      decoration: BoxDecoration(
+          color: CustomColors.mercury,
+          border: Border.all(color: CustomColors.wine, width: 3),
+          borderRadius: BorderRadius.circular(10)),
+      child: Padding(
+        padding: const EdgeInsets.all(5),
+        child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+          SizedBox(
+            width: MediaQuery.of(context).size.width * 0.05,
+            child: Center(
+              child: Text('${(index + 1).toString()}', style: wineBoldStyle()),
+            ),
+          ),
+          SizedBox(
+            width: MediaQuery.of(context).size.width * 0.1,
+            child: Center(
+              child: Text(studentData['studentID'], style: wineBoldStyle()),
+            ),
+          ),
+          SizedBox(
+            width: MediaQuery.of(context).size.width * 0.25,
+            child: Center(
+              child: Row(
+                children: [
+                  Text('${studentData['firstName']} ${studentData['lastName']}',
+                      style: wineBoldStyle()),
+                ],
+              ),
+            ),
+          ),
+          SizedBox(
+            width: MediaQuery.of(context).size.width * 0.25,
+            child: Center(
+              child:
+                  Text(averageScore.toStringAsFixed(2), style: wineBoldStyle()),
+            ),
+          )
+        ]),
+      ),
+    ),
+  );
+}
+
+Widget studentSpeechRankingEntry(BuildContext context,
+    {required int index,
+    required String currentSpeechLevelReq,
+    required Map<dynamic, dynamic> studentData}) {
+  double sum = 0;
+  List<dynamic> confidenceScores =
+      studentData['speechResults'][currentSpeechLevelReq]['confidenceScores'];
+  for (var value in confidenceScores) {
+    sum += value['average'];
+  }
+  double average = sum / confidenceScores.length;
+  return Padding(
+    padding: const EdgeInsets.all(5),
+    child: Container(
+      decoration: BoxDecoration(
+          color: CustomColors.mercury,
+          border: Border.all(color: CustomColors.wine, width: 3),
+          borderRadius: BorderRadius.circular(10)),
+      child: Padding(
+        padding: const EdgeInsets.all(5),
+        child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+          SizedBox(
+            width: MediaQuery.of(context).size.width * 0.05,
+            child: Center(
+              child: Text('${(index + 1).toString()}', style: wineBoldStyle()),
+            ),
+          ),
+          SizedBox(
+            width: MediaQuery.of(context).size.width * 0.1,
+            child: Center(
+              child: Text(studentData['studentID'], style: wineBoldStyle()),
+            ),
+          ),
+          SizedBox(
+            width: MediaQuery.of(context).size.width * 0.25,
+            child: Center(
+              child: Row(
+                children: [
+                  Text('${studentData['firstName']} ${studentData['lastName']}',
+                      style: wineBoldStyle()),
+                ],
+              ),
+            ),
+          ),
+          SizedBox(
+            width: MediaQuery.of(context).size.width * 0.25,
+            child: Center(
+              child: Text('${average.toStringAsFixed(2)}%',
+                  style: wineBoldStyle()),
+            ),
+          )
+        ]),
+      ),
+    ),
+  );
+}

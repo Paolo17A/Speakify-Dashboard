@@ -67,31 +67,8 @@ class _ScoresScreenState extends State<ScoresScreen> {
                   _isLoading,
                   all8Pix(SingleChildScrollView(
                       child: Column(children: [
-                    SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.6,
-                        child: Column(children: [
-                          cambriaWineHeaderText(text: 'SCORING RESULTS'),
-                          const Divider(
-                            thickness: 5,
-                            color: CustomColors.darkWine,
-                          )
-                        ])),
-                    Padding(
-                        padding: const EdgeInsets.all(20),
-                        child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              scoreOptionButton(context,
-                                  label: 'Lesson Quiz Performance',
-                                  isSelected: _viewingQuizScores, onPress: () {
-                                setState(() => _viewingQuizScores = true);
-                              }),
-                              scoreOptionButton(context,
-                                  label: 'SpeechLab Performance',
-                                  isSelected: !_viewingQuizScores, onPress: () {
-                                setState(() => _viewingQuizScores = false);
-                              })
-                            ])),
+                    _scoresHeader(),
+                    _scoreChoiceSelector(),
                     Padding(
                         padding: const EdgeInsets.symmetric(
                             horizontal: 20, vertical: 30),
@@ -99,6 +76,35 @@ class _ScoresScreenState extends State<ScoresScreen> {
                             ? _quizzesWidget()
                             : _speechScoresWidget())
                   ])))))
+        ]));
+  }
+
+  Widget _scoresHeader() {
+    return SizedBox(
+        width: MediaQuery.of(context).size.width * 0.6,
+        child: Column(children: [
+          cambriaWineHeaderText(text: 'SCORING RESULTS'),
+          const Divider(
+            thickness: 5,
+            color: CustomColors.darkWine,
+          )
+        ]));
+  }
+
+  Widget _scoreChoiceSelector() {
+    return Padding(
+        padding: const EdgeInsets.all(20),
+        child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+          scoreOptionButton(context,
+              label: 'Lesson Quiz Performance',
+              isSelected: _viewingQuizScores, onPress: () {
+            setState(() => _viewingQuizScores = true);
+          }),
+          scoreOptionButton(context,
+              label: 'SpeechLab Performance',
+              isSelected: !_viewingQuizScores, onPress: () {
+            setState(() => _viewingQuizScores = false);
+          })
         ]));
   }
 

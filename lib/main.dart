@@ -16,7 +16,9 @@ import 'package:speechlab_dashboard/screens/rankings_screen.dart';
 import 'package:speechlab_dashboard/screens/reset_password_screen.dart';
 import 'package:speechlab_dashboard/screens/scores_screen.dart';
 import 'package:speechlab_dashboard/screens/selected_custom_quiz_screen.dart';
+import 'package:speechlab_dashboard/screens/selected_quiz_leaderboard_screen.dart';
 import 'package:speechlab_dashboard/screens/selected_section_screen.dart';
+import 'package:speechlab_dashboard/screens/selected_speechlab_leaderboard_screen.dart';
 import 'package:speechlab_dashboard/screens/selected_speechlab_screen.dart';
 import 'package:speechlab_dashboard/screens/students_sections_screen.dart';
 import 'package:speechlab_dashboard/utils/color_util.dart';
@@ -329,6 +331,39 @@ class App extends StatelessWidget {
                 return CustomTransitionPage(
                     key: state.pageKey,
                     child: const RankingsScreen(),
+                    transitionsBuilder:
+                        (context, animation, secondaryAnimation, child) {
+                      return FadeTransition(
+                          opacity: CurveTween(curve: Curves.easeInOutCirc)
+                              .animate(animation),
+                          child: child);
+                    });
+              }),
+          GoRoute(
+              name: 'quizRanking',
+              path: 'quizRanking/:quizID',
+              pageBuilder: (context, state) {
+                return CustomTransitionPage(
+                    key: state.pageKey,
+                    child: SelectedQuizLeaderboardScreen(
+                        quizID: state.pathParameters['quizID']!),
+                    transitionsBuilder:
+                        (context, animation, secondaryAnimation, child) {
+                      return FadeTransition(
+                          opacity: CurveTween(curve: Curves.easeInOutCirc)
+                              .animate(animation),
+                          child: child);
+                    });
+              }),
+          GoRoute(
+              name: 'speechRanking',
+              path: 'speechRanking/:currentSpeechLevelReq',
+              pageBuilder: (context, state) {
+                return CustomTransitionPage(
+                    key: state.pageKey,
+                    child: SelectedSpeechlabLeaderboardScreen(
+                        currentSpeechLevelReq:
+                            state.pathParameters['currentSpeechLevelReq']!),
                     transitionsBuilder:
                         (context, animation, secondaryAnimation, child) {
                       return FadeTransition(

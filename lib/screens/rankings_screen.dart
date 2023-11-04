@@ -1,12 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:speechlab_dashboard/utils/color_util.dart';
 import 'package:speechlab_dashboard/widgets/appbar_title_widget.dart';
 import 'package:speechlab_dashboard/widgets/custom_container_widgets.dart';
 import 'package:speechlab_dashboard/widgets/left_navigator_widget.dart';
 
+import '../models/speech_model.dart';
 import '../utils/firebase_util.dart';
+import '../widgets/custom_buttons_widget.dart';
 import '../widgets/custom_padding_widgets.dart';
 import '../widgets/custom_text_widgets.dart';
 
@@ -20,16 +23,16 @@ class RankingsScreen extends StatefulWidget {
 class _RankingsScreenState extends State<RankingsScreen> {
   bool _isLoading = true;
   bool _isAdmin = false;
+  bool _viewingQuizScores = true;
 
   //  SECTION VARIABLES
   int currentSectionIndex = 0;
   List<DocumentSnapshot> allDisplayableSections = [];
   List<String> allSectionChoices = [];
-  List<DocumentSnapshot> sectionStudents = [];
 
-  /*List<DocumentSnapshot> _userDocs = [];
-  String _leaderboardType = 'currentLesson';
-  String _selectedSection = 'AB Broad 3A';*/
+  // QUIZ VARIABLES
+  List<DocumentSnapshot> allCustomQuizzes = [];
+  List<DocumentSnapshot> accessedCustomQuizzes = [];
 
   @override
   void didChangeDependencies() async {
@@ -44,6 +47,8 @@ class _RankingsScreenState extends State<RankingsScreen> {
       setState(() {
         _isLoading = true;
       });
+
+      //  Get all accessed sections
       QuerySnapshot sections;
       if (_isAdmin == true) {
         sections =
@@ -56,48 +61,19 @@ class _RankingsScreenState extends State<RankingsScreen> {
                 arrayContains: FirebaseAuth.instance.currentUser!.uid)
             .get();
         allDisplayableSections = sections.docs;
-        if (allDisplayableSections.isEmpty) {
-          setState(() {
-            _isLoading = false;
-          });
-          return;
-        }
       }
-      allSectionChoices.clear();
-      allDisplayableSections.forEach((section) {
-        allSectionChoices.add(section.id);
-      });
+      if (allDisplayableSections.isEmpty) {
+        setState(() {
+          _isLoading = false;
+        });
+        return;
+      }
 
-      List<dynamic> enrolledStudents = (sections.docs[selectedSection].data()
-          as Map<dynamic, dynamic>)['students'];
-      getSectionStudents(enrolledStudents);
-    } catch (error) {
-      scaffoldMessenger.showSnackBar(
-          SnackBar(content: Text('Error getting all sections: $error')));
-      setState(() {
-        _isLoading = false;
-      });
-    }
-  }
-
-  Future getSectionStudents(List<dynamic> studentUIDs) async {
-    final scaffoldMessenger = ScaffoldMessenger.of(context);
-    try {
-      final students = await FirebaseFirestore.instance
-          .collection('users')
-          .where('userType', isEqualTo: 'STUDENT')
-          .get();
-      sectionStudents = students.docs.where((student) {
-        return studentUIDs.contains(student.id);
-      }).toList();
-
-      sectionStudents.sort((a, b) {
-        int lessonA = a['speechLesson'];
-        int lessonB = b['speechLesson'];
-        return lessonA.compareTo(lessonB);
-      });
-      sectionStudents = sectionStudents.reversed.toList();
-
+      // Get the current section's accessed quizzes
+      final allQuizzes =
+          await FirebaseFirestore.instance.collection('quizzes').get();
+      allCustomQuizzes = allQuizzes.docs;
+      setDisplayedQuizzes();
       setState(() {
         _isLoading = false;
       });
@@ -110,50 +86,14 @@ class _RankingsScreenState extends State<RankingsScreen> {
     }
   }
 
-  /*void _initializeLeaderboard() async {
-    final scaffoldMessenger = ScaffoldMessenger.of(context);
-    try {
-      QuerySnapshot querySnapshot =
-          await FirebaseFirestore.instance.collection('users').get();
-
-      List<DocumentSnapshot> userDocs = querySnapshot.docs;
-
-      // Filter out users without the 'currentLesson' field
-      List<DocumentSnapshot> usersWithCurrentLesson = userDocs.where((userDoc) {
-        final userData = userDoc.data()! as Map<dynamic, dynamic>;
-        return userData.containsKey(_leaderboardType) &&
-            userData.containsKey('section') &&
-            userData['section'] == _selectedSection;
-      }).toList();
-
-      usersWithCurrentLesson.sort((a, b) {
-        int lessonA = a[_leaderboardType];
-        int lessonB = b[_leaderboardType];
-        return lessonA.compareTo(lessonB);
-      });
-
-      setState(() {
-        _userDocs = usersWithCurrentLesson.reversed.toList();
-        _isLoading = false;
-      });
-    } catch (error) {
-      scaffoldMessenger.showSnackBar(
-          SnackBar(content: Text('Error initializing leaderboard: $error')));
-    }
+  void setDisplayedQuizzes() {
+    accessedCustomQuizzes = allCustomQuizzes.where((lesson) {
+      final currentSectionData = allDisplayableSections[currentSectionIndex]
+          .data() as Map<dynamic, dynamic>;
+      final sectionAccessedQuizzes = currentSectionData['accessedQuizzes'];
+      return sectionAccessedQuizzes.contains(lesson.id);
+    }).toList();
   }
-
-  void _switchLeaderboard() {
-    setState(() {
-      if (_leaderboardType == 'currentLesson') {
-        _leaderboardType = 'speechLesson';
-      } else if (_leaderboardType == 'speechLesson') {
-        _leaderboardType = 'currentLesson';
-      }
-
-      _isLoading = true;
-      _initializeLeaderboard();
-    });
-  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -170,43 +110,51 @@ class _RankingsScreenState extends State<RankingsScreen> {
                         child: Column(children: [
                           _broadcastingSectionHeader(),
                           loveWineContainer(
-                              Column(
-                                children: [
-                                  _sectionSelectionRow(),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 30),
-                                    child: whiteWineContainer(
-                                        Column(
-                                          children: [
-                                            rankingHeaders(),
-                                            sectionStudents.isEmpty
-                                                ? Center(
-                                                    child: Text(
-                                                        'This section has no enrolled students',
-                                                        style: wineBoldStyle(
-                                                            size: 40)))
-                                                : ListView.builder(
-                                                    shrinkWrap: true,
-                                                    itemCount:
-                                                        sectionStudents.length,
-                                                    itemBuilder:
-                                                        (context, index) {
-                                                      final studentData =
-                                                          sectionStudents[index]
-                                                                  .data()
-                                                              as Map<dynamic,
-                                                                  dynamic>;
-                                                      return studentRankingEntry(
-                                                          index, studentData);
-                                                    }),
-                                          ],
-                                        ),
-                                        height:
-                                            MediaQuery.of(context).size.height *
-                                                0.7),
-                                  ),
-                                ],
+                              SingleChildScrollView(
+                                child: Column(
+                                  children: [
+                                    _scoreChoiceSelector(),
+                                    _sectionSelectionRow(),
+                                    if (_viewingQuizScores)
+                                      _quizzesWidget()
+                                    else
+                                      _speechScoresWidget()
+
+                                    /*Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 30),
+                                      child: whiteWineContainer(
+                                          Column(
+                                            children: [
+                                              rankingHeaders(),
+                                              sectionStudents.isEmpty
+                                                  ? Center(
+                                                      child: Text(
+                                                          'This section has no enrolled students',
+                                                          style: wineBoldStyle(
+                                                              size: 40)))
+                                                  : ListView.builder(
+                                                      shrinkWrap: true,
+                                                      itemCount:
+                                                          sectionStudents.length,
+                                                      itemBuilder:
+                                                          (context, index) {
+                                                        final studentData =
+                                                            sectionStudents[index]
+                                                                    .data()
+                                                                as Map<dynamic,
+                                                                    dynamic>;
+                                                        return studentRankingEntry(
+                                                            index, studentData);
+                                                      })
+                                            ],
+                                          ),
+                                          height:
+                                              MediaQuery.of(context).size.height *
+                                                  0.55),
+                                    ),*/
+                                  ],
+                                ),
                               ),
                               height: MediaQuery.of(context).size.height * 0.8)
                         ]),
@@ -218,12 +166,28 @@ class _RankingsScreenState extends State<RankingsScreen> {
     return SizedBox(
         width: MediaQuery.of(context).size.width * 0.6,
         child: Column(children: [
-          cambriaWineHeaderText(text: 'Broadcasting Section'),
+          cambriaWineHeaderText(text: 'Leaderboard'),
           const Divider(
             thickness: 5,
             color: CustomColors.darkWine,
           )
         ]));
+  }
+
+  Widget _scoreChoiceSelector() {
+    return all20Pix(
+        Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+      scoreOptionButton(context,
+          label: 'Lesson Quiz Leaderboard',
+          isSelected: _viewingQuizScores, onPress: () {
+        setState(() => _viewingQuizScores = true);
+      }),
+      scoreOptionButton(context,
+          label: 'SpeechLab Leaderboard',
+          isSelected: !_viewingQuizScores, onPress: () {
+        setState(() => _viewingQuizScores = false);
+      })
+    ]));
   }
 
   Widget _sectionSelectionRow() {
@@ -248,8 +212,10 @@ class _RankingsScreenState extends State<RankingsScreen> {
                             if (currentSectionIndex == index) {
                               return;
                             }
-                            currentSectionIndex = index;
-                            getAllSections(currentSectionIndex);
+                            setState(() {
+                              currentSectionIndex = index;
+                              setDisplayedQuizzes();
+                            });
                           },
                           style: ElevatedButton.styleFrom(
                               backgroundColor: index == currentSectionIndex
@@ -268,88 +234,34 @@ class _RankingsScreenState extends State<RankingsScreen> {
     );
   }
 
-  Widget rankingHeaders() {
-    return Padding(
-      padding: const EdgeInsets.all(5),
-      child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-        SizedBox(
-          width: MediaQuery.of(context).size.width * 0.05,
-          child: Center(
-            child: Text('Rank', style: wineBoldStyle()),
-          ),
-        ),
-        SizedBox(
-          width: MediaQuery.of(context).size.width * 0.1,
-          child: Center(
-            child: Text('Student #', style: wineBoldStyle()),
-          ),
-        ),
-        SizedBox(
-          width: MediaQuery.of(context).size.width * 0.25,
-          child: Center(
-            child: Row(
-              children: [
-                Text('Student Name', style: wineBoldStyle()),
-              ],
-            ),
-          ),
-        ),
-        SizedBox(
-          width: MediaQuery.of(context).size.width * 0.25,
-          child: Center(
-            child: Text('SpeechLab Rank', style: wineBoldStyle()),
-          ),
-        )
-      ]),
-    );
+  Widget _quizzesWidget() {
+    return Column(
+        children: accessedCustomQuizzes
+            .map((customQuiz) => vertical10PixHorizontal30Pix(context,
+                child:
+                    longEntryButton(context, label: customQuiz.id, onPress: () {
+                  GoRouter.of(context).goNamed('quizRanking',
+                      pathParameters: {'quizID': customQuiz.id});
+                })))
+            .toList());
   }
 
-  Widget studentRankingEntry(int index, Map<dynamic, dynamic> studentData) {
+  Widget _speechScoresWidget() {
     return Padding(
-      padding: const EdgeInsets.all(5),
-      child: Container(
-        decoration: BoxDecoration(
-            color: CustomColors.mercury,
-            border: Border.all(color: CustomColors.wine, width: 3),
-            borderRadius: BorderRadius.circular(10)),
-        child: Padding(
-          padding: const EdgeInsets.all(5),
-          child:
-              Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-            SizedBox(
-              width: MediaQuery.of(context).size.width * 0.05,
-              child: Center(
-                child:
-                    Text('${(index + 1).toString()}', style: wineBoldStyle()),
-              ),
-            ),
-            SizedBox(
-              width: MediaQuery.of(context).size.width * 0.1,
-              child: Center(
-                child: Text(studentData['studentID'], style: wineBoldStyle()),
-              ),
-            ),
-            SizedBox(
-              width: MediaQuery.of(context).size.width * 0.25,
-              child: Center(
-                child: Row(
-                  children: [
-                    Text(
-                        '${studentData['firstName']} ${studentData['lastName']}',
-                        style: wineBoldStyle()),
-                  ],
-                ),
-              ),
-            ),
-            SizedBox(
-              width: MediaQuery.of(context).size.width * 0.25,
-              child: Center(
-                child: Text('Current Level: ${studentData['speechLesson']}',
-                    style: wineBoldStyle()),
-              ),
-            )
-          ]),
-        ),
+      padding: const EdgeInsets.all(8.0),
+      child: Wrap(
+        spacing: MediaQuery.of(context).size.width * 0.02,
+        runSpacing: MediaQuery.of(context).size.width * 0.01,
+        children: speechCategories.asMap().entries.map((entry) {
+          final int index = entry.key;
+          final SpeechModel level = entry.value;
+          return shortEntryButton(context,
+              lessonIndex: index + 1, lessonName: level.category, onPress: () {
+            GoRouter.of(context).goNamed('speechRanking', pathParameters: {
+              'currentSpeechLevelReq': (index + 1).toString()
+            });
+          });
+        }).toList(),
       ),
     );
   }

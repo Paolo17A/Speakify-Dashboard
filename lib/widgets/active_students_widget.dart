@@ -122,30 +122,28 @@ class _ActiveStudentsScreenWidget extends State<ActiveStudentsWidget> {
   }
 
   Widget _activeStudentsDisplayWidget() {
-    return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15),
-        child: ListView.builder(
-            shrinkWrap: true,
-            itemCount: activeStudents.length,
-            itemBuilder: (context, index) {
-              final studentData =
-                  activeStudents[index].data() as Map<dynamic, dynamic>;
-              String imageURL = studentData['profileImageURL'];
-              return Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 9),
-                  child: roundedContainer(
-                      width: MediaQuery.of(context).size.width * 0.18,
-                      color: CustomColors.amethyst.withOpacity(0.3),
-                      borderColor: CustomColors.lilac,
-                      child: Padding(
-                          padding: const EdgeInsets.all(12),
-                          child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                _profileImageWidget(imageURL),
-                                _profileDataWidget(studentData)
-                              ]))));
-            }));
+    return ListView.builder(
+        shrinkWrap: true,
+        itemCount: activeStudents.length,
+        itemBuilder: (context, index) {
+          final studentData =
+              activeStudents[index].data() as Map<dynamic, dynamic>;
+          String imageURL = studentData['profileImageURL'];
+          return Padding(
+              padding: const EdgeInsets.symmetric(vertical: 9),
+              child: roundedContainer(
+                  //width: MediaQuery.of(context).size.width * 0.2,
+                  color: CustomColors.amethyst.withOpacity(0.3),
+                  borderColor: CustomColors.lilac,
+                  child: Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            _profileImageWidget(imageURL),
+                            _profileDataWidget(studentData)
+                          ]))));
+        });
   }
 
   Widget _profileImageWidget(String imageURL) {
