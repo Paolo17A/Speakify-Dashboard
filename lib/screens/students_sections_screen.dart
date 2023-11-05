@@ -695,32 +695,37 @@ class _StudentsSectionsScreenState extends State<StudentsSectionsScreen> {
   Widget _studentsContainer() {
     return SizedBox(
       height: MediaQuery.of(context).size.height * 0.75,
-      child: all8Pix(whiteWineContainer(
-          sectionStudents.isEmpty
-              ? Center(
-                  child: Text('This section has no enrolled students',
-                      style: wineBoldStyle(size: 50)),
-                )
-              : SingleChildScrollView(
-                  child: Padding(
-                    padding: const EdgeInsets.all(5),
-                    child: Column(
-                      children: [
-                        _studentHeaderRow(),
-                        ListView.builder(
-                          shrinkWrap: true,
-                          itemCount: sectionStudents.length,
-                          itemBuilder: (build, index) {
-                            final studentData = sectionStudents[index].data()
-                                as Map<dynamic, dynamic>;
-                            return _studentEntryRow(index, studentData);
-                          },
+      child: allDisplayableSections.isNotEmpty
+          ? all8Pix(whiteWineContainer(
+              sectionStudents.isEmpty
+                  ? Center(
+                      child: Text('This section has no enrolled students',
+                          style: wineBoldStyle(size: 50)),
+                    )
+                  : SingleChildScrollView(
+                      child: Padding(
+                        padding: const EdgeInsets.all(5),
+                        child: Column(
+                          children: [
+                            _studentHeaderRow(),
+                            ListView.builder(
+                              shrinkWrap: true,
+                              itemCount: sectionStudents.length,
+                              itemBuilder: (build, index) {
+                                final studentData = sectionStudents[index]
+                                    .data() as Map<dynamic, dynamic>;
+                                return _studentEntryRow(index, studentData);
+                              },
+                            ),
+                          ],
                         ),
-                      ],
+                      ),
                     ),
-                  ),
-                ),
-          borderWidth: 2)),
+              borderWidth: 2))
+          : Text(
+              'You do not have any assigned sections',
+              style: wineBoldStyle(size: 30),
+            ),
     );
   }
 

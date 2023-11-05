@@ -6,6 +6,7 @@ import 'package:speechlab_dashboard/widgets/appbar_title_widget.dart';
 import 'package:speechlab_dashboard/widgets/custom_container_widgets.dart';
 import 'package:speechlab_dashboard/widgets/left_navigator_widget.dart';
 import 'package:speechlab_dashboard/widgets/recent_activities_widget.dart';
+import 'package:speechlab_dashboard/widgets/section_students_count_widget.dart';
 
 import '../utils/color_util.dart';
 import '../utils/firebase_util.dart';
@@ -66,6 +67,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       thickness: 4,
                       color: CustomColors.oldPurple,
                     ),
+                    SectionStudentsCountWidget(),
                     const RecentActiviesWidget()
                   ]),
                 ),
