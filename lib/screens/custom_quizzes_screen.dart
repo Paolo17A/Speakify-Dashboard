@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -6,11 +7,11 @@ import 'package:speechlab_dashboard/utils/firebase_util.dart';
 import 'package:speechlab_dashboard/widgets/appbar_title_widget.dart';
 import 'package:speechlab_dashboard/widgets/custom_container_widgets.dart';
 import 'package:speechlab_dashboard/widgets/custom_padding_widgets.dart';
+import 'package:speechlab_dashboard/widgets/custom_text_widgets.dart';
 import 'package:speechlab_dashboard/widgets/left_navigator_widget.dart';
 
 import '../utils/color_util.dart';
 import '../widgets/custom_buttons_widget.dart';
-import '../widgets/custom_text_widgets.dart';
 
 class CustomQuizzesScreen extends StatefulWidget {
   const CustomQuizzesScreen({super.key});
@@ -110,7 +111,7 @@ class _CustomQuizzesScreenState extends State<CustomQuizzesScreen> {
     return SizedBox(
         width: MediaQuery.of(context).size.width * 0.6,
         child: Column(children: [
-          cambriaWineHeaderText(text: 'CUSTOM QUIZZES'),
+          AutoSizeText('CUSTOM QUIZZES', style: wineBoldStyle(size: 70)),
           const Divider(
             thickness: 5,
             color: CustomColors.darkWine,
@@ -158,9 +159,8 @@ class _CustomQuizzesScreenState extends State<CustomQuizzesScreen> {
                                 SizedBox(
                                     width: MediaQuery.of(context).size.width *
                                         0.45,
-                                    child: cambriaText(
-                                        text: customQuizzes[index].id,
-                                        textStyle: const TextStyle(
+                                    child: AutoSizeText(customQuizzes[index].id,
+                                        style: const TextStyle(
                                             color: CustomColors.orchid,
                                             fontSize: 28,
                                             fontWeight: FontWeight.bold))),
@@ -179,13 +179,11 @@ class _CustomQuizzesScreenState extends State<CustomQuizzesScreen> {
                                 side:
                                     const BorderSide(color: CustomColors.wine),
                                 backgroundColor: CustomColors.mercury),
-                            child: cambriaText(
-                                text: quizData['isArchived']
-                                    ? 'RESTORE'
-                                    : 'ARCHIVE',
-                                textStyle: const TextStyle(
+                            child: AutoSizeText(
+                                quizData['isArchived'] ? 'RESTORE' : 'ARCHIVE',
+                                style: const TextStyle(
                                     color: CustomColors.orchid,
-                                    fontSize: 28,
+                                    fontSize: 25,
                                     fontWeight: FontWeight.bold))),
                       )
                     ],

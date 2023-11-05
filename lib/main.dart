@@ -17,7 +17,6 @@ import 'package:speechlab_dashboard/screens/reset_password_screen.dart';
 import 'package:speechlab_dashboard/screens/scores_screen.dart';
 import 'package:speechlab_dashboard/screens/selected_custom_quiz_screen.dart';
 import 'package:speechlab_dashboard/screens/selected_quiz_leaderboard_screen.dart';
-import 'package:speechlab_dashboard/screens/selected_section_screen.dart';
 import 'package:speechlab_dashboard/screens/selected_speechlab_leaderboard_screen.dart';
 import 'package:speechlab_dashboard/screens/selected_speechlab_screen.dart';
 import 'package:speechlab_dashboard/screens/students_sections_screen.dart';
@@ -117,22 +116,6 @@ class App extends StatelessWidget {
                 return CustomTransitionPage(
                     key: state.pageKey,
                     child: const StudentsSectionsScreen(),
-                    transitionsBuilder:
-                        (context, animation, secondaryAnimation, child) {
-                      return FadeTransition(
-                          opacity: CurveTween(curve: Curves.easeInOutCirc)
-                              .animate(animation),
-                          child: child);
-                    });
-              }),
-          GoRoute(
-              name: 'selectedSection',
-              path: 'sections/:selectedSection',
-              pageBuilder: (context, state) {
-                return CustomTransitionPage(
-                    key: state.pageKey,
-                    child: SelectedSectionScreen(
-                        section: state.pathParameters['selectedSection']!),
                     transitionsBuilder:
                         (context, animation, secondaryAnimation, child) {
                       return FadeTransition(
@@ -264,15 +247,13 @@ class App extends StatelessWidget {
               }),
           GoRoute(
               name: 'selectedSpeechLab',
-              path:
-                  'scores/selectedSpeechLab/:currentSpeechLevelReq/:selectedLevel',
+              path: 'scores/selectedSpeechLab/:currentSpeechLevelReq',
               pageBuilder: (context, state) {
                 return CustomTransitionPage(
                     key: state.pageKey,
                     child: SelectedSpeechLabScreen(
                         currentSpeechLevelReq:
-                            state.pathParameters['currentSpeechLevelReq']!,
-                        selectedLevel: state.pathParameters['selectedLevel']!),
+                            state.pathParameters['currentSpeechLevelReq']!),
                     transitionsBuilder:
                         (context, animation, secondaryAnimation, child) {
                       return FadeTransition(

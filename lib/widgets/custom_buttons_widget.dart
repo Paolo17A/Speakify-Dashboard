@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:speechlab_dashboard/widgets/custom_padding_widgets.dart';
 import 'package:speechlab_dashboard/widgets/custom_text_widgets.dart';
@@ -32,7 +33,7 @@ Widget homeDashboardRowButton(
           style: ElevatedButton.styleFrom(
               backgroundColor: CustomColors.orchid,
               side: const BorderSide(color: CustomColors.wine, width: 2)),
-          child: cambriaText(text: label, textStyle: whiteBoldStyle(size: 30)),
+          child: AutoSizeText(label, style: whiteBoldStyle(size: 30)),
         )),
   );
 }
@@ -51,9 +52,8 @@ Widget scoreOptionButton(BuildContext context,
                   isSelected ? CustomColors.mercury : CustomColors.orchid,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10))),
-          child: cambriaText(
-              text: label,
-              textStyle: TextStyle(
+          child: AutoSizeText(label,
+              style: TextStyle(
                   color:
                       isSelected ? CustomColors.orchid : CustomColors.mercury,
                   fontWeight: FontWeight.bold,
@@ -77,12 +77,7 @@ Widget longEntryButton(BuildContext context,
           children: [
             SizedBox(
               width: MediaQuery.of(context).size.width * 0.6,
-              child: cambriaText(
-                  text: label,
-                  textStyle: const TextStyle(
-                      color: CustomColors.wine,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 28)),
+              child: AutoSizeText(label, style: wineBoldStyle(size: 28)),
             )
           ],
         ))),
@@ -106,12 +101,8 @@ Widget shortEntryButton(BuildContext context,
           padding: const EdgeInsets.all(20),
           child: Row(
             children: [
-              cambriaText(
-                  text: 'Lesson $lessonIndex: $lessonName',
-                  textStyle: const TextStyle(
-                      color: CustomColors.wine,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 28)),
+              AutoSizeText('Lesson $lessonIndex: $lessonName',
+                  style: wineBoldStyle(size: 28)),
             ],
           )),
     ),
@@ -127,9 +118,8 @@ Widget addEntryButton(BuildContext context, {required Function onPress}) {
       child: ElevatedButton(
           onPressed: () => onPress(),
           style: ElevatedButton.styleFrom(backgroundColor: CustomColors.wine),
-          child: cambriaText(
-              text: 'ADD NEW LESSON',
-              textStyle: const TextStyle(color: Colors.white, fontSize: 30))),
+          child:
+              AutoSizeText('ADD NEW LESSON', style: whiteBoldStyle(size: 30))),
     ),
   );
 }

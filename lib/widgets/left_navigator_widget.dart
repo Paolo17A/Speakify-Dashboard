@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -18,8 +19,8 @@ Widget lefNavigator(BuildContext context, int index, {bool isAdmin = false}) {
                 color: index == 0 ? CustomColors.orchid : null,
                 child: ListTile(
                   leading: const Icon(Icons.home, color: CustomColors.mercury),
-                  title:
-                      cambriaText(text: 'Dashboard', textStyle: _textStyle()),
+                  title: AutoSizeText('Dashboard',
+                      style: whiteBoldStyle(size: 30)),
                   onTap: () => GoRouter.of(context).go('/home'),
                 ),
               ),
@@ -28,7 +29,8 @@ Widget lefNavigator(BuildContext context, int index, {bool isAdmin = false}) {
                 child: ListTile(
                   leading:
                       const Icon(Icons.people, color: CustomColors.mercury),
-                  title: cambriaText(text: 'Students', textStyle: _textStyle()),
+                  title:
+                      AutoSizeText('Students', style: whiteBoldStyle(size: 30)),
                   onTap: () => GoRouter.of(context).go('/sections'),
                 ),
               ),
@@ -38,8 +40,8 @@ Widget lefNavigator(BuildContext context, int index, {bool isAdmin = false}) {
                   child: ListTile(
                     leading:
                         const Icon(Icons.person_2, color: CustomColors.mercury),
-                    title: cambriaText(
-                        text: 'All Instructors', textStyle: _textStyle()),
+                    title: AutoSizeText('All Instructors',
+                        style: whiteBoldStyle(size: 30)),
                     onTap: () => GoRouter.of(context).go('/instructors'),
                   ),
                 )
@@ -49,8 +51,8 @@ Widget lefNavigator(BuildContext context, int index, {bool isAdmin = false}) {
                   child: ListTile(
                     leading:
                         const Icon(Icons.person_2, color: CustomColors.mercury),
-                    title: cambriaText(
-                        text: 'My Profile', textStyle: _textStyle()),
+                    title: AutoSizeText('My Profile',
+                        style: whiteBoldStyle(size: 30)),
                     onTap: () => GoRouter.of(context).go('/instructors/edit'),
                   ),
                 ),
@@ -59,8 +61,8 @@ Widget lefNavigator(BuildContext context, int index, {bool isAdmin = false}) {
                 child: ListTile(
                     leading: const Icon(Icons.book_rounded,
                         color: CustomColors.mercury),
-                    title:
-                        cambriaText(text: 'Lessons', textStyle: _textStyle()),
+                    title: AutoSizeText('Lessons',
+                        style: whiteBoldStyle(size: 30)),
                     onTap: () => GoRouter.of(context).go('/lessons')),
               ),
             ],
@@ -68,15 +70,10 @@ Widget lefNavigator(BuildContext context, int index, {bool isAdmin = false}) {
         ),
         ListTile(
           leading: const Icon(Icons.exit_to_app),
-          title: Text('Log Out', style: _textStyle()),
+          title: Text('Log Out', style: whiteBoldStyle(size: 30)),
           onTap: () => FirebaseAuth.instance
               .signOut()
               .then((value) => GoRouter.of(context).go('/')),
         ),
       ]));
-}
-
-TextStyle _textStyle() {
-  return const TextStyle(
-      fontSize: 30, fontWeight: FontWeight.bold, color: Colors.white);
 }

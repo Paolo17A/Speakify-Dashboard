@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:speechlab_dashboard/utils/color_util.dart';
 
@@ -72,12 +73,7 @@ Widget lessonEntryWithActionsContainer(BuildContext context,
           children: [
             SizedBox(
               width: MediaQuery.of(context).size.width * 0.6,
-              child: cambriaText(
-                  text: label,
-                  textStyle: const TextStyle(
-                      color: CustomColors.wine,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 28)),
+              child: AutoSizeText(label, style: wineBoldStyle(size: 28)),
             ),
             SizedBox(
               width: MediaQuery.of(context).size.width * 0.1,
@@ -119,7 +115,7 @@ Widget pageHeaderWithDivider(BuildContext context, {required String label}) {
   return SizedBox(
       width: MediaQuery.of(context).size.width * 0.6,
       child: Column(children: [
-        cambriaWineHeaderText(text: label),
+        AutoSizeText(label),
         const Divider(
           thickness: 5,
           color: CustomColors.darkWine,

@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -104,12 +105,7 @@ class _ActiveStudentsScreenWidget extends State<ActiveStudentsWidget> {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         const CircleAvatar(backgroundColor: Colors.green, radius: 5),
-        cambriaText(
-            text: 'ACTIVE STUDENTS',
-            textStyle: const TextStyle(
-                color: CustomColors.orchid,
-                fontSize: 25,
-                fontWeight: FontWeight.bold)),
+        AutoSizeText('ACTIVE STUDENTS', style: wineBoldStyle(size: 25)),
       ],
     );
   }
@@ -165,14 +161,11 @@ class _ActiveStudentsScreenWidget extends State<ActiveStudentsWidget> {
 
   Widget _profileDataWidget(Map<dynamic, dynamic> studentData) {
     return Column(children: [
-      cambriaText(
-          text: '${studentData['firstName']} ${studentData['lastName']}',
-          textStyle: const TextStyle(
-              color: CustomColors.orchid, fontWeight: FontWeight.bold)),
-      cambriaText(
-          text:
-              'Last Login: ${DateFormat('dd MMM yyyy hh:mm:ss a').format((studentData['lastLoginTime'] as Timestamp).toDate())}',
-          textStyle: const TextStyle(color: CustomColors.orchid, fontSize: 10))
+      AutoSizeText('${studentData['firstName']} ${studentData['lastName']}',
+          style: wineBoldStyle(size: 14)),
+      AutoSizeText(
+          'Last Login: ${DateFormat('dd MMM yyyy hh:mm:ss a').format((studentData['lastLoginTime'] as Timestamp).toDate())}',
+          style: wineBoldStyle(size: 10))
     ]);
   }
 }

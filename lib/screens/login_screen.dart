@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -153,9 +154,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   onPressed: () {
                     GoRouter.of(context).go('/reset');
                   },
-                  child: cambriaText(
-                      text: 'Forgot Password? ',
-                      textStyle: const TextStyle(
+                  child: AutoSizeText('Forgot Password? ',
+                      style: const TextStyle(
                           color: CustomColors.fuschia,
                           decoration: TextDecoration.underline,
                           fontWeight: FontWeight.bold)))
@@ -166,16 +166,14 @@ class _LoginScreenState extends State<LoginScreen> {
     return SizedBox(
       width: MediaQuery.of(context).size.width * 0.5,
       child: Wrap(alignment: WrapAlignment.center, children: [
-        cambriaText(
-            text: 'Don\'t Have an Account?',
-            textStyle: blackBoldStyle(size: 20)),
+        AutoSizeText('Don\'t Have an Account?',
+            style: blackBoldStyle(size: 20)),
         TextButton(
             onPressed: () {
               GoRouter.of(context).go('/register');
             },
-            child: cambriaText(
-                text: 'Register Now',
-                textStyle: const TextStyle(
+            child: AutoSizeText('Register Now',
+                style: const TextStyle(
                     fontSize: 17,
                     decoration: TextDecoration.underline,
                     color: CustomColors.fuschia,

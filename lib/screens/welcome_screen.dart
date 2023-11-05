@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:speechlab_dashboard/utils/color_util.dart';
@@ -49,9 +50,8 @@ class Welcome extends StatelessWidget {
   Widget _alreadyHaveAccountButton(Function onPress) {
     return TextButton(
         onPressed: () => onPress(),
-        child: cambriaText(
-            text: 'I ALREADY HAVE AN ACCOUNT',
-            textStyle: const TextStyle(
+        child: AutoSizeText('I ALREADY HAVE AN ACCOUNT',
+            style: const TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
                 color: Colors.black,

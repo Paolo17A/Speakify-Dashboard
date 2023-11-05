@@ -620,7 +620,7 @@ class _StudentsSectionsScreenState extends State<StudentsSectionsScreen> {
     return SizedBox(
         width: MediaQuery.of(context).size.width * 0.6,
         child: Column(children: [
-          cambriaWineHeaderText(text: 'Broadcasting Section'),
+          AutoSizeText('Broadcasting Section', style: wineBoldStyle(size: 70)),
           const Divider(
             thickness: 5,
             color: CustomColors.darkWine,
@@ -667,7 +667,7 @@ class _StudentsSectionsScreenState extends State<StudentsSectionsScreen> {
           ),
           if (_isAdmin == true)
             SizedBox(
-              width: MediaQuery.of(context).size.width * 0.05,
+              width: MediaQuery.of(context).size.width * 0.08,
               child: ElevatedButton(
                   onPressed: () => showAddSectionDialog(),
                   style: ElevatedButton.styleFrom(
@@ -678,7 +678,7 @@ class _StudentsSectionsScreenState extends State<StudentsSectionsScreen> {
             ),
           if (allSectionChoices.isNotEmpty)
             SizedBox(
-                width: MediaQuery.of(context).size.width * 0.05,
+                width: MediaQuery.of(context).size.width * 0.08,
                 child: ElevatedButton(
                   onPressed: () => showAddNewStudentDialog(),
                   style: ElevatedButton.styleFrom(

@@ -62,9 +62,11 @@ authenticationFormContainer(BuildContext context, Widget child) {
               padding: const EdgeInsets.all(4),
               child: roundedContainer(
                   color: CustomColors.mercury,
-                  child: Padding(
-                    padding: const EdgeInsets.all(20),
-                    child: SingleChildScrollView(child: child),
+                  child: SingleChildScrollView(
+                    child: Padding(
+                      padding: const EdgeInsets.all(20),
+                      child: child,
+                    ),
                   )),
             )),
       ));

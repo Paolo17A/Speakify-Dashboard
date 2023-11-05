@@ -1,4 +1,4 @@
-import 'dart:convert';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -83,7 +83,7 @@ class _ScoresScreenState extends State<ScoresScreen> {
     return SizedBox(
         width: MediaQuery.of(context).size.width * 0.6,
         child: Column(children: [
-          cambriaWineHeaderText(text: 'SCORING RESULTS'),
+          AutoSizeText('SCORING RESULTS', style: wineBoldStyle(size: 70)),
           const Divider(
             thickness: 5,
             color: CustomColors.darkWine,
@@ -136,8 +136,7 @@ class _ScoresScreenState extends State<ScoresScreen> {
                   lessonName: level.category,
                   onPress: () => GoRouter.of(context)
                           .goNamed('selectedSpeechLab', pathParameters: {
-                        'currentSpeechLevelReq': (index + 1).toString(),
-                        'selectedLevel': jsonEncode(level.toJson())
+                        'currentSpeechLevelReq': (index + 1).toString()
                       }));
             }).toList(),
           ),

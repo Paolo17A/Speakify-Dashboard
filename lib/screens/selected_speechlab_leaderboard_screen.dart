@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:speechlab_dashboard/models/speech_model.dart';
@@ -102,9 +103,10 @@ class _SelectedSpeechlabLeaderboardScreenState
   Widget _speechTitleHeader() {
     return SizedBox(
         width: MediaQuery.of(context).size.width * 0.75,
-        child: cambriaWineHeaderText(
-            text: getSpeeechByIndex(int.parse(widget.currentSpeechLevelReq))!
-                .category));
+        child: AutoSizeText(
+          getSpeeechByIndex(int.parse(widget.currentSpeechLevelReq))!.category,
+          style: wineBoldStyle(size: 70),
+        ));
   }
 
   Widget _rankingsContainer() {

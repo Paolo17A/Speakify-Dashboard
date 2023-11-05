@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:speechlab_dashboard/utils/firebase_util.dart';
@@ -104,7 +105,10 @@ class _SelectedQuizLeaderboardScreenState
   Widget _quizTitleHeader() {
     return SizedBox(
         width: MediaQuery.of(context).size.width * 0.75,
-        child: cambriaWineHeaderText(text: widget.quizID));
+        child: AutoSizeText(
+          widget.quizID,
+          style: wineBoldStyle(size: 70),
+        ));
   }
 
   Widget _rankingsContainer() {

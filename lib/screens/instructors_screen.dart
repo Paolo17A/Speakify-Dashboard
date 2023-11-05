@@ -276,7 +276,7 @@ class _InstructorsScreenState extends State<InstructorsScreen> {
   Widget _instructorsHeader() {
     return Column(
       children: [
-        cambriaWineHeaderText(text: 'INSTRUCTORS'),
+        AutoSizeText('INSTRUCTORS', style: wineBoldStyle(size: 70)),
         const Divider(
           thickness: 5,
           color: CustomColors.darkWine,
@@ -362,10 +362,9 @@ class _InstructorsScreenState extends State<InstructorsScreen> {
                         )),
                   SizedBox(
                       width: MediaQuery.of(context).size.width * 0.3,
-                      child: cambriaText(
-                          text:
-                              '${instructorData['firstName']} ${instructorData['lastName']}',
-                          textStyle: const TextStyle(
+                      child: AutoSizeText(
+                          '${instructorData['firstName']} ${instructorData['lastName']}',
+                          style: const TextStyle(
                               color: CustomColors.orchid,
                               fontWeight: FontWeight.bold,
                               fontSize: 25))),

@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -46,6 +47,42 @@ class _LessonsScreenState extends State<LessonsScreen> {
     }
   }
 
+  Future deleteLesson(String lessonUID) async {
+    final scaffoldMessenger = ScaffoldMessenger.of(context);
+    try {
+      setState(() {
+        _isLoading = true;
+      });
+      //Get all sections with access to this lesson
+      final sections = await FirebaseFirestore.instance
+          .collection('sections')
+          .where('accessedLessons', arrayContains: lessonUID)
+          .get();
+      final sectionDocs = sections.docs;
+      for (var doc in sectionDocs) {
+        await FirebaseFirestore.instance
+            .collection('sections')
+            .doc(doc.id)
+            .update({
+          'accessedLessons': FieldValue.arrayRemove([lessonUID])
+        });
+      }
+      await FirebaseFirestore.instance
+          .collection('lessons')
+          .doc(lessonUID)
+          .delete();
+      scaffoldMessenger.showSnackBar(
+          SnackBar(content: Text('Successfully deleted this lesson.')));
+      getAllCustomLessons();
+    } catch (error) {
+      scaffoldMessenger.showSnackBar(
+          SnackBar(content: Text('Error deleting lesson: $error')));
+      setState(() {
+        _isLoading = false;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -74,7 +111,7 @@ class _LessonsScreenState extends State<LessonsScreen> {
     return SizedBox(
         width: MediaQuery.of(context).size.width * 0.6,
         child: Column(children: [
-          cambriaWineHeaderText(text: 'CUSTOM LESSONS'),
+          AutoSizeText('CUSTOM LESSONS', style: wineBoldStyle(size: 70)),
           const Divider(
             thickness: 5,
             color: CustomColors.darkWine,
@@ -96,17 +133,19 @@ class _LessonsScreenState extends State<LessonsScreen> {
                   final lessondata = lesson.data() as Map<dynamic, dynamic>;
                   return vertical10PixHorizontal30Pix(context,
                       child: lessonEntryWithActionsContainer(context,
-                          label: lessondata['lessonTitle'], editFunction: () {
-                        GoRouter.of(context).goNamed('editLesson',
-                            pathParameters: {'lessonID': lesson.id});
-                      }, deleteFunction: () {}, mayEditLesson: !_isAdmin));
+                          label: lessondata['lessonTitle'],
+                          editFunction: () {
+                            GoRouter.of(context).goNamed('editLesson',
+                                pathParameters: {'lessonID': lesson.id});
+                          },
+                          deleteFunction: () => deleteLesson(lesson.id),
+                          mayEditLesson: !_isAdmin));
                 }).toList())),
           )
         : Expanded(
             child: Center(
-                child: cambriaText(
-                    text: 'NO CUSTOM LESSONS AVAILABLE',
-                    textStyle: const TextStyle(
+                child: AutoSizeText('NO CUSTOM LESSONS AVAILABLE',
+                    style: const TextStyle(
                         color: CustomColors.plum,
                         fontSize: 40,
                         fontWeight: FontWeight.bold))),

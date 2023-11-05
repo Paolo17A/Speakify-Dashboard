@@ -1,5 +1,4 @@
-import 'dart:convert';
-
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -17,11 +16,8 @@ import '../widgets/left_navigator_widget.dart';
 
 class SelectedSpeechLabScreen extends StatefulWidget {
   final String currentSpeechLevelReq;
-  final String selectedLevel;
   const SelectedSpeechLabScreen(
-      {super.key,
-      required this.currentSpeechLevelReq,
-      required this.selectedLevel});
+      {super.key, required this.currentSpeechLevelReq});
 
   @override
   State<SelectedSpeechLabScreen> createState() =>
@@ -40,8 +36,7 @@ class _SelectedSpeechLabScreenState extends State<SelectedSpeechLabScreen> {
   void initState() {
     super.initState();
     currentSpeechLevelReq = int.parse(widget.currentSpeechLevelReq);
-    Map<String, dynamic> decodedJson = jsonDecode(widget.selectedLevel);
-    selectedLevel = SpeechModel.fromJson(decodedJson);
+    selectedLevel = getSpeeechByIndex(currentSpeechLevelReq)!;
   }
 
   @override
@@ -124,7 +119,7 @@ class _SelectedSpeechLabScreenState extends State<SelectedSpeechLabScreen> {
     return SizedBox(
         width: MediaQuery.of(context).size.width * 0.6,
         child: Column(children: [
-          cambriaWineHeaderText(text: selectedLevel.category),
+          AutoSizeText(selectedLevel.category, style: wineBoldStyle(size: 70)),
           const Divider(
             thickness: 5,
             color: CustomColors.darkWine,
@@ -142,26 +137,23 @@ class _SelectedSpeechLabScreenState extends State<SelectedSpeechLabScreen> {
         child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
           SizedBox(
               width: MediaQuery.of(context).size.width * 0.2,
-              child: cambriaText(
-                  text: 'ID Number',
-                  textStyle: const TextStyle(
+              child: AutoSizeText('ID Number',
+                  style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       color: CustomColors.mercury,
                       fontSize: 26))),
           SizedBox(
               width: MediaQuery.of(context).size.width * 0.2,
-              child: cambriaText(
-                  text: 'Student Name',
-                  textStyle: const TextStyle(
+              child: AutoSizeText('Student Name',
+                  style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       color: CustomColors.mercury,
                       fontSize: 26))),
           SizedBox(
               width: MediaQuery.of(context).size.width * 0.2,
               child: Center(
-                child: cambriaText(
-                    text: 'Average Score',
-                    textStyle: const TextStyle(
+                child: AutoSizeText('Average Score',
+                    style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         color: CustomColors.mercury,
                         fontSize: 26)),
@@ -196,24 +188,21 @@ class _SelectedSpeechLabScreenState extends State<SelectedSpeechLabScreen> {
                                 SizedBox(
                                     width:
                                         MediaQuery.of(context).size.width * 0.2,
-                                    child: cambriaText(
-                                        text: 'ID Number',
-                                        textStyle: _studentEntryStyle())),
+                                    child: AutoSizeText('ID Number',
+                                        style: _studentEntryStyle())),
                                 SizedBox(
                                     width:
                                         MediaQuery.of(context).size.width * 0.2,
-                                    child: cambriaText(
-                                        text:
-                                            '${(_userDocs[index].data()! as Map<dynamic, dynamic>)['firstName']} ${(_userDocs[index].data()! as Map<dynamic, dynamic>)['lastName']}',
-                                        textStyle: _studentEntryStyle())),
+                                    child: AutoSizeText(
+                                        '${(_userDocs[index].data()! as Map<dynamic, dynamic>)['firstName']} ${(_userDocs[index].data()! as Map<dynamic, dynamic>)['lastName']}',
+                                        style: _studentEntryStyle())),
                                 SizedBox(
                                     width:
                                         MediaQuery.of(context).size.width * 0.2,
                                     child: Center(
-                                      child: cambriaText(
-                                          text:
-                                              '${calculateAverage(speechResults[widget.currentSpeechLevelReq.toString()]['confidenceScores']).toStringAsFixed(2)}%',
-                                          textStyle: _studentEntryStyle()),
+                                      child: AutoSizeText(
+                                          '${calculateAverage(speechResults[widget.currentSpeechLevelReq.toString()]['confidenceScores']).toStringAsFixed(2)}%',
+                                          style: _studentEntryStyle()),
                                     )),
                                 SizedBox(
                                   width:

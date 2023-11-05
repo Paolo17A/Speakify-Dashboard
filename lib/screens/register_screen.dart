@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -173,17 +174,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   Widget _haveAnAccountWidgets() {
     return Wrap(alignment: WrapAlignment.center, children: [
-      cambriaText(
-        text: 'Have an Account?',
-        textStyle: blackBoldStyle(size: 25),
+      AutoSizeText(
+        'Have an Account?',
+        style: blackBoldStyle(size: 25),
       ),
       TextButton(
           onPressed: () {
             GoRouter.of(context).go('/login');
           },
-          child: cambriaText(
-            text: 'Sign in',
-            textStyle: const TextStyle(
+          child: AutoSizeText(
+            'Sign in',
+            style: const TextStyle(
                 fontSize: 25,
                 decoration: TextDecoration.underline,
                 color: Color.fromARGB(255, 102, 58, 130)),

@@ -139,7 +139,10 @@ class _SelectedCustomQuizScreenState extends State<SelectedCustomQuizScreen> {
                       SizedBox(
                           width: MediaQuery.of(context).size.width * 0.7,
                           child: Column(children: [
-                            cambriaWineHeaderText(text: widget.quizTitle),
+                            AutoSizeText(
+                              widget.quizTitle,
+                              style: wineBoldStyle(size: 70),
+                            ),
                             const Divider(
                               thickness: 5,
                               color: CustomColors.darkWine,
@@ -223,10 +226,9 @@ class _SelectedCustomQuizScreenState extends State<SelectedCustomQuizScreen> {
                                                                   .size
                                                                   .width *
                                                               0.3,
-                                                          child: cambriaText(
-                                                              text:
-                                                                  '${(allEligibleUsers[index].data()! as Map<dynamic, dynamic>)['firstName']} ${(allEligibleUsers[index].data()! as Map<dynamic, dynamic>)['lastName']}',
-                                                              textStyle:
+                                                          child: AutoSizeText(
+                                                              '${(allEligibleUsers[index].data()! as Map<dynamic, dynamic>)['firstName']} ${(allEligibleUsers[index].data()! as Map<dynamic, dynamic>)['lastName']}',
+                                                              style:
                                                                   _studentEntryStyle())),
                                                       SizedBox(
                                                           width: MediaQuery.of(
@@ -305,7 +307,7 @@ class _SelectedCustomQuizScreenState extends State<SelectedCustomQuizScreen> {
   }
 
   AutoSizeText _notAvailable() {
-    return cambriaText(text: 'N/A', textStyle: _studentEntryStyle());
+    return AutoSizeText('N/A', style: _studentEntryStyle());
   }
 
   Widget _quizResultEntry(DocumentSnapshot selectedDoc, String difficulty) {
@@ -316,9 +318,8 @@ class _SelectedCustomQuizScreenState extends State<SelectedCustomQuizScreen> {
     Map<dynamic, dynamic> customQuizResults =
         (selectedDoc.data()! as Map<dynamic, dynamic>)['customQuizResults'];
     return Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-      cambriaText(
-          text: _getQuizScoreFormatted(customQuizResults, difficulty),
-          textStyle: _studentEntryStyle()),
+      AutoSizeText(_getQuizScoreFormatted(customQuizResults, difficulty),
+          style: _studentEntryStyle()),
       ElevatedButton(
           onPressed: () => displayQuizAnswersDialogue(
               difficulty,
