@@ -54,10 +54,12 @@ class _RecentActiviesWidgetState extends State<RecentActiviesWidget> {
         padding: const EdgeInsets.all(8),
         child: switchedLoadingContainer(
             _isLoading,
-            loveWineContainer(Column(children: [
-              _recentActiviesHeader(),
-              _recentActivitiesContainer()
-            ]))));
+            loveWineContainer(
+                Column(children: [
+                  _recentActiviesHeader(),
+                  _recentActivitiesContainer()
+                ]),
+                height: MediaQuery.of(context).size.height * 0.4)));
   }
 
   Widget _recentActiviesHeader() {
@@ -76,8 +78,8 @@ class _RecentActiviesWidgetState extends State<RecentActiviesWidget> {
         : Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
             child: SizedBox(
-              width: MediaQuery.of(context).size.width * 0.55,
-              height: MediaQuery.of(context).size.height * 0.5,
+              width: MediaQuery.of(context).size.width * 0.6,
+              height: MediaQuery.of(context).size.height * 0.33,
               child: ListView.builder(
                   shrinkWrap: true,
                   itemCount: recentActivities.length,
@@ -96,7 +98,7 @@ class _RecentActiviesWidgetState extends State<RecentActiviesWidget> {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5),
       child: Container(
-          height: 60,
+          height: 50,
           decoration: BoxDecoration(
               color: CustomColors.wine.withOpacity(0.3),
               borderRadius: BorderRadius.circular(10)),
@@ -108,7 +110,7 @@ class _RecentActiviesWidgetState extends State<RecentActiviesWidget> {
                 Text(formattedDateTime, style: whiteBoldStyle(size: 15)),
                 const SizedBox(height: 5),
                 Text(activityData['activityMessage'],
-                    style: whiteBoldStyle(size: 15))
+                    style: whiteBoldStyle(size: 12))
               ],
             ),
           )),

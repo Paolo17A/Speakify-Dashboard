@@ -93,14 +93,14 @@ class _LoginScreenState extends State<LoginScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        const SizedBox(height: 20),
+                        //const SizedBox(height: 20),
                         headerText(text: 'LOG-IN'),
                         const SizedBox(height: 30),
                         _loginInputFieldWidgets(),
                         _forgotPasswordWidget(),
-                        const SizedBox(height: 60),
+                        const SizedBox(height: 30),
                         authenticationButton('START', _loginUser, width: 170),
-                        const SizedBox(height: 60),
+                        const SizedBox(height: 30),
                         _dontHaveAccountWidgets()
                       ])),
             )

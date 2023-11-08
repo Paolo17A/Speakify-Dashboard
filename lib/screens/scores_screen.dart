@@ -83,7 +83,7 @@ class _ScoresScreenState extends State<ScoresScreen> {
     return SizedBox(
         width: MediaQuery.of(context).size.width * 0.6,
         child: Column(children: [
-          AutoSizeText('SCORING RESULTS', style: wineBoldStyle(size: 70)),
+          AutoSizeText('SCORING RESULTS', style: wineBoldStyle(size: 40)),
           const Divider(
             thickness: 5,
             color: CustomColors.darkWine,
@@ -93,7 +93,7 @@ class _ScoresScreenState extends State<ScoresScreen> {
 
   Widget _scoreChoiceSelector() {
     return Padding(
-        padding: const EdgeInsets.all(20),
+        padding: const EdgeInsets.all(10),
         child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
           scoreOptionButton(context,
               label: 'Lesson Quiz Performance',

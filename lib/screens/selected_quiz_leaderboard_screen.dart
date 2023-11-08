@@ -107,7 +107,7 @@ class _SelectedQuizLeaderboardScreenState
         width: MediaQuery.of(context).size.width * 0.75,
         child: AutoSizeText(
           widget.quizID,
-          style: wineBoldStyle(size: 70),
+          style: wineBoldStyle(size: 40),
         ));
   }
 

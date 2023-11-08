@@ -103,7 +103,7 @@ class _SelectedQuizScreenState extends State<SelectedQuizScreen> {
                             textAlign: TextAlign.center,
                             style: const TextStyle(
                                 color: Color.fromARGB(255, 60, 19, 97),
-                                fontSize: 70,
+                                fontSize: 40,
                                 fontWeight: FontWeight.bold)),
                       ),
                       _userDocs.isNotEmpty

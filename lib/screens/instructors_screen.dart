@@ -276,7 +276,7 @@ class _InstructorsScreenState extends State<InstructorsScreen> {
   Widget _instructorsHeader() {
     return Column(
       children: [
-        AutoSizeText('INSTRUCTORS', style: wineBoldStyle(size: 70)),
+        AutoSizeText('INSTRUCTORS', style: wineBoldStyle(size: 40)),
         const Divider(
           thickness: 5,
           color: CustomColors.darkWine,

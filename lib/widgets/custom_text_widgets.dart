@@ -6,7 +6,7 @@ AutoSizeText headerText({required String text}) {
   return AutoSizeText(text,
       maxLines: 2,
       textAlign: TextAlign.center,
-      style: blackBoldStyle(size: 45));
+      style: blackBoldStyle(size: 30));
 }
 
 TextStyle blackBoldStyle({double? size}) {

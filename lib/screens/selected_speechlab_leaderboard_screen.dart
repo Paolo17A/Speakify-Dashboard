@@ -105,7 +105,7 @@ class _SelectedSpeechlabLeaderboardScreenState
         width: MediaQuery.of(context).size.width * 0.75,
         child: AutoSizeText(
           getSpeeechByIndex(int.parse(widget.currentSpeechLevelReq))!.category,
-          style: wineBoldStyle(size: 70),
+          style: wineBoldStyle(size: 40),
         ));
   }
 

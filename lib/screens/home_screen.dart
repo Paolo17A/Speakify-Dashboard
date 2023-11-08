@@ -63,10 +63,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: SingleChildScrollView(
                   child: Column(children: [
                     _homeDashboardRowWidgets(),
-                    const Divider(
+                    /*const Divider(
                       thickness: 4,
                       color: CustomColors.oldPurple,
-                    ),
+                    ),*/
                     SectionStudentsCountWidget(),
                     const RecentActiviesWidget()
                   ]),
@@ -81,7 +81,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _homeDashboardRowWidgets() {
     return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 50),
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
           homeDashboardRowButton(MediaQuery.of(context).size.width * 0.15,
               MediaQuery.of(context).size.width * 0.10, () {

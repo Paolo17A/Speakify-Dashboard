@@ -99,7 +99,7 @@ class _SelectedSpeechLabScreenState extends State<SelectedSpeechLabScreen> {
                       children: [
                         _selectedSpeechLabHeader(),
                         loveWineContainer(
-                          height: MediaQuery.of(context).size.height * 0.8,
+                          height: MediaQuery.of(context).size.height * 0.85,
                           all20Pix(Column(
                             children: [
                               _labelHeaderRow(),
@@ -119,7 +119,7 @@ class _SelectedSpeechLabScreenState extends State<SelectedSpeechLabScreen> {
     return SizedBox(
         width: MediaQuery.of(context).size.width * 0.6,
         child: Column(children: [
-          AutoSizeText(selectedLevel.category, style: wineBoldStyle(size: 70)),
+          AutoSizeText(selectedLevel.category, style: wineBoldStyle(size: 40)),
           const Divider(
             thickness: 5,
             color: CustomColors.darkWine,

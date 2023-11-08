@@ -111,7 +111,7 @@ class _CustomQuizzesScreenState extends State<CustomQuizzesScreen> {
     return SizedBox(
         width: MediaQuery.of(context).size.width * 0.6,
         child: Column(children: [
-          AutoSizeText('CUSTOM QUIZZES', style: wineBoldStyle(size: 70)),
+          AutoSizeText('CUSTOM QUIZZES', style: wineBoldStyle(size: 40)),
           const Divider(
             thickness: 5,
             color: CustomColors.darkWine,

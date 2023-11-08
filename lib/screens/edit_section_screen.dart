@@ -480,7 +480,7 @@ class _EditSectionScreenState extends State<EditSectionScreen> {
       SizedBox(
           width: MediaQuery.of(context).size.width * 0.6,
           child: Column(children: [
-            AutoSizeText(widget.sectionName, style: wineBoldStyle(size: 70)),
+            AutoSizeText(widget.sectionName, style: wineBoldStyle(size: 40)),
             const Divider(
               thickness: 5,
               color: CustomColors.darkWine,

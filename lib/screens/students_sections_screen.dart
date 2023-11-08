@@ -25,6 +25,7 @@ class StudentsSectionsScreen extends StatefulWidget {
 class _StudentsSectionsScreenState extends State<StudentsSectionsScreen> {
   bool _isLoading = true;
   bool _isAdmin = false;
+  bool _isInitialized = false;
   int currentSectionIndex = 0;
   List<DocumentSnapshot> allDisplayableSections = [];
   List<String> allSectionChoices = [];
@@ -44,8 +45,7 @@ class _StudentsSectionsScreenState extends State<StudentsSectionsScreen> {
   void didChangeDependencies() async {
     super.didChangeDependencies();
     _isAdmin = await isAdmin();
-
-    getAllSections(currentSectionIndex);
+    if (!_isInitialized) getAllSections(currentSectionIndex);
   }
 
   Future getAllSections(int selectedSection) async {
@@ -103,6 +103,7 @@ class _StudentsSectionsScreenState extends State<StudentsSectionsScreen> {
 
       setState(() {
         _isLoading = false;
+        _isInitialized = true;
       });
     } catch (error) {
       scaffoldMessenger.showSnackBar(
@@ -129,7 +130,7 @@ class _StudentsSectionsScreenState extends State<StudentsSectionsScreen> {
               decoration: BoxDecoration(
                   border: Border.all(color: CustomColors.wine, width: 3)),
               child: all20Pix(Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Text(
                     'ADD SECTION',
@@ -192,7 +193,7 @@ class _StudentsSectionsScreenState extends State<StudentsSectionsScreen> {
                             backgroundColor: Colors.white,
                             backgroundImage:
                                 NetworkImage(profileImageURL, scale: 1)),
-                    const SizedBox(height: 50),
+                    const SizedBox(height: 20),
                     Row(children: [
                       Text('Student ID Number', style: wineBoldStyle(size: 30))
                     ]),
@@ -202,7 +203,7 @@ class _StudentsSectionsScreenState extends State<StudentsSectionsScreen> {
                         textInputType: TextInputType.number,
                         displayPrefixIcon: null,
                         color: CustomColors.wine),
-                    const SizedBox(height: 30),
+                    const SizedBox(height: 10),
                     Row(children: [
                       Text('First Name', style: wineBoldStyle(size: 30))
                     ]),
@@ -212,7 +213,7 @@ class _StudentsSectionsScreenState extends State<StudentsSectionsScreen> {
                         textInputType: TextInputType.number,
                         displayPrefixIcon: null,
                         color: CustomColors.wine),
-                    const SizedBox(height: 30),
+                    const SizedBox(height: 10),
                     Row(children: [
                       Text('Last Name', style: wineBoldStyle(size: 30))
                     ]),
@@ -222,7 +223,7 @@ class _StudentsSectionsScreenState extends State<StudentsSectionsScreen> {
                         textInputType: TextInputType.number,
                         displayPrefixIcon: null,
                         color: CustomColors.wine),
-                    const SizedBox(height: 30),
+                    const SizedBox(height: 10),
                     Row(children: [
                       Text('Section', style: wineBoldStyle(size: 30))
                     ]),
@@ -234,7 +235,7 @@ class _StudentsSectionsScreenState extends State<StudentsSectionsScreen> {
                     ElevatedButton(
                         onPressed: () => editSelectedUser(studentUID),
                         child: all20Pix(Text('Edit Student'))),
-                    const SizedBox(height: 75),
+                    const SizedBox(height: 25),
                     ElevatedButton(
                         onPressed: () =>
                             deleteSelectedUser(studentUID, studentData),
@@ -264,7 +265,7 @@ class _StudentsSectionsScreenState extends State<StudentsSectionsScreen> {
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
             content: Container(
               width: MediaQuery.of(context).size.width * 0.35,
-              height: MediaQuery.of(context).size.height * 0.65,
+              height: MediaQuery.of(context).size.height * 0.55,
               decoration: BoxDecoration(
                   border: Border.all(color: CustomColors.wine, width: 3)),
               child: SingleChildScrollView(
@@ -280,7 +281,7 @@ class _StudentsSectionsScreenState extends State<StudentsSectionsScreen> {
                         textInputType: TextInputType.number,
                         displayPrefixIcon: null,
                         color: CustomColors.wine),
-                    const SizedBox(height: 30),
+                    const SizedBox(height: 10),
                     Row(children: [
                       Text('First Name', style: wineBoldStyle(size: 30))
                     ]),
@@ -290,7 +291,7 @@ class _StudentsSectionsScreenState extends State<StudentsSectionsScreen> {
                         textInputType: TextInputType.number,
                         displayPrefixIcon: null,
                         color: CustomColors.wine),
-                    const SizedBox(height: 30),
+                    const SizedBox(height: 10),
                     Row(children: [
                       Text('Last Name', style: wineBoldStyle(size: 30))
                     ]),
@@ -300,7 +301,7 @@ class _StudentsSectionsScreenState extends State<StudentsSectionsScreen> {
                         textInputType: TextInputType.number,
                         displayPrefixIcon: null,
                         color: CustomColors.wine),
-                    const SizedBox(height: 30),
+                    const SizedBox(height: 10),
                     Row(children: [
                       Text('Email Address', style: wineBoldStyle(size: 30))
                     ]),
@@ -310,7 +311,7 @@ class _StudentsSectionsScreenState extends State<StudentsSectionsScreen> {
                         textInputType: TextInputType.emailAddress,
                         displayPrefixIcon: null,
                         color: CustomColors.wine),
-                    const SizedBox(height: 75),
+                    const SizedBox(height: 40),
                     ElevatedButton(
                         onPressed: () => addNewStudent(),
                         child: all20Pix(Text(
@@ -620,7 +621,7 @@ class _StudentsSectionsScreenState extends State<StudentsSectionsScreen> {
     return SizedBox(
         width: MediaQuery.of(context).size.width * 0.6,
         child: Column(children: [
-          AutoSizeText('Broadcasting Section', style: wineBoldStyle(size: 70)),
+          AutoSizeText('Broadcasting Section', style: wineBoldStyle(size: 40)),
           const Divider(
             thickness: 5,
             color: CustomColors.darkWine,

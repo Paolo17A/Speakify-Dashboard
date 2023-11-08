@@ -23,7 +23,7 @@ void displayStudentAchievementsDialogue(
       backgroundColor: CustomColors.wine,
       content: SizedBox(
         width: MediaQuery.of(context).size.width * 0.35,
-        height: MediaQuery.of(context).size.height * 0.83,
+        height: MediaQuery.of(context).size.height * 0.8,
         child: SingleChildScrollView(
           child: Column(
             children: [
@@ -60,15 +60,15 @@ void displayStudentAchievementsDialogue(
               Container(
                 color: CustomColors.love,
                 width: MediaQuery.of(context).size.width * 0.35,
-                height: MediaQuery.of(context).size.height * 0.65,
+                height: MediaQuery.of(context).size.height * 0.6,
                 child: Column(
                   children: [
-                    all20Pix(Text(
+                    all8Pix(Text(
                         'Current Quizzes Taken: ${quizzesTaken.toString()}',
-                        style: wineBoldStyle(size: 24))),
-                    all20Pix(Text(
+                        style: wineBoldStyle(size: 30))),
+                    all8Pix(Text(
                         'Current SpeechLab Level: ${speechLabLevel.toString()}',
-                        style: wineBoldStyle(size: 24))),
+                        style: wineBoldStyle(size: 30))),
                     //  STUDENT NAME
                     earnedAchievements.isEmpty
                         ? Container(
@@ -80,10 +80,7 @@ void displayStudentAchievementsDialogue(
                             child: all20Pix(Text(
                                 'This student has not yet earned any achievements.',
                                 textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 40,
-                                    fontWeight: FontWeight.bold))))
+                                style: whiteBoldStyle(size: 40))))
                         : SizedBox(
                             height: MediaQuery.of(context).size.height * 0.5,
                             child: Column(
@@ -96,14 +93,11 @@ void displayStudentAchievementsDialogue(
                                         color: Color.fromARGB(255, 53, 1, 36),
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(20))),
-                                    child: const Padding(
+                                    child: Padding(
                                         padding: EdgeInsets.all(10),
                                         child: Text('ACHIEVEMENTS',
                                             textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 30,
-                                                fontWeight: FontWeight.bold))),
+                                            style: whiteBoldStyle(size: 30))),
                                   ),
                                 ),
                                 SizedBox(
@@ -158,13 +152,8 @@ void displayStudentAchievementsDialogue(
                                                               .toList()[index],
                                                           textAlign:
                                                               TextAlign.center,
-                                                          style: const TextStyle(
-                                                              fontSize: 25,
-                                                              color:
-                                                                  Colors.white,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w900),
+                                                          style: whiteBoldStyle(
+                                                              size: 25),
                                                         )
                                                       ],
                                                     ),
@@ -176,9 +165,8 @@ void displayStudentAchievementsDialogue(
                                                         horizontal: 30),
                                                     child: Text(
                                                         achievement.description,
-                                                        style: const TextStyle(
-                                                            color: Colors.white,
-                                                            fontSize: 20)),
+                                                        style: whiteBoldStyle(
+                                                            size: 20)),
                                                   )
                                                 ],
                                               )),
@@ -193,11 +181,15 @@ void displayStudentAchievementsDialogue(
                   ],
                 ),
               ),
-              all8Pix(ElevatedButton(
-                  onPressed: () => GoRouter.of(context).pop(),
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: CustomColors.love),
-                  child: Text('CLOSE', style: wineBoldStyle())))
+              SizedBox(
+                width: 150,
+                height: 70,
+                child: all8Pix(ElevatedButton(
+                    onPressed: () => GoRouter.of(context).pop(),
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: CustomColors.love),
+                    child: Text('CLOSE', style: wineBoldStyle()))),
+              )
             ],
           ),
         ),

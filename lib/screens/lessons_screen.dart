@@ -111,7 +111,7 @@ class _LessonsScreenState extends State<LessonsScreen> {
     return SizedBox(
         width: MediaQuery.of(context).size.width * 0.6,
         child: Column(children: [
-          AutoSizeText('CUSTOM LESSONS', style: wineBoldStyle(size: 70)),
+          AutoSizeText('CUSTOM LESSONS', style: wineBoldStyle(size: 40)),
           const Divider(
             thickness: 5,
             color: CustomColors.darkWine,

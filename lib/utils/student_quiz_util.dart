@@ -15,7 +15,7 @@ void displayQuizAnswersDialogue(
           backgroundColor: CustomColors.orchid,
           content: SizedBox(
               width: MediaQuery.of(context).size.width * 0.35,
-              height: MediaQuery.of(context).size.height * 0.75,
+              height: MediaQuery.of(context).size.height * 0.55,
               child: SingleChildScrollView(
                 child: Column(children: [
                   //  PROFILE IMAGE

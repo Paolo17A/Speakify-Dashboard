@@ -167,7 +167,7 @@ class _RankingsScreenState extends State<RankingsScreen> {
     return SizedBox(
         width: MediaQuery.of(context).size.width * 0.6,
         child: Column(children: [
-          AutoSizeText('Leaderboard', style: wineBoldStyle(size: 70)),
+          AutoSizeText('Leaderboard', style: wineBoldStyle(size: 40)),
           const Divider(
             thickness: 5,
             color: CustomColors.darkWine,
