@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:speechlab_dashboard/utils/color_util.dart';
 import 'package:speechlab_dashboard/widgets/appbar_title_widget.dart';
@@ -170,19 +171,37 @@ class _EditLessonScreenState extends State<EditLessonScreen> {
                       child: all20Pix(
                     Column(
                       children: [
+                        Row(children: [
+                          SizedBox(
+                            width: 100,
+                            child: ElevatedButton(
+                                onPressed: () =>
+                                    GoRouter.of(context).go('/lessons'),
+                                style: ElevatedButton.styleFrom(
+                                    backgroundColor: CustomColors.wine),
+                                child: const Text('BACK',
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold))),
+                          )
+                        ]),
+                        Gap(25),
                         _lessonTitle(),
                         _lessonContent(),
                         const SizedBox(height: 30),
                         _additionalResources(),
                         const SizedBox(height: 20),
-                        ElevatedButton(
-                            onPressed: editCustomLesson,
-                            style: ElevatedButton.styleFrom(
-                                backgroundColor: CustomColors.orchid),
-                            child: const Text('SAVE CHANGES',
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold)))
+                        SizedBox(
+                          height: 50,
+                          child: ElevatedButton(
+                              onPressed: editCustomLesson,
+                              style: ElevatedButton.styleFrom(
+                                  backgroundColor: CustomColors.orchid),
+                              child: const Text('SAVE CHANGES',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold))),
+                        )
                       ],
                     ),
                   )),

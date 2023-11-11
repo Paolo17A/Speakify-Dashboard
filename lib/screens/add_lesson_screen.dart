@@ -1,10 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:speechlab_dashboard/widgets/appbar_title_widget.dart';
+import 'package:speechlab_dashboard/widgets/custom_container_widgets.dart';
 import 'package:speechlab_dashboard/widgets/speechLabTextField.dart';
 
+import '../utils/color_util.dart';
 import '../utils/firebase_util.dart';
 import '../widgets/left_navigator_widget.dart';
 
@@ -124,17 +127,32 @@ class _AddLessonScreenState extends State<AddLessonScreen> {
         body: Row(
           children: [
             lefNavigator(context, 3, isAdmin: _isAdmin),
-            Container(
-              width: MediaQuery.of(context).size.width * 0.8,
-              height: MediaQuery.of(context).size.height,
-              color: Colors.white,
-              child: Stack(
-                children: [
+            bodyWidgetWhiteBG(
+                context,
+                switchedLoadingContainer(
+                  _isLoading,
                   SingleChildScrollView(
                       child: Padding(
                     padding: const EdgeInsets.all(20),
                     child: Column(
                       children: [
+                        Row(
+                          children: [
+                            SizedBox(
+                              width: 100,
+                              child: ElevatedButton(
+                                  onPressed: () =>
+                                      GoRouter.of(context).go('/lessons'),
+                                  style: ElevatedButton.styleFrom(
+                                      backgroundColor: CustomColors.wine),
+                                  child: const Text('BACK',
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold))),
+                            ),
+                          ],
+                        ),
+                        Gap(25),
                         const Row(
                           children: [
                             Text('Lesson Title',
@@ -235,15 +253,7 @@ class _AddLessonScreenState extends State<AddLessonScreen> {
                       ],
                     ),
                   )),
-                  if (_isLoading)
-                    Container(
-                        width: MediaQuery.of(context).size.width * 0.8,
-                        height: MediaQuery.of(context).size.height,
-                        color: Colors.black.withOpacity(0.5),
-                        child: const Center(child: CircularProgressIndicator()))
-                ],
-              ),
-            )
+                ))
           ],
         ));
   }

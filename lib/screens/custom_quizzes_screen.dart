@@ -98,6 +98,7 @@ class _CustomQuizzesScreenState extends State<CustomQuizzesScreen> {
                       loveWineContainer(Column(children: [
                         if (!_isAdmin)
                           addEntryButton(context,
+                              label: 'ADD NEW QUIZ  ',
                               onPress: () =>
                                   GoRouter.of(context).go('/quizzes/addQuiz')),
                         _customQuizzesContainer()
@@ -108,21 +109,26 @@ class _CustomQuizzesScreenState extends State<CustomQuizzesScreen> {
   }
 
   Widget _customQuizzesHeader() {
-    return SizedBox(
-        width: MediaQuery.of(context).size.width * 0.6,
-        child: Column(children: [
-          AutoSizeText('CUSTOM QUIZZES', style: wineBoldStyle(size: 40)),
-          const Divider(
-            thickness: 5,
-            color: CustomColors.darkWine,
-          )
-        ]));
+    return Row(
+      children: [
+        backButton(context, onPress: () => GoRouter.of(context).go('/home')),
+        SizedBox(
+            width: MediaQuery.of(context).size.width * 0.6,
+            child: Column(children: [
+              AutoSizeText('CUSTOM QUIZZES', style: wineBoldStyle(size: 40)),
+              const Divider(
+                thickness: 5,
+                color: CustomColors.darkWine,
+              )
+            ])),
+      ],
+    );
   }
 
   Widget _customQuizzesContainer() {
     return customQuizzes.isNotEmpty
         ? SizedBox(
-            width: MediaQuery.of(context).size.width * 0.7,
+            width: MediaQuery.of(context).size.width * 0.75,
             height: _isAdmin
                 ? MediaQuery.of(context).size.height * 0.75
                 : MediaQuery.of(context).size.height * 0.65,

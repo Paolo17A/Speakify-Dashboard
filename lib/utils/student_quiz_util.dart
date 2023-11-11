@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:speechlab_dashboard/utils/color_util.dart';
+import 'package:speechlab_dashboard/widgets/custom_text_widgets.dart';
 
 void displayQuizAnswersDialogue(
     String difficulty,
@@ -12,8 +13,11 @@ void displayQuizAnswersDialogue(
   showDialog(
       context: context,
       builder: (context) => AlertDialog(
-          backgroundColor: CustomColors.orchid,
-          content: SizedBox(
+          backgroundColor: CustomColors.love,
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+              side: BorderSide(color: CustomColors.darkWine, width: 3)),
+          content: Container(
               width: MediaQuery.of(context).size.width * 0.35,
               height: MediaQuery.of(context).size.height * 0.55,
               child: SingleChildScrollView(
@@ -39,10 +43,7 @@ void displayQuizAnswersDialogue(
                       child: Text(
                         studentName,
                         textAlign: TextAlign.center,
-                        style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 40,
-                            fontWeight: FontWeight.bold),
+                        style: wineBoldStyle(size: 40),
                       )),
                   Padding(
                       padding: const EdgeInsets.symmetric(
@@ -51,7 +52,7 @@ void displayQuizAnswersDialogue(
                         'Score: $score out of ${quizQuestions.length}',
                         textAlign: TextAlign.center,
                         style: const TextStyle(
-                            color: Colors.white,
+                            color: CustomColors.wine,
                             fontSize: 20,
                             fontWeight: FontWeight.w700),
                       )),
@@ -59,6 +60,7 @@ void displayQuizAnswersDialogue(
                     SizedBox(
                         height: MediaQuery.of(context).size.height * 0.5,
                         child: ListView.builder(
+                            shrinkWrap: true,
                             itemCount: quizQuestions.length,
                             itemBuilder: (context, index) {
                               return Padding(
@@ -73,10 +75,8 @@ void displayQuizAnswersDialogue(
                                             padding: const EdgeInsets.all(9),
                                             child: Text(
                                                 '${index + 1}. ${(quizQuestions[index]['question'] as String)}',
-                                                style: const TextStyle(
-                                                    fontWeight: FontWeight.bold,
-                                                    color: Colors.white,
-                                                    fontSize: 15))),
+                                                style:
+                                                    whiteBoldStyle(size: 15))),
                                         _answerWidget(context, difficulty,
                                             quizQuestions, userAnswers, index),
                                         const SizedBox(height: 10)

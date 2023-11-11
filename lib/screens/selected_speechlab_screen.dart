@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:speechlab_dashboard/models/speech_model.dart';
 import 'package:speechlab_dashboard/utils/student_speech_util.dart';
 import 'package:speechlab_dashboard/widgets/appbar_title_widget.dart';
@@ -11,6 +12,7 @@ import 'package:speechlab_dashboard/widgets/custom_padding_widgets.dart';
 import '../utils/color_util.dart';
 import '../utils/firebase_util.dart';
 import '../utils/number_util.dart';
+import '../widgets/custom_buttons_widget.dart';
 import '../widgets/custom_text_widgets.dart';
 import '../widgets/left_navigator_widget.dart';
 
@@ -116,15 +118,21 @@ class _SelectedSpeechLabScreenState extends State<SelectedSpeechLabScreen> {
   }
 
   Widget _selectedSpeechLabHeader() {
-    return SizedBox(
-        width: MediaQuery.of(context).size.width * 0.6,
-        child: Column(children: [
-          AutoSizeText(selectedLevel.category, style: wineBoldStyle(size: 40)),
-          const Divider(
-            thickness: 5,
-            color: CustomColors.darkWine,
-          )
-        ]));
+    return Row(
+      children: [
+        backButton(context, onPress: () => GoRouter.of(context).go('/scores')),
+        SizedBox(
+            width: MediaQuery.of(context).size.width * 0.6,
+            child: Column(children: [
+              AutoSizeText(selectedLevel.category,
+                  style: wineBoldStyle(size: 40)),
+              const Divider(
+                thickness: 5,
+                color: CustomColors.darkWine,
+              )
+            ])),
+      ],
+    );
   }
 
   Widget _labelHeaderRow() {
@@ -179,6 +187,8 @@ class _SelectedSpeechLabScreenState extends State<SelectedSpeechLabScreen> {
                       height: 85,
                       decoration: BoxDecoration(
                           color: CustomColors.mercury,
+                          border:
+                              Border.all(color: CustomColors.wine, width: 2),
                           borderRadius: BorderRadius.circular(10)),
                       child: Padding(
                           padding: const EdgeInsets.all(6.0),
@@ -188,21 +198,22 @@ class _SelectedSpeechLabScreenState extends State<SelectedSpeechLabScreen> {
                                 SizedBox(
                                     width:
                                         MediaQuery.of(context).size.width * 0.2,
-                                    child: AutoSizeText('ID Number',
-                                        style: _studentEntryStyle())),
+                                    child: AutoSizeText(
+                                        '${userData['studentID']}',
+                                        style: wineBoldStyle(size: 20))),
                                 SizedBox(
                                     width:
                                         MediaQuery.of(context).size.width * 0.2,
                                     child: AutoSizeText(
-                                        '${(_userDocs[index].data()! as Map<dynamic, dynamic>)['firstName']} ${(_userDocs[index].data()! as Map<dynamic, dynamic>)['lastName']}',
-                                        style: _studentEntryStyle())),
+                                        '${userData['firstName']} ${userData['lastName']}',
+                                        style: wineBoldStyle(size: 20))),
                                 SizedBox(
                                     width:
                                         MediaQuery.of(context).size.width * 0.2,
                                     child: Center(
                                       child: AutoSizeText(
                                           '${calculateAverage(speechResults[widget.currentSpeechLevelReq.toString()]['confidenceScores']).toStringAsFixed(2)}%',
-                                          style: _studentEntryStyle()),
+                                          style: wineBoldStyle(size: 20)),
                                     )),
                                 SizedBox(
                                   width:
@@ -229,10 +240,5 @@ class _SelectedSpeechLabScreenState extends State<SelectedSpeechLabScreen> {
             child: Center(
                 child: Text('No student has done this lesson yet',
                     style: wineBoldStyle(size: 25))));
-  }
-
-  TextStyle _studentEntryStyle() {
-    return const TextStyle(
-        fontSize: 26, fontWeight: FontWeight.bold, color: CustomColors.orchid);
   }
 }

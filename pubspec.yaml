@@ -47,6 +47,7 @@ dependencies:
   auto_size_text: ^3.0.0
   flutter_launcher_icons: ^0.13.1
   syncfusion_flutter_charts: ^23.1.43
+  gap: ^3.0.1
 
 dev_dependencies:
   flutter_test:
@@ -81,6 +82,7 @@ flutter:
     - assets/images/speechlab_logo.png
     - assets/images/dashboard_welcome.png
     - assets/images/auth_background.png
+    - assets/images/first.png
     - assets/images/badges/
     - lib/data/
   #   - images/a_dot_ham.jpeg

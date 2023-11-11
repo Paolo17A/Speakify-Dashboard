@@ -81,20 +81,32 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _homeDashboardRowWidgets() {
     return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-        child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-          homeDashboardRowButton(MediaQuery.of(context).size.width * 0.15,
-              MediaQuery.of(context).size.width * 0.10, () {
-            GoRouter.of(context).go('/scores');
-          }, 'SCORES'),
-          homeDashboardRowButton(MediaQuery.of(context).size.width * 0.15,
-              MediaQuery.of(context).size.width * 0.10, () {
-            GoRouter.of(context).go('/quizzes');
-          }, 'QUIZZES'),
-          homeDashboardRowButton(MediaQuery.of(context).size.width * 0.15,
-              MediaQuery.of(context).size.width * 0.10, () {
-            GoRouter.of(context).go('/ranking');
-          }, 'RANKING')
+        padding: const EdgeInsets.symmetric(horizontal: 40),
+        child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: homeDashboardRowButton(
+                MediaQuery.of(context).size.width * 0.15,
+                MediaQuery.of(context).size.width * 0.10, () {
+              GoRouter.of(context).go('/scores');
+            }, 'SCORES'),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: homeDashboardRowButton(
+                MediaQuery.of(context).size.width * 0.15,
+                MediaQuery.of(context).size.width * 0.10, () {
+              GoRouter.of(context).go('/quizzes');
+            }, 'QUIZZES'),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: homeDashboardRowButton(
+                MediaQuery.of(context).size.width * 0.15,
+                MediaQuery.of(context).size.width * 0.10, () {
+              GoRouter.of(context).go('/ranking');
+            }, 'RANKING'),
+          )
         ]));
   }
 }

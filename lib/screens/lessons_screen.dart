@@ -99,6 +99,7 @@ class _LessonsScreenState extends State<LessonsScreen> {
                     loveWineContainer(Column(children: [
                       if (!_isAdmin)
                         addEntryButton(context,
+                            label: 'ADD NEW LESSON',
                             onPress: () =>
                                 GoRouter.of(context).go('/lessons/addLesson')),
                       _customLessonContainer()

@@ -96,9 +96,9 @@ class _RecentActiviesWidgetState extends State<RecentActiviesWidget> {
     String formattedDateTime = DateFormat('dd MMM yyyy hh:mm:ss a')
         .format((activityData['dateAdded'] as Timestamp).toDate());
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 5),
+      padding: const EdgeInsets.symmetric(vertical: 15),
       child: Container(
-          height: 50,
+          height: 70,
           decoration: BoxDecoration(
               color: CustomColors.wine.withOpacity(0.3),
               borderRadius: BorderRadius.circular(10)),

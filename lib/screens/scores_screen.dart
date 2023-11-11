@@ -67,11 +67,19 @@ class _ScoresScreenState extends State<ScoresScreen> {
                   _isLoading,
                   all8Pix(SingleChildScrollView(
                       child: Column(children: [
-                    _scoresHeader(),
-                    _scoreChoiceSelector(),
+                    Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          backButton(context,
+                              onPress: () => GoRouter.of(context).go('/home')),
+                          Column(children: [
+                            _scoresHeader(),
+                            _scoreChoiceSelector(),
+                          ])
+                        ]),
                     Padding(
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 20, vertical: 30),
+                            horizontal: 20, vertical: 10),
                         child: _viewingQuizScores
                             ? _quizzesWidget()
                             : _speechScoresWidget())
@@ -81,9 +89,9 @@ class _ScoresScreenState extends State<ScoresScreen> {
 
   Widget _scoresHeader() {
     return SizedBox(
-        width: MediaQuery.of(context).size.width * 0.6,
+        width: MediaQuery.of(context).size.width * 0.5,
         child: Column(children: [
-          AutoSizeText('SCORING RESULTS', style: wineBoldStyle(size: 40)),
+          AutoSizeText('SCORING RESULTS', style: wineBoldStyle(size: 45)),
           const Divider(
             thickness: 5,
             color: CustomColors.darkWine,
@@ -92,20 +100,24 @@ class _ScoresScreenState extends State<ScoresScreen> {
   }
 
   Widget _scoreChoiceSelector() {
-    return Padding(
-        padding: const EdgeInsets.all(10),
-        child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-          scoreOptionButton(context,
-              label: 'Lesson Quiz Performance',
-              isSelected: _viewingQuizScores, onPress: () {
-            setState(() => _viewingQuizScores = true);
-          }),
-          scoreOptionButton(context,
-              label: 'SpeechLab Performance',
-              isSelected: !_viewingQuizScores, onPress: () {
-            setState(() => _viewingQuizScores = false);
-          })
-        ]));
+    return SizedBox(
+      width: MediaQuery.of(context).size.width * 0.5,
+      child: Padding(
+          padding: const EdgeInsets.all(10),
+          child:
+              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+            scoreOptionButton(context,
+                label: 'Lesson Quiz Performance',
+                isSelected: _viewingQuizScores, onPress: () {
+              setState(() => _viewingQuizScores = true);
+            }),
+            scoreOptionButton(context,
+                label: 'SpeechLab Performance',
+                isSelected: !_viewingQuizScores, onPress: () {
+              setState(() => _viewingQuizScores = false);
+            })
+          ])),
+    );
   }
 
   Widget _quizzesWidget() {

@@ -164,15 +164,20 @@ class _RankingsScreenState extends State<RankingsScreen> {
   }
 
   Widget _broadcastingSectionHeader() {
-    return SizedBox(
-        width: MediaQuery.of(context).size.width * 0.6,
-        child: Column(children: [
-          AutoSizeText('Leaderboard', style: wineBoldStyle(size: 40)),
-          const Divider(
-            thickness: 5,
-            color: CustomColors.darkWine,
-          )
-        ]));
+    return Row(
+      children: [
+        backButton(context, onPress: () => GoRouter.of(context).go('/home')),
+        SizedBox(
+            width: MediaQuery.of(context).size.width * 0.6,
+            child: Column(children: [
+              AutoSizeText('Leaderboard', style: wineBoldStyle(size: 40)),
+              const Divider(
+                thickness: 5,
+                color: CustomColors.darkWine,
+              )
+            ])),
+      ],
+    );
   }
 
   Widget _scoreChoiceSelector() {

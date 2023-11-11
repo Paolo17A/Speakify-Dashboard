@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:speechlab_dashboard/models/speech_model.dart';
 import 'package:speechlab_dashboard/widgets/appbar_title_widget.dart';
 import 'package:speechlab_dashboard/widgets/custom_container_widgets.dart';
@@ -8,6 +9,7 @@ import 'package:speechlab_dashboard/widgets/custom_miscellaneous_widgets.dart';
 import 'package:speechlab_dashboard/widgets/custom_padding_widgets.dart';
 import 'package:speechlab_dashboard/widgets/left_navigator_widget.dart';
 
+import '../widgets/custom_buttons_widget.dart';
 import '../widgets/custom_text_widgets.dart';
 
 class SelectedSpeechlabLeaderboardScreen extends StatefulWidget {
@@ -101,12 +103,18 @@ class _SelectedSpeechlabLeaderboardScreenState
   }
 
   Widget _speechTitleHeader() {
-    return SizedBox(
-        width: MediaQuery.of(context).size.width * 0.75,
-        child: AutoSizeText(
-          getSpeeechByIndex(int.parse(widget.currentSpeechLevelReq))!.category,
-          style: wineBoldStyle(size: 40),
-        ));
+    return Row(
+      children: [
+        backButton(context, onPress: () => GoRouter.of(context).go('/ranking')),
+        SizedBox(
+            width: MediaQuery.of(context).size.width * 0.6,
+            child: AutoSizeText(
+              getSpeeechByIndex(int.parse(widget.currentSpeechLevelReq))!
+                  .category,
+              style: wineBoldStyle(size: 40),
+            )),
+      ],
+    );
   }
 
   Widget _rankingsContainer() {

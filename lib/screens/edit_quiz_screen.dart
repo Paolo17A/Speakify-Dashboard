@@ -9,6 +9,7 @@ import 'package:speechlab_dashboard/widgets/custom_container_widgets.dart';
 import '../utils/color_util.dart';
 import '../widgets/appbar_title_widget.dart';
 import '../widgets/bool_choices_radio_widget.dart';
+import '../widgets/custom_buttons_widget.dart';
 import '../widgets/left_navigator_widget.dart';
 import '../widgets/speechLabTextField.dart';
 import '../widgets/string_choices_radio_widget.dart';
@@ -305,6 +306,9 @@ class _EditQuizScreenState extends State<EditQuizScreen> {
                       child: Column(
                         children: [
                           Row(children: [
+                            backButton(context,
+                                onPress: () =>
+                                    GoRouter.of(context).go('/quizzes')),
                             Text(widget.quizTitle,
                                 style: const TextStyle(
                                     fontSize: 30, fontWeight: FontWeight.bold))

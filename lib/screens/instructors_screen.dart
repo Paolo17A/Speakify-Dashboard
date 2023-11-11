@@ -383,10 +383,10 @@ class _InstructorsScreenState extends State<InstructorsScreen> {
                             }),
                         style: ElevatedButton.styleFrom(
                             backgroundColor: CustomColors.orchid),
-                        child: const Text(
+                        child: Text(
                           'VIEW PROFILE',
-                          style: TextStyle(
-                              color: Colors.white, fontWeight: FontWeight.bold),
+                          textAlign: TextAlign.center,
+                          style: whiteBoldStyle(),
                         )),
                   ),
                   Padding(
@@ -404,11 +404,10 @@ class _InstructorsScreenState extends State<InstructorsScreen> {
                               () => editSelectedUser(instructorUID)),
                           style: ElevatedButton.styleFrom(
                               backgroundColor: CustomColors.orchid),
-                          child: const Text(
+                          child: Text(
                             'EDIT PROFILE',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold),
+                            textAlign: TextAlign.center,
+                            style: whiteBoldStyle(),
                           )),
                     ),
                   ),

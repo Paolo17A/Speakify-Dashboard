@@ -8,6 +8,7 @@ import 'package:speechlab_dashboard/widgets/bool_choices_radio_widget.dart';
 import 'package:speechlab_dashboard/widgets/string_choices_radio_widget.dart';
 import 'package:speechlab_dashboard/widgets/speechLabTextField.dart';
 import '../widgets/appbar_title_widget.dart';
+import '../widgets/custom_buttons_widget.dart';
 import '../widgets/custom_container_widgets.dart';
 import '../widgets/left_navigator_widget.dart';
 
@@ -297,121 +298,9 @@ class _AddQuizScreenState extends State<AddQuizScreen> {
                 context,
                 stackedLoadingContainer(context, _isLoading, [
                   Padding(
-                      padding: const EdgeInsets.all(15),
+                      padding: const EdgeInsets.all(10),
                       child: Column(
-                        children: [
-                          _quizTitle(),
-                          Container(
-                            width: MediaQuery.of(context).size.width * 0.6,
-                            height: MediaQuery.of(context).size.height * 0.7,
-                            decoration: BoxDecoration(
-                                color: CustomColors.love,
-                                border: Border.all(
-                                    color: CustomColors.wine, width: 3),
-                                borderRadius: BorderRadius.circular(20)),
-                            child: Padding(
-                                padding: const EdgeInsets.all(26),
-                                child: Column(
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Text(
-                                            '$currentDifficulty Question #${currentQuestion + 1}',
-                                            style: const TextStyle(
-                                                color: CustomColors.orchid,
-                                                fontSize: 25,
-                                                fontWeight: FontWeight.bold)),
-                                      ],
-                                    ),
-                                    const SizedBox(height: 5),
-                                    speechLabTextField(
-                                        'Question',
-                                        _questionController,
-                                        TextInputType.text,
-                                        null),
-                                    const SizedBox(height: 15),
-                                    if (currentDifficulty == 'Easy')
-                                      _easyQuestionInput(),
-                                    if (currentDifficulty == 'Average')
-                                      _averageQuestionInput(),
-                                    if (currentDifficulty == 'Difficult')
-                                      _difficultQuestionInput(),
-                                    Expanded(
-                                      child: Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 75),
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.end,
-                                          children: [
-                                            Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  SizedBox(
-                                                    width:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .width *
-                                                            0.15,
-                                                    height:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .height *
-                                                            0.1,
-                                                    child: ElevatedButton(
-                                                        onPressed:
-                                                            previousQuestion,
-                                                        style: ElevatedButton
-                                                            .styleFrom(
-                                                                backgroundColor:
-                                                                    CustomColors
-                                                                        .orchid),
-                                                        child: const Text(
-                                                            'PREVIOUS',
-                                                            style: TextStyle(
-                                                                color: Colors
-                                                                    .white))),
-                                                  ),
-                                                  SizedBox(
-                                                    width:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .width *
-                                                            0.15,
-                                                    height:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .height *
-                                                            0.1,
-                                                    child: ElevatedButton(
-                                                        onPressed: nextQuestion,
-                                                        style: ElevatedButton
-                                                            .styleFrom(
-                                                                backgroundColor:
-                                                                    CustomColors
-                                                                        .orchid),
-                                                        child: Text(
-                                                            (currentDifficulty ==
-                                                                        'Difficult' &&
-                                                                    currentQuestion ==
-                                                                        9)
-                                                                ? 'SUBMIT'
-                                                                : 'NEXT',
-                                                            style: const TextStyle(
-                                                                color: Colors
-                                                                    .white))),
-                                                  )
-                                                ]),
-                                          ],
-                                        ),
-                                      ),
-                                    )
-                                  ],
-                                )),
-                          )
-                        ],
+                        children: [_quizTitle(), _quizInputContainer()],
                       )),
                 ]))
           ],
@@ -419,18 +308,98 @@ class _AddQuizScreenState extends State<AddQuizScreen> {
   }
 
   Widget _quizTitle() {
-    return Column(children: [
-      const Row(children: [
-        Text('QUIZ TITLE',
-            style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold))
-      ]),
-      SpeechLabTextField(
-          text: 'Quiz Title',
-          controller: _titleController,
-          textInputType: TextInputType.text,
-          displayPrefixIcon: null),
-      const SizedBox(height: 30)
-    ]);
+    return Row(
+      children: [
+        backButton(context, onPress: () => GoRouter.of(context).go('/quizzes')),
+        SizedBox(
+          width: MediaQuery.of(context).size.width * 0.6,
+          child: Column(children: [
+            const Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+              Text('QUIZ TITLE',
+                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold))
+            ]),
+            SpeechLabTextField(
+                text: 'Quiz Title',
+                controller: _titleController,
+                textInputType: TextInputType.text,
+                displayPrefixIcon: null),
+            const SizedBox(height: 30)
+          ]),
+        ),
+      ],
+    );
+  }
+
+  Widget _quizInputContainer() {
+    return Container(
+      width: MediaQuery.of(context).size.width * 0.7,
+      height: MediaQuery.of(context).size.height * 0.7,
+      decoration: BoxDecoration(
+          color: CustomColors.love,
+          border: Border.all(color: CustomColors.wine, width: 3),
+          borderRadius: BorderRadius.circular(20)),
+      child: Padding(
+          padding: const EdgeInsets.all(26),
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  Text('$currentDifficulty Question #${currentQuestion + 1}',
+                      style: const TextStyle(
+                          color: CustomColors.orchid,
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold)),
+                ],
+              ),
+              const SizedBox(height: 5),
+              speechLabTextField(
+                  'Question', _questionController, TextInputType.text, null),
+              const SizedBox(height: 15),
+              if (currentDifficulty == 'Easy') _easyQuestionInput(),
+              if (currentDifficulty == 'Average') _averageQuestionInput(),
+              if (currentDifficulty == 'Difficult') _difficultQuestionInput(),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 75),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.15,
+                              height: MediaQuery.of(context).size.height * 0.1,
+                              child: ElevatedButton(
+                                  onPressed: previousQuestion,
+                                  style: ElevatedButton.styleFrom(
+                                      backgroundColor: CustomColors.orchid),
+                                  child: const Text('PREVIOUS',
+                                      style: TextStyle(color: Colors.white))),
+                            ),
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.15,
+                              height: MediaQuery.of(context).size.height * 0.1,
+                              child: ElevatedButton(
+                                  onPressed: nextQuestion,
+                                  style: ElevatedButton.styleFrom(
+                                      backgroundColor: CustomColors.orchid),
+                                  child: Text(
+                                      (currentDifficulty == 'Difficult' &&
+                                              currentQuestion == 9)
+                                          ? 'SUBMIT'
+                                          : 'NEXT',
+                                      style: const TextStyle(
+                                          color: Colors.white))),
+                            )
+                          ]),
+                    ],
+                  ),
+                ),
+              )
+            ],
+          )),
+    );
   }
 
   Widget _easyQuestionInput() {

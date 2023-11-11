@@ -105,7 +105,10 @@ class _ActiveStudentsScreenWidget extends State<ActiveStudentsWidget> {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         const CircleAvatar(backgroundColor: Colors.green, radius: 5),
-        AutoSizeText('ACTIVE STUDENTS', style: wineBoldStyle(size: 25)),
+        SizedBox(
+            width: MediaQuery.of(context).size.width * 0.16,
+            child: AutoSizeText('ACTIVE STUDENTS',
+                textAlign: TextAlign.center, style: wineBoldStyle(size: 25))),
       ],
     );
   }
