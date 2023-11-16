@@ -63,11 +63,14 @@ class _RecentActiviesWidgetState extends State<RecentActiviesWidget> {
   }
 
   Widget _recentActiviesHeader() {
-    return Padding(
-      padding: EdgeInsets.symmetric(
-          horizontal: MediaQuery.of(context).size.width * 0.02),
-      child: Row(
-        children: [headerText(text: 'RECENT ACTIVITIES')],
+    return SizedBox(
+      height: MediaQuery.of(context).size.height * 0.04,
+      child: Padding(
+        padding: EdgeInsets.symmetric(
+            horizontal: MediaQuery.of(context).size.width * 0.02),
+        child: Row(
+          children: [headerText(text: 'RECENT ACTIVITIES')],
+        ),
       ),
     );
   }

@@ -9,6 +9,7 @@ import 'package:speechlab_dashboard/widgets/custom_padding_widgets.dart';
 import 'package:speechlab_dashboard/widgets/left_navigator_widget.dart';
 
 import '../utils/color_util.dart';
+import '../widgets/custom_buttons_widget.dart';
 import '../widgets/custom_text_widgets.dart';
 import '../widgets/dropdown_widget.dart';
 
@@ -477,15 +478,22 @@ class _EditSectionScreenState extends State<EditSectionScreen> {
 
   Widget _selectedSectionHeader() {
     return all8Pix(
-      SizedBox(
-          width: MediaQuery.of(context).size.width * 0.6,
-          child: Column(children: [
-            AutoSizeText(widget.sectionName, style: wineBoldStyle(size: 40)),
-            const Divider(
-              thickness: 5,
-              color: CustomColors.darkWine,
-            )
-          ])),
+      Row(
+        children: [
+          backButton(context,
+              onPress: () => GoRouter.of(context).go('/instructors/edit')),
+          SizedBox(
+              width: MediaQuery.of(context).size.width * 0.6,
+              child: Column(children: [
+                AutoSizeText(widget.sectionName,
+                    style: wineBoldStyle(size: 40)),
+                const Divider(
+                  thickness: 5,
+                  color: CustomColors.darkWine,
+                )
+              ])),
+        ],
+      ),
     );
   }
 

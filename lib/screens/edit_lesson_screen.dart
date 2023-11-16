@@ -242,15 +242,21 @@ class _EditLessonScreenState extends State<EditLessonScreen> {
         children: [
           const Text('Additional Resources',
               style: TextStyle(fontWeight: FontWeight.bold)),
-          TextButton(
-              onPressed: () {
-                setState(() {
-                  _fileNameControllers.add(TextEditingController());
-                  _downloadLinkControllers.add(TextEditingController());
-                });
-              },
-              child: const Text('ADD',
-                  style: TextStyle(fontWeight: FontWeight.bold)))
+          SizedBox(
+              width: MediaQuery.of(context).size.width * 0.05,
+              height: 30,
+              child: ElevatedButton(
+                onPressed: () {
+                  setState(() {
+                    _fileNameControllers.add(TextEditingController());
+                    _downloadLinkControllers.add(TextEditingController());
+                  });
+                },
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: CustomColors.orchid,
+                    shape: CircleBorder()),
+                child: const Icon(Icons.add, color: Colors.white),
+              ))
         ],
       ),
       if (_downloadLinkControllers.isNotEmpty)
@@ -258,37 +264,42 @@ class _EditLessonScreenState extends State<EditLessonScreen> {
             shrinkWrap: true,
             itemCount: _downloadLinkControllers.length,
             itemBuilder: (context, index) {
-              return Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.7,
-                    child: Column(children: [
-                      speechLabTextField('Name', _fileNameControllers[index],
-                          TextInputType.text, null),
-                      const SizedBox(height: 10),
-                      speechLabTextField('URL', _downloadLinkControllers[index],
-                          TextInputType.url, null),
-                    ]),
-                  ),
-                  SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.05,
-                      height: 90,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          setState(() {
-                            _fileNameControllers.removeAt(index);
-                            _downloadLinkControllers.removeAt(index);
-                          });
-                        },
-                        style: ElevatedButton.styleFrom(
-                            backgroundColor: CustomColors.orchid),
-                        child: Transform.scale(
-                            scale: 2,
-                            child: const Icon(Icons.delete_rounded,
-                                color: Colors.white)),
-                      ))
-                ],
+              return Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.7,
+                      child: Column(children: [
+                        speechLabTextField('Name', _fileNameControllers[index],
+                            TextInputType.text, null),
+                        const SizedBox(height: 10),
+                        speechLabTextField(
+                            'URL',
+                            _downloadLinkControllers[index],
+                            TextInputType.url,
+                            null),
+                      ]),
+                    ),
+                    SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.05,
+                        height: 50,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            setState(() {
+                              _fileNameControllers.removeAt(index);
+                              _downloadLinkControllers.removeAt(index);
+                            });
+                          },
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: CustomColors.orchid,
+                              shape: CircleBorder()),
+                          child: const Icon(Icons.delete_rounded,
+                              color: Colors.white),
+                        ))
+                  ],
+                ),
               );
             }),
     ]);

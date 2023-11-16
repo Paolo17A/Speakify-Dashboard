@@ -99,7 +99,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         _loginInputFieldWidgets(),
                         _forgotPasswordWidget(),
                         const SizedBox(height: 30),
-                        authenticationButton('START', _loginUser, width: 170),
+                        authenticationButton('LOG-IN', _loginUser, width: 170),
                         const SizedBox(height: 30),
                         _dontHaveAccountWidgets()
                       ])),

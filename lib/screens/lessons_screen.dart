@@ -143,11 +143,14 @@ class _LessonsScreenState extends State<LessonsScreen> {
                           mayEditLesson: !_isAdmin));
                 }).toList())),
           )
-        : Expanded(
+        : SizedBox(
+            height: _isAdmin
+                ? MediaQuery.of(context).size.height * 0.75
+                : MediaQuery.of(context).size.height * 0.65,
             child: Center(
                 child: AutoSizeText('NO CUSTOM LESSONS AVAILABLE',
                     style: const TextStyle(
-                        color: CustomColors.plum,
+                        color: CustomColors.wine,
                         fontSize: 40,
                         fontWeight: FontWeight.bold))),
           );

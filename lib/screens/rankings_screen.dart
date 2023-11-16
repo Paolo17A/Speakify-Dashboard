@@ -114,46 +114,10 @@ class _RankingsScreenState extends State<RankingsScreen> {
                               SingleChildScrollView(
                                 child: Column(
                                   children: [
-                                    _scoreChoiceSelector(),
                                     _sectionSelectionRow(),
-                                    if (_viewingQuizScores)
-                                      _quizzesWidget()
-                                    else
-                                      _speechScoresWidget()
-
-                                    /*Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 30),
-                                      child: whiteWineContainer(
-                                          Column(
-                                            children: [
-                                              rankingHeaders(),
-                                              sectionStudents.isEmpty
-                                                  ? Center(
-                                                      child: Text(
-                                                          'This section has no enrolled students',
-                                                          style: wineBoldStyle(
-                                                              size: 40)))
-                                                  : ListView.builder(
-                                                      shrinkWrap: true,
-                                                      itemCount:
-                                                          sectionStudents.length,
-                                                      itemBuilder:
-                                                          (context, index) {
-                                                        final studentData =
-                                                            sectionStudents[index]
-                                                                    .data()
-                                                                as Map<dynamic,
-                                                                    dynamic>;
-                                                        return studentRankingEntry(
-                                                            index, studentData);
-                                                      })
-                                            ],
-                                          ),
-                                          height:
-                                              MediaQuery.of(context).size.height *
-                                                  0.55),
-                                    ),*/
+                                    _viewingQuizScores
+                                        ? _quizzesWidget()
+                                        : _speechScoresWidget()
                                   ],
                                 ),
                               ),
@@ -165,16 +129,18 @@ class _RankingsScreenState extends State<RankingsScreen> {
 
   Widget _broadcastingSectionHeader() {
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         backButton(context, onPress: () => GoRouter.of(context).go('/home')),
         SizedBox(
-            width: MediaQuery.of(context).size.width * 0.6,
+            width: MediaQuery.of(context).size.width * 0.5,
             child: Column(children: [
               AutoSizeText('Leaderboard', style: wineBoldStyle(size: 40)),
               const Divider(
                 thickness: 5,
                 color: CustomColors.darkWine,
-              )
+              ),
+              _scoreChoiceSelector()
             ])),
       ],
     );
@@ -182,7 +148,7 @@ class _RankingsScreenState extends State<RankingsScreen> {
 
   Widget _scoreChoiceSelector() {
     return all20Pix(
-        Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+        Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
       scoreOptionButton(context,
           label: 'Lesson Quiz Leaderboard',
           isSelected: _viewingQuizScores, onPress: () {

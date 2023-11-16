@@ -523,31 +523,42 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               children: [
                 if (!allSectionsHandled)
                   SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.08,
-                      height: 50,
+                      width: MediaQuery.of(context).size.width * 0.07,
+                      height: 40,
                       child: ElevatedButton(
                           onPressed: () {
                             _currentSelectedSection = '';
                             showAddSectionDialog();
                           },
-                          child: AutoSizeText(
-                            'Add Section',
-                            textAlign: TextAlign.center,
-                            style: whiteBoldStyle(),
+                          style: ElevatedButton.styleFrom(
+                              side: BorderSide(color: CustomColors.darkWine)),
+                          child: Padding(
+                            padding: const EdgeInsets.all(3),
+                            child: AutoSizeText(
+                              'Add\nSection',
+                              textAlign: TextAlign.center,
+                              style: whiteBoldStyle(),
+                            ),
                           ))),
                 if (handledSections.isNotEmpty)
                   SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.08,
-                      height: 50,
+                      width: MediaQuery.of(context).size.width * 0.07,
+                      height: 40,
                       child: ElevatedButton(
                           onPressed: () {
                             _currentSelectedSection = '';
                             showRemoveSectionDialog();
                           },
-                          child: AutoSizeText(
-                            'Remove Section',
-                            textAlign: TextAlign.center,
-                            style: whiteBoldStyle(),
+                          style: ElevatedButton.styleFrom(
+                              side: BorderSide(color: CustomColors.darkWine)),
+                          child: Padding(
+                            padding: const EdgeInsets.all(3),
+                            child: AutoSizeText(
+                              'Remove Section',
+                              minFontSize: 10,
+                              textAlign: TextAlign.center,
+                              style: whiteBoldStyle(),
+                            ),
                           ))),
               ],
             ),
@@ -555,6 +566,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               padding: const EdgeInsets.symmetric(vertical: 15),
               child: Text(
                 'Handled Sections:',
+                textAlign: TextAlign.center,
                 style: wineBoldStyle(size: 30),
               ),
             ),
@@ -563,16 +575,23 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     shrinkWrap: true,
                     itemCount: handledSections.length,
                     itemBuilder: (context, index) {
-                      return all20Pix(SizedBox(
-                        height: 75,
-                        child: ElevatedButton(
-                            onPressed: () => GoRouter.of(context)
-                                    .goNamed('editSection', pathParameters: {
-                                  'sectionName': handledSections[index]
-                                }),
-                            child: Text(handledSections[index],
-                                style: whiteBoldStyle(size: 20))),
-                      ));
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 6),
+                        child: SizedBox(
+                          height: 50,
+                          child: ElevatedButton(
+                              onPressed: () => GoRouter.of(context)
+                                      .goNamed('editSection', pathParameters: {
+                                    'sectionName': handledSections[index]
+                                  }),
+                              style: ElevatedButton.styleFrom(
+                                  side: BorderSide(
+                                      color: CustomColors.darkWine, width: 3)),
+                              child: Text(handledSections[index],
+                                  textAlign: TextAlign.center,
+                                  style: whiteBoldStyle(size: 20))),
+                        ),
+                      );
                     })
                 : Padding(
                     padding: const EdgeInsets.symmetric(vertical: 50),

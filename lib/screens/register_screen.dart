@@ -124,10 +124,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      headerText(text: 'REGISTER'),
+                      headerText(text: 'REGISTER', fontSize: 25),
                       _registerInputFieldWidgets(),
-                      authenticationButton('REGISTER', _registerUser),
-                      const SizedBox(height: 30),
+                      authenticationButton('REGISTER', _registerUser,
+                          height: 40),
+                      const SizedBox(height: 10),
                       _haveAnAccountWidgets()
                     ]),
               )
@@ -138,33 +139,48 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   Widget _registerInputFieldWidgets() {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 20),
+      padding: const EdgeInsets.symmetric(vertical: 15),
       child: Column(children: [
         SizedBox(
           width: MediaQuery.of(context).size.width * 0.65,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              speechLabTextField('Email Address', _emailController,
-                  TextInputType.emailAddress, const Icon(Icons.email)),
+              SizedBox(
+                height: 40,
+                child: speechLabTextField('Email Address', _emailController,
+                    TextInputType.emailAddress, const Icon(Icons.email)),
+              ),
               const SizedBox(height: 5.0),
-              SpeechLabTextField(
-                  text: 'Password',
-                  controller: _passwordController,
-                  textInputType: TextInputType.visiblePassword,
-                  displayPrefixIcon: const Icon(Icons.lock)),
+              SizedBox(
+                height: 40,
+                child: SpeechLabTextField(
+                    text: 'Password',
+                    controller: _passwordController,
+                    textInputType: TextInputType.visiblePassword,
+                    displayPrefixIcon: const Icon(Icons.lock)),
+              ),
               const SizedBox(height: 5.0),
-              SpeechLabTextField(
-                  text: 'Confirm Password',
-                  controller: _confirmPasswordController,
-                  textInputType: TextInputType.visiblePassword,
-                  displayPrefixIcon: const Icon(Icons.lock)),
-              const SizedBox(height: 40),
-              speechLabTextField('First Name', _firstNameController,
-                  TextInputType.name, const Icon(Icons.person_2)),
+              SizedBox(
+                height: 40,
+                child: SpeechLabTextField(
+                    text: 'Confirm Password',
+                    controller: _confirmPasswordController,
+                    textInputType: TextInputType.visiblePassword,
+                    displayPrefixIcon: const Icon(Icons.lock)),
+              ),
+              const SizedBox(height: 20),
+              SizedBox(
+                height: 40,
+                child: speechLabTextField('First Name', _firstNameController,
+                    TextInputType.name, const Icon(Icons.person_2)),
+              ),
               const SizedBox(height: 5.0),
-              speechLabTextField('Last Name', _lastNameController,
-                  TextInputType.name, const Icon(Icons.person_2)),
+              SizedBox(
+                height: 40,
+                child: speechLabTextField('Last Name', _lastNameController,
+                    TextInputType.name, const Icon(Icons.person_2)),
+              ),
             ],
           ),
         ),
@@ -176,7 +192,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     return Wrap(alignment: WrapAlignment.center, children: [
       AutoSizeText(
         'Have an Account?',
-        style: blackBoldStyle(size: 25),
+        style: blackBoldStyle(size: 20),
       ),
       TextButton(
           onPressed: () {
@@ -185,7 +201,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           child: AutoSizeText(
             'Sign in',
             style: const TextStyle(
-                fontSize: 25,
+                fontSize: 16,
                 decoration: TextDecoration.underline,
                 color: Color.fromARGB(255, 102, 58, 130)),
           ))

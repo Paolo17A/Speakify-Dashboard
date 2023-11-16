@@ -2,7 +2,9 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:speechlab_dashboard/utils/student_achievements_util.dart';
 import 'package:speechlab_dashboard/widgets/appbar_title_widget.dart';
 import 'package:speechlab_dashboard/widgets/custom_container_widgets.dart';
@@ -195,7 +197,7 @@ class _StudentsSectionsScreenState extends State<StudentsSectionsScreen> {
                                 NetworkImage(profileImageURL, scale: 1)),
                     const SizedBox(height: 20),
                     Row(children: [
-                      Text('Student ID Number', style: wineBoldStyle(size: 30))
+                      Text('Student ID Number', style: wineBoldStyle(size: 20))
                     ]),
                     SpeechLabTextField(
                         text: 'Student ID #:',
@@ -205,7 +207,7 @@ class _StudentsSectionsScreenState extends State<StudentsSectionsScreen> {
                         color: CustomColors.wine),
                     const SizedBox(height: 10),
                     Row(children: [
-                      Text('First Name', style: wineBoldStyle(size: 30))
+                      Text('First Name', style: wineBoldStyle(size: 20))
                     ]),
                     SpeechLabTextField(
                         text: 'First Name',
@@ -215,7 +217,7 @@ class _StudentsSectionsScreenState extends State<StudentsSectionsScreen> {
                         color: CustomColors.wine),
                     const SizedBox(height: 10),
                     Row(children: [
-                      Text('Last Name', style: wineBoldStyle(size: 30))
+                      Text('Last Name', style: wineBoldStyle(size: 20))
                     ]),
                     SpeechLabTextField(
                         text: 'Last Name',
@@ -225,24 +227,37 @@ class _StudentsSectionsScreenState extends State<StudentsSectionsScreen> {
                         color: CustomColors.wine),
                     const SizedBox(height: 10),
                     Row(children: [
-                      Text('Section', style: wineBoldStyle(size: 30))
+                      Text('Section', style: wineBoldStyle(size: 20))
                     ]),
                     dropdownWidget(_currentSelectedSection, (selected) {
                       setState(() {
                         _currentSelectedSection = selected!;
                       });
                     }, allSectionChoices, _currentSelectedSection, false),
-                    ElevatedButton(
-                        onPressed: () => editSelectedUser(studentUID),
-                        child: all20Pix(Text('Edit Student'))),
-                    const SizedBox(height: 25),
-                    ElevatedButton(
-                        onPressed: () =>
-                            deleteSelectedUser(studentUID, studentData),
-                        style: ElevatedButton.styleFrom(
-                            backgroundColor:
-                                const Color.fromARGB(255, 161, 11, 0)),
-                        child: all20Pix(Text('Delete Student')))
+                    Gap(20),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.15,
+                          height: 40,
+                          child: ElevatedButton(
+                              onPressed: () => editSelectedUser(studentUID),
+                              child: Text('Edit Student')),
+                        ),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.15,
+                          height: 40,
+                          child: ElevatedButton(
+                              onPressed: () =>
+                                  deleteSelectedUser(studentUID, studentData),
+                              style: ElevatedButton.styleFrom(
+                                  backgroundColor:
+                                      const Color.fromARGB(255, 161, 11, 0)),
+                              child: Text('Delete Student')),
+                        )
+                      ],
+                    )
                   ],
                 )),
               ),
@@ -273,7 +288,7 @@ class _StudentsSectionsScreenState extends State<StudentsSectionsScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Row(children: [
-                      Text('Student ID Number', style: wineBoldStyle(size: 30))
+                      Text('Student ID Number', style: wineBoldStyle(size: 20))
                     ]),
                     SpeechLabTextField(
                         text: 'Student ID #:',
@@ -283,7 +298,7 @@ class _StudentsSectionsScreenState extends State<StudentsSectionsScreen> {
                         color: CustomColors.wine),
                     const SizedBox(height: 10),
                     Row(children: [
-                      Text('First Name', style: wineBoldStyle(size: 30))
+                      Text('First Name', style: wineBoldStyle(size: 20))
                     ]),
                     SpeechLabTextField(
                         text: 'First Name',
@@ -293,7 +308,7 @@ class _StudentsSectionsScreenState extends State<StudentsSectionsScreen> {
                         color: CustomColors.wine),
                     const SizedBox(height: 10),
                     Row(children: [
-                      Text('Last Name', style: wineBoldStyle(size: 30))
+                      Text('Last Name', style: wineBoldStyle(size: 20))
                     ]),
                     SpeechLabTextField(
                         text: 'Last Name',
@@ -303,7 +318,7 @@ class _StudentsSectionsScreenState extends State<StudentsSectionsScreen> {
                         color: CustomColors.wine),
                     const SizedBox(height: 10),
                     Row(children: [
-                      Text('Email Address', style: wineBoldStyle(size: 30))
+                      Text('Email Address', style: wineBoldStyle(size: 20))
                     ]),
                     SpeechLabTextField(
                         text: 'Email Address',
@@ -311,11 +326,14 @@ class _StudentsSectionsScreenState extends State<StudentsSectionsScreen> {
                         textInputType: TextInputType.emailAddress,
                         displayPrefixIcon: null,
                         color: CustomColors.wine),
-                    const SizedBox(height: 40),
-                    ElevatedButton(
-                        onPressed: () => addNewStudent(),
-                        child: all20Pix(Text(
-                            'Add Student to Section ${allSectionChoices[currentSectionIndex]}')))
+                    const SizedBox(height: 20),
+                    SizedBox(
+                      height: 40,
+                      child: ElevatedButton(
+                          onPressed: () => addNewStudent(),
+                          child: Text(
+                              'Add Student to Section ${allSectionChoices[currentSectionIndex]}')),
+                    )
                   ],
                 )),
               ),
@@ -678,16 +696,35 @@ class _StudentsSectionsScreenState extends State<StudentsSectionsScreen> {
                       AutoSizeText('Add Section', textAlign: TextAlign.center)),
             ),
           if (allSectionChoices.isNotEmpty)
-            SizedBox(
-                width: MediaQuery.of(context).size.width * 0.08,
+            if (_isAdmin == true)
+              SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.08,
+                  child: ElevatedButton(
+                    onPressed: () => showAddNewStudentDialog(),
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: CustomColors.orchid,
+                        side: BorderSide(color: CustomColors.wine, width: 2)),
+                    child: AutoSizeText('Add Student',
+                        textAlign: TextAlign.center),
+                  ))
+            else
+              SizedBox(
+                width: 30,
                 child: ElevatedButton(
                   onPressed: () => showAddNewStudentDialog(),
                   style: ElevatedButton.styleFrom(
                       backgroundColor: CustomColors.orchid,
-                      side: BorderSide(color: CustomColors.wine, width: 2)),
-                  child:
-                      AutoSizeText('Add Student', textAlign: TextAlign.center),
-                ))
+                      shape: CircleBorder()),
+                  child: Column(
+                    children: [
+                      AutoSizeText('+',
+                          textAlign: TextAlign.center,
+                          style: GoogleFonts.comicNeue(fontSize: 35)),
+                      Gap(5)
+                    ],
+                  ),
+                ),
+              )
         ],
       ),
     );

@@ -36,12 +36,20 @@ void displayStudentAchievementsDialogue(
                   children: [
                     Column(
                       children: [
-                        all8Pix(Text(
-                            'Current Quizzes Taken: ${quizzesTaken.toString()}',
-                            style: wineBoldStyle(size: 30))),
-                        all8Pix(Text(
-                            'Current SpeechLab Level: ${speechLabLevel.toString()}',
-                            style: wineBoldStyle(size: 30))),
+                        Row(
+                          children: [
+                            all8Pix(Text(
+                                'Current Quizzes Taken: ${quizzesTaken.toString()}',
+                                style: wineBoldStyle(size: 25))),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            all8Pix(Text(
+                                'Current SpeechLab Level: ${speechLabLevel.toString()}',
+                                style: wineBoldStyle(size: 25))),
+                          ],
+                        ),
                         Container(
                           width: double.maxFinite,
                           height: MediaQuery.of(context).size.height * 0.25,

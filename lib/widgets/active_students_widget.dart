@@ -163,12 +163,25 @@ class _ActiveStudentsScreenWidget extends State<ActiveStudentsWidget> {
   }
 
   Widget _profileDataWidget(Map<dynamic, dynamic> studentData) {
-    return Column(children: [
-      AutoSizeText('${studentData['firstName']} ${studentData['lastName']}',
-          style: wineBoldStyle(size: 14)),
-      AutoSizeText(
-          'Last Login: ${DateFormat('dd MMM yyyy hh:mm:ss a').format((studentData['lastLoginTime'] as Timestamp).toDate())}',
-          style: wineBoldStyle(size: 10))
-    ]);
+    return SizedBox(
+      width: MediaQuery.of(context).size.width * 0.1,
+      child: Center(
+        child: Column(children: [
+          AutoSizeText('${studentData['firstName']} ${studentData['lastName']}',
+              textAlign: TextAlign.center,
+              minFontSize: 6,
+              style: wineBoldStyle(size: 14)),
+          AutoSizeText('Last Login:',
+              textAlign: TextAlign.center,
+              minFontSize: 6,
+              style: wineBoldStyle(size: 10)),
+          AutoSizeText(
+              '${DateFormat('dd MMM yyyy hh:mm:ss a').format((studentData['lastLoginTime'] as Timestamp).toDate())}',
+              minFontSize: 6,
+              textAlign: TextAlign.center,
+              style: wineBoldStyle(size: 10)),
+        ]),
+      ),
+    );
   }
 }

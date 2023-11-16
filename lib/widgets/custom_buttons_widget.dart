@@ -135,8 +135,14 @@ Widget backButton(BuildContext context, {required Function onPress}) {
       height: 75,
       child: ElevatedButton(
           onPressed: () => onPress(),
-          style: ElevatedButton.styleFrom(backgroundColor: CustomColors.wine),
-          child: AutoSizeText('BACK', style: whiteBoldStyle(size: 30))),
+          style: ElevatedButton.styleFrom(
+              backgroundColor: CustomColors.wine, shape: CircleBorder()),
+          child: Transform.scale(
+            scale: 2,
+            child: Icon(
+              Icons.arrow_back_rounded,
+            ),
+          )),
     ),
   );
 }

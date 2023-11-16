@@ -145,7 +145,7 @@ class _CustomQuizzesScreenState extends State<CustomQuizzesScreen> {
                     children: [
                       SizedBox(
                         width: MediaQuery.of(context).size.width * 0.5,
-                        height: 100,
+                        height: 50,
                         child: ElevatedButton(
                             onPressed: () {
                               if (_isAdmin) {
@@ -168,14 +168,14 @@ class _CustomQuizzesScreenState extends State<CustomQuizzesScreen> {
                                     child: AutoSizeText(customQuizzes[index].id,
                                         style: const TextStyle(
                                             color: CustomColors.orchid,
-                                            fontSize: 28,
+                                            fontSize: 22,
                                             fontWeight: FontWeight.bold))),
                               ],
                             )),
                       ),
                       SizedBox(
                         width: MediaQuery.of(context).size.width * 0.1,
-                        height: 100,
+                        height: 50,
                         child: ElevatedButton(
                             onPressed: () {
                               archiveQuiz(customQuizzes[index].id,
