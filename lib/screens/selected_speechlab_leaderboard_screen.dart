@@ -9,6 +9,7 @@ import 'package:speechlab_dashboard/widgets/custom_miscellaneous_widgets.dart';
 import 'package:speechlab_dashboard/widgets/custom_padding_widgets.dart';
 import 'package:speechlab_dashboard/widgets/left_navigator_widget.dart';
 
+import '../utils/firebase_util.dart';
 import '../widgets/custom_buttons_widget.dart';
 import '../widgets/custom_text_widgets.dart';
 
@@ -30,6 +31,10 @@ class _SelectedSpeechlabLeaderboardScreenState
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+    if (!hasLoggedInUser()) {
+      GoRouter.of(context).go('/');
+      return;
+    }
     _getAllEligibleUsers();
   }
 

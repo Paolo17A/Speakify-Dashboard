@@ -29,6 +29,10 @@ class _AddLessonScreenState extends State<AddLessonScreen> {
   @override
   void didChangeDependencies() async {
     super.didChangeDependencies();
+    if (!hasLoggedInUser()) {
+      GoRouter.of(context).go('/');
+      return;
+    }
     _isAdmin = await isAdmin();
   }
 

@@ -27,8 +27,14 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void didChangeDependencies() async {
     super.didChangeDependencies();
-    _isAdmin = await isAdmin();
-    _initializeHomeScreen();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      if (!hasLoggedInUser()) {
+        GoRouter.of(context).go('/');
+        return;
+      }
+      _isAdmin = await isAdmin();
+      _initializeHomeScreen();
+    });
   }
 
   void _initializeHomeScreen() async {

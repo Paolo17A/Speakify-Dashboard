@@ -42,6 +42,10 @@ class _SelectedCustomQuizScreenState extends State<SelectedCustomQuizScreen> {
   @override
   void didChangeDependencies() async {
     super.didChangeDependencies();
+    if (!hasLoggedInUser()) {
+      GoRouter.of(context).go('/');
+      return;
+    }
     _isAdmin = await isAdmin();
     if (!_isInitialized) {
       await getSerializedQuizContent();

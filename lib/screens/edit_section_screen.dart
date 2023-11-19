@@ -9,6 +9,7 @@ import 'package:speechlab_dashboard/widgets/custom_padding_widgets.dart';
 import 'package:speechlab_dashboard/widgets/left_navigator_widget.dart';
 
 import '../utils/color_util.dart';
+import '../utils/firebase_util.dart';
 import '../widgets/custom_buttons_widget.dart';
 import '../widgets/custom_text_widgets.dart';
 import '../widgets/dropdown_widget.dart';
@@ -42,6 +43,10 @@ class _EditSectionScreenState extends State<EditSectionScreen> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+    if (!hasLoggedInUser()) {
+      GoRouter.of(context).go('/');
+      return;
+    }
     if (!_isInitialized) {
       getSectionDetails();
     }
@@ -513,7 +518,7 @@ class _EditSectionScreenState extends State<EditSectionScreen> {
                           _currentSelectedLesson = '';
                           showAddLessonDialog();
                         },
-                        child: Text('Add Section', style: whiteBoldStyle())),
+                        child: Text('Add Lesson', style: whiteBoldStyle())),
                   ),
                 if (accessedLessonsMap.isNotEmpty)
                   SizedBox(

@@ -46,6 +46,10 @@ class _StudentsSectionsScreenState extends State<StudentsSectionsScreen> {
   @override
   void didChangeDependencies() async {
     super.didChangeDependencies();
+    if (!hasLoggedInUser()) {
+      GoRouter.of(context).go('/');
+      return;
+    }
     _isAdmin = await isAdmin();
     if (!_isInitialized) getAllSections(currentSectionIndex);
   }

@@ -8,6 +8,7 @@ import 'package:speechlab_dashboard/widgets/appbar_title_widget.dart';
 import 'package:speechlab_dashboard/widgets/left_navigator_widget.dart';
 
 import '../utils/color_util.dart';
+import '../utils/firebase_util.dart';
 import '../widgets/custom_container_widgets.dart';
 import '../widgets/custom_padding_widgets.dart';
 import '../widgets/custom_text_widgets.dart';
@@ -21,6 +22,7 @@ class InstructorsScreen extends StatefulWidget {
 
 class _InstructorsScreenState extends State<InstructorsScreen> {
   bool _isLoading = true;
+  bool _isInitialized = false;
   List<DocumentSnapshot> instructorDocs = [];
 
   //  Edit Student
@@ -32,7 +34,11 @@ class _InstructorsScreenState extends State<InstructorsScreen> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    getAllInstructors();
+    if (!hasLoggedInUser()) {
+      GoRouter.of(context).go('/');
+      return;
+    }
+    if (!_isInitialized) getAllInstructors();
   }
 
   //  FUTURES
@@ -82,6 +88,7 @@ class _InstructorsScreenState extends State<InstructorsScreen> {
             .showSnackBar(SnackBar(content: Text('Email is already in use.')));
         setState(() {
           _isLoading = false;
+          _isInitialized = true;
         });
         return;
       }

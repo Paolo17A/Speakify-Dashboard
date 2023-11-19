@@ -7,6 +7,7 @@ import 'package:go_router/go_router.dart';
 import 'package:speechlab_dashboard/widgets/custom_container_widgets.dart';
 
 import '../utils/color_util.dart';
+import '../utils/firebase_util.dart';
 import '../widgets/appbar_title_widget.dart';
 import '../widgets/bool_choices_radio_widget.dart';
 import '../widgets/custom_buttons_widget.dart';
@@ -54,6 +55,10 @@ class _EditQuizScreenState extends State<EditQuizScreen> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+    if (!hasLoggedInUser()) {
+      GoRouter.of(context).go('/');
+      return;
+    }
     if (!_isInitialized) {
       getSerializedQuizContent();
     }
@@ -230,6 +235,7 @@ class _EditQuizScreenState extends State<EditQuizScreen> {
       if (currentDifficulty == 'Easy' &&
           currentQuestion <= easyQuestions.length - 1) {
         Map<dynamic, dynamic> selectedQuestion = easyQuestions[currentQuestion];
+        _questionController.text = selectedQuestion['question'];
         for (int i = 0; i < _choicesControllers.length; i++) {
           _choicesControllers[i].text =
               easyQuestions[currentQuestion]['options'][choiceLetters[i]];
@@ -309,9 +315,13 @@ class _EditQuizScreenState extends State<EditQuizScreen> {
                             backButton(context,
                                 onPress: () =>
                                     GoRouter.of(context).go('/quizzes')),
-                            Text(widget.quizTitle,
-                                style: const TextStyle(
-                                    fontSize: 30, fontWeight: FontWeight.bold))
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.6,
+                              child: Text(widget.quizTitle,
+                                  style: const TextStyle(
+                                      fontSize: 30,
+                                      fontWeight: FontWeight.bold)),
+                            )
                           ]),
                           const SizedBox(height: 30),
                           Container(

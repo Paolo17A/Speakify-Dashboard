@@ -10,3 +10,7 @@ Future<bool> isAdmin() async {
   final currentUserData = currentUser.data();
   return currentUserData!['userType'] == 'ADMIN';
 }
+
+bool hasLoggedInUser() {
+  return FirebaseAuth.instance.currentUser != null;
+}

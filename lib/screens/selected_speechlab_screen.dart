@@ -44,6 +44,10 @@ class _SelectedSpeechLabScreenState extends State<SelectedSpeechLabScreen> {
   @override
   void didChangeDependencies() async {
     super.didChangeDependencies();
+    if (!hasLoggedInUser()) {
+      GoRouter.of(context).go('/');
+      return;
+    }
     _isAdmin = await isAdmin();
     _getEligibleStudents();
   }

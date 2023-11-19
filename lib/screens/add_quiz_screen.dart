@@ -7,6 +7,7 @@ import 'package:speechlab_dashboard/utils/color_util.dart';
 import 'package:speechlab_dashboard/widgets/bool_choices_radio_widget.dart';
 import 'package:speechlab_dashboard/widgets/string_choices_radio_widget.dart';
 import 'package:speechlab_dashboard/widgets/speechLabTextField.dart';
+import '../utils/firebase_util.dart';
 import '../widgets/appbar_title_widget.dart';
 import '../widgets/custom_buttons_widget.dart';
 import '../widgets/custom_container_widgets.dart';
@@ -44,6 +45,15 @@ class _AddQuizScreenState extends State<AddQuizScreen> {
     super.initState();
     for (int i = 0; i < 4; i++) {
       _choicesControllers.add(TextEditingController());
+    }
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (!hasLoggedInUser()) {
+      GoRouter.of(context).go('/');
+      return;
     }
   }
 

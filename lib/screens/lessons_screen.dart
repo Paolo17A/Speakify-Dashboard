@@ -27,6 +27,10 @@ class _LessonsScreenState extends State<LessonsScreen> {
   @override
   void didChangeDependencies() async {
     super.didChangeDependencies();
+    if (!hasLoggedInUser()) {
+      GoRouter.of(context).go('/');
+      return;
+    }
     _isAdmin = await isAdmin();
     getAllCustomLessons();
   }
@@ -129,19 +133,21 @@ class _LessonsScreenState extends State<LessonsScreen> {
                 height: _isAdmin
                     ? MediaQuery.of(context).size.height * 0.75
                     : MediaQuery.of(context).size.height * 0.65,
-                child: Column(
-                    children: customLessons.map((lesson) {
-                  final lessondata = lesson.data() as Map<dynamic, dynamic>;
-                  return vertical10PixHorizontal30Pix(context,
-                      child: lessonEntryWithActionsContainer(context,
-                          label: lessondata['lessonTitle'],
-                          editFunction: () {
-                            GoRouter.of(context).goNamed('editLesson',
-                                pathParameters: {'lessonID': lesson.id});
-                          },
-                          deleteFunction: () => deleteLesson(lesson.id),
-                          mayEditLesson: !_isAdmin));
-                }).toList())),
+                child: SingleChildScrollView(
+                  child: Column(
+                      children: customLessons.map((lesson) {
+                    final lessondata = lesson.data() as Map<dynamic, dynamic>;
+                    return vertical10PixHorizontal30Pix(context,
+                        child: lessonEntryWithActionsContainer(context,
+                            label: lessondata['lessonTitle'],
+                            editFunction: () {
+                              GoRouter.of(context).goNamed('editLesson',
+                                  pathParameters: {'lessonID': lesson.id});
+                            },
+                            deleteFunction: () => deleteLesson(lesson.id),
+                            mayEditLesson: !_isAdmin));
+                  }).toList()),
+                )),
           )
         : SizedBox(
             height: _isAdmin

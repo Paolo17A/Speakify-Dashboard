@@ -79,6 +79,26 @@
                 "d": "Limited accessibility"
             },
             "answer": "a"
+        },
+        {
+            "question": "What is the term used to describe the intended audience or target group for a media text?",
+            "options": {
+                "a": "Viewer demographics",
+                "b": "Media reception",
+                "c": "Media consumption",
+                "d": "Target audience"
+            },
+            "answer": "d"
+        },
+        {
+            "question": "What is the primary purpose of media texts?",
+            "options": {
+                "a": "To entertain audiences",
+                "b": "To educate viewers",
+                "c": "To inform the public",
+                "d": "All of the above"
+            },
+            "answer": "d"
         }
     ],
     "average": [
@@ -109,6 +129,18 @@
         {
             "question": "Digital media texts are characterized by interactivity and user engagement.",
             "answer": true
+        },
+        {
+            "question": "Media texts are static and unchanging.",
+            "answer": false
+        },
+        {
+            "question": "Media texts are created and produced solely by media professionals.",
+            "answer": true
+        },
+        {
+            "question": "Media texts are static and unchanging.",
+            "answer": false
         }
     ],
     "difficult": [

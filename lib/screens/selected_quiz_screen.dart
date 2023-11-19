@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:go_router/go_router.dart';
 import 'package:speechlab_dashboard/models/lesson_model.dart';
 import 'package:speechlab_dashboard/utils/student_quiz_util.dart';
 import 'package:speechlab_dashboard/widgets/appbar_title_widget.dart';
@@ -38,7 +39,10 @@ class _SelectedQuizScreenState extends State<SelectedQuizScreen> {
   @override
   void didChangeDependencies() async {
     super.didChangeDependencies();
-
+    if (!hasLoggedInUser()) {
+      GoRouter.of(context).go('/');
+      return;
+    }
     await _loadQuiz();
   }
 

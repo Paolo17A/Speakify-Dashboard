@@ -9,6 +9,7 @@ import 'package:speechlab_dashboard/widgets/custom_container_widgets.dart';
 import 'package:speechlab_dashboard/widgets/custom_padding_widgets.dart';
 import 'package:speechlab_dashboard/widgets/speechLabTextField.dart';
 
+import '../utils/firebase_util.dart';
 import '../widgets/left_navigator_widget.dart';
 
 class EditLessonScreen extends StatefulWidget {
@@ -31,6 +32,10 @@ class _EditLessonScreenState extends State<EditLessonScreen> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+    if (!hasLoggedInUser()) {
+      GoRouter.of(context).go('/');
+      return;
+    }
     _getLessonData();
   }
 

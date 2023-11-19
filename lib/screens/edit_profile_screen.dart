@@ -15,6 +15,7 @@ import 'package:speechlab_dashboard/widgets/custom_text_widgets.dart';
 import 'package:speechlab_dashboard/widgets/left_navigator_widget.dart';
 import 'package:speechlab_dashboard/widgets/speechLabTextField.dart';
 
+import '../utils/firebase_util.dart';
 import '../widgets/dropdown_widget.dart';
 
 class EditProfileScreen extends StatefulWidget {
@@ -41,6 +42,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+    if (!hasLoggedInUser()) {
+      GoRouter.of(context).go('/');
+      return;
+    }
     if (!_isInitialized) getCurrentUserData();
   }
 
