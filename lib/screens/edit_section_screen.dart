@@ -529,7 +529,7 @@ class _EditSectionScreenState extends State<EditSectionScreen> {
                           _currentSelectedLesson = '';
                           showRemoveLessonDialog();
                         },
-                        child: Text('Remove Section', style: whiteBoldStyle())),
+                        child: Text('Remove Lesson', style: whiteBoldStyle())),
                   )
               ]),
             ),
