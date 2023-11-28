@@ -132,7 +132,7 @@ class _SelectedSpeechLabScreenState extends State<SelectedSpeechLabScreen> {
                   style: wineBoldStyle(size: 40)),
               const Divider(
                 thickness: 5,
-                color: CustomColors.darkWine,
+                color: CustomColors.orchid,
               )
             ])),
       ],
@@ -192,7 +192,7 @@ class _SelectedSpeechLabScreenState extends State<SelectedSpeechLabScreen> {
                       decoration: BoxDecoration(
                           color: CustomColors.mercury,
                           border:
-                              Border.all(color: CustomColors.wine, width: 2),
+                              Border.all(color: CustomColors.orchid, width: 2),
                           borderRadius: BorderRadius.circular(10)),
                       child: Padding(
                           padding: const EdgeInsets.all(6.0),

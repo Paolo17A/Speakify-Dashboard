@@ -84,6 +84,7 @@ flutter:
     - assets/images/auth_background.png
     - assets/images/first.png
     - assets/images/badges/
+    - assets/images/medals/
     - lib/data/
   #   - images/a_dot_ham.jpeg
 

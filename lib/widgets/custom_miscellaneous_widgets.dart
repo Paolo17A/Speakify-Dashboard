@@ -31,7 +31,7 @@ Widget speechLabLogoWithText(BuildContext context) {
                   'SPEAKIFY',
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                      color: CustomColors.plum,
+                      color: CustomColors.orchid,
                       fontWeight: FontWeight.bold,
                       fontSize: 40),
                 ),
@@ -66,7 +66,7 @@ Widget lessonEntryWithActionsContainer(BuildContext context,
     child: Container(
         decoration: BoxDecoration(
             color: CustomColors.mercury,
-            border: Border.all(color: CustomColors.wine),
+            border: Border.all(color: CustomColors.orchid),
             borderRadius: BorderRadius.circular(10)),
         child: all8Pix(Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -86,7 +86,7 @@ Widget lessonEntryWithActionsContainer(BuildContext context,
                         ? ElevatedButton(
                             onPressed: () => editFunction(),
                             style: ElevatedButton.styleFrom(
-                                backgroundColor: CustomColors.wine,
+                                backgroundColor: CustomColors.orchid,
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(60))),
                             child: const Icon(Icons.edit))
@@ -98,7 +98,7 @@ Widget lessonEntryWithActionsContainer(BuildContext context,
                     child: ElevatedButton(
                         onPressed: () => deleteFunction(),
                         style: ElevatedButton.styleFrom(
-                            backgroundColor: CustomColors.wine,
+                            backgroundColor: CustomColors.orchid,
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(60))),
                         child: const Icon(Icons.delete)),
@@ -118,7 +118,7 @@ Widget pageHeaderWithDivider(BuildContext context, {required String label}) {
         AutoSizeText(label),
         const Divider(
           thickness: 5,
-          color: CustomColors.darkWine,
+          color: CustomColors.orchid,
         )
       ]));
 }
@@ -176,7 +176,7 @@ Widget studentQuizRankingEntry(BuildContext context,
     child: Container(
       decoration: BoxDecoration(
           color: CustomColors.mercury,
-          border: Border.all(color: CustomColors.wine, width: 3),
+          border: Border.all(color: CustomColors.orchid, width: 3),
           borderRadius: BorderRadius.circular(10)),
       child: Padding(
         padding: const EdgeInsets.all(5),
@@ -184,7 +184,15 @@ Widget studentQuizRankingEntry(BuildContext context,
           SizedBox(
             width: MediaQuery.of(context).size.width * 0.05,
             child: Center(
-              child: Text('${(index + 1).toString()}', style: wineBoldStyle()),
+              child: (index + 1) < 4
+                  ? Image.asset(
+                      index == 0
+                          ? 'assets/images/medals/gold.png'
+                          : index == 1
+                              ? 'assets/images/medals/silver.png'
+                              : 'assets/images/medals/bronze.png',
+                      scale: 15)
+                  : Text('${(index + 1).toString()}', style: wineBoldStyle()),
             ),
           ),
           SizedBox(
@@ -233,7 +241,7 @@ Widget studentSpeechRankingEntry(BuildContext context,
     child: Container(
       decoration: BoxDecoration(
           color: CustomColors.mercury,
-          border: Border.all(color: CustomColors.wine, width: 3),
+          border: Border.all(color: CustomColors.orchid, width: 3),
           borderRadius: BorderRadius.circular(10)),
       child: Padding(
         padding: const EdgeInsets.all(5),
@@ -241,7 +249,15 @@ Widget studentSpeechRankingEntry(BuildContext context,
           SizedBox(
             width: MediaQuery.of(context).size.width * 0.05,
             child: Center(
-              child: Text('${(index + 1).toString()}', style: wineBoldStyle()),
+              child: (index + 1) < 4
+                  ? Image.asset(
+                      index == 0
+                          ? 'assets/images/medals/gold.png'
+                          : index == 1
+                              ? 'assets/images/medals/silver.png'
+                              : 'assets/images/medals/bronze.png',
+                      scale: 15)
+                  : Text('${(index + 1).toString()}', style: wineBoldStyle()),
             ),
           ),
           SizedBox(

@@ -286,7 +286,7 @@ class _InstructorsScreenState extends State<InstructorsScreen> {
         AutoSizeText('INSTRUCTORS', style: wineBoldStyle(size: 40)),
         const Divider(
           thickness: 5,
-          color: CustomColors.darkWine,
+          color: CustomColors.orchid,
         )
       ],
     );
@@ -309,7 +309,7 @@ class _InstructorsScreenState extends State<InstructorsScreen> {
                   addNewInstructor),
               style: ElevatedButton.styleFrom(
                   backgroundColor: CustomColors.orchid,
-                  side: BorderSide(color: CustomColors.wine, width: 2)),
+                  side: BorderSide(color: CustomColors.orchid, width: 2)),
               child:
                   AutoSizeText('Add Instructor', textAlign: TextAlign.center)),
         ))
@@ -342,7 +342,7 @@ class _InstructorsScreenState extends State<InstructorsScreen> {
           height: 90,
           decoration: BoxDecoration(
               color: CustomColors.mercury,
-              border: Border.all(color: CustomColors.wine, width: 3),
+              border: Border.all(color: CustomColors.orchid, width: 3),
               borderRadius: BorderRadius.circular(20)),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

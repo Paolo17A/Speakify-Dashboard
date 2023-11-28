@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:speechlab_dashboard/utils/color_util.dart';
 import 'package:speechlab_dashboard/widgets/custom_padding_widgets.dart';
 
@@ -10,9 +11,10 @@ void displaySpeechResultsDialogue(BuildContext context,
   showDialog(
       context: context,
       builder: (context) => AlertDialog(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-          backgroundColor: CustomColors.orchid,
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+              side: BorderSide(color: CustomColors.orchid, width: 3)),
+          backgroundColor: CustomColors.love,
           content: SizedBox(
               width: MediaQuery.of(context).size.width * 0.35,
               height: MediaQuery.of(context).size.height * 0.55,
@@ -40,7 +42,7 @@ void displaySpeechResultsDialogue(BuildContext context,
                         studentName,
                         textAlign: TextAlign.center,
                         style: const TextStyle(
-                            color: Colors.white,
+                            color: CustomColors.orchid,
                             fontSize: 40,
                             fontWeight: FontWeight.bold),
                       )),
@@ -51,106 +53,110 @@ void displaySpeechResultsDialogue(BuildContext context,
                         'Average Pronounciation Accuracy: ${_calculateAverage(sentenceResults).toStringAsFixed(2)}%',
                         textAlign: TextAlign.center,
                         style: const TextStyle(
-                            color: Colors.white,
+                            color: CustomColors.orchid,
                             fontSize: 20,
                             fontWeight: FontWeight.w700),
                       )),
                   Column(children: [
-                    SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.5,
-                        child: ListView.builder(
-                            shrinkWrap: true,
-                            itemCount: sentences.length,
-                            itemBuilder: (context, index) {
-                              final breakdownMap = (sentenceResults[index]
-                                          as Map<dynamic, dynamic>)
+                    ListView.builder(
+                        shrinkWrap: true,
+                        physics: NeverScrollableScrollPhysics(),
+                        itemCount: sentences.length,
+                        itemBuilder: (context, index) {
+                          final breakdownMap =
+                              (sentenceResults[index] as Map<dynamic, dynamic>)
                                       .containsKey('breakdown')
                                   ? sentenceResults[index]['breakdown']
                                   : null;
-                              return Padding(
-                                  padding: const EdgeInsets.all(6),
-                                  child: Container(
-                                      decoration: const BoxDecoration(
-                                          color: CustomColors.wine,
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(10))),
-                                      child: Column(children: [
+                          return Padding(
+                              padding: const EdgeInsets.all(6),
+                              child: Container(
+                                  decoration: const BoxDecoration(
+                                      color: CustomColors.orchid,
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(10))),
+                                  child: Column(children: [
+                                    Row(
+                                      children: [
                                         Padding(
                                             padding: const EdgeInsets.all(9),
                                             child: Text(
                                                 '${index + 1}. ${(sentences[index])}',
                                                 style: const TextStyle(
                                                     fontWeight: FontWeight.bold,
-                                                    color: Colors.white,
+                                                    color: CustomColors.mercury,
                                                     fontSize: 15))),
-                                        if (breakdownMap != null)
-                                          vertical10PixHorizontal30Pix(
-                                            context,
-                                            child: Container(
-                                              width: MediaQuery.of(context)
-                                                      .size
-                                                      .width *
-                                                  0.6,
-                                              height: 70,
-                                              decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(20),
-                                                  color: Colors.white),
-                                              child: Padding(
-                                                padding:
-                                                    const EdgeInsets.all(10),
-                                                child: Wrap(
-                                                    children: (breakdownMap
-                                                            as List<dynamic>)
-                                                        .map((word) {
-                                                  final wordData = word
-                                                      as Map<String, dynamic>;
-                                                  return Text(
-                                                    '${wordData.keys.first} ',
-                                                    style: TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        fontSize: 20,
-                                                        color: wordData
-                                                                .values.first
-                                                            ? Colors.green
-                                                            : Colors.red),
-                                                  );
-                                                }).toList()),
-                                              ),
-                                            ),
+                                      ],
+                                    ),
+                                    if (breakdownMap != null)
+                                      vertical10PixHorizontal30Pix(
+                                        context,
+                                        child: Container(
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.6,
+                                          height: 70,
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(20),
+                                              color: Colors.white),
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(10),
+                                            child: Wrap(
+                                                children: (breakdownMap
+                                                        as List<dynamic>)
+                                                    .map((word) {
+                                              final wordData =
+                                                  word as Map<String, dynamic>;
+                                              return Text(
+                                                '${wordData.keys.first} ',
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 20,
+                                                    color: wordData.values.first
+                                                        ? Colors.green
+                                                        : Colors.red),
+                                              );
+                                            }).toList()),
                                           ),
-                                        const SizedBox(height: 10),
-                                        Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceEvenly,
-                                            children: [
-                                              Padding(
-                                                  padding: const EdgeInsets
-                                                      .symmetric(
+                                        ),
+                                      ),
+                                    const SizedBox(height: 10),
+                                    Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                        children: [
+                                          Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
                                                       horizontal: 15,
                                                       vertical: 5),
-                                                  child: Text(
-                                                    'Pronounciation Accuracy: ${(sentenceResults[index]['similarity'] as double).toStringAsFixed(2)}%',
-                                                    style: const TextStyle(
-                                                        color: Colors.white,
-                                                        fontSize: 15),
-                                                  )),
-                                              Padding(
-                                                  padding: const EdgeInsets
-                                                      .symmetric(
+                                              child: Text(
+                                                'Pronounciation Accuracy: ${(sentenceResults[index]['similarity'] as double).toStringAsFixed(2)}%',
+                                                style: const TextStyle(
+                                                    color: CustomColors.orchid,
+                                                    fontSize: 15),
+                                              )),
+                                          Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
                                                       horizontal: 15,
                                                       vertical: 5),
-                                                  child: Text(
-                                                    'Confidence Level: ${(sentenceResults[index]['confidence'] as double).toStringAsFixed(2)}%',
-                                                    style: const TextStyle(
-                                                        color: Colors.white,
-                                                        fontSize: 15),
-                                                  )),
-                                            ])
-                                      ])));
-                            }))
-                  ])
+                                              child: Text(
+                                                'Confidence Level: ${(sentenceResults[index]['confidence'] as double).toStringAsFixed(2)}%',
+                                                style: const TextStyle(
+                                                    color: CustomColors.orchid,
+                                                    fontSize: 15),
+                                              )),
+                                        ])
+                                  ])));
+                        })
+                  ]),
+                  Gap(50),
+                  ElevatedButton(
+                      onPressed: () => Navigator.of(context).pop(),
+                      child: Text('\tCLOSE\t')),
                 ]),
               ))));
 }

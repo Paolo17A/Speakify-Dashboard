@@ -134,8 +134,8 @@ class _ActiveStudentsScreenWidget extends State<ActiveStudentsWidget> {
                 padding: const EdgeInsets.symmetric(vertical: 9),
                 child: roundedContainer(
                     //width: MediaQuery.of(context).size.width * 0.2,
-                    color: CustomColors.amethyst.withOpacity(0.3),
-                    borderColor: CustomColors.lilac,
+                    color: CustomColors.mercury.withOpacity(0.3),
+                    borderColor: CustomColors.orchid,
                     child: Padding(
                         padding: const EdgeInsets.all(10),
                         child: Row(
@@ -155,8 +155,8 @@ class _ActiveStudentsScreenWidget extends State<ActiveStudentsWidget> {
           radius: 20,
           backgroundImage: NetworkImage(imageURL));
     } else {
-      return const CircleAvatar(
-          backgroundColor: CustomColors.amethyst,
+      return CircleAvatar(
+          backgroundColor: CustomColors.orchid.withOpacity(0.5),
           radius: 20,
           child: Icon(
             Icons.person,

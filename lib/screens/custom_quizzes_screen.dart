@@ -122,7 +122,7 @@ class _CustomQuizzesScreenState extends State<CustomQuizzesScreen> {
               AutoSizeText('CUSTOM QUIZZES', style: wineBoldStyle(size: 40)),
               const Divider(
                 thickness: 5,
-                color: CustomColors.darkWine,
+                color: CustomColors.orchid,
               )
             ])),
       ],
@@ -161,8 +161,8 @@ class _CustomQuizzesScreenState extends State<CustomQuizzesScreen> {
                                   });
                             },
                             style: ElevatedButton.styleFrom(
-                                side:
-                                    const BorderSide(color: CustomColors.wine),
+                                side: const BorderSide(
+                                    color: CustomColors.orchid),
                                 backgroundColor: CustomColors.mercury),
                             child: Row(
                               children: [
@@ -186,8 +186,8 @@ class _CustomQuizzesScreenState extends State<CustomQuizzesScreen> {
                                   quizData['isArchived']);
                             },
                             style: ElevatedButton.styleFrom(
-                                side:
-                                    const BorderSide(color: CustomColors.wine),
+                                side: const BorderSide(
+                                    color: CustomColors.orchid),
                                 backgroundColor: CustomColors.mercury),
                             child: AutoSizeText(
                                 quizData['isArchived'] ? 'RESTORE' : 'ARCHIVE',
@@ -206,7 +206,7 @@ class _CustomQuizzesScreenState extends State<CustomQuizzesScreen> {
             child: Text(
             'NO CUSTOM QUIZZES AVAILABLE',
             style: TextStyle(
-                color: CustomColors.wine,
+                color: CustomColors.orchid,
                 fontSize: 40,
                 fontWeight: FontWeight.bold),
           ));

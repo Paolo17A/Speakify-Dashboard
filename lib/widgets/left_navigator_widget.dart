@@ -8,7 +8,9 @@ import 'package:speechlab_dashboard/widgets/custom_text_widgets.dart';
 Widget lefNavigator(BuildContext context, int index, {bool isAdmin = false}) {
   return Container(
       width: MediaQuery.of(context).size.width * 0.2,
-      color: CustomColors.jam,
+      decoration: BoxDecoration(
+          color: CustomColors.love,
+          border: Border.all(color: CustomColors.orchid, width: 2)),
       child: Column(children: [
         Flexible(
           flex: 1,
@@ -16,61 +18,88 @@ Widget lefNavigator(BuildContext context, int index, {bool isAdmin = false}) {
             padding: EdgeInsets.zero,
             children: [
               Container(
-                color: index == 0 ? CustomColors.orchid : null,
+                decoration: BoxDecoration(
+                    color: index == 0 ? CustomColors.mercury : null,
+                    border: Border.all(
+                        color: index == 0
+                            ? CustomColors.orchid
+                            : CustomColors.love)),
                 child: ListTile(
-                  leading: const Icon(Icons.home, color: CustomColors.mercury),
-                  title: AutoSizeText('Dashboard',
-                      style: whiteBoldStyle(size: 30)),
+                  leading: const Icon(Icons.home, color: CustomColors.orchid),
+                  title:
+                      AutoSizeText('Dashboard', style: wineBoldStyle(size: 30)),
                   onTap: () => GoRouter.of(context).go('/home'),
                 ),
               ),
               Container(
-                color: index == 1 ? CustomColors.orchid : null,
+                decoration: BoxDecoration(
+                    color: index == 1 ? CustomColors.mercury : null,
+                    border: Border.all(
+                        color: index == 1
+                            ? CustomColors.orchid
+                            : CustomColors.love)),
                 child: ListTile(
-                  leading:
-                      const Icon(Icons.people, color: CustomColors.mercury),
+                  leading: const Icon(Icons.people, color: CustomColors.orchid),
                   title:
-                      AutoSizeText('Students', style: whiteBoldStyle(size: 30)),
+                      AutoSizeText('Students', style: wineBoldStyle(size: 30)),
                   onTap: () => GoRouter.of(context).go('/sections'),
                 ),
               ),
               if (isAdmin)
                 Container(
-                  color: index == 2 ? CustomColors.orchid : null,
+                  decoration: BoxDecoration(
+                      color: index == 2 ? CustomColors.mercury : null,
+                      border: Border.all(
+                          color: index == 2
+                              ? CustomColors.orchid
+                              : CustomColors.love)),
                   child: ListTile(
                     leading:
-                        const Icon(Icons.person_2, color: CustomColors.mercury),
+                        const Icon(Icons.person_2, color: CustomColors.orchid),
                     title: AutoSizeText('All Instructors',
-                        style: whiteBoldStyle(size: 30)),
+                        style: wineBoldStyle(size: 30)),
                     onTap: () => GoRouter.of(context).go('/instructors'),
                   ),
                 )
               else if (!isAdmin)
                 Container(
-                  color: index == 2 ? CustomColors.orchid : null,
+                  decoration: BoxDecoration(
+                      color: index == 2 ? CustomColors.mercury : null,
+                      border: Border.all(
+                          color: index == 2
+                              ? CustomColors.orchid
+                              : CustomColors.love)),
                   child: ListTile(
                     leading:
-                        const Icon(Icons.person_2, color: CustomColors.mercury),
+                        const Icon(Icons.person_2, color: CustomColors.orchid),
                     title: AutoSizeText('My Profile',
-                        style: whiteBoldStyle(size: 30)),
+                        style: wineBoldStyle(size: 30)),
                     onTap: () => GoRouter.of(context).go('/instructors/edit'),
                   ),
                 ),
               Container(
-                color: index == 3 ? CustomColors.orchid : null,
+                decoration: BoxDecoration(
+                    color: index == 3 ? CustomColors.mercury : null,
+                    border: Border.all(
+                        color: index == 3
+                            ? CustomColors.orchid
+                            : CustomColors.love)),
                 child: ListTile(
                     leading: const Icon(Icons.book_rounded,
-                        color: CustomColors.mercury),
-                    title: AutoSizeText('Lessons',
-                        style: whiteBoldStyle(size: 30)),
+                        color: CustomColors.orchid),
+                    title:
+                        AutoSizeText('Lessons', style: wineBoldStyle(size: 30)),
                     onTap: () => GoRouter.of(context).go('/lessons')),
               ),
             ],
           ),
         ),
         ListTile(
-          leading: const Icon(Icons.exit_to_app),
-          title: Text('Log Out', style: whiteBoldStyle(size: 30)),
+          leading: const Icon(
+            Icons.exit_to_app,
+            color: CustomColors.orchid,
+          ),
+          title: Text('Log Out', style: wineBoldStyle(size: 30)),
           onTap: () => FirebaseAuth.instance
               .signOut()
               .then((value) => GoRouter.of(context).go('/')),

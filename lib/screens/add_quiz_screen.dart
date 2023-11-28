@@ -346,7 +346,7 @@ class _AddQuizScreenState extends State<AddQuizScreen> {
       height: MediaQuery.of(context).size.height * 0.7,
       decoration: BoxDecoration(
           color: CustomColors.love,
-          border: Border.all(color: CustomColors.wine, width: 3),
+          border: Border.all(color: CustomColors.orchid, width: 3),
           borderRadius: BorderRadius.circular(20)),
       child: Padding(
           padding: const EdgeInsets.all(26),

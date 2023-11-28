@@ -216,7 +216,7 @@ class _SelectedCustomQuizScreenState extends State<SelectedCustomQuizScreen> {
         decoration: BoxDecoration(
             color: CustomColors.orchid,
             borderRadius: BorderRadius.circular(10),
-            border: Border.all(color: CustomColors.darkWine, width: 1)),
+            border: Border.all(color: CustomColors.orchid, width: 1)),
         child: Padding(
             padding: const EdgeInsets.all(10),
             child: Row(

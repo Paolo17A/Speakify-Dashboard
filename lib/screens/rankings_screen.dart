@@ -142,7 +142,7 @@ class _RankingsScreenState extends State<RankingsScreen> {
               AutoSizeText('Leaderboard', style: wineBoldStyle(size: 40)),
               const Divider(
                 thickness: 5,
-                color: CustomColors.darkWine,
+                color: CustomColors.orchid,
               ),
               _scoreChoiceSelector()
             ])),

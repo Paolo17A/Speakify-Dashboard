@@ -119,7 +119,7 @@ class _LessonsScreenState extends State<LessonsScreen> {
           AutoSizeText('CUSTOM LESSONS', style: wineBoldStyle(size: 40)),
           const Divider(
             thickness: 5,
-            color: CustomColors.darkWine,
+            color: CustomColors.orchid,
           )
         ]));
   }
@@ -156,7 +156,7 @@ class _LessonsScreenState extends State<LessonsScreen> {
             child: Center(
                 child: AutoSizeText('NO CUSTOM LESSONS AVAILABLE',
                     style: const TextStyle(
-                        color: CustomColors.wine,
+                        color: CustomColors.orchid,
                         fontSize: 40,
                         fontWeight: FontWeight.bold))),
           );

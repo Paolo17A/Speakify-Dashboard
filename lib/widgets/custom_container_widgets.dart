@@ -38,7 +38,7 @@ Container authenticationBackgroundContainer(
               fit: BoxFit.fill)),
       child: vertical10PercentHorizontal10Percent(context,
           child: Container(
-              color: CustomColors.jam,
+              color: CustomColors.orchid,
               child: Padding(
                 padding: EdgeInsets.symmetric(
                     vertical: MediaQuery.of(context).size.height * 0.005,
@@ -57,7 +57,7 @@ authenticationFormContainer(BuildContext context, Widget child) {
         padding: EdgeInsets.symmetric(
             vertical: MediaQuery.of(context).size.height * 0.05),
         child: roundedContainer(
-            color: CustomColors.jam,
+            color: CustomColors.orchid,
             child: Padding(
               padding: const EdgeInsets.all(4),
               child: roundedContainer(
@@ -94,7 +94,7 @@ Container loveWineContainer(Widget child, {double? width, double? height}) {
       height: height,
       decoration: BoxDecoration(
           color: CustomColors.love,
-          border: Border.all(color: CustomColors.wine, width: 5)),
+          border: Border.all(color: CustomColors.orchid, width: 5)),
       child: child);
 }
 
@@ -105,7 +105,7 @@ Container mercuryWineContainer(Widget child,
       height: height,
       decoration: BoxDecoration(
           color: CustomColors.mercury,
-          border: Border.all(color: CustomColors.wine, width: borderWidth),
+          border: Border.all(color: CustomColors.orchid, width: borderWidth),
           borderRadius: BorderRadius.circular(10)),
       child: child);
 }
@@ -117,7 +117,7 @@ Container whiteWineContainer(Widget child,
       height: height,
       decoration: BoxDecoration(
           color: Colors.white,
-          border: Border.all(color: CustomColors.wine, width: borderWidth),
+          border: Border.all(color: CustomColors.orchid, width: borderWidth),
           borderRadius: BorderRadius.circular(10)),
       child: child);
 }

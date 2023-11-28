@@ -91,7 +91,7 @@ class _SectionStudentsCountWidgetState
                           textStyle: wineBoldStyle(size: 25)),
                       series: <ColumnSeries<SectionData, String>>[
                           ColumnSeries<SectionData, String>(
-                              color: CustomColors.wine,
+                              color: CustomColors.orchid,
                               dataSource: sectionDatas,
                               xValueMapper: (SectionData sectionData, _) =>
                                   sectionData.section,

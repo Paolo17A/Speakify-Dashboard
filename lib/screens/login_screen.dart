@@ -156,7 +156,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   },
                   child: AutoSizeText('Forgot Password? ',
                       style: const TextStyle(
-                          color: CustomColors.fuschia,
+                          color: CustomColors.orchid,
                           decoration: TextDecoration.underline,
                           fontWeight: FontWeight.bold)))
             ])));
@@ -176,7 +176,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 style: const TextStyle(
                     fontSize: 17,
                     decoration: TextDecoration.underline,
-                    color: CustomColors.fuschia,
+                    color: CustomColors.orchid,
                     fontWeight: FontWeight.bold)))
       ]),
     );

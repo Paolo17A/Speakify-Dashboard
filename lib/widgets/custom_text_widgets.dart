@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:speechlab_dashboard/utils/color_util.dart';
 
 AutoSizeText headerText({required String text, double fontSize = 30}) {
@@ -10,20 +11,26 @@ AutoSizeText headerText({required String text, double fontSize = 30}) {
 }
 
 TextStyle blackBoldStyle({double? size}) {
-  return TextStyle(
-      color: Colors.black, fontWeight: FontWeight.bold, fontSize: size);
+  return GoogleFonts.alata(
+      textStyle: TextStyle(
+          color: Colors.black, fontWeight: FontWeight.bold, fontSize: size));
 }
 
 TextStyle whiteBoldStyle({double? size}) {
-  return TextStyle(
-      color: Colors.white, fontWeight: FontWeight.bold, fontSize: size);
+  return GoogleFonts.alata(
+      textStyle: TextStyle(
+          color: Colors.white, fontWeight: FontWeight.bold, fontSize: size));
 }
 
 TextStyle wineBoldStyle({double? size}) {
-  return TextStyle(
-      color: CustomColors.wine, fontWeight: FontWeight.bold, fontSize: size);
+  return GoogleFonts.alata(
+      textStyle: TextStyle(
+          color: CustomColors.orchid,
+          fontWeight: FontWeight.bold,
+          fontSize: size));
 }
 
 TextStyle wineRegularStyle({double? size}) {
-  return TextStyle(color: CustomColors.wine, fontSize: size);
+  return GoogleFonts.alata(
+      textStyle: TextStyle(color: CustomColors.orchid, fontSize: size));
 }

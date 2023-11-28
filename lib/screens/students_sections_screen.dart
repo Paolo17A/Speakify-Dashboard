@@ -134,14 +134,14 @@ class _StudentsSectionsScreenState extends State<StudentsSectionsScreen> {
               width: MediaQuery.of(context).size.width * 0.35,
               height: MediaQuery.of(context).size.height * 0.5,
               decoration: BoxDecoration(
-                  border: Border.all(color: CustomColors.wine, width: 3)),
+                  border: Border.all(color: CustomColors.orchid, width: 3)),
               child: all20Pix(Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Text(
                     'ADD SECTION',
                     style: TextStyle(
-                        color: CustomColors.wine,
+                        color: CustomColors.orchid,
                         fontSize: 30,
                         fontWeight: FontWeight.bold),
                   ),
@@ -150,10 +150,14 @@ class _StudentsSectionsScreenState extends State<StudentsSectionsScreen> {
                       controller: sectionNameController,
                       textInputType: TextInputType.text,
                       displayPrefixIcon: null,
-                      color: CustomColors.wine),
+                      color: CustomColors.orchid),
                   ElevatedButton(
                       onPressed: () => addNewSection(),
                       child: all20Pix(Text('ADD NEW SECTION'))),
+                  Gap(50),
+                  ElevatedButton(
+                      onPressed: () => Navigator.of(context).pop(),
+                      child: Text('\tCLOSE\t')),
                 ],
               )),
             ),
@@ -180,7 +184,7 @@ class _StudentsSectionsScreenState extends State<StudentsSectionsScreen> {
               width: MediaQuery.of(context).size.width * 0.35,
               height: MediaQuery.of(context).size.height * 0.75,
               decoration: BoxDecoration(
-                  border: Border.all(color: CustomColors.wine, width: 3)),
+                  border: Border.all(color: CustomColors.orchid, width: 3)),
               child: SingleChildScrollView(
                 child: all20Pix(Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -208,7 +212,7 @@ class _StudentsSectionsScreenState extends State<StudentsSectionsScreen> {
                         controller: studentIDController,
                         textInputType: TextInputType.number,
                         displayPrefixIcon: null,
-                        color: CustomColors.wine),
+                        color: CustomColors.orchid),
                     const SizedBox(height: 10),
                     Row(children: [
                       Text('First Name', style: wineBoldStyle(size: 20))
@@ -218,7 +222,7 @@ class _StudentsSectionsScreenState extends State<StudentsSectionsScreen> {
                         controller: studentFirstNameController,
                         textInputType: TextInputType.number,
                         displayPrefixIcon: null,
-                        color: CustomColors.wine),
+                        color: CustomColors.orchid),
                     const SizedBox(height: 10),
                     Row(children: [
                       Text('Last Name', style: wineBoldStyle(size: 20))
@@ -228,7 +232,7 @@ class _StudentsSectionsScreenState extends State<StudentsSectionsScreen> {
                         controller: studentLastNameController,
                         textInputType: TextInputType.number,
                         displayPrefixIcon: null,
-                        color: CustomColors.wine),
+                        color: CustomColors.orchid),
                     const SizedBox(height: 10),
                     Row(children: [
                       Text('Section', style: wineBoldStyle(size: 20))
@@ -261,7 +265,11 @@ class _StudentsSectionsScreenState extends State<StudentsSectionsScreen> {
                               child: Text('Delete Student')),
                         )
                       ],
-                    )
+                    ),
+                    Gap(50),
+                    ElevatedButton(
+                        onPressed: () => Navigator.of(context).pop(),
+                        child: Text('\tCLOSE\t')),
                   ],
                 )),
               ),
@@ -286,7 +294,7 @@ class _StudentsSectionsScreenState extends State<StudentsSectionsScreen> {
               width: MediaQuery.of(context).size.width * 0.35,
               height: MediaQuery.of(context).size.height * 0.55,
               decoration: BoxDecoration(
-                  border: Border.all(color: CustomColors.wine, width: 3)),
+                  border: Border.all(color: CustomColors.orchid, width: 3)),
               child: SingleChildScrollView(
                 child: all20Pix(Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -299,7 +307,7 @@ class _StudentsSectionsScreenState extends State<StudentsSectionsScreen> {
                         controller: studentIDController,
                         textInputType: TextInputType.number,
                         displayPrefixIcon: null,
-                        color: CustomColors.wine),
+                        color: CustomColors.orchid),
                     const SizedBox(height: 10),
                     Row(children: [
                       Text('First Name', style: wineBoldStyle(size: 20))
@@ -309,7 +317,7 @@ class _StudentsSectionsScreenState extends State<StudentsSectionsScreen> {
                         controller: studentFirstNameController,
                         textInputType: TextInputType.number,
                         displayPrefixIcon: null,
-                        color: CustomColors.wine),
+                        color: CustomColors.orchid),
                     const SizedBox(height: 10),
                     Row(children: [
                       Text('Last Name', style: wineBoldStyle(size: 20))
@@ -319,7 +327,7 @@ class _StudentsSectionsScreenState extends State<StudentsSectionsScreen> {
                         controller: studentLastNameController,
                         textInputType: TextInputType.number,
                         displayPrefixIcon: null,
-                        color: CustomColors.wine),
+                        color: CustomColors.orchid),
                     const SizedBox(height: 10),
                     Row(children: [
                       Text('Email Address', style: wineBoldStyle(size: 20))
@@ -329,7 +337,7 @@ class _StudentsSectionsScreenState extends State<StudentsSectionsScreen> {
                         controller: studentEmailController,
                         textInputType: TextInputType.emailAddress,
                         displayPrefixIcon: null,
-                        color: CustomColors.wine),
+                        color: CustomColors.orchid),
                     const SizedBox(height: 20),
                     SizedBox(
                       height: 40,
@@ -337,7 +345,11 @@ class _StudentsSectionsScreenState extends State<StudentsSectionsScreen> {
                           onPressed: () => addNewStudent(),
                           child: Text(
                               'Add Student to Section ${allSectionChoices[currentSectionIndex]}')),
-                    )
+                    ),
+                    Gap(50),
+                    ElevatedButton(
+                        onPressed: () => Navigator.of(context).pop(),
+                        child: Text('\tCLOSE\t')),
                   ],
                 )),
               ),
@@ -646,7 +658,7 @@ class _StudentsSectionsScreenState extends State<StudentsSectionsScreen> {
           AutoSizeText('Broadcasting Section', style: wineBoldStyle(size: 40)),
           const Divider(
             thickness: 5,
-            color: CustomColors.darkWine,
+            color: CustomColors.orchid,
           )
         ]));
   }
@@ -695,7 +707,7 @@ class _StudentsSectionsScreenState extends State<StudentsSectionsScreen> {
                   onPressed: () => showAddSectionDialog(),
                   style: ElevatedButton.styleFrom(
                       backgroundColor: CustomColors.orchid,
-                      side: BorderSide(color: CustomColors.wine, width: 2)),
+                      side: BorderSide(color: CustomColors.orchid, width: 2)),
                   child:
                       AutoSizeText('Add Section', textAlign: TextAlign.center)),
             ),
@@ -707,7 +719,7 @@ class _StudentsSectionsScreenState extends State<StudentsSectionsScreen> {
                     onPressed: () => showAddNewStudentDialog(),
                     style: ElevatedButton.styleFrom(
                         backgroundColor: CustomColors.orchid,
-                        side: BorderSide(color: CustomColors.wine, width: 2)),
+                        side: BorderSide(color: CustomColors.orchid, width: 2)),
                     child: AutoSizeText('Add Student',
                         textAlign: TextAlign.center),
                   ))
@@ -857,7 +869,7 @@ class _StudentsSectionsScreenState extends State<StudentsSectionsScreen> {
                                 sectionStudents[index].id, studentData),
                             icon: Icon(
                               Icons.settings,
-                              color: CustomColors.wine,
+                              color: CustomColors.orchid,
                             ))
                       ],
                     ),

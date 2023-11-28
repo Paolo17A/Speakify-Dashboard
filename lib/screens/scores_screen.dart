@@ -98,7 +98,7 @@ class _ScoresScreenState extends State<ScoresScreen> {
           AutoSizeText('SCORING RESULTS', style: wineBoldStyle(size: 45)),
           const Divider(
             thickness: 5,
-            color: CustomColors.darkWine,
+            color: CustomColors.orchid,
           )
         ]));
   }

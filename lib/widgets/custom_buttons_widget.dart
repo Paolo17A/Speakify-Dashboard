@@ -14,7 +14,7 @@ Widget authenticationButton(String label, Function onPress,
         onPressed: () {
           onPress();
         },
-        style: ElevatedButton.styleFrom(backgroundColor: CustomColors.jam),
+        style: ElevatedButton.styleFrom(backgroundColor: CustomColors.orchid),
         child: Text(label, style: whiteBoldStyle(size: 20))),
   );
 }
@@ -32,7 +32,7 @@ Widget homeDashboardRowButton(
           },
           style: ElevatedButton.styleFrom(
               backgroundColor: CustomColors.orchid,
-              side: const BorderSide(color: CustomColors.wine, width: 2)),
+              side: const BorderSide(color: CustomColors.orchid, width: 2)),
           child: AutoSizeText(label,
               minFontSize: 20, maxFontSize: 30, style: whiteBoldStyle()),
         )),
@@ -49,15 +49,15 @@ Widget scoreOptionButton(BuildContext context,
       child: ElevatedButton(
           onPressed: () => onPress(),
           style: ElevatedButton.styleFrom(
-              side: BorderSide(color: CustomColors.darkWine),
+              side: BorderSide(color: CustomColors.orchid),
               backgroundColor:
-                  isSelected ? CustomColors.mercury : CustomColors.wine,
+                  isSelected ? CustomColors.mercury : CustomColors.orchid,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10))),
           child: AutoSizeText(label,
               style: TextStyle(
                   color:
-                      isSelected ? CustomColors.darkWine : CustomColors.mercury,
+                      isSelected ? CustomColors.orchid : CustomColors.mercury,
                   fontWeight: FontWeight.bold,
                   fontSize: 20))));
 }
@@ -73,7 +73,7 @@ Widget longEntryButton(BuildContext context,
     child: ElevatedButton(
         onPressed: () => onPress(),
         style: ElevatedButton.styleFrom(
-            side: const BorderSide(color: CustomColors.wine),
+            side: const BorderSide(color: CustomColors.orchid),
             backgroundColor: CustomColors.mercury),
         child: all8Pix(Row(
           children: [
@@ -98,7 +98,7 @@ Widget shortEntryButton(BuildContext context,
     child: ElevatedButton(
       onPressed: () => onPress(),
       style: ElevatedButton.styleFrom(
-          side: const BorderSide(color: CustomColors.wine),
+          side: const BorderSide(color: CustomColors.orchid),
           backgroundColor: CustomColors.mercury),
       child: Padding(
           padding: const EdgeInsets.all(20),
@@ -121,7 +121,7 @@ Widget addEntryButton(BuildContext context,
       height: 75,
       child: ElevatedButton(
           onPressed: () => onPress(),
-          style: ElevatedButton.styleFrom(backgroundColor: CustomColors.wine),
+          style: ElevatedButton.styleFrom(backgroundColor: CustomColors.orchid),
           child: AutoSizeText(label, style: whiteBoldStyle(size: 30))),
     ),
   );
@@ -136,7 +136,7 @@ Widget backButton(BuildContext context, {required Function onPress}) {
       child: ElevatedButton(
           onPressed: () => onPress(),
           style: ElevatedButton.styleFrom(
-              backgroundColor: CustomColors.wine, shape: CircleBorder()),
+              backgroundColor: CustomColors.orchid, shape: CircleBorder()),
           child: Transform.scale(
             scale: 2,
             child: Icon(

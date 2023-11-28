@@ -103,7 +103,7 @@ class _RecentActiviesWidgetState extends State<RecentActiviesWidget> {
       child: Container(
           height: 70,
           decoration: BoxDecoration(
-              color: CustomColors.wine.withOpacity(0.3),
+              color: CustomColors.orchid.withOpacity(0.3),
               borderRadius: BorderRadius.circular(10)),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15),

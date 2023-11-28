@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:speechlab_dashboard/widgets/appbar_title_widget.dart';
 import 'package:speechlab_dashboard/widgets/custom_container_widgets.dart';
@@ -318,7 +319,7 @@ class _EditSectionScreenState extends State<EditSectionScreen> {
               width: MediaQuery.of(context).size.width * 0.65,
               height: MediaQuery.of(context).size.height * 0.5,
               decoration: BoxDecoration(
-                  border: Border.all(color: CustomColors.wine, width: 3)),
+                  border: Border.all(color: CustomColors.orchid, width: 3)),
               child: all20Pix(Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
@@ -337,7 +338,11 @@ class _EditSectionScreenState extends State<EditSectionScreen> {
                       _currentSelectedLesson, false),
                   ElevatedButton(
                       onPressed: () => grantAccessToLesson(),
-                      child: all20Pix(Text('GRANT ACCESS TO THIS LESSON')))
+                      child: all20Pix(Text('GRANT ACCESS TO THIS LESSON'))),
+                  Gap(50),
+                  ElevatedButton(
+                      onPressed: () => Navigator.of(context).pop(),
+                      child: Text('\tCLOSE\t')),
                 ],
               )),
             ),
@@ -357,7 +362,7 @@ class _EditSectionScreenState extends State<EditSectionScreen> {
               width: MediaQuery.of(context).size.width * 0.65,
               height: MediaQuery.of(context).size.height * 0.5,
               decoration: BoxDecoration(
-                  border: Border.all(color: CustomColors.wine, width: 3)),
+                  border: Border.all(color: CustomColors.orchid, width: 3)),
               child: all20Pix(Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
@@ -375,7 +380,11 @@ class _EditSectionScreenState extends State<EditSectionScreen> {
                       false),
                   ElevatedButton(
                       onPressed: () => removeAccessToLesson(),
-                      child: all20Pix(Text('REMOVE THIS LESSON')))
+                      child: all20Pix(Text('REMOVE THIS LESSON'))),
+                  Gap(50),
+                  ElevatedButton(
+                      onPressed: () => Navigator.of(context).pop(),
+                      child: Text('\tCLOSE\t')),
                 ],
               )),
             ),
@@ -395,7 +404,7 @@ class _EditSectionScreenState extends State<EditSectionScreen> {
               width: MediaQuery.of(context).size.width * 0.65,
               height: MediaQuery.of(context).size.height * 0.5,
               decoration: BoxDecoration(
-                  border: Border.all(color: CustomColors.wine, width: 3)),
+                  border: Border.all(color: CustomColors.orchid, width: 3)),
               child: all20Pix(Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
@@ -411,7 +420,11 @@ class _EditSectionScreenState extends State<EditSectionScreen> {
                       false),
                   ElevatedButton(
                       onPressed: () => grantAccessToQuiz(),
-                      child: all20Pix(Text('GRANT ACCESS TO THIS QUIZ')))
+                      child: all20Pix(Text('GRANT ACCESS TO THIS QUIZ'))),
+                  Gap(50),
+                  ElevatedButton(
+                      onPressed: () => Navigator.of(context).pop(),
+                      child: Text('\tCLOSE\t')),
                 ],
               )),
             ),
@@ -431,7 +444,7 @@ class _EditSectionScreenState extends State<EditSectionScreen> {
               width: MediaQuery.of(context).size.width * 0.65,
               height: MediaQuery.of(context).size.height * 0.5,
               decoration: BoxDecoration(
-                  border: Border.all(color: CustomColors.wine, width: 3)),
+                  border: Border.all(color: CustomColors.orchid, width: 3)),
               child: all20Pix(Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
@@ -446,7 +459,11 @@ class _EditSectionScreenState extends State<EditSectionScreen> {
                   }, List.from(accessedQuizzes), _currentSelectedQuiz, false),
                   ElevatedButton(
                       onPressed: () => removeAccessToQuiz(),
-                      child: all20Pix(Text('REMOVE THIS LESSON')))
+                      child: all20Pix(Text('REMOVE THIS LESSON'))),
+                  Gap(50),
+                  ElevatedButton(
+                      onPressed: () => Navigator.of(context).pop(),
+                      child: Text('\tCLOSE\t')),
                 ],
               )),
             ),
@@ -494,7 +511,7 @@ class _EditSectionScreenState extends State<EditSectionScreen> {
                     style: wineBoldStyle(size: 40)),
                 const Divider(
                   thickness: 5,
-                  color: CustomColors.darkWine,
+                  color: CustomColors.orchid,
                 )
               ])),
         ],

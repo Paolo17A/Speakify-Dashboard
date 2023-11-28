@@ -330,7 +330,7 @@ class _EditQuizScreenState extends State<EditQuizScreen> {
                             decoration: BoxDecoration(
                                 color: CustomColors.love,
                                 border: Border.all(
-                                    color: CustomColors.wine, width: 3),
+                                    color: CustomColors.orchid, width: 3),
                                 borderRadius: BorderRadius.circular(20)),
                             child: Padding(
                                 padding: const EdgeInsets.all(26),

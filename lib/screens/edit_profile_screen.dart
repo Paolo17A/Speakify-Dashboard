@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 //import 'package:go_router/go_router.dart';
 import 'package:image_picker_web/image_picker_web.dart';
@@ -197,7 +198,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               width: MediaQuery.of(context).size.width * 0.65,
               height: MediaQuery.of(context).size.height * 0.5,
               decoration: BoxDecoration(
-                  border: Border.all(color: CustomColors.wine, width: 3)),
+                  border: Border.all(color: CustomColors.orchid, width: 3)),
               child: all20Pix(Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
@@ -212,7 +213,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   }, allSelectableSections, _currentSelectedSection, false),
                   ElevatedButton(
                       onPressed: () => addSectionToHandle(),
-                      child: all20Pix(Text('HANDLE THIS SECTION')))
+                      child: all20Pix(Text('HANDLE THIS SECTION'))),
+                  Gap(50),
+                  ElevatedButton(
+                      onPressed: () => Navigator.of(context).pop(),
+                      child: Text('\tCLOSE\t')),
                 ],
               )),
             ),
@@ -232,7 +237,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               width: MediaQuery.of(context).size.width * 0.65,
               height: MediaQuery.of(context).size.height * 0.5,
               decoration: BoxDecoration(
-                  border: Border.all(color: CustomColors.wine, width: 3)),
+                  border: Border.all(color: CustomColors.orchid, width: 3)),
               child: all20Pix(Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
@@ -248,7 +253,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       false),
                   ElevatedButton(
                       onPressed: () => removeHandledSection(),
-                      child: all20Pix(Text('REMOVE THIS SECTION')))
+                      child: all20Pix(Text('REMOVE THIS SECTION'))),
+                  Gap(50),
+                  ElevatedButton(
+                      onPressed: () => Navigator.of(context).pop(),
+                      child: Text('\tCLOSE\t')),
                 ],
               )),
             ),
@@ -360,13 +369,13 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     if (profileImageURL != '') {
       return CircleAvatar(
         radius: 100,
-        backgroundColor: CustomColors.wine,
+        backgroundColor: CustomColors.orchid,
         backgroundImage: NetworkImage(profileImageURL),
       );
     } else {
       return const CircleAvatar(
           radius: 100,
-          backgroundColor: CustomColors.wine,
+          backgroundColor: CustomColors.orchid,
           child: Icon(
             Icons.person,
             color: Colors.white,
@@ -536,7 +545,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             showAddSectionDialog();
                           },
                           style: ElevatedButton.styleFrom(
-                              side: BorderSide(color: CustomColors.darkWine)),
+                              side: BorderSide(color: CustomColors.orchid)),
                           child: Padding(
                             padding: const EdgeInsets.all(3),
                             child: AutoSizeText(
@@ -555,7 +564,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             showRemoveSectionDialog();
                           },
                           style: ElevatedButton.styleFrom(
-                              side: BorderSide(color: CustomColors.darkWine)),
+                              side: BorderSide(color: CustomColors.orchid)),
                           child: Padding(
                             padding: const EdgeInsets.all(3),
                             child: AutoSizeText(
@@ -591,7 +600,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                   }),
                               style: ElevatedButton.styleFrom(
                                   side: BorderSide(
-                                      color: CustomColors.darkWine, width: 3)),
+                                      color: CustomColors.orchid, width: 3)),
                               child: Text(handledSections[index],
                                   textAlign: TextAlign.center,
                                   style: whiteBoldStyle(size: 20))),

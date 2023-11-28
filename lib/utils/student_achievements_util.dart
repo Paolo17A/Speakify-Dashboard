@@ -22,7 +22,7 @@ void displayStudentAchievementsDialogue(
   showDialog(
     context: context,
     builder: (context) => AlertDialog(
-      backgroundColor: CustomColors.wine,
+      backgroundColor: CustomColors.orchid,
       content: SizedBox(
         width: MediaQuery.of(context).size.width * 0.35,
         height: MediaQuery.of(context).size.height * 0.7,
@@ -58,7 +58,7 @@ void displayStudentAchievementsDialogue(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               AutoSizeText('ACHIEVEMENTS',
-                                  style: whiteBoldStyle(size: 40)),
+                                  style: whiteBoldStyle(size: 30)),
                               earnedAchievements.isNotEmpty
                                   ? SingleChildScrollView(
                                       scrollDirection: Axis.horizontal,
@@ -80,20 +80,18 @@ void displayStudentAchievementsDialogue(
                                   : all20Pix(Text(
                                       'This student has not yet earned any achievements.',
                                       textAlign: TextAlign.center,
-                                      style: whiteBoldStyle(size: 30))),
+                                      style: whiteBoldStyle(size: 25))),
                             ],
                           )),
                         ),
                       ],
                     ),
-                    SizedBox(
-                      width: 150,
-                      height: 50,
-                      child: all8Pix(ElevatedButton(
+                    all8Pix(
+                      ElevatedButton(
                           onPressed: () => GoRouter.of(context).pop(),
                           style: ElevatedButton.styleFrom(
-                              backgroundColor: CustomColors.wine),
-                          child: Text('CLOSE', style: whiteBoldStyle()))),
+                              backgroundColor: CustomColors.orchid),
+                          child: Text('\tCLOSE\t', style: whiteBoldStyle())),
                     )
                   ],
                 ),

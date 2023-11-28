@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:speechlab_dashboard/utils/color_util.dart';
 import 'package:speechlab_dashboard/widgets/custom_text_widgets.dart';
 
@@ -29,7 +30,7 @@ void displayInstructorDialogue(BuildContext context,
                       profileImageURL.isEmpty
                           ? const CircleAvatar(
                               radius: 50,
-                              backgroundColor: CustomColors.wine,
+                              backgroundColor: CustomColors.orchid,
                               child: Icon(
                                 Icons.person,
                                 size: 70,
@@ -78,7 +79,11 @@ void displayInstructorDialogue(BuildContext context,
                         style: ElevatedButton.styleFrom(
                             backgroundColor:
                                 const Color.fromARGB(255, 161, 11, 0)),
-                        child: all20Pix(Text('Delete Instructor')))
+                        child: all20Pix(Text('Delete Instructor'))),
+                    Gap(50),
+                    ElevatedButton(
+                        onPressed: () => Navigator.of(context).pop(),
+                        child: Text('\tCLOSE\t')),
                   ]))));
 }
 
@@ -104,7 +109,7 @@ void showAddInstructorDialog(
             width: MediaQuery.of(context).size.width * 0.45,
             height: MediaQuery.of(context).size.height * 0.6,
             decoration: BoxDecoration(
-                border: Border.all(color: CustomColors.wine, width: 3)),
+                border: Border.all(color: CustomColors.orchid, width: 3)),
             child: SingleChildScrollView(
               child: all20Pix(Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -112,7 +117,7 @@ void showAddInstructorDialog(
                   Text(
                     'ADD INSTRUCTOR',
                     style: TextStyle(
-                        color: CustomColors.wine,
+                        color: CustomColors.orchid,
                         fontSize: 30,
                         fontWeight: FontWeight.bold),
                   ),
@@ -125,7 +130,7 @@ void showAddInstructorDialog(
                       controller: firstNameController,
                       textInputType: TextInputType.text,
                       displayPrefixIcon: null,
-                      color: CustomColors.wine),
+                      color: CustomColors.orchid),
                   const SizedBox(height: 10),
                   Row(children: [
                     Text('Last Name', style: wineBoldStyle(size: 30))
@@ -135,7 +140,7 @@ void showAddInstructorDialog(
                       controller: lastNameController,
                       textInputType: TextInputType.text,
                       displayPrefixIcon: null,
-                      color: CustomColors.wine),
+                      color: CustomColors.orchid),
                   const SizedBox(height: 10),
                   Row(children: [
                     Text('Email Address', style: wineBoldStyle(size: 30))
@@ -145,7 +150,7 @@ void showAddInstructorDialog(
                       controller: emailController,
                       textInputType: TextInputType.emailAddress,
                       displayPrefixIcon: null,
-                      color: CustomColors.wine),
+                      color: CustomColors.orchid),
                   const SizedBox(height: 10),
                   Row(children: [
                     Text('Password', style: wineBoldStyle(size: 30))
@@ -155,11 +160,15 @@ void showAddInstructorDialog(
                       controller: passwordController,
                       textInputType: TextInputType.visiblePassword,
                       displayPrefixIcon: null,
-                      color: CustomColors.wine),
+                      color: CustomColors.orchid),
                   const SizedBox(height: 25),
                   ElevatedButton(
                       onPressed: () => onAddInstructor(),
                       child: all20Pix(Text('ADD NEW INSTRUCTOR'))),
+                  Gap(50),
+                  ElevatedButton(
+                      onPressed: () => Navigator.of(context).pop(),
+                      child: Text('\tCLOSE\t')),
                 ],
               )),
             ),
@@ -187,14 +196,14 @@ void showEditInstructorDialog(
             width: MediaQuery.of(context).size.width * 0.45,
             height: MediaQuery.of(context).size.height * 0.55,
             decoration: BoxDecoration(
-                border: Border.all(color: CustomColors.wine, width: 3)),
+                border: Border.all(color: CustomColors.orchid, width: 3)),
             child: SingleChildScrollView(
               child: all20Pix(Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Text('EDIT INSTRUCTOR',
                       style: TextStyle(
-                          color: CustomColors.wine,
+                          color: CustomColors.orchid,
                           fontSize: 30,
                           fontWeight: FontWeight.bold)),
                   const SizedBox(height: 30),
@@ -206,7 +215,7 @@ void showEditInstructorDialog(
                       controller: firstNameController,
                       textInputType: TextInputType.text,
                       displayPrefixIcon: null,
-                      color: CustomColors.wine),
+                      color: CustomColors.orchid),
                   const SizedBox(height: 10),
                   Row(children: [
                     Text('Last Name', style: wineBoldStyle(size: 30))
@@ -216,11 +225,15 @@ void showEditInstructorDialog(
                       controller: lastNameController,
                       textInputType: TextInputType.text,
                       displayPrefixIcon: null,
-                      color: CustomColors.wine),
+                      color: CustomColors.orchid),
                   const SizedBox(height: 45),
                   ElevatedButton(
                       onPressed: () => onEditInstructor(),
                       child: all20Pix(Text('EDIT INSTRUCTOR'))),
+                  Gap(50),
+                  ElevatedButton(
+                      onPressed: () => Navigator.of(context).pop(),
+                      child: Text('\tCLOSE\t')),
                 ],
               )),
             ),

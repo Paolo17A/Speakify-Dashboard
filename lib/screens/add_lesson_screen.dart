@@ -148,7 +148,7 @@ class _AddLessonScreenState extends State<AddLessonScreen> {
                                   onPressed: () =>
                                       GoRouter.of(context).go('/lessons'),
                                   style: ElevatedButton.styleFrom(
-                                      backgroundColor: CustomColors.wine),
+                                      backgroundColor: CustomColors.orchid),
                                   child: const Text('BACK',
                                       style: TextStyle(
                                           color: Colors.white,
