@@ -1,0 +1,136 @@
+import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
+import 'package:speechlab_dashboard/core/utils/color_util.dart';
+import 'package:speechlab_dashboard/core/widgets/custom_text_widgets.dart';
+
+void displayQuizAnswersDialogue(
+    String difficulty,
+    BuildContext context,
+    List<dynamic> quizQuestions,
+    List<dynamic> userAnswers,
+    String profileImageURL,
+    String studentName,
+    int score) async {
+  showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+          backgroundColor: CustomColors.love,
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+              side: const BorderSide(color: CustomColors.orchid, width: 3)),
+          content: SizedBox(
+              width: MediaQuery.of(context).size.width * 0.35,
+              height: MediaQuery.of(context).size.height * 0.55,
+              child: SingleChildScrollView(
+                child: Column(children: [
+                  //  PROFILE IMAGE
+                  profileImageURL.isEmpty
+                      ? const CircleAvatar(
+                          radius: 50,
+                          backgroundColor: Colors.white,
+                          child: Icon(
+                            Icons.person,
+                            size: 70,
+                            color: CustomColors.orchid,
+                          ))
+                      : CircleAvatar(
+                          radius: 50,
+                          backgroundColor: Colors.white,
+                          backgroundImage:
+                              NetworkImage(profileImageURL, scale: 1)),
+                  Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 10),
+                      child: Text(
+                        studentName,
+                        textAlign: TextAlign.center,
+                        style: wineBoldStyle(size: 40),
+                      )),
+                  Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 10),
+                      child: Text(
+                        'Score: $score out of ${quizQuestions.length}',
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                            color: CustomColors.orchid,
+                            fontSize: 20,
+                            fontWeight: FontWeight.w700),
+                      )),
+                  Column(children: [
+                    ListView.builder(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: quizQuestions.length,
+                        itemBuilder: (context, index) {
+                          return Padding(
+                              padding: const EdgeInsets.all(6),
+                              child: Container(
+                                  decoration: const BoxDecoration(
+                                      color: CustomColors.orchid,
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(10))),
+                                  child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Padding(
+                                            padding: const EdgeInsets.all(9),
+                                            child: Text(
+                                                '${index + 1}. ${(quizQuestions[index]['question'] as String)}',
+                                                style:
+                                                    whiteBoldStyle(size: 15))),
+                                        _answerWidget(context, difficulty,
+                                            quizQuestions, userAnswers, index),
+                                        const SizedBox(height: 10)
+                                      ])));
+                        })
+                  ]),
+                  const Gap(50),
+                  ElevatedButton(
+                      onPressed: () => Navigator.of(context).pop(),
+                      child: const Text('\tCLOSE\t')),
+                ]),
+              ))));
+}
+
+Widget _answerWidget(BuildContext context, String difficulty,
+    List<dynamic> quizQuestions, List<dynamic> userAnswers, int index) {
+  return Padding(
+    padding: const EdgeInsets.all(8.0),
+    child: Row(
+      children: [
+        Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          if (difficulty == 'EASY')
+            answerText(context,
+                'Your Answer: ${userAnswers[index] as String}) ${quizQuestions[index]['options'][userAnswers[index] as String]}'),
+          if (difficulty == 'AVERAGE')
+            answerText(context, 'Your Answer: ${userAnswers[index] as bool}'),
+          if (difficulty == 'DIFFICULT')
+            answerText(context, 'Your Answer: ${userAnswers[index] as String}'),
+          if (difficulty == 'EASY')
+            answerText(context,
+                'Correct Answer: ${quizQuestions[index]['answer'] as String}) ${quizQuestions[index]['options'][quizQuestions[index]['answer']] as String}'),
+          if (difficulty == 'AVERAGE')
+            answerText(context,
+                'Correct Answer: ${quizQuestions[index]['answer'] as bool}'),
+          if (difficulty == 'DIFFICULT')
+            answerText(
+                context, 'Accepted Answers: ${quizQuestions[index]['answer']}'),
+        ]),
+      ],
+    ),
+  );
+}
+
+Widget answerText(BuildContext context, String answer) {
+  return Padding(
+      padding: const EdgeInsets.all(5),
+      child: SizedBox(
+          width: MediaQuery.of(context).size.width * 0.3,
+          child: Text(
+            answer,
+            softWrap: true,
+            style: const TextStyle(color: Colors.white, fontSize: 15),
+          )));
+}
