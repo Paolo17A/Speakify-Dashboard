@@ -2,8 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:speechlab_dashboard/core/utils/responsive_util.dart';
 import 'package:speechlab_dashboard/core/widgets/date_time_widget.dart';
 
-PreferredSizeWidget appBarTitle({bool showMenuButton = false}) {
+PreferredSizeWidget appBarTitle({
+  bool showMenuButton = false,
+  bool showEndDrawerButton = false,
+}) {
   return AppBar(
+    foregroundColor: Colors.white,
+    iconTheme: const IconThemeData(color: Colors.white),
     title: Builder(
       builder: (context) {
         final compact = context.isCompactLayout;
@@ -20,6 +25,7 @@ PreferredSizeWidget appBarTitle({bool showMenuButton = false}) {
               child: Text(
                 'SPEAKIFY',
                 style: TextStyle(
+                  color: Colors.white,
                   fontWeight: FontWeight.bold,
                   fontSize: titleSize,
                 ),
@@ -38,10 +44,21 @@ PreferredSizeWidget appBarTitle({bool showMenuButton = false}) {
     leading: showMenuButton
         ? Builder(
             builder: (context) => IconButton(
-              icon: const Icon(Icons.menu),
+              icon: const Icon(Icons.menu, color: Colors.white),
               onPressed: () => Scaffold.of(context).openDrawer(),
             ),
           )
+        : null,
+    actions: showEndDrawerButton
+        ? [
+            Builder(
+              builder: (context) => IconButton(
+                icon: const Icon(Icons.people_alt_outlined, color: Colors.white),
+                tooltip: 'Active students',
+                onPressed: () => Scaffold.of(context).openEndDrawer(),
+              ),
+            ),
+          ]
         : null,
     automaticallyImplyLeading: false,
   );

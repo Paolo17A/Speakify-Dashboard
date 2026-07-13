@@ -39,7 +39,7 @@ class DateTimeDisplayState extends State<DateTimeDisplay> {
     return Row(children: [
       const Padding(
         padding: EdgeInsets.symmetric(horizontal: 9),
-        child: Icon(Icons.calendar_today),
+        child: Icon(Icons.calendar_today, color: Colors.white),
       ),
       Text(
         DateFormat('dd MMM yyyy').format(_currentDateTime),
@@ -48,7 +48,7 @@ class DateTimeDisplayState extends State<DateTimeDisplay> {
       ),
       const Padding(
         padding: EdgeInsets.symmetric(horizontal: 9),
-        child: Icon(Icons.access_time),
+        child: Icon(Icons.access_time, color: Colors.white),
       ),
       Text(
         DateFormat('hh:mm:ss a').format(_currentDateTime),

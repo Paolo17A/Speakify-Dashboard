@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:speechlab_dashboard/core/di/dependency_injection.dart';
 import 'package:speechlab_dashboard/core/session/auth_session_notifier.dart';
 import 'package:speechlab_dashboard/core/utils/app_router.dart';
@@ -11,8 +12,20 @@ import 'package:speechlab_dashboard/firebase_options.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  await FirebaseAuth.instance.setPersistence(Persistence.LOCAL);
+  // Persistence.LOCAL is already the web default; avoid blocking startup if
+  // IndexedDB is slow/unavailable (common cause of web freezes in debug).
+  try {
+    await FirebaseAuth.instance.setPersistence(Persistence.LOCAL);
+  } catch (_) {}
   await configureDependencies();
+
+  // Prefetch Google Fonts before first frame so ThemeData / TextStyles do not
+  // stall the UI waiting on a network download mid-build.
+  await GoogleFonts.pendingFonts([
+    GoogleFonts.alata(),
+    GoogleFonts.comicNeue(),
+  ]);
+
   runApp(const ProviderScope(child: App()));
 }
 

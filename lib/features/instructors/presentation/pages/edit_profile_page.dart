@@ -63,7 +63,7 @@ class EditProfilePage extends HookConsumerWidget {
         if (action == 'update') {
           pendingAction.value = null;
           currentSelectedFile.value = null;
-          displayError(context, 'Successfully updated user profile!');
+          displaySuccess(context, 'Successfully updated user profile!');
           loadCurrentUserData();
           return;
         }

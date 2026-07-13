@@ -3,6 +3,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:speechlab_dashboard/core/utils/app_routes.dart';
+import 'package:speechlab_dashboard/core/utils/error_message.dart';
 import 'package:speechlab_dashboard/core/utils/generic_state.dart';
 import 'package:speechlab_dashboard/core/widgets/auth_page_layout.dart';
 import 'package:speechlab_dashboard/core/widgets/custom_buttons_widget.dart';
@@ -20,13 +21,11 @@ class ResetPasswordPage extends HookConsumerWidget {
     final emailController = useTextEditingController();
 
     ref.listen(authViewModelProvider, (_, next) {
-      final scaffoldMessenger = ScaffoldMessenger.of(context);
       if (next is Error) {
         emailController.clear();
-        scaffoldMessenger.showSnackBar(SnackBar(content: Text(next.message)));
+        displayError(context, next.message);
       } else if (next is Success) {
-        scaffoldMessenger.showSnackBar(const SnackBar(
-            content: Text('Successfully sent password reset email!')));
+        displaySuccess(context, 'Successfully sent password reset email!');
         GoRouter.of(context).go(AppRoutes.login);
       }
     });
@@ -34,8 +33,7 @@ class ResetPasswordPage extends HookConsumerWidget {
     void onSendResetPassword() {
       if (!emailController.text.contains('@') ||
           !emailController.text.contains('.com')) {
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-            content: Text('Please input a valid email address.')));
+        displayError(context, 'Please input a valid email address.');
         return;
       }
       viewModel.sendPasswordReset(email: emailController.text.trim());

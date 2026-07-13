@@ -14,7 +14,10 @@ Widget authenticationButton(String label, Function onPress,
         onPressed: () {
           onPress();
         },
-        style: ElevatedButton.styleFrom(backgroundColor: CustomColors.orchid),
+        style: ElevatedButton.styleFrom(
+          backgroundColor: CustomColors.orchid,
+          foregroundColor: Colors.white,
+        ),
         child: Text(label, style: whiteBoldStyle(size: 20))),
   );
 }
@@ -32,6 +35,7 @@ Widget homeDashboardRowButton(
           },
           style: ElevatedButton.styleFrom(
               backgroundColor: CustomColors.orchid,
+              foregroundColor: Colors.white,
               side: const BorderSide(color: CustomColors.orchid, width: 2)),
           child: AutoSizeText(label,
               minFontSize: 20, maxFontSize: 30, style: whiteBoldStyle()),
@@ -121,7 +125,10 @@ Widget addEntryButton(BuildContext context,
       height: 75,
       child: ElevatedButton(
           onPressed: () => onPress(),
-          style: ElevatedButton.styleFrom(backgroundColor: CustomColors.orchid),
+          style: ElevatedButton.styleFrom(
+            backgroundColor: CustomColors.orchid,
+            foregroundColor: Colors.white,
+          ),
           child: AutoSizeText(label, style: whiteBoldStyle(size: 30))),
     ),
   );
@@ -136,11 +143,15 @@ Widget backButton(BuildContext context, {required Function onPress}) {
       child: ElevatedButton(
           onPressed: () => onPress(),
           style: ElevatedButton.styleFrom(
-              backgroundColor: CustomColors.orchid, shape: const CircleBorder()),
+            backgroundColor: CustomColors.orchid,
+            foregroundColor: Colors.white,
+            shape: const CircleBorder(),
+          ),
           child: Transform.scale(
             scale: 2,
             child: const Icon(
               Icons.arrow_back_rounded,
+              color: Colors.white,
             ),
           )),
     ),

@@ -43,7 +43,7 @@ class LessonsPage extends HookConsumerWidget {
       } else if (next is Success) {
         if (pendingAction.value == 'delete') {
           pendingAction.value = null;
-          displayError(context, 'Successfully deleted this lesson.');
+          displaySuccess(context, 'Successfully deleted this lesson.');
           viewModel.getAllLessons();
           return;
         }

@@ -45,11 +45,11 @@ class InstructorsPage extends HookConsumerWidget {
         if (action != null) {
           pendingAction.value = null;
           if (action == 'add') {
-            displayError(context, 'Successfully added new instructor!');
+            displaySuccess(context, 'Successfully added new instructor!');
           } else if (action == 'edit') {
-            displayError(context, 'Successfully edited this instructor!');
+            displaySuccess(context, 'Successfully edited this instructor!');
           } else if (action == 'delete') {
-            displayError(context, 'Successfully deleted this instructor!');
+            displaySuccess(context, 'Successfully deleted this instructor!');
           }
           viewModel.getAllInstructors();
           return;

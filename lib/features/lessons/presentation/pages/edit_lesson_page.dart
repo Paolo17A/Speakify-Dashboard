@@ -44,7 +44,7 @@ class EditLessonPage extends HookConsumerWidget {
       } else if (next is Success) {
         if (pendingAction.value == 'edit') {
           pendingAction.value = null;
-          displayError(context, 'Successfully edited custom lesson!');
+          displaySuccess(context, 'Successfully edited custom lesson!');
           GoRouter.of(context).go(AppRoutes.lessons);
           return;
         }

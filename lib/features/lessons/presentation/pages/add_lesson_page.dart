@@ -30,7 +30,7 @@ class AddLessonPage extends HookConsumerWidget {
       if (next is Error) {
         displayError(context, next.message);
       } else if (next is Success) {
-        displayError(context, 'Successfully added new custom lesson!');
+        displaySuccess(context, 'Successfully added new custom lesson!');
         GoRouter.of(context).go(AppRoutes.lessons);
       }
     });

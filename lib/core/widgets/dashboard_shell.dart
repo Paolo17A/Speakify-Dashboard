@@ -4,9 +4,8 @@ import 'package:speechlab_dashboard/core/utils/responsive_util.dart';
 import 'package:speechlab_dashboard/core/widgets/appbar_title_widget.dart';
 import 'package:speechlab_dashboard/core/widgets/left_navigator_widget.dart';
 
-/// Shared authenticated layout: left rail on wide landscape, drawer on
-/// compact / vertical screens. Optional [sidePanel] stacks under content
-/// when compact instead of sitting as a right column.
+/// Shared authenticated layout: left rail on wide landscape, dual drawers on
+/// compact / vertical screens (nav left, optional [sidePanel] right).
 class DashboardShell extends StatelessWidget {
   const DashboardShell({
     super.key,
@@ -25,7 +24,10 @@ class DashboardShell extends StatelessWidget {
 
     if (compact) {
       return Scaffold(
-        appBar: appBarTitle(showMenuButton: true),
+        appBar: appBarTitle(
+          showMenuButton: true,
+          showEndDrawerButton: sidePanel != null,
+        ),
         drawer: Drawer(
           backgroundColor: AppColors.love,
           child: SafeArea(
@@ -36,6 +38,12 @@ class DashboardShell extends StatelessWidget {
             ),
           ),
         ),
+        endDrawer: sidePanel == null
+            ? null
+            : Drawer(
+                backgroundColor: AppColors.love,
+                child: SafeArea(child: sidePanel!),
+              ),
         body: ColoredBox(
           color: Colors.white,
           child: LayoutBuilder(
@@ -43,19 +51,7 @@ class DashboardShell extends StatelessWidget {
               return SingleChildScrollView(
                 child: ConstrainedBox(
                   constraints: BoxConstraints(minHeight: constraints.maxHeight),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      child,
-                      if (sidePanel != null) ...[
-                        const Divider(height: 1, thickness: 1),
-                        SizedBox(
-                          height: context.screenSize.height * 0.35,
-                          child: sidePanel,
-                        ),
-                      ],
-                    ],
-                  ),
+                  child: child,
                 ),
               );
             },

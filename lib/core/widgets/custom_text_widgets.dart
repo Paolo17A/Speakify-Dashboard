@@ -7,30 +7,36 @@ AutoSizeText headerText({required String text, double fontSize = 30}) {
   return AutoSizeText(text,
       maxLines: 2,
       textAlign: TextAlign.center,
-      style: blackBoldStyle(size: fontSize));
+      style: wineBoldStyle(size: fontSize));
 }
 
 TextStyle blackBoldStyle({double? size}) {
   return GoogleFonts.alata(
-      textStyle: TextStyle(
-          color: Colors.black, fontWeight: FontWeight.bold, fontSize: size));
+    color: Colors.black,
+    fontWeight: FontWeight.bold,
+    fontSize: size,
+  );
 }
 
 TextStyle whiteBoldStyle({double? size}) {
   return GoogleFonts.alata(
-      textStyle: TextStyle(
-          color: Colors.white, fontWeight: FontWeight.bold, fontSize: size));
+    color: Colors.white,
+    fontWeight: FontWeight.bold,
+    fontSize: size,
+  );
 }
 
 TextStyle wineBoldStyle({double? size}) {
   return GoogleFonts.alata(
-      textStyle: TextStyle(
-          color: CustomColors.orchid,
-          fontWeight: FontWeight.bold,
-          fontSize: size));
+    color: CustomColors.orchid,
+    fontWeight: FontWeight.bold,
+    fontSize: size,
+  );
 }
 
 TextStyle wineRegularStyle({double? size}) {
   return GoogleFonts.alata(
-      textStyle: TextStyle(color: CustomColors.orchid, fontSize: size));
+    color: CustomColors.orchid,
+    fontSize: size,
+  );
 }

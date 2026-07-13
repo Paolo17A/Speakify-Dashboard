@@ -60,14 +60,14 @@ class EditSectionPage extends HookConsumerWidget {
         if (action != null) {
           pendingAction.value = null;
           if (action == 'grantLesson') {
-            displayError(context, 'Successfully added new lesson to section.');
+            displaySuccess(context, 'Successfully added new lesson to section.');
           } else if (action == 'removeLesson') {
-            displayError(context,
+            displaySuccess(context,
                 'Successfully removed access to this lesson for this section.');
           } else if (action == 'grantQuiz') {
-            displayError(context, 'Successfully added new quiz to section.');
+            displaySuccess(context, 'Successfully added new quiz to section.');
           } else if (action == 'removeQuiz') {
-            displayError(context,
+            displaySuccess(context,
                 'Successfully removed access to this quiz for this section.');
           }
           loadSectionDetails();

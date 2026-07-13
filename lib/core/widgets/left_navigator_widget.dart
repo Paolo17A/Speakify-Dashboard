@@ -67,18 +67,21 @@ Widget lefNavigator(
       ),
     ];
 
-    final logout = ListTile(
-      leading: const Icon(Icons.exit_to_app, color: AppColors.orchid),
-      title: Text('Log Out', style: wineBoldStyle(size: titleSize)),
-      onTap: () async {
-        if (isDrawer && Scaffold.maybeOf(context)?.isDrawerOpen == true) {
-          Navigator.of(context).pop();
-        }
-        await ref.read(authSessionProvider.notifier).clear();
-        if (context.mounted) {
-          GoRouter.of(context).go(AppRoutes.welcome);
-        }
-      },
+    final logout = Material(
+      color: Colors.transparent,
+      child: ListTile(
+        leading: const Icon(Icons.exit_to_app, color: AppColors.orchid),
+        title: Text('Log Out', style: wineBoldStyle(size: titleSize)),
+        onTap: () async {
+          if (isDrawer && Scaffold.maybeOf(context)?.isDrawerOpen == true) {
+            Navigator.of(context).pop();
+          }
+          await ref.read(authSessionProvider.notifier).clear();
+          if (context.mounted) {
+            GoRouter.of(context).go(AppRoutes.welcome);
+          }
+        },
+      ),
     );
 
     if (isDrawer) {
@@ -106,21 +109,26 @@ Widget lefNavigator(
       );
     }
 
-    return Container(
+    return SizedBox(
       width: MediaQuery.sizeOf(context).width * 0.2,
-      constraints: const BoxConstraints(minWidth: 160, maxWidth: 280),
-      decoration: BoxDecoration(
-        color: AppColors.love,
-        border: Border.all(color: AppColors.orchid, width: 2),
-      ),
-      child: Column(
-        children: [
-          Flexible(
-            flex: 1,
-            child: ListView(padding: EdgeInsets.zero, children: items),
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(minWidth: 160, maxWidth: 280),
+        child: Material(
+          color: AppColors.love,
+          shape: const RoundedRectangleBorder(
+            side: BorderSide(color: AppColors.orchid, width: 2),
           ),
-          logout,
-        ],
+          clipBehavior: Clip.antiAlias,
+          child: Column(
+            children: [
+              Flexible(
+                flex: 1,
+                child: ListView(padding: EdgeInsets.zero, children: items),
+              ),
+              logout,
+            ],
+          ),
+        ),
       ),
     );
   });
@@ -133,17 +141,18 @@ Widget _navTile({
   required double titleSize,
   required VoidCallback onTap,
 }) {
-  return Container(
-    decoration: BoxDecoration(
-      color: selected ? AppColors.mercury : null,
-      border: Border.all(
-        color: selected ? AppColors.orchid : AppColors.love,
-      ),
-    ),
+  return Material(
+    color: selected ? AppColors.mercury : Colors.transparent,
     child: ListTile(
+      selected: selected,
       leading: Icon(icon, color: AppColors.orchid),
       title: AutoSizeText(title,
           maxLines: 1, style: wineBoldStyle(size: titleSize)),
+      shape: RoundedRectangleBorder(
+        side: BorderSide(
+          color: selected ? AppColors.orchid : AppColors.love,
+        ),
+      ),
       onTap: onTap,
     ),
   );

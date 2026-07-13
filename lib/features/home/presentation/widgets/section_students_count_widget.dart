@@ -19,22 +19,30 @@ class SectionStudentsCountWidget extends ConsumerStatefulWidget {
 class _SectionStudentsCountWidgetState
     extends ConsumerState<SectionStudentsCountWidget> {
   bool _isLoading = true;
+  bool _didLoad = false;
   List<SectionCount> _sectionCounts = [];
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+    if (_didLoad) return;
+    _didLoad = true;
     _load();
   }
 
   Future<void> _load() async {
-    final counts =
-        await ref.read(homeViewModelProvider.notifier).loadSectionCounts();
-    if (!mounted) return;
-    setState(() {
-      _sectionCounts = counts;
-      _isLoading = false;
-    });
+    try {
+      final counts =
+          await ref.read(homeViewModelProvider.notifier).loadSectionCounts();
+      if (!mounted) return;
+      setState(() {
+        _sectionCounts = counts;
+        _isLoading = false;
+      });
+    } catch (_) {
+      if (!mounted) return;
+      setState(() => _isLoading = false);
+    }
   }
 
   @override

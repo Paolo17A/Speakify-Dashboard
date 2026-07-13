@@ -17,22 +17,30 @@ class RecentActiviesWidget extends ConsumerStatefulWidget {
 
 class _RecentActiviesWidgetState extends ConsumerState<RecentActiviesWidget> {
   bool _isLoading = true;
+  bool _didLoad = false;
   List<RecentActivityEntry> _recentActivities = [];
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+    if (_didLoad) return;
+    _didLoad = true;
     _load();
   }
 
   Future<void> _load() async {
-    final activities =
-        await ref.read(homeViewModelProvider.notifier).loadRecentActivities();
-    if (!mounted) return;
-    setState(() {
-      _recentActivities = activities;
-      _isLoading = false;
-    });
+    try {
+      final activities =
+          await ref.read(homeViewModelProvider.notifier).loadRecentActivities();
+      if (!mounted) return;
+      setState(() {
+        _recentActivities = activities;
+        _isLoading = false;
+      });
+    } catch (_) {
+      if (!mounted) return;
+      setState(() => _isLoading = false);
+    }
   }
 
   @override

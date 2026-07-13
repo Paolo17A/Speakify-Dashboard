@@ -10,44 +10,52 @@ class HomeViewmodel extends StateNotifier<GenericState> {
   HomeViewmodel({required this.homeUseCases})
       : super(const GenericState.initial());
 
+  /// Concurrent home widgets each call a different loader; do not flip a shared
+  /// Loading flag or they starve each other / never finish local spinners.
   Future<List<SectionCount>> loadSectionCounts() async {
-    state = const GenericState.loading();
     final result = await homeUseCases.getAccessibleSectionCounts();
+    if (!mounted) {
+      return result.fold((_) => <SectionCount>[], (counts) => counts);
+    }
     return result.fold((failure) {
-      state = GenericState.error(failure.message);
+      if (mounted) state = GenericState.error(failure.message);
       return <SectionCount>[];
     }, (counts) {
-      state = GenericState.success(counts);
+      if (mounted) state = GenericState.success(counts);
       return counts;
     });
   }
 
   Future<List<RecentActivityEntry>> loadRecentActivities() async {
-    state = const GenericState.loading();
     final result = await homeUseCases.getRecentActivities();
+    if (!mounted) {
+      return result.fold((_) => <RecentActivityEntry>[], (entries) => entries);
+    }
     return result.fold((failure) {
-      state = GenericState.error(failure.message);
+      if (mounted) state = GenericState.error(failure.message);
       return <RecentActivityEntry>[];
     }, (entries) {
-      state = GenericState.success(entries);
+      if (mounted) state = GenericState.success(entries);
       return entries;
     });
   }
 
   Future<List<ActiveStudentEntry>> loadActiveStudents() async {
-    state = const GenericState.loading();
     final result = await homeUseCases.getActiveStudents();
+    if (!mounted) {
+      return result.fold((_) => <ActiveStudentEntry>[], (entries) => entries);
+    }
     return result.fold((failure) {
-      state = GenericState.error(failure.message);
+      if (mounted) state = GenericState.error(failure.message);
       return <ActiveStudentEntry>[];
     }, (entries) {
-      state = GenericState.success(entries);
+      if (mounted) state = GenericState.success(entries);
       return entries;
     });
   }
 }
 
 final homeViewModelProvider =
-    StateNotifierProvider.autoDispose<HomeViewmodel, GenericState>(
+    StateNotifierProvider<HomeViewmodel, GenericState>(
   (ref) => HomeViewmodel(homeUseCases: getIt()),
 );
